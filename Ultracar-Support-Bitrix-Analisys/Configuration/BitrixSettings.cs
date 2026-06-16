@@ -7,8 +7,21 @@ public class BitrixSettings
     public string WebhookUrl { get; set; } = string.Empty;
     public string GroupId { get; set; } = string.Empty;
     public string? CreatedFrom { get; set; }
+    public string? OpenLinesCreatedFrom { get; set; }
 
     public string BaseUrl => WebhookUrl.TrimEnd('/') + "/";
+
+    public string? EffectiveOpenLinesCreatedFrom =>
+        !string.IsNullOrWhiteSpace(OpenLinesCreatedFrom) ? OpenLinesCreatedFrom : CreatedFrom;
+
+    public string WebhookHost
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(WebhookUrl)) return string.Empty;
+            return Uri.TryCreate(WebhookUrl, UriKind.Absolute, out var uri) ? uri.Host : string.Empty;
+        }
+    }
 
     public static BitrixSettings Load()
     {
@@ -25,12 +38,15 @@ public class BitrixSettings
                 settings.GroupId = bitrixSection.GetProperty("GroupId").GetString() ?? string.Empty;
                 if (bitrixSection.TryGetProperty("CreatedFrom", out var createdFrom))
                     settings.CreatedFrom = createdFrom.GetString();
+                if (bitrixSection.TryGetProperty("OpenLinesCreatedFrom", out var openLinesFrom))
+                    settings.OpenLinesCreatedFrom = openLinesFrom.GetString();
             }
         }
 
         settings.WebhookUrl = Environment.GetEnvironmentVariable("BITRIX_WEBHOOK_URL") ?? settings.WebhookUrl;
         settings.GroupId = Environment.GetEnvironmentVariable("BITRIX_GROUP_ID") ?? settings.GroupId;
         settings.CreatedFrom = Environment.GetEnvironmentVariable("BITRIX_CREATED_FROM") ?? settings.CreatedFrom;
+        settings.OpenLinesCreatedFrom = Environment.GetEnvironmentVariable("BITRIX_OPENLINES_CREATED_FROM") ?? settings.OpenLinesCreatedFrom;
 
         return settings;
     }
