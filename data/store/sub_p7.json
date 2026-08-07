@@ -1,0 +1,234 @@
+{
+ "proposta": "P7 — Fluxo guiado de devolução, garantia e remessa",
+ "subgrupos": [
+  {
+   "nome": "Destaque manual de impostos para bater com o espelho do fornecedor",
+   "descricao": "O fornecedor manda um espelho/autorização de devolução exigindo BC ICMS, ICMS, ICMS ST, IPI, frete e outras despesas idênticos aos da nota de compra, e recusa a devolução se divergir — às vezes por um centavo. O sistema não traz esses valores da compra de origem: o cliente digita item a item na aba ICMS/IPI sem saber em qual campo, e o botão 'calcular tributos' ainda sobrescreve o que ele preencheu à mão.",
+   "share_pct": 24,
+   "acoes": [
+    "Herdar automaticamente da compra de origem, item a item, BC ICMS, alíquota, valor de ICMS, BC/valor de ICMS ST, IPI, frete e outras despesas, pré-preenchidos e editáveis — a devolução já sabe qual é a NF-e de compra, os dados estão no XML importado.",
+    "Criar a aba única 'Destaque de impostos (espelho do fornecedor)': todos os campos exigidos numa só tela, com comparação lado a lado contra os valores da compra e alerta de divergência (inclusive de arredondamento de centavos) antes de transmitir.",
+    "Impedir que 'Calcular tributos' apague destaques informados manualmente: desabilitar o botão quando houver destaque manual, ou pedir confirmação explícita mostrando o que será recalculado.",
+    "Guardar no cadastro do fornecedor o perfil 'exige destaque de ICMS/ST/IPI' e aplicar automaticamente nas próximas devoluções desse fornecedor, com opção de importar o espelho em XML/PDF para conferência."
+   ],
+   "exemplos": [
+    257523,
+    262365,
+    246327,
+    261745
+   ],
+   "n_exato": 204,
+   "share_real": 23.7,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "descricao": "A maior parte das rejeições da SEFAZ vem de combinações inválidas: 'CFOP inválido para NF-e com finalidade de devolução' (cliente usa 5949 ou um CFOP de entrada como 1202/1661 numa nota de saída), 'Informado CST para emissor do Simples Nacional (CRT=1 ou 4)', 'CSOSN incompatível na operação com Não Contribuinte' e IE do destinatário ausente. O sistema oferece todas as opções sem filtrar por regime nem por finalidade, e o suporte se recusa (com razão) a dizer qual CFOP usar, gerando ping-pong com contabilidade e fornecedor.",
+   "share_pct": 15,
+   "acoes": [
+    "Sugerir o CFOP de devolução a partir do CFOP da nota de compra de origem (inverso e ajustado para operação interna/interestadual), exibindo a justificativa e permitindo override consciente.",
+    "Filtrar as listas de CFOP, CST e CSOSN pelo regime tributário da empresa e pela finalidade da nota, escondendo as opções que a SEFAZ vai rejeitar (nada de CST para Simples Nacional, nada de CFOP de entrada em nota de saída).",
+    "Validar antes de transmitir a tríade destinatário contribuinte / consumidor final / CSOSN e a presença da IE, com correção em um clique (buscar IE do CNPJ no cadastro ou no portal SVRS e gravar no fornecedor).",
+    "Traduzir as ~15 rejeições recorrentes para português com o campo exato citado e um botão 'ir para o campo', em vez de exibir o texto cru da SEFAZ ou o erro genérico 'Falha no Schema XML do lote'."
+   ],
+   "exemplos": [
+    247677,
+    268241,
+    265577,
+    250375
+   ],
+   "n_exato": 120,
+   "share_real": 13.9,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+   "descricao": "O sistema só tem 'devolução de compra'. Para garantia, remessa em garantia, remessa/retorno de conserto, simples remessa e retorno de comodato, o cliente é instruído a montar uma NF-e manual em Fiscal > Nota Fiscal > Nova Nota, digitar a natureza da operação à mão, escolher CFOP 5949/6915 e a tributação por conta própria. Some-se a isso a garantia de peça já vendida, que é bloqueada por falta de saldo em estoque e exige correção manual de estoque.",
+   "share_pct": 8,
+   "acoes": [
+    "Criar operações nativas de 'Remessa em garantia', 'Remessa para conserto', 'Retorno de conserto', 'Simples remessa' e 'Retorno de comodato', cada uma com natureza, finalidade, CFOP e tributação pré-configurados e vinculadas à NF de origem.",
+    "Permitir emitir garantia de peça que já saiu do estoque na venda, sem exigir correção de estoque manual, e registrar a movimentação como saída em garantia em vez de venda.",
+    "Preencher automaticamente a chave referenciada e os dados adicionais com a NF de venda/compra de origem nesses tipos de nota, que hoje o cliente digita à mão e o fornecedor recusa quando falta.",
+    "Explicar na escolha do tipo de operação a diferença entre devolução e garantia/remessa, já que os clientes chegam pedindo 'nota de garantia com CFOP 5949' e o sistema simplesmente rejeita sem contexto."
+   ],
+   "exemplos": [
+    261331,
+    262895,
+    252971,
+    248839
+   ],
+   "n_exato": 117,
+   "share_real": 13.6,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "Outro / não classificado",
+   "descricao": "Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas.",
+   "share_pct": 12,
+   "n_exato": 93,
+   "share_real": 12.3,
+   "acoes": [
+    "Reclassificar: o agrupamento revelou dois padrões sem subgrupo previsto — erros de IBS/CBS em contexto de devolução (cMunFGIBS, Grupo de Devolução do IBS) e erro no campo de condição de pagamento ('sem pagamento'/valor 0,00) na nota de devolução.",
+    "Avaliar promover 'Devolução sob a reforma tributária (IBS/CBS)' a subgrupo próprio — o volume sugere demanda estruturada, não ruído.",
+    "O restante são digests sem informação (só saudação + AnyDesk); depende da P5 (evidência obrigatória) para virar dado."
+   ],
+   "exemplos": [],
+   "n_conv": 93,
+   "ultima": "2026-08-04",
+   "heat": "recente",
+   "idade_dias": 1
+  },
+  {
+   "nome": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+   "descricao": "Um contingente grande de usuários novos (troca de responsável fiscal, migração de sistema, oficina pequena) diz literalmente 'nunca fiz, não sei por onde começar'. A resposta padrão do suporte é enviar link do ajuda.ultracar ou um PDF/Word externo; o cliente não consegue seguir, insiste, e o atendimento termina em AnyDesk com o atendente emitindo a nota — o que o próprio suporte diz não poder fazer.",
+   "share_pct": 15,
+   "acoes": [
+    "Assistente de devolução dentro do produto, em etapas validadas (1. localizar a compra → 2. escolher itens e quantidades → 3. destacar impostos conforme o espelho → 4. referenciar a NF de origem → 5. revisar e transmitir), cada etapa só liberando a seguinte quando estiver válida.",
+    "Detectar que é a primeira devolução daquele usuário/empresa e abrir o modo guiado automaticamente, com dicas contextuais nos campos que mais geram rejeição.",
+    "Colocar o checklist de pré-requisitos na entrada do fluxo ('a compra está lançada e autorizada?'), com atalho direto para importar o XML quando a resposta for não, eliminando o vaivém entre telas.",
+    "Substituir o envio de PDF/link externo por tour interativo e vídeo curto embutido na própria tela, e registrar quando o cliente abandona o assistente para acionar o suporte proativamente."
+   ],
+   "exemplos": [
+    262683,
+    250503,
+    264437,
+    258709
+   ],
+   "n_exato": 101,
+   "share_real": 11.7,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "Compra não elegível: a devolução não enxerga o item",
+   "descricao": "O cliente abre Movimentação > Compras > Devolução de Compra, preenche empresa/fornecedor/período e a busca volta vazia ou sem o item desejado, porque a compra não foi importada, não está autorizada, está com 'tipo de documento' diferente de NOTA FISCAL, foi filtrada pela data errada (data de lançamento vs. data de emissão), está dentro de um agrupamento de compras, ou o item foi lançado como insumo/vinculado a uma OS. A tela não diz nada disso: só devolve lista vazia e o cliente vai ao suporte.",
+   "share_pct": 22,
+   "acoes": [
+    "Substituir a lista vazia por um diagnóstico: mostrar as compras do fornecedor no período com o motivo do bloqueio ao lado de cada uma (tipo de documento não fiscal, compra não autorizada, item vinculado a OS, item lançado como insumo, compra dentro de agrupamento, item já devolvido) e um botão 'Corrigir' que resolve inline, sem passar por exclusão/readição manual do item.",
+    "Definir tipo de documento = NOTA FISCAL automaticamente quando a compra nasce da importação de XML ou de chave de acesso, e bloquear a criação de compra fiscal com tipo 'boleto/recibo/dinheiro' — hoje essa única flag é a causa isolada mais repetida no chat.",
+    "Trocar o filtro obrigatório por data de lançamento por busca direta por número da NF, chave de acesso, código interno ou nome da peça, com período apenas como filtro opcional.",
+    "Criar o caminho 'Devolver sem XML': gerar a compra a partir da chave de acesso de 44 dígitos (consulta DF-e/SEFAZ) ou digitação assistida do DANFE, para o cenário recorrente de cliente que só recebeu o papel ou a autorização de devolução do fornecedor."
+   ],
+   "exemplos": [
+    243585,
+    257213,
+    244991,
+    260957
+   ],
+   "n_exato": 94,
+   "share_real": 10.9,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
+   "descricao": "Como não existe pré-visualização do DANFE antes de transmitir, o cliente só descobre o erro depois de autorizar; aí precisa cancelar e refazer — e o item não volta a ficar disponível para nova devolução até que alguém clique 'Consultar situação' duas ou três vezes, truque que só o suporte conhece. Quando passam as 24h, entra o cancelamento extemporâneo com a contabilidade e o estoque fica inconsistente.",
+   "share_pct": 10,
+   "acoes": [
+    "Entregar a pré-visualização do DANFE (espelho) antes da transmissão — pedido explícito e repetido pelos clientes, já registrado internamente como melhoria em aberto.",
+    "Liberar automaticamente o item para nova devolução assim que a nota for cancelada ou rejeitada, eliminando o 'clique em Consultar situação 2x'; sincronizar o retorno do saldo ao estoque no mesmo evento.",
+    "Adicionar o botão 'Refazer devolução', que clona a nota cancelada com todos os campos e destaques já preenchidos para o cliente só corrigir o que estava errado.",
+    "Exibir na nota o contador de prazo de cancelamento (24h) e, ao expirar, um aviso com o procedimento de cancelamento extemporâneo e a alternativa de nota de entrada para anular a operação."
+   ],
+   "exemplos": [
+    263375,
+    254593,
+    261951,
+    247199
+   ],
+   "n_exato": 72,
+   "share_real": 8.4,
+   "ultima": "2026-08-03",
+   "heat": "recente",
+   "idade_dias": 2,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-03"
+  },
+  {
+   "nome": "Documento fiscal referenciado e chave de acesso",
+   "descricao": "Rejeições 'NF-e de devolução de mercadoria não possui documento fiscal referenciado' e 'exige referenciamento a nível de item' aparecem em série. O campo de chave só aceita 44 dígitos sem espaços — como o cliente copia e cola do portal ou do PDF, o valor vem com espaços e é recusado sem explicar o motivo; quem monta a nota manualmente nem sabe onde fica o campo.",
+   "share_pct": 6,
+   "acoes": [
+    "Preencher a nota referenciada automaticamente sempre que a devolução nascer de uma compra registrada, inclusive no referenciamento por item quando a devolução envolve mais de uma NF de origem.",
+    "Sanitizar a chave colada (remover espaços, quebras de linha e pontuação) e validar 44 dígitos + dígito verificador com mensagem clara, em vez de recusar com 'Informar apenas números'.",
+    "Na emissão manual, oferecer busca da chave por número da NF + fornecedor, preenchendo o campo referenciado e os dados adicionais de uma vez."
+   ],
+   "exemplos": [
+    240705,
+    244179,
+    255211,
+    240543
+   ],
+   "n_exato": 47,
+   "share_real": 5.5,
+   "ultima": "2026-08-03",
+   "heat": "recente",
+   "idade_dias": 2,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-03"
+  },
+  {
+   "nome": "Devolução sob a reforma tributária (IBS/CBS)",
+   "descricao": "Erros de IBS/CBS que só aparecem no fluxo de devolução (cMunFGIBS, Grupo de Devolução do IBS). Apareceu no censo dentro do bucket 'Outro' e cruza com a curva de IBS/CBS da P3.",
+   "acoes": [
+    "Cobrir o grupo de devolução do IBS/CBS na montagem da nota de devolução (cMunFGIBS e correlatos).",
+    "Incluir cenários de devolução na suíte de testes de IBS/CBS da P3 — hoje a reforma está sendo testada só na venda.",
+    "Priorizar junto com a P3: as duas frentes compartilham o mesmo motor e a mesma janela de setembro/2026."
+   ],
+   "count": 0,
+   "abertos": 0,
+   "soma_dias": 0,
+   "ultima": "2026-08-05",
+   "idade_dias": 0,
+   "heat": "recente",
+   "n_conv": 6,
+   "n_exato": 6,
+   "share_real": 0,
+   "share_pct": 0,
+   "ids": [],
+   "exemplos": [],
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "Condição de pagamento inválida na nota de devolução",
+   "descricao": "Erro no campo de condição de pagamento ('sem pagamento' / valor 0,00) ao emitir nota de devolução. Bloco recorrente identificado no censo, sem subgrupo previsto.",
+   "acoes": [
+    "Assumir automaticamente a condição de pagamento correta em nota de devolução (operação sem pagamento), em vez de exigir preenchimento manual.",
+    "Validar o campo antes de transmitir, com mensagem clara quando o valor for incompatível com a finalidade da nota."
+   ],
+   "count": 0,
+   "abertos": 0,
+   "soma_dias": 0,
+   "ultima": "2026-07-15",
+   "idade_dias": 21,
+   "heat": "recente",
+   "n_conv": 7,
+   "n_exato": 7,
+   "share_real": 0,
+   "share_pct": 0,
+   "ids": [],
+   "exemplos": [],
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-07-15"
+  }
+ ]
+}

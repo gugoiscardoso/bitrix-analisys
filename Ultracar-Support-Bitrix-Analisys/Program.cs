@@ -4,10 +4,10 @@ using Ultracar_Support_Bitrix_Analisys.Models.OpenLines;
 using Ultracar_Support_Bitrix_Analisys.Services;
 using Ultracar_Support_Bitrix_Analisys.Services.OpenLines;
 
-(string mode, string? overrideFrom) parsedArgs;
+CliArgs.Options opts;
 try
 {
-    parsedArgs = CliArgs.Parse(args);
+    opts = CliArgs.Parse(args);
 }
 catch (ArgumentException ex)
 {
@@ -16,10 +16,10 @@ catch (ArgumentException ex)
 }
 
 var settings = BitrixSettings.Load();
-if (parsedArgs.overrideFrom is not null)
+if (opts.From is not null)
 {
-    settings.CreatedFrom = parsedArgs.overrideFrom;
-    settings.OpenLinesCreatedFrom = parsedArgs.overrideFrom;
+    settings.CreatedFrom = opts.From;
+    settings.OpenLinesCreatedFrom = opts.From;
 }
 
 try
@@ -33,7 +33,7 @@ catch (InvalidOperationException ex)
 }
 
 Console.WriteLine($"Webhook: {settings.BaseUrl}");
-Console.WriteLine($"Mode: {parsedArgs.mode}");
+Console.WriteLine($"Mode: {opts.Mode}");
 
 using var httpClient = new HttpClient();
 httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -41,7 +41,7 @@ var rateLimitedClient = new RateLimitedHttpClient(httpClient);
 var apiClient = new BitrixApiClient(rateLimitedClient, settings);
 var batchService = new BitrixBatchService(apiClient);
 
-return parsedArgs.mode switch
+return opts.Mode switch
 {
     CliArgs.ModeDiscover => await RunDiscoveryAsync(),
     CliArgs.ModeConversations => await RunConversationsAsync(),
@@ -55,7 +55,8 @@ async Task<int> RunTasksAsync()
     Console.WriteLine();
 
     var collector = new TaskCollectorService(apiClient, batchService);
-    var exportData = await collector.CollectAllAsync(settings.GroupId, settings.CreatedFrom);
+    var exportData = await collector.CollectAllAsync(
+        settings.GroupId, settings.CreatedFrom, opts.To, opts.ChangedSince);
 
     var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
     var json = JsonSerializer.Serialize(exportData, jsonOptions);
@@ -67,6 +68,7 @@ async Task<int> RunTasksAsync()
 
     Console.WriteLine();
     Console.WriteLine($"Exported {exportData.Metadata.TotalTasks} tasks to {Path.GetFullPath(filePath)}");
+    await RegistrarColetaAsync("chamados", filePath, exportData.Metadata.TotalTasks, opts);
     return 0;
 }
 
@@ -80,7 +82,7 @@ async Task<int> RunConversationsAsync()
     var userResolver = new UserResolver(batchService);
     var collector = new OpenLinesConversationCollector(batchService, enumerator, crmResolver, userResolver);
 
-    var collected = await collector.CollectAllAsync(settings.EffectiveOpenLinesCreatedFrom);
+    var collected = await collector.CollectAllAsync(settings.EffectiveOpenLinesCreatedFrom, opts.To);
     if (collected.Sessions.Count == 0)
     {
         Console.WriteLine("No sessions found. Nothing to export.");
@@ -102,6 +104,7 @@ async Task<int> RunConversationsAsync()
 
     Console.WriteLine();
     Console.WriteLine($"Exported {export.Metadata.TotalConversations} conversations to {Path.GetFullPath(filePath)}");
+    await RegistrarColetaAsync("conversas", filePath, export.Metadata.TotalConversations, opts);
     return 0;
 }
 
@@ -123,7 +126,42 @@ async Task<int> RunDiscoveryAsync()
 
 static string ResolveOutputDir()
 {
-    var outputDir = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "output");
+    // data/raw é cache regenerável; o pipeline lê daqui e escreve o store em data/store.
+    var outputDir = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "data", "raw");
     Directory.CreateDirectory(outputDir);
     return outputDir;
+}
+
+/// <summary>
+/// Registra a coleta em data/store/coleta.json. É o que permite ao modo incremental
+/// saber a partir de quando buscar na próxima execução.
+/// </summary>
+static async Task RegistrarColetaAsync(string modo, string arquivo, int registros, CliArgs.Options opts)
+{
+    var storeDir = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "data", "store");
+    Directory.CreateDirectory(storeDir);
+    var caminho = Path.Combine(storeDir, "coleta.json");
+
+    var raiz = new Dictionary<string, JsonElement>();
+    if (File.Exists(caminho))
+    {
+        using var doc = JsonDocument.Parse(await File.ReadAllTextAsync(caminho));
+        foreach (var prop in doc.RootElement.EnumerateObject())
+            raiz[prop.Name] = prop.Value.Clone();
+    }
+
+    var entrada = new
+    {
+        em = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+        arquivo = Path.GetFileName(arquivo),
+        registros,
+        from = opts.From,
+        to = opts.To,
+        changedSince = opts.ChangedSince
+    };
+    raiz[modo] = JsonSerializer.SerializeToElement(entrada);
+
+    await File.WriteAllTextAsync(caminho,
+        JsonSerializer.Serialize(raiz, new JsonSerializerOptions { WriteIndented = true }));
+    Console.WriteLine($"Coleta registrada em {Path.GetFullPath(caminho)}");
 }

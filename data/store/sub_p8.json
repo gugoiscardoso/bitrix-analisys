@@ -1,0 +1,213 @@
+{
+ "proposta": "P8 — Autonomia do cliente (self-service)",
+ "subgrupos": [
+  {
+   "nome": "Cliente sem visibilidade do status do chamado e da origem da falha",
+   "descricao": "Um quinto das conversas é o cliente perguntando pelo próprio chamado — muitos nem sabem o número ('anotei não'), não têm previsão, descobrem que foi 'finalizado' sem terem validado, ou não sabem se a lentidão/erro é do Ultracar, da SEFAZ, da prefeitura ou da integradora. O suporte gasta o atendimento consultando internamente e às vezes entra por AnyDesk só para reproduzir o erro.",
+   "share_pct": 20,
+   "acoes": [
+    "Portal 'Meus chamados' dentro do sistema, listando por CNPJ número, título, status, última movimentação e previsão, com notificação automática a cada mudança e pedido explícito de validação antes do encerramento.",
+    "Página e banner de status operacional em tempo real (Ultracar, SEFAZ por UF, prefeituras integradas, integradora fiscal), exibido no módulo fiscal quando houver incidente, para o cliente não abrir chat perguntando 'só eu estou assim?'.",
+    "Abertura de chamado a partir da própria nota com erro, anexando automaticamente XML, mensagem de rejeição e print — dispensando o AnyDesk para coleta de evidência.",
+    "Aviso proativo em massa (chat/e-mail) quando um incidente que afeta emissão for aberto ou resolvido, com orientação de contingência (emitir pelo portal e atualizar a numeração depois)."
+   ],
+   "exemplos": [
+    252945,
+    252615,
+    244335,
+    247925,
+    265039
+   ],
+   "n_exato": 276,
+   "share_real": 27.8,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+   "descricao": "Cliente para porque a nota fica 'Em digitação' ou 'Processando' e ele não sabe que precisa clicar Transmitir e depois Consultar Situação — é só aí que a mensagem de erro aparece. Inclui o grande volume de 'como emito minha primeira nota' e a escolha entre NF-e, NFC-e e NFS-e.",
+   "share_pct": 20,
+   "acoes": [
+    "Barra de progresso de estado na própria nota (Digitação → Transmitida → Autorizada/Rejeitada) com o erro da SEFAZ/prefeitura exibido em linguagem simples e o botão da próxima ação em destaque, sem exigir 'Consultar situação'.",
+    "Wizard contextual de primeira emissão por tipo de nota, disparado quando o CNPJ nunca emitiu aquele modelo, com validação prévia dos campos obrigatórios antes do envio.",
+    "Artigos curtos do help center indexados por código de erro e por município, enviados automaticamente pelo bot do chat quando o cliente cola a mensagem de rejeição."
+   ],
+   "exemplos": [
+    258301,
+    257521,
+    264561,
+    262089,
+    267251,
+    266403
+   ],
+   "n_exato": 159,
+   "share_real": 16.0,
+   "ultima": "2026-08-04",
+   "heat": "recente",
+   "idade_dias": 1,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-04"
+  },
+  {
+   "nome": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "descricao": "Em toda primeira emissão o suporte entra por AnyDesk e preenche à mão Cadastros > Empresas > aba Nota Fiscal: habilita NF-e/NFC-e/NFS-e, série, numeração da próxima nota, CFOP padrão, CSOSN/CST, PIS/COFINS, regime e login do portal da prefeitura — sempre pedindo antes o XML+PDF da última nota emitida fora do sistema. O cliente não consegue sozinho porque a tela é um formulário fiscal cru, sem explicação de cada campo, sem validação e sem saber que a numeração precisa dar continuidade à do sistema anterior.",
+   "share_pct": 21,
+   "acoes": [
+    "Assistente de ativação fiscal por empresa/CNPJ, em etapas (peças / serviço / cupom), que faz upload do XML da última nota emitida e extrai automaticamente série, próxima numeração, CFOP, CST/CSOSN e regime — eliminando a digitação manual do operador.",
+    "Emissão de nota de teste em ambiente de homologação dentro do próprio assistente, com semáforo verde/vermelho por item de configuração, para o cliente validar sem depender de o suporte 'gerar uma nota de teste'.",
+    "Formulário de coleta enviável ao contador por link (em vez do PDF/planilha atual trocada por WhatsApp), que grava direto na base do cliente e mostra o que ainda falta.",
+    "Checklist de status fiscal visível na home ('NF-e configurada / NFS-e pendente: falta XML da prefeitura'), para o cliente saber o que falta antes de precisar emitir com o carro na porta."
+   ],
+   "exemplos": [
+    264721,
+    263189,
+    262599,
+    250623,
+    256653
+   ],
+   "n_exato": 149,
+   "share_real": 15.0,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "Conteúdo da nota: dados adicionais e ajustes por operação",
+   "descricao": "O suporte entra por AnyDesk para configurar as TAGs de dados adicionais (placa, modelo, KM, inscrição estadual, número do pedido de compra) por tipo de nota, ou para marcar item a item retenção de ISS, desconto, CEST e condição de pagamento — ajustes que o cliente precisa repetir em toda nota. Ele não consegue sozinho porque esses campos estão espalhados entre cadastro da empresa, cadastro do produto e a nota, sem padrão salvável.",
+   "share_pct": 10,
+   "acoes": [
+    "Editor de modelo de dados adicionais por tipo de nota, com biblioteca de tags clicáveis (@placa, @km, @modelo, @pedido) e pré-visualização do texto final — hoje só o operador remoto sabe fazer.",
+    "Herança automática de CEST, NCM e CFOP do cadastro do produto para a nota, com aviso quando o cadastro estiver incompleto, eliminando o preenchimento manual repetido.",
+    "Aplicar retenção de ISS e desconto no cabeçalho da nota com propagação para todos os itens (hoje é item a item), com o cálculo da alíquota já preenchido a partir dos parâmetros da empresa.",
+    "Validação preventiva antes de transmitir: lista dos campos que o destinatário costuma exigir (pedido de compra, inscrição estadual, condição de pagamento) marcados como pendentes."
+   ],
+   "exemplos": [
+    251683,
+    248335,
+    262055,
+    259001,
+    250373
+   ],
+   "n_exato": 116,
+   "share_real": 11.7,
+   "ultima": "2026-07-31",
+   "heat": "recente",
+   "idade_dias": 5,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-07-31"
+  },
+  {
+   "nome": "Fechamento mensal para a contabilidade",
+   "descricao": "Todo início de mês o cliente abre o chat para lembrar como baixar XMLs por período, tirar relatórios de entradas/saídas, monofásico, NCM x CST e enviar o pacote ao contador; muitas vezes o suporte entra remotamente e faz o download pelo cliente. Ele não consegue sozinho porque os arquivos estão espalhados em três caminhos diferentes (Fiscal > Baixar arquivos, Movimentação > Compras, Relatórios > Fiscal) e não existe um pacote único.",
+   "share_pct": 10,
+   "acoes": [
+    "Botão 'Pacote do contador': um ZIP mensal com XML de saída, XML de compras e os relatórios fiscais padrão, gerado por período em um clique.",
+    "Envio automático mensal do pacote ao e-mail/CNPJ do escritório contábil, ativando por padrão o campo de CNPJ de autorização de download de XML (hoje existe, mas ninguém sabe que existe).",
+    "Relatório configurável de produtos com NCM, CST, CFOP de entrada e saída, custo, venda e estoque — hoje o suporte informa que 'não tem tudo' e o cliente monta em planilha.",
+    "Card de fechamento na home no dia 1º, com checklist do que já foi baixado/enviado no mês."
+   ],
+   "exemplos": [
+    249607,
+    268301,
+    263317,
+    264947,
+    253709
+   ],
+   "n_exato": 92,
+   "share_real": 9.3,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "Parâmetros tributários que mudam todo mês",
+   "descricao": "Alíquota efetiva do Simples, ISS, ICMS, PIS/COFINS e agora IBS/CBS chegam da contabilidade por mensagem e o operador entra por AnyDesk para digitá-las em Cadastros > Empresa > Nota Fiscal > Tributos, mês após mês; mudança de regime (Simples para Presumido) segue o mesmo caminho. O cliente não faz sozinho porque não sabe o caminho da tela, não sabe se o valor vale para NF-e, NFS-e ou ambas, e relata que 'no sistema anterior isso era automático'.",
+   "share_pct": 11,
+   "acoes": [
+    "Painel 'Parâmetros fiscais' autoeditável, com histórico por competência (alíquota vigente de agosto, setembro...) e aplicação automática na data de virada — sem reabrir o cadastro da empresa.",
+    "Acesso de contador convidado (perfil somente-tributos) para o escritório contábil lançar as alíquotas diretamente, tirando o cliente e o suporte do meio.",
+    "Lembrete automático no início de cada mês pedindo confirmação da alíquota efetiva do Simples, com botão 'manter a do mês anterior'.",
+    "Aplicação em massa de IBS/CBS e CST por grupo de NCM/serviço, com pré-visualização do impacto, em vez de o operador editar item a item."
+   ],
+   "exemplos": [
+    267091,
+    258369,
+    267541,
+    240239,
+    265837
+   ],
+   "n_exato": 68,
+   "share_real": 6.8,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05"
+  },
+  {
+   "nome": "Correção pós-emissão: limites da CC-e e prazo de cancelamento",
+   "descricao": "A nota saiu errada e o cliente não sabe o caminho: o que a carta de correção pode e não pode alterar (CFOP não pode), qual o prazo de cancelamento da sua cidade e quando usar nota de ajuste. O suporte repete o mesmo passo a passo de CC-e várias vezes por semana.",
+   "share_pct": 7,
+   "n_exato": 65,
+   "share_real": 6.5,
+   "acoes": [
+    "Assistente de correção na própria nota: a partir do erro, indicar se o caso resolve com CC-e, cancelamento ou nota de ajuste.",
+    "Deixar explícito na tela o que a CC-e NÃO altera (CFOP, valores, destinatário) antes de o cliente escrever a carta — hoje ele descobre depois de transmitir.",
+    "Mostrar o prazo de cancelamento vigente da cidade/estado do cliente, com contador, na tela da nota autorizada.",
+    "Habilitar CC-e para NFS-e onde o município permite, ou explicar a indisponibilidade — hoje o cliente procura a opção e não encontra."
+   ],
+   "exemplos": [],
+   "ultima": "2026-08-03",
+   "heat": "recente",
+   "idade_dias": 2,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-03"
+  },
+  {
+   "nome": "Certificados, tokens e credenciais que expiram",
+   "descricao": "Recorrentemente o suporte acessa a máquina do cliente só para instalar/trocar o arquivo do certificado digital e digitar a senha, colar o CSC/token de NFC-e, gravar login e senha do portal da prefeitura ou cadastrar credenciais de banco para boleto. O cliente não faz sozinho porque não sabe onde fica o campo, erra a senha do .pfx, não distingue ambiente de produção de homologação e só descobre o vencimento quando a nota é rejeitada.",
+   "share_pct": 8,
+   "acoes": [
+    "Tela de autoatendimento 'Certificado digital' com upload do .pfx, teste imediato da senha e exibição da validade, sem necessidade de acesso remoto.",
+    "Alerta proativo in-app e por e-mail a 30/15/7 dias do vencimento do certificado, com link direto para a tela de troca.",
+    "Campo de CSC/Token NFC-e com seletor explícito de ambiente (Produção/Homologação) e validação online contra a SEFAZ no momento de salvar, retornando 'token válido/inválido' em vez de falhar na primeira venda.",
+    "Cofre de credenciais do portal municipal e dos bancos com teste de conexão de um clique, evitando que senhas circulem em texto no chat."
+   ],
+   "exemplos": [
+    267243,
+    252877,
+    257911,
+    257741,
+    253121
+   ],
+   "n_exato": 57,
+   "share_real": 5.7,
+   "ultima": "2026-08-04",
+   "heat": "recente",
+   "idade_dias": 1,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-04"
+  },
+  {
+   "nome": "Outro / não classificado",
+   "descricao": "Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas.",
+   "share_pct": 1,
+   "n_exato": 12,
+   "share_real": 1.2,
+   "acoes": [
+    "Volume residual e heterogêneo (1,2%): temas fora do escopo fiscal que entraram pelo filtro (relatório de comissão, faturamento real x fiscal). Nenhuma ação específica."
+   ],
+   "exemplos": [],
+   "ultima": "2026-08-03",
+   "heat": "recente",
+   "idade_dias": 2
+  }
+ ]
+}

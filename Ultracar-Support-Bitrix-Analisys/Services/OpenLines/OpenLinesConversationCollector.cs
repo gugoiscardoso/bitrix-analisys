@@ -23,10 +23,10 @@ public class OpenLinesConversationCollector
         _userResolver = userResolver;
     }
 
-    public async Task<CollectedSessions> CollectAllAsync(string? createdFrom, CancellationToken ct = default)
+    public async Task<CollectedSessions> CollectAllAsync(string? createdFrom, string? createdTo = null, CancellationToken ct = default)
     {
         Console.WriteLine($"[Collector] Phase 1: enumerating sessions (from={createdFrom ?? "(all)"})...");
-        var metas = await CollectMetasAsync(createdFrom, ct);
+        var metas = await CollectMetasAsync(createdFrom, createdTo, ct);
         if (metas.Count == 0)
             return new CollectedSessions();
 
@@ -49,10 +49,10 @@ public class OpenLinesConversationCollector
         };
     }
 
-    private async Task<List<SessionMeta>> CollectMetasAsync(string? createdFrom, CancellationToken ct)
+    private async Task<List<SessionMeta>> CollectMetasAsync(string? createdFrom, string? createdTo, CancellationToken ct)
     {
         var metas = new List<SessionMeta>();
-        await foreach (var meta in _enumerator.EnumerateAsync(createdFrom, ct))
+        await foreach (var meta in _enumerator.EnumerateAsync(createdFrom, createdTo, ct))
             metas.Add(meta);
         return metas;
     }

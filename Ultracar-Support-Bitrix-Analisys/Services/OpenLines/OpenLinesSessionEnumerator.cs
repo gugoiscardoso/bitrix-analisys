@@ -16,6 +16,7 @@ public class OpenLinesSessionEnumerator
 
     public async IAsyncEnumerable<SessionMeta> EnumerateAsync(
         string? createdFrom,
+        string? createdTo = null,
         [EnumeratorCancellation] CancellationToken ct = default)
     {
         var filter = new Dictionary<string, object>
@@ -24,6 +25,8 @@ public class OpenLinesSessionEnumerator
         };
         if (!string.IsNullOrWhiteSpace(createdFrom))
             filter[">=CREATED"] = createdFrom;
+        if (!string.IsNullOrWhiteSpace(createdTo))
+            filter["<=CREATED"] = createdTo;
 
         var parameters = new Dictionary<string, object>
         {

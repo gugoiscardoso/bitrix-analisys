@@ -15,17 +15,39 @@ public class TaskCollectorService
         _batchService = batchService;
     }
 
-    public async Task<ExportRoot> CollectAllAsync(string groupId, string? createdFrom = null, CancellationToken ct = default)
+    public async Task<ExportRoot> CollectAllAsync(
+        string groupId,
+        string? createdFrom = null,
+        string? createdTo = null,
+        string? changedSince = null,
+        CancellationToken ct = default)
     {
         Console.WriteLine($"Fetching tasks for WorkGroup {groupId}...");
-        if (createdFrom != null)
-            Console.WriteLine($"Filtering tasks created from: {createdFrom}");
 
         // Step 1: Paginate all task IDs
         var taskIds = new List<string>();
         var filter = new Dictionary<string, object> { ["GROUP_ID"] = groupId };
-        if (createdFrom != null)
-            filter[">=CREATED_DATE"] = createdFrom;
+
+        if (changedSince != null)
+        {
+            // Coleta incremental: filtrar por alteração traz numa consulta só os chamados
+            // novos E os que mudaram de status (inclusive os que fecharam) desde a última vez.
+            filter[">=CHANGED_DATE"] = changedSince;
+            Console.WriteLine($"Incremental: tasks changed since {changedSince}");
+        }
+        else
+        {
+            if (createdFrom != null)
+            {
+                filter[">=CREATED_DATE"] = createdFrom;
+                Console.WriteLine($"Filtering tasks created from: {createdFrom}");
+            }
+            if (createdTo != null)
+            {
+                filter["<=CREATED_DATE"] = createdTo;
+                Console.WriteLine($"Filtering tasks created to:   {createdTo}");
+            }
+        }
 
         var listParams = new Dictionary<string, object>
         {

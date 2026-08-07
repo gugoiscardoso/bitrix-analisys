@@ -1,0 +1,954 @@
+<title>Fricção Fiscal — Plano de Propostas · Ultracar</title>
+<style>
+:root {
+  --bg:#F4F6F8; --panel:#FFFFFF; --ink:#1C2733; --ink2:#5C6C7C; --ink3:#8695A5;
+  --line:#DFE6EC; --track:#E7EDF2; --accent:#175E8F; --accent2:#3D83B8; --accent-soft:#E3EDF5; --accent-ink:#12496E;
+  --amber:#A15E14; --amber-bg:#F7ECDD;
+  --hot:#A8261D; --hot-bg:#F8E4E1; --mid:#A15E14; --mid-bg:#F7ECDD; --old:#7D6A0B; --old-bg:#F3ECCB;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#101720; --panel:#18222D; --ink:#E3EAF1; --ink2:#93A4B5; --ink3:#6D7E8F;
+    --line:#273545; --track:#22303E; --accent:#5EA3D8; --accent2:#3D83B8; --accent-soft:#1D3348; --accent-ink:#9CC8EA;
+    --amber:#DDA05B; --amber-bg:#31261731;
+    --hot:#EE8A80; --hot-bg:#3A1E1B; --mid:#DDA05B; --mid-bg:#312617; --old:#CFC06A; --old-bg:#2D2913;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#101720; --panel:#18222D; --ink:#E3EAF1; --ink2:#93A4B5; --ink3:#6D7E8F;
+  --line:#273545; --track:#22303E; --accent:#5EA3D8; --accent2:#3D83B8; --accent-soft:#1D3348; --accent-ink:#9CC8EA;
+  --amber:#DDA05B; --amber-bg:#31261731;
+  --hot:#EE8A80; --hot-bg:#3A1E1B; --mid:#DDA05B; --mid-bg:#312617; --old:#CFC06A; --old-bg:#2D2913;
+}
+:root[data-theme="light"] {
+  --bg:#F4F6F8; --panel:#FFFFFF; --ink:#1C2733; --ink2:#5C6C7C; --ink3:#8695A5;
+  --line:#DFE6EC; --track:#E7EDF2; --accent:#175E8F; --accent2:#3D83B8; --accent-soft:#E3EDF5; --accent-ink:#12496E;
+  --amber:#A15E14; --amber-bg:#F7ECDD;
+  --hot:#A8261D; --hot-bg:#F8E4E1; --mid:#A15E14; --mid-bg:#F7ECDD; --old:#7D6A0B; --old-bg:#F3ECCB;
+}
+* { box-sizing:border-box; margin:0; }
+body {
+  background:var(--bg); color:var(--ink);
+  font:15px/1.55 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  padding:0 20px 72px;
+}
+main { max-width:880px; margin:0 auto; }
+.eyebrow { font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+header { padding:44px 0 8px; }
+h1 { font-size:31px; line-height:1.15; font-weight:650; letter-spacing:-.015em; text-wrap:balance; margin:8px 0 10px; }
+.lede { color:var(--ink2); max-width:62ch; }
+.stats { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0 6px; }
+.stat {
+  background:var(--panel); border:1px solid var(--line); border-radius:10px;
+  padding:12px 18px; min-width:130px;
+}
+.stat b { display:block; font-size:23px; font-weight:650; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
+.stat span { font-size:12px; color:var(--ink2); }
+nav { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 8px; position:sticky; top:0; padding:10px 0; background:var(--bg); z-index:5; }
+nav a {
+  font-size:12.5px; font-weight:600; color:var(--accent); text-decoration:none;
+  border:1px solid var(--line); background:var(--panel); border-radius:999px; padding:5px 12px;
+  white-space:nowrap; max-width:210px; overflow:hidden; text-overflow:ellipsis;
+}
+nav a span { font-weight:500; color:var(--ink2); }
+nav a:hover { border-color:var(--accent); }
+section {
+  background:var(--panel); border:1px solid var(--line); border-radius:14px;
+  padding:26px 28px 20px; margin:18px 0; scroll-margin-top:64px;
+}
+.sechead { display:flex; gap:14px; align-items:flex-start; }
+.ptag {
+  flex-shrink:0; font-size:13px; font-weight:700; color:var(--accent);
+  border:1.5px solid var(--accent); border-radius:8px; padding:3px 9px; margin-top:2px;
+  font-variant-numeric:tabular-nums;
+}
+h2 { font-size:19px; font-weight:650; letter-spacing:-.01em; text-wrap:balance; }
+.blurb { color:var(--ink2); font-size:13.5px; margin-top:4px; max-width:68ch; }
+.badges { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 4px; }
+.badge {
+  font-size:12.5px; color:var(--ink2); background:var(--bg); border:1px solid var(--line);
+  border-radius:999px; padding:4px 12px; font-variant-numeric:tabular-nums;
+}
+.badge b { color:var(--ink); font-weight:650; }
+.badge.amber { background:var(--amber-bg); border-color:transparent; color:var(--amber); }
+.badge.amber b { color:var(--amber); }
+.badge.chat { background:var(--accent-soft); border-color:transparent; color:var(--accent-ink); }
+.badge.chat b { color:var(--accent-ink); }
+table.rebal { width:100%; border-collapse:collapse; margin-top:14px; font-size:13px; }
+table.rebal th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--ink3); font-weight:650; padding:0 10px 7px 0; border-bottom:1px solid var(--line); }
+table.rebal td { padding:9px 10px 9px 0; border-bottom:1px solid var(--line); vertical-align:top;
+  font-variant-numeric:tabular-nums; }
+table.rebal td.n { text-align:right; white-space:nowrap; }
+.verd { font-size:11.5px; font-weight:650; border-radius:999px; padding:2px 9px; white-space:nowrap; }
+.verd.up { color:var(--hot); background:var(--hot-bg); }
+.verd.down { color:var(--ink2); background:var(--track); }
+.verd.new { color:var(--accent-ink); background:var(--accent-soft); }
+.verd.keep { color:var(--old); background:var(--old-bg); }
+.tblwrap { overflow-x:auto; }
+.rows { margin-top:14px; }
+.row { padding:11px 0 9px; border-top:1px solid var(--line); }
+.rowhead { display:flex; justify-content:space-between; gap:16px; align-items:baseline; }
+.rname { font-size:13.5px; font-weight:600; }
+.rnums { font-size:12.5px; color:var(--ink2); white-space:nowrap; font-variant-numeric:tabular-nums; }
+.rnums b { color:var(--ink); font-size:14px; font-weight:650; }
+.ab { color:var(--amber); font-weight:600; margin-left:6px; }
+.last { font-size:11.5px; font-weight:650; border-radius:999px; padding:2px 9px; margin-right:8px; white-space:nowrap; }
+.last.recente { color:var(--hot); background:var(--hot-bg); }
+.last.medio { color:var(--mid); background:var(--mid-bg); }
+.last.antigo { color:var(--old); background:var(--old-bg); }
+.legend { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; margin:14px 0 0; font-size:12px; color:var(--ink2); }
+.legend .last { margin-right:0; }
+.track { height:10px; border-radius:5px; background:var(--track); margin:7px 0 6px; overflow:hidden; }
+.track i { display:block; height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2)); border-radius:5px 4px 4px 5px; min-width:14px; }
+.rdesc { font-size:12.5px; color:var(--ink3); max-width:76ch; }
+.rsplit { font-size:11.5px; color:var(--ink2); font-variant-numeric:tabular-nums; margin:2px 0 4px; }
+footer { color:var(--ink3); font-size:12.5px; margin-top:28px; max-width:76ch; }
+footer a { color:var(--accent); }
+@media (max-width:640px) { .sechead { flex-direction:column; gap:8px; } h1 { font-size:25px; } nav a span { display:none; } }
+@media (prefers-reduced-motion: no-preference) {
+  section { animation:rise .35s ease both; }
+  @keyframes rise { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+}
+</style>
+<main>
+<header>
+  <div class="eyebrow">Ultracar · Suporte Fiscal · mai–ago 2026</div>
+  <h1>Plano de ataque à fricção fiscal</h1>
+  <p class="lede">Seis propostas derivadas de 522 chamados fiscais classificados um a um, quebradas em subvariações
+  com incidência, recência e a carga real medida nos dois canais: 522 chamados e 4.914 conversas de chat, todas classificadas por subgrupo uma a uma.</p>
+  <div class="stats">
+    <div class="stat"><b>522</b><span>chamados fiscais (43% do suporte)</span></div>
+    <div class="stat"><b>522</b><span>cobertos pelas 6 propostas (100%)</span></div>
+    <div class="stat"><b>~170</b><span>novos por mês, estável</span></div>
+    <div class="stat"><b>13 d</b><span>mediana de resolução</span></div>
+    <div class="stat"><b>11,4×</b><span>conversas por chamado (iceberg)</span></div>
+  </div>
+  <div class="legend">
+    <span>Barra e número = carga total do subgrupo (chamados + conversas). Última incidência (ref. 04/08/2026):</span>
+    <span class="last recente">últimos 30 dias — dor ativa</span>
+    <span class="last medio">30–60 dias — atenção</span>
+    <span class="last antigo">+60 dias — possivelmente já corrigido</span>
+  </div>
+</header>
+<nav><a href="#prop1">P1<span> Pré-validação da nota antes da transmissão</span></a><a href="#prop2">P2<span> Job de reconciliação com SEFAZ e prefeituras</span></a><a href="#prop3">P3<span> Pacote de conformidade tributária</span></a><a href="#prop4">P4<span> Robustez de PDF/DANFE e impressão</span></a><a href="#prop5">P5<span> Triagem com evidência obrigatória</span></a><a href="#prop6">P6<span> Homologação municipal + certificado digital</span></a><a href="#prop7">P7<span> Fluxo guiado de devolução, garantia e remessa</span></a><a href="#prop8">P8<span> Autonomia do cliente (self-service)</span></a><a href="#prop9">P9<span> Frentes complementares</span></a><a href="#rebal">↺<span> Rebalanceamento</span></a></nav>
+
+  <section id="prop1">
+    <div class="sechead">
+      <span class="ptag">P1</span>
+      <div>
+        <h2>Pré-validação da nota antes da transmissão</h2>
+        <p class="blurb">Validar a nota no sistema antes de enviar à SEFAZ/prefeitura, com mensagem clara de correção. Cada subgrupo é um validador implementável de forma independente.</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge"><b>80</b> chamados</span>
+      <span class="badge"><b>15%</b> dos fiscais</span>
+      <span class="badge amber"><b>12</b> em aberto</span>
+      <span class="badge"><b>1,097</b> dias de tratativa</span>
+      <span class="badge chat"><b>1.409</b> conversas no chat</span><span class="badge chat"><b>21.7%</b> da carga do balcão</span><span class="badge chat"><b>17.6×</b> iceberg</span>
+    </div>
+    <div class="rows">
+      <div class="row" title="Validar a coerência tributária da NF-e de produto antes do envio: CFOP compatível com o tipo de operação (interna vs interestadual, devolução) e com o grupo de tributação, CST vs CRT do Simples Nacional (usar CSOSN), campos de PIS mutuamente exclusivos e grupo de ICMS-ST retido obrigatório em devoluções. Hoje geram rejeições como 374, &#x27;CFOP de operação interna e idDest&lt;&gt;1&#x27; e &#x27;Informado CST para emissor do Simples Nacional&#x27;.">
+        <div class="rowhead">
+          <span class="rname">CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>418</b> · 28% </span>
+        </div>
+        <div class="track"><i style="width:100%"></i></div>
+        <p class="rsplit">7 chamados · 411 conversas · iceberg 59×</p>
+        <p class="rdesc">Validar a coerência tributária da NF-e de produto antes do envio: CFOP compatível com o tipo de operação (interna vs interestadual, devolução) e com o grupo de tributação, CST vs CRT do Simples Nacional (usar CSOSN), campos de PIS mutuamente exclusivos e grupo de ICMS-ST retido obrigatório em devoluções. Hoje geram rejeições como 374, &#x27;CFOP de operação interna e idDest&lt;&gt;1&#x27; e &#x27;Informado CST para emissor do Simples Nacional&#x27;.</p>
+      </div>
+      <div class="row" title="Validar os dados cadastrais do destinatário/tomador antes de transmitir: IE presente/coerente com indIEDest e situação de isenção, CEP com 8 dígitos, endereço completo, CNPJ/CPF informado, razão social até 60 caracteres, telefone do tomador em formato aceito e apenas um destinatário definido. Hoje o usuário recebe rejeições de IE/CEP/xNome e precisa corrigir cadastro por tentativa e erro.">
+        <div class="rowhead">
+          <span class="rname">Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>234</b> · 16% <span class="ab">4 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:56%"></i></div>
+        <p class="rsplit">13 chamados · 221 conversas · iceberg 17×</p>
+        <p class="rdesc">Validar os dados cadastrais do destinatário/tomador antes de transmitir: IE presente/coerente com indIEDest e situação de isenção, CEP com 8 dígitos, endereço completo, CNPJ/CPF informado, razão social até 60 caracteres, telefone do tomador em formato aceito e apenas um destinatário definido. Hoje o usuário recebe rejeições de IE/CEP/xNome e precisa corrigir cadastro por tentativa e erro.</p>
+      </div>
+      <div class="row" title="Chamados de rejeição sem mensagem de erro identificável no relato (nota travada em &#x27;Processando&#x27;, emissão não finalizada, rejeição de motivo desconhecido), que não mapeiam para uma regra de pré-validação específica.">
+        <div class="rowhead">
+          <span class="rname">Outros/heterogêneos</span>
+          <span class="rnums"><span class="last medio" title="Última incidência há 54 dias">última 12/06</span> <b>222</b> · 15% </span>
+        </div>
+        <div class="track"><i style="width:53%"></i></div>
+        <p class="rsplit">3 chamados · 219 conversas · iceberg 73×</p>
+        <p class="rdesc">Chamados de rejeição sem mensagem de erro identificável no relato (nota travada em &#x27;Processando&#x27;, emissão não finalizada, rejeição de motivo desconhecido), que não mapeiam para uma regra de pré-validação específica.</p>
+      </div>
+      <div class="row" title="Validar na montagem da nota se cada item/serviço tem códigos fiscais existentes e no formato exigido: NCM válido, código de barras (GTIN) consistente, código de tributação municipal/nacional administrado pelo município (cTribMun, codigoServicoNacional), finNFSe e UF de consumo para CFOPs de combustíveis. Hoje o erro só aparece na rejeição da SEFAZ/prefeitura ou em falha de schema no campo do produto.">
+        <div class="rowhead">
+          <span class="rname">Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>206</b> · 14% <span class="ab">2 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:49%"></i></div>
+        <p class="rsplit">13 chamados · 193 conversas · iceberg 15×</p>
+        <p class="rdesc">Validar na montagem da nota se cada item/serviço tem códigos fiscais existentes e no formato exigido: NCM válido, código de barras (GTIN) consistente, código de tributação municipal/nacional administrado pelo município (cTribMun, codigoServicoNacional), finNFSe e UF de consumo para CFOPs de combustíveis. Hoje o erro só aparece na rejeição da SEFAZ/prefeitura ou em falha de schema no campo do produto.</p>
+      </div>
+      <div class="row" title="Validar o XML gerado contra o XSD antes de transmitir e sanear conteúdo que quebra o schema: caracteres inválidos em informações complementares (xInfComp/TSDescInfCompl), tags geradas fora de ordem ou indevidas (IBSCBS/indDest, Signature) e falhas genéricas de &#x27;Schema XML do lote&#x27;. Hoje o lote é rejeitado com E1235/E317/L4 e mensagens técnicas que o usuário não entende.">
+        <div class="rowhead">
+          <span class="rname">Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>174</b> · 12% <span class="ab">1 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:42%"></i></div>
+        <p class="rsplit">12 chamados · 162 conversas · iceberg 14×</p>
+        <p class="rdesc">Validar o XML gerado contra o XSD antes de transmitir e sanear conteúdo que quebra o schema: caracteres inválidos em informações complementares (xInfComp/TSDescInfCompl), tags geradas fora de ordem ou indevidas (IBSCBS/indDest, Signature) e falhas genéricas de &#x27;Schema XML do lote&#x27;. Hoje o lote é rejeitado com E1235/E317/L4 e mensagens técnicas que o usuário não entende.</p>
+      </div>
+      <div class="row" title="Validar antes do envio a coerência entre regime tributário do prestador e os campos de ISSQN: para Simples Nacional exigir regEspTrib=0, aceitar apenas valores válidos da enumeração de regEspTrib, alíquota de ISSQN dentro da faixa permitida e tipo de tributação/ISSRF suportado. Hoje a nota é transmitida e volta com rejeições E0175/E0178/E228/1454 da prefeitura.">
+        <div class="rowhead">
+          <span class="rname">Regime/alíquota de ISSQN inválidos (regEspTrib, E0175/E0178, tributação de serviço)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>141</b> · 9% <span class="ab">1 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:34%"></i></div>
+        <p class="rsplit">15 chamados · 126 conversas · iceberg 8×</p>
+        <p class="rdesc">Validar antes do envio a coerência entre regime tributário do prestador e os campos de ISSQN: para Simples Nacional exigir regEspTrib=0, aceitar apenas valores válidos da enumeração de regEspTrib, alíquota de ISSQN dentro da faixa permitida e tipo de tributação/ISSRF suportado. Hoje a nota é transmitida e volta com rejeições E0175/E0178/E228/1454 da prefeitura.</p>
+      </div>
+      <div class="row" title="Validar antes da transmissão que a soma dos pagamentos bate com o total da nota (exigindo valorTroco quando exceder), que o grupo Fatura está preenchido quando obrigatório, que o indicativo de intermediador está informado e que os dados de transporte (CPF/CNPJ do transportador) estão completos. Hoje essas inconsistências só aparecem como &#x27;Impossibilidade de envio&#x27; ou rejeição da SEFAZ.">
+        <div class="rowhead">
+          <span class="rname">Consistência de pagamento/fatura e campos condicionais da NF-e (troco, grupo Fatura, intermediador, transporte)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 4 dias">última 01/08</span> <b>51</b> · 3% </span>
+        </div>
+        <div class="track"><i style="width:12%"></i></div>
+        <p class="rsplit">5 chamados · 46 conversas · iceberg 9×</p>
+        <p class="rdesc">Validar antes da transmissão que a soma dos pagamentos bate com o total da nota (exigindo valorTroco quando exceder), que o grupo Fatura está preenchido quando obrigatório, que o indicativo de intermediador está informado e que os dados de transporte (CPF/CNPJ do transportador) estão completos. Hoje essas inconsistências só aparecem como &#x27;Impossibilidade de envio&#x27; ou rejeição da SEFAZ.</p>
+      </div>
+      <div class="row" title="Validar a configuração fiscal do emissor antes de enviar: série compatível com o modelo (numérica para NFS-e Nacional, sem série de NFS-e em nota de peças), número de RPS/DPS válido e no tipo correto, emissor habilitado/credenciado para NF-e/NFC-e, padrão municipal e token configurados, data de emissão dentro do prazo da prefeitura e razão social de teste em ambiente de homologação. Hoje o erro retorna da integradora/prefeitura após a tentativa de envio e o usuário não consegue corrigir sozinho.">
+        <div class="rowhead">
+          <span class="rname">Série/numeração de RPS e habilitação/configuração do emissor (série numérica, nDPS, credenciamento, padrão municipal, ambiente)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 4 dias">última 01/08</span> <b>43</b> · 3% <span class="ab">4 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:10%"></i></div>
+        <p class="rsplit">12 chamados · 31 conversas</p>
+        <p class="rdesc">Validar a configuração fiscal do emissor antes de enviar: série compatível com o modelo (numérica para NFS-e Nacional, sem série de NFS-e em nota de peças), número de RPS/DPS válido e no tipo correto, emissor habilitado/credenciado para NF-e/NFC-e, padrão municipal e token configurados, data de emissão dentro do prazo da prefeitura e razão social de teste em ambiente de homologação. Hoje o erro retorna da integradora/prefeitura após a tentativa de envio e o usuário não consegue corrigir sozinho.</p>
+      </div>
+    </div>
+  </section>
+  <section id="prop2">
+    <div class="sechead">
+      <span class="ptag">P2</span>
+      <div>
+        <h2>Job de reconciliação com SEFAZ e prefeituras</h2>
+        <p class="blurb">Reconsultar protocolo/chave periodicamente e reconciliar o estado local. As 3 primeiras funções (70 chamados) usam a mesma mecânica e formam a fase 1.</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge"><b>109</b> chamados</span>
+      <span class="badge"><b>21%</b> dos fiscais</span>
+      <span class="badge amber"><b>23</b> em aberto</span>
+      <span class="badge"><b>1,131</b> dias de tratativa</span>
+      <span class="badge chat"><b>499</b> conversas no chat</span><span class="badge chat"><b>9.0%</b> da carga do balcão</span><span class="badge chat"><b>4.6×</b> iceberg</span>
+    </div>
+    <div class="rows">
+      <div class="row" title="Job detecta notas paradas em &#x27;processando/transmitindo/validando&#x27; além de um tempo limite — inclusive as que nem geraram PlugID/IntegrationID ou falharam com &#x27;Connection reset&#x27; — re-consulta o protocolo na TecnoSpeed/prefeitura, reenvia a transmissão quando não houve envio efetivo e devolve a nota para &#x27;digitação&#x27; com erro claro quando não há emissão, eliminando notas presas por dias ou anos.">
+        <div class="rowhead">
+          <span class="rname">Nota presa em processando/transmitindo sem retorno da prefeitura</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>230</b> · 38% <span class="ab">6 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:100%"></i></div>
+        <p class="rsplit">23 chamados · 207 conversas · iceberg 9×</p>
+        <p class="rdesc">Job detecta notas paradas em &#x27;processando/transmitindo/validando&#x27; além de um tempo limite — inclusive as que nem geraram PlugID/IntegrationID ou falharam com &#x27;Connection reset&#x27; — re-consulta o protocolo na TecnoSpeed/prefeitura, reenvia a transmissão quando não houve envio efetivo e devolve a nota para &#x27;digitação&#x27; com erro claro quando não há emissão, eliminando notas presas por dias ou anos.</p>
+      </div>
+      <div class="row" title="Job trata rejeições de duplicidade na emissão — &#x27;E0014: conjunto Série/Número/Município/CNPJ já existe em NFS-e anterior&#x27;, DPS acusado como utilizado sem estar, RPS enviado zerado ou dessincronizado após migração para API interna, série reiniciada colidindo com numeração antiga — consultando o último número realmente autorizado no ambiente nacional e realinhando automaticamente o contador de DPS/RPS/nota da empresa.">
+        <div class="rowhead">
+          <span class="rname">Duplicidade de DPS/RPS/chave por contador de numeração dessincronizado (E0014/E2404)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>198</b> · 33% <span class="ab">3 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:86%"></i></div>
+        <p class="rsplit">14 chamados · 184 conversas · iceberg 13×</p>
+        <p class="rdesc">Job trata rejeições de duplicidade na emissão — &#x27;E0014: conjunto Série/Número/Município/CNPJ já existe em NFS-e anterior&#x27;, DPS acusado como utilizado sem estar, RPS enviado zerado ou dessincronizado após migração para API interna, série reiniciada colidindo com numeração antiga — consultando o último número realmente autorizado no ambiente nacional e realinhando automaticamente o contador de DPS/RPS/nota da empresa.</p>
+      </div>
+      <div class="row" title="Job consulta periodicamente notas autorizadas (ou &#x27;em cancelamento&#x27;) contra o portal e, quando o portal retorna cancelada, propaga o cancelamento para o sistema, refletindo o evento nos módulos financeiro/relatórios. Cobre casos em que a sincronização manual (&#x27;sincronizar com prefeitura&#x27;) não altera o status e pedidos de suporte para &#x27;passar nota para cancelada&#x27;.">
+        <div class="rowhead">
+          <span class="rname">Nota cancelada na prefeitura permanece autorizada no sistema</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 6 dias">última 30/07</span> <b>53</b> · 9% <span class="ab">5 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:23%"></i></div>
+        <p class="rsplit">21 chamados · 32 conversas</p>
+        <p class="rdesc">Job consulta periodicamente notas autorizadas (ou &#x27;em cancelamento&#x27;) contra o portal e, quando o portal retorna cancelada, propaga o cancelamento para o sistema, refletindo o evento nos módulos financeiro/relatórios. Cobre casos em que a sincronização manual (&#x27;sincronizar com prefeitura&#x27;) não altera o status e pedidos de suporte para &#x27;passar nota para cancelada&#x27;.</p>
+      </div>
+      <div class="row" title="Job varre notas em &#x27;digitação&#x27; ou &#x27;processando&#x27; que já possuem emissão correspondente no portal nacional/prefeitura/SEFAZ (ou constam como concluídas na TecnoSpeed/Plugnotas), consulta por chave/DPS/RPS e atualiza o status para autorizada, vinculando a nota emitida ao registro do sistema. Padrão dominante: &#x27;nota aprovada no portal e no sistema consta em digitação&#x27;.">
+        <div class="rowhead">
+          <span class="rname">Nota autorizada no portal continua em digitação/processando no sistema</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 6 dias">última 30/07</span> <b>48</b> · 8% <span class="ab">6 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:21%"></i></div>
+        <p class="rsplit">26 chamados · 22 conversas</p>
+        <p class="rdesc">Job varre notas em &#x27;digitação&#x27; ou &#x27;processando&#x27; que já possuem emissão correspondente no portal nacional/prefeitura/SEFAZ (ou constam como concluídas na TecnoSpeed/Plugnotas), consulta por chave/DPS/RPS e atualiza o status para autorizada, vinculando a nota emitida ao registro do sistema. Padrão dominante: &#x27;nota aprovada no portal e no sistema consta em digitação&#x27;.</p>
+      </div>
+      <div class="row" title="Job audita a sequência numérica por empresa/série, detecta lacunas (números pulados/saltados), verifica na SEFAZ/Plugnotas se o número foi de fato emitido e, quando não foi, sugere ou executa a inutilização (NF-e) ou orienta o realinhamento (NFS-e, onde não há inutilização). Cobre também pedidos manuais de inutilização de numeração.">
+        <div class="rowhead">
+          <span class="rname">Lacunas na sequência de numeração (números pulados sem emissão)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>40</b> · 7% <span class="ab">3 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:17%"></i></div>
+        <p class="rsplit">11 chamados · 29 conversas</p>
+        <p class="rdesc">Job audita a sequência numérica por empresa/série, detecta lacunas (números pulados/saltados), verifica na SEFAZ/Plugnotas se o número foi de fato emitido e, quando não foi, sugere ou executa a inutilização (NF-e) ou orienta o realinhamento (NFS-e, onde não há inutilização). Cobre também pedidos manuais de inutilização de numeração.</p>
+      </div>
+      <div class="row" title="Job identifica números presentes na SEFAZ/portal mas ausentes da base (nota emitida durante instabilidade, apagada após tentativa de cancelamento, ou emissão duplicada em que só uma via aparece), reimporta/reconstrói o registro a partir da chave de acesso e o exibe em fiscal e relatórios. Sintoma típico: &#x27;numeração sumiu&#x27; e ao inutilizar retorna &#x27;número já utilizado&#x27;.">
+        <div class="rowhead">
+          <span class="rname">Nota emitida na SEFAZ não aparece no sistema</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 5 dias">última 31/07</span> <b>20</b> · 3% </span>
+        </div>
+        <div class="track"><i style="width:9%"></i></div>
+        <p class="rsplit">10 chamados · 10 conversas</p>
+        <p class="rdesc">Job identifica números presentes na SEFAZ/portal mas ausentes da base (nota emitida durante instabilidade, apagada após tentativa de cancelamento, ou emissão duplicada em que só uma via aparece), reimporta/reconstrói o registro a partir da chave de acesso e o exibe em fiscal e relatórios. Sintoma típico: &#x27;numeração sumiu&#x27; e ao inutilizar retorna &#x27;número já utilizado&#x27;.</p>
+      </div>
+      <div class="row" title="Chamados com descrição genérica (&#x27;erro na nota fiscal&#x27;, &#x27;não consegue emitir&#x27;) sem sintoma detalhado suficiente para atribuir a uma função específica do job; entram como candidatos a triagem pelo diagnóstico automático do job de reconciliação.">
+        <div class="rowhead">
+          <span class="rname">Outros/heterogêneos</span>
+          <span class="rnums"><span class="last medio" title="Última incidência há 41 dias">última 25/06</span> <b>19</b> · 3% </span>
+        </div>
+        <div class="track"><i style="width:8%"></i></div>
+        <p class="rsplit">4 chamados · 15 conversas · iceberg 4×</p>
+        <p class="rdesc">Chamados com descrição genérica (&#x27;erro na nota fiscal&#x27;, &#x27;não consegue emitir&#x27;) sem sintoma detalhado suficiente para atribuir a uma função específica do job; entram como candidatos a triagem pelo diagnóstico automático do job de reconciliação.</p>
+      </div>
+    </div>
+  </section>
+  <section id="prop3">
+    <div class="sechead">
+      <span class="ptag">P3</span>
+      <div>
+        <h2>Pacote de conformidade tributária</h2>
+        <p class="blurb">Corrigir cálculo e exibição de impostos. IBS/CBS é a frente que mais cresce — 6 dos 14 chamados abertos da proposta.</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge"><b>38</b> chamados</span>
+      <span class="badge"><b>7%</b> dos fiscais</span>
+      <span class="badge amber"><b>14</b> em aberto</span>
+      <span class="badge"><b>605</b> dias de tratativa</span>
+      <span class="badge chat"><b>377</b> conversas no chat</span><span class="badge chat"><b>7.2%</b> da carga do balcão</span><span class="badge chat"><b>9.9×</b> iceberg</span>
+    </div>
+    <div class="rows">
+      <div class="row" title="Flag de retenção de ISS não é gravada na emissão, dificuldade de configurar retenção de ISS, alíquota de ISS configurada não destacada para tomadores fora do município do prestador, e valores de ISSQN incorretos na impressão/emissão da nota de serviço.">
+        <div class="rowhead">
+          <span class="rname">ISS/ISSQN — retenção e alíquota na NFS-e</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>107</b> · 26% <span class="ab">1 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:100%"></i></div>
+        <p class="rsplit">5 chamados · 102 conversas · iceberg 20×</p>
+        <p class="rdesc">Flag de retenção de ISS não é gravada na emissão, dificuldade de configurar retenção de ISS, alíquota de ISS configurada não destacada para tomadores fora do município do prestador, e valores de ISSQN incorretos na impressão/emissão da nota de serviço.</p>
+      </div>
+      <div class="row" title="Cálculo de ICMS com diferimento incorreto (CST 51 com cBenef bloqueando conversão de NF-e, percentual de diferimento não aplicado), ICMS não destacado na nota gerada e configuração de alíquota de ICMS em notas de devolução.">
+        <div class="rowhead">
+          <span class="rname">ICMS — diferimento, destaque e devolução</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>98</b> · 24% <span class="ab">3 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:92%"></i></div>
+        <p class="rsplit">5 chamados · 93 conversas · iceberg 19×</p>
+        <p class="rdesc">Cálculo de ICMS com diferimento incorreto (CST 51 com cBenef bloqueando conversão de NF-e, percentual de diferimento não aplicado), ICMS não destacado na nota gerada e configuração de alíquota de ICMS em notas de devolução.</p>
+      </div>
+      <div class="row" title="Motor de cálculo dos novos tributos IBS/CBS: base de cálculo incorreta (não deduz ISS, deduz retenções de PIS/COFINS indevidamente, cascata de deduções fora do padrão), alíquota municipal cadastrada não sendo puxada (erro &#x27;ibscbs.municipio.aliquota - Preenchimento obrigatório&#x27;), IBS/CBS não destacados nas notas de venda apesar do cadastro, rejeição de NF-e com CST 515 (percentual de diferimento informado não é calculado) e emitentes do Simples Nacional que não devem destacar IBS/CBS mas recebem erro de schema (&#x27;gIBSCBS is not complete, cClassTrib is expected&#x27;).">
+        <div class="rowhead">
+          <span class="rname">IBS/CBS — reforma tributária (base de cálculo, alíquota, CST 515, Simples Nacional)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>91</b> · 22% <span class="ab">6 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:85%"></i></div>
+        <p class="rsplit">12 chamados · 79 conversas · iceberg 7×</p>
+        <p class="rdesc">Motor de cálculo dos novos tributos IBS/CBS: base de cálculo incorreta (não deduz ISS, deduz retenções de PIS/COFINS indevidamente, cascata de deduções fora do padrão), alíquota municipal cadastrada não sendo puxada (erro &#x27;ibscbs.municipio.aliquota - Preenchimento obrigatório&#x27;), IBS/CBS não destacados nas notas de venda apesar do cadastro, rejeição de NF-e com CST 515 (percentual de diferimento informado não é calculado) e emitentes do Simples Nacional que não devem destacar IBS/CBS mas recebem erro de schema (&#x27;gIBSCBS is not complete, cClassTrib is expected&#x27;).</p>
+      </div>
+      <div class="row" title="Retenção de PIS/COFINS/CSLL gerando erro de schema (tpRetPisCofins inválido) ou valor divergente na nota; alíquotas cadastradas não puxadas para CSTs 04/07/08/99; total de vCOFINS calculado com diferença de arredondamento; valores de PIS/COFINS retidos não apresentados no PDF/nota da NFS-e.">
+        <div class="rowhead">
+          <span class="rname">PIS/COFINS — retenções, CST e valores zerados/divergentes</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>48</b> · 12% <span class="ab">2 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:45%"></i></div>
+        <p class="rsplit">6 chamados · 42 conversas · iceberg 7×</p>
+        <p class="rdesc">Retenção de PIS/COFINS/CSLL gerando erro de schema (tpRetPisCofins inválido) ou valor divergente na nota; alíquotas cadastradas não puxadas para CSTs 04/07/08/99; total de vCOFINS calculado com diferença de arredondamento; valores de PIS/COFINS retidos não apresentados no PDF/nota da NFS-e.</p>
+      </div>
+      <div class="row" title="Divergências entre base de cálculo, alíquota e valor líquido apresentados na nota: valor líquido incorreto na NFS-e, rejeição E1289 do ADN (base x alíquota não confere), &#x27;Valor aproximado total de tributos&#x27; destacado indevidamente no PDF e erros de valor/alíquota apontados na validação da nota.">
+        <div class="rowhead">
+          <span class="rname">Valor líquido / base de cálculo divergente na nota</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>32</b> · 8% </span>
+        </div>
+        <div class="track"><i style="width:30%"></i></div>
+        <p class="rsplit">6 chamados · 26 conversas · iceberg 4×</p>
+        <p class="rdesc">Divergências entre base de cálculo, alíquota e valor líquido apresentados na nota: valor líquido incorreto na NFS-e, rejeição E1289 do ADN (base x alíquota não confere), &#x27;Valor aproximado total de tributos&#x27; destacado indevidamente no PDF e erros de valor/alíquota apontados na validação da nota.</p>
+      </div>
+      <div class="row" title="Casos fiscais correlatos sem padrão comum: data de emissão da NFS-e gravada retroativamente (impedindo cancelamento no prazo) e erro genérico na emissão de nota fiscal sem detalhamento do tributo afetado.">
+        <div class="rowhead">
+          <span class="rname">Outros/heterogêneos</span>
+          <span class="rnums"><span class="last medio" title="Última incidência há 47 dias">última 19/06</span> <b>30</b> · 7% </span>
+        </div>
+        <div class="track"><i style="width:28%"></i></div>
+        <p class="rsplit">2 chamados · 28 conversas · iceberg 14×</p>
+        <p class="rdesc">Casos fiscais correlatos sem padrão comum: data de emissão da NFS-e gravada retroativamente (impedindo cancelamento no prazo) e erro genérico na emissão de nota fiscal sem detalhamento do tributo afetado.</p>
+      </div>
+      <div class="row" title="Erros de IPI (código de enquadramento, CST de IPI, base de cálculo, IPI não destacado) e de IRRF. Não tinham subgrupo previsto; apareceram no censo dentro do bucket &#x27;Outro&#x27;.">
+        <div class="rowhead">
+          <span class="rname">IPI e IRRF — enquadramento, CST e base de cálculo</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 23 dias">última 13/07</span> <b>7</b> · 2% </span>
+        </div>
+        <div class="track"><i style="width:7%"></i></div>
+        <p class="rsplit">0 chamados · 7 conversas</p>
+        <p class="rdesc">Erros de IPI (código de enquadramento, CST de IPI, base de cálculo, IPI não destacado) e de IRRF. Não tinham subgrupo previsto; apareceram no censo dentro do bucket &#x27;Outro&#x27;.</p>
+      </div>
+      <div class="row" title="Erro técnico ao acionar &#x27;calcular tributos&#x27; no módulo de compras após preenchimento de ST: exceção &#x27;failed to lazily initialize a collection of role: Purchase.purchaseItems - no Session&#x27; exibida em tela, impedindo o cálculo.">
+        <div class="rowhead">
+          <span class="rname">Cálculo de tributos em Compras</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 12 dias">última 24/07</span> <b>2</b> · 0% <span class="ab">2 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:2%"></i></div>
+        <p class="rsplit">2 chamados · 0 conversas</p>
+        <p class="rdesc">Erro técnico ao acionar &#x27;calcular tributos&#x27; no módulo de compras após preenchimento de ST: exceção &#x27;failed to lazily initialize a collection of role: Purchase.purchaseItems - no Session&#x27; exibida em tela, impedindo o cálculo.</p>
+      </div>
+    </div>
+  </section>
+  <section id="prop4">
+    <div class="sechead">
+      <span class="ptag">P4</span>
+      <div>
+        <h2>Robustez de PDF/DANFE e impressão</h2>
+        <p class="blurb">Garantir que o documento gerado sai, sai rápido e é fiel ao XML autorizado. Confiabilidade + fidelidade somam 55% da proposta.</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge"><b>42</b> chamados</span>
+      <span class="badge"><b>8%</b> dos fiscais</span>
+      <span class="badge amber"><b>10</b> em aberto</span>
+      <span class="badge"><b>660</b> dias de tratativa</span>
+      <span class="badge chat"><b>132</b> conversas no chat</span><span class="badge chat"><b>2.0%</b> da carga do balcão</span><span class="badge chat"><b>3.1×</b> iceberg</span>
+    </div>
+    <div class="rows">
+      <div class="row" title="Falhas operacionais na geração, download ou visualização do PDF/DANFE: nota autorizada mas PDF não gera, erro de requisição ao baixar PDF/XML, sistema travado em &#x27;gerando PDF&#x27;, e reclamações de demora na geração. Requer retry/timeout robusto na integração com TecnoSpeed/PlugNotas, fallback de geração e feedback claro ao usuário.">
+        <div class="rowhead">
+          <span class="rname">PDF não gera / não baixa / erro ou lentidão na geração</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 5 dias">última 31/07</span> <b>82</b> · 47% <span class="ab">1 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:100%"></i></div>
+        <p class="rsplit">12 chamados · 70 conversas · iceberg 6×</p>
+        <p class="rdesc">Falhas operacionais na geração, download ou visualização do PDF/DANFE: nota autorizada mas PDF não gera, erro de requisição ao baixar PDF/XML, sistema travado em &#x27;gerando PDF&#x27;, e reclamações de demora na geração. Requer retry/timeout robusto na integração com TecnoSpeed/PlugNotas, fallback de geração e feedback claro ao usuário.</p>
+      </div>
+      <div class="row" title="Divergência entre o PDF e o XML/JSON autorizado: valor total ou líquido errado, casas decimais a mais, alíquota/ISSQN/quantidade não exibidos, tributação nacional ausente, desconto incondicionado não impresso, chave de acesso/código de autenticidade nacional faltando e até destinatário trocado. Requer renderização do PDF a partir dos dados autorizados e conformidade com o layout padrão nacional da NFS-e.">
+        <div class="rowhead">
+          <span class="rname">Valores e campos fiscais incorretos ou ausentes no PDF</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>39</b> · 23% <span class="ab">4 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:48%"></i></div>
+        <p class="rsplit">11 chamados · 28 conversas</p>
+        <p class="rdesc">Divergência entre o PDF e o XML/JSON autorizado: valor total ou líquido errado, casas decimais a mais, alíquota/ISSQN/quantidade não exibidos, tributação nacional ausente, desconto incondicionado não impresso, chave de acesso/código de autenticidade nacional faltando e até destinatário trocado. Requer renderização do PDF a partir dos dados autorizados e conformidade com o layout padrão nacional da NFS-e.</p>
+      </div>
+      <div class="row" title="Solicitações de evolução: gerar DANFE de NF de compra a partir do XML dentro do sistema, incluir logo da empresa na nota, layout com menos grades, e impressão de relatórios/entregas em formato 58mm para impressoras de cupom. Backlog de customização do módulo de impressão.">
+        <div class="rowhead">
+          <span class="rname">Layout de impressão não atende necessidades do cliente (logo, 58mm, DANFE de compra)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>22</b> · 13% <span class="ab">2 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:27%"></i></div>
+        <p class="rsplit">5 chamados · 17 conversas · iceberg 3×</p>
+        <p class="rdesc">Solicitações de evolução: gerar DANFE de NF de compra a partir do XML dentro do sistema, incluir logo da empresa na nota, layout com menos grades, e impressão de relatórios/entregas em formato 58mm para impressoras de cupom. Backlog de customização do módulo de impressão.</p>
+      </div>
+      <div class="row" title="Informações adicionais/complementares da nota saindo na discriminação do serviço em vez do campo próprio, sendo truncadas, não destacadas ou simplesmente não aparecendo no PDF gerado. Requer mapeamento correto dos campos de texto livre no template da NFS-e.">
+        <div class="rowhead">
+          <span class="rname">Dados adicionais / informações complementares no lugar errado ou ausentes</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 8 dias">última 28/07</span> <b>15</b> · 9% <span class="ab">3 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:18%"></i></div>
+        <p class="rsplit">9 chamados · 6 conversas</p>
+        <p class="rdesc">Informações adicionais/complementares da nota saindo na discriminação do serviço em vez do campo próprio, sendo truncadas, não destacadas ou simplesmente não aparecendo no PDF gerado. Requer mapeamento correto dos campos de texto livre no template da NFS-e.</p>
+      </div>
+      <div class="row" title="Regressões visuais no documento gerado: quebra de página indevida jogando informações para a segunda página com espaço sobrando, e mudança não solicitada de layout em relação ao padrão da prefeitura. Requer testes de regressão visual do template de impressão.">
+        <div class="rowhead">
+          <span class="rname">Layout / paginação quebrada</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 23 dias">última 13/07</span> <b>8</b> · 5% </span>
+        </div>
+        <div class="track"><i style="width:10%"></i></div>
+        <p class="rsplit">2 chamados · 6 conversas · iceberg 3×</p>
+        <p class="rdesc">Regressões visuais no documento gerado: quebra de página indevida jogando informações para a segunda página com espaço sobrando, e mudança não solicitada de layout em relação ao padrão da prefeitura. Requer testes de regressão visual do template de impressão.</p>
+      </div>
+      <div class="row" title="Dados vindos da Ordem de Serviço que deveriam constar na nota impressa não aparecem: quilometragem, número de sinistro e campos de data/assinatura. Requer propagação confiável dos campos da OS para o template do documento.">
+        <div class="rowhead">
+          <span class="rname">Campos operacionais da OS ausentes (quilometragem, sinistro, data/assinatura)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 30 dias">última 06/07</span> <b>7</b> · 4% </span>
+        </div>
+        <div class="track"><i style="width:9%"></i></div>
+        <p class="rsplit">3 chamados · 4 conversas</p>
+        <p class="rdesc">Dados vindos da Ordem de Serviço que deveriam constar na nota impressa não aparecem: quilometragem, número de sinistro e campos de data/assinatura. Requer propagação confiável dos campos da OS para o template do documento.</p>
+      </div>
+    </div>
+  </section>
+  <section id="prop5">
+    <div class="sechead">
+      <span class="ptag">P5</span>
+      <div>
+        <h2>Triagem com evidência obrigatória</h2>
+        <p class="blurb">90% dos chamados sem causa vêm do canal Matrix. Três mecanismos: captura obrigatória de erro+nota; bifurcação dúvida×erro; campos estruturados para alterações.</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge"><b>61</b> chamados</span>
+      <span class="badge"><b>12%</b> dos fiscais</span>
+      <span class="badge amber"><b>9</b> em aberto</span>
+      <span class="badge"><b>916</b> dias de tratativa</span>
+      
+    </div>
+    <div class="rows">
+      <div class="row" title="Chamados do canal automatizado (Matrix) que relatam falha na emissão/geração/autorização/transmissão de nota apenas em termos genéricos (&#x27;está dando erro&#x27;, &#x27;não consigo emitir&#x27;, &#x27;dificuldade na emissão&#x27;), sem mensagem de erro, print, número da nota ou passo a passo. É o núcleo do problema de triagem: o bot registra a queixa mas não coleta a evidência mínima que permitiria diagnóstico. O novo fluxo deve exigir captura da mensagem de erro/tela e identificação da nota/OS antes de abrir o chamado.">
+        <div class="rowhead">
+          <span class="rname">Matrix — &#x27;erro/dificuldade ao emitir&#x27; sem nenhuma evidência</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 15 dias">última 21/07</span> <b>38</b> · 62% <span class="ab">6 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:100%"></i></div>
+        <p class="rsplit">38 chamados · 0 conversas</p>
+        <p class="rdesc">Chamados do canal automatizado (Matrix) que relatam falha na emissão/geração/autorização/transmissão de nota apenas em termos genéricos (&#x27;está dando erro&#x27;, &#x27;não consigo emitir&#x27;, &#x27;dificuldade na emissão&#x27;), sem mensagem de erro, print, número da nota ou passo a passo. É o núcleo do problema de triagem: o bot registra a queixa mas não coleta a evidência mínima que permitiria diagnóstico. O novo fluxo deve exigir captura da mensagem de erro/tela e identificação da nota/OS antes de abrir o chamado.</p>
+      </div>
+      <div class="row" title="Chamados do Matrix que são solicitações abertas de ajuda (&#x27;solicito assistência para emitir NFe&#x27;, &#x27;preciso de ajuda para emitir CTE&#x27;, &#x27;solicitação de emissão de nota&#x27;) ou títulos que apenas nomeiam o tema (&#x27;Emissão de nota fiscal&#x27;), sem descrever qualquer falha. Não se sabe se é dúvida de uso, configuração pendente ou erro real. O fluxo de abertura deve forçar a distinção &#x27;dúvida/treinamento&#x27; vs &#x27;erro do sistema&#x27; e coletar o objetivo concreto do usuário.">
+        <div class="rowhead">
+          <span class="rname">Matrix — pedido de assistência/how-to sem problema definido</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>8</b> · 13% <span class="ab">1 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:21%"></i></div>
+        <p class="rsplit">8 chamados · 0 conversas</p>
+        <p class="rdesc">Chamados do Matrix que são solicitações abertas de ajuda (&#x27;solicito assistência para emitir NFe&#x27;, &#x27;preciso de ajuda para emitir CTE&#x27;, &#x27;solicitação de emissão de nota&#x27;) ou títulos que apenas nomeiam o tema (&#x27;Emissão de nota fiscal&#x27;), sem descrever qualquer falha. Não se sabe se é dúvida de uso, configuração pendente ou erro real. O fluxo de abertura deve forçar a distinção &#x27;dúvida/treinamento&#x27; vs &#x27;erro do sistema&#x27; e coletar o objetivo concreto do usuário.</p>
+      </div>
+      <div class="row" title="Chamados abertos por analistas nos templates [Fiscal]/[Cadastro], em que o próprio formulário prevê os campos certos (número da nota, situação, XML, ticket TecnoSpeed, evidência em vídeo) mas eles foram deixados vazios — resta só uma frase livre (&#x27;erro não catalogado&#x27;, &#x27;erro interno&#x27;, &#x27;impossibilidade de envio&#x27;). Mostra que ter template não basta: os campos de evidência precisam ser obrigatórios/validados também no canal humano, não só no automatizado.">
+        <div class="rowhead">
+          <span class="rname">Analista — formulário fiscal com campos de evidência em branco</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>6</b> · 10% <span class="ab">2 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:16%"></i></div>
+        <p class="rsplit">6 chamados · 0 conversas</p>
+        <p class="rdesc">Chamados abertos por analistas nos templates [Fiscal]/[Cadastro], em que o próprio formulário prevê os campos certos (número da nota, situação, XML, ticket TecnoSpeed, evidência em vídeo) mas eles foram deixados vazios — resta só uma frase livre (&#x27;erro não catalogado&#x27;, &#x27;erro interno&#x27;, &#x27;impossibilidade de envio&#x27;). Mostra que ter template não basta: os campos de evidência precisam ser obrigatórios/validados também no canal humano, não só no automatizado.</p>
+      </div>
+      <div class="row" title="Chamados do Matrix em que o usuário chega a citar uma mensagem de erro, mas ela é genérica do sistema (&#x27;erro na requisição&#x27;, &#x27;Não foi possível finalizar a requisição, tente novamente&#x27;, &#x27;Erro 500: erro interno do servidor&#x27;) e não vem acompanhada de número da nota, URL, horário ou reprodução. A evidência existe mas é insuficiente; o fluxo deve anexar automaticamente o contexto técnico (id da requisição, nota/OS envolvida, timestamp) quando o usuário reporta erro de sistema.">
+        <div class="rowhead">
+          <span class="rname">Matrix — mensagem de erro genérica citada, sem identificação da nota</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 23 dias">última 13/07</span> <b>5</b> · 8% </span>
+        </div>
+        <div class="track"><i style="width:13%"></i></div>
+        <p class="rsplit">5 chamados · 0 conversas</p>
+        <p class="rdesc">Chamados do Matrix em que o usuário chega a citar uma mensagem de erro, mas ela é genérica do sistema (&#x27;erro na requisição&#x27;, &#x27;Não foi possível finalizar a requisição, tente novamente&#x27;, &#x27;Erro 500: erro interno do servidor&#x27;) e não vem acompanhada de número da nota, URL, horário ou reprodução. A evidência existe mas é insuficiente; o fluxo deve anexar automaticamente o contexto técnico (id da requisição, nota/OS envolvida, timestamp) quando o usuário reporta erro de sistema.</p>
+      </div>
+      <div class="row" title="Chamados do Matrix (majoritariamente rotulados [Dados]) pedindo alteração, inclusão de informação ou regularização em nota fiscal sem dizer qual campo, qual valor ou qual nota (&#x27;inclusão de uma informação que ficou faltando&#x27;, &#x27;alteração na nota fiscal de peça&#x27;, &#x27;solicitação relacionada a nota fiscal&#x27;). O fluxo deve exigir número da nota, campo a alterar e valor desejado como campos obrigatórios para esse tipo de pedido.">
+        <div class="rowhead">
+          <span class="rname">Matrix — solicitação de alteração/ajuste em nota sem especificar o quê</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 22 dias">última 14/07</span> <b>4</b> · 7% </span>
+        </div>
+        <div class="track"><i style="width:11%"></i></div>
+        <p class="rsplit">4 chamados · 0 conversas</p>
+        <p class="rdesc">Chamados do Matrix (majoritariamente rotulados [Dados]) pedindo alteração, inclusão de informação ou regularização em nota fiscal sem dizer qual campo, qual valor ou qual nota (&#x27;inclusão de uma informação que ficou faltando&#x27;, &#x27;alteração na nota fiscal de peça&#x27;, &#x27;solicitação relacionada a nota fiscal&#x27;). O fluxo deve exigir número da nota, campo a alterar e valor desejado como campos obrigatórios para esse tipo de pedido.</p>
+      </div>
+    </div>
+  </section>
+  <section id="prop6">
+    <div class="sechead">
+      <span class="ptag">P6</span>
+      <div>
+        <h2>Homologação municipal + certificado digital</h2>
+        <p class="blurb">Monitoramento contínuo de prefeituras e gestão self-service de certificado. A onda do Emissor Nacional atinge dezenas de municípios; Contagem-MG e Limeira-SP em 01/09/2026 e São Paulo em setembro.</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge"><b>40</b> chamados</span>
+      <span class="badge"><b>8%</b> dos fiscais</span>
+      <span class="badge amber"><b>11</b> em aberto</span>
+      <span class="badge"><b>501</b> dias de tratativa</span>
+      <span class="badge chat"><b>642</b> conversas no chat</span><span class="badge chat"><b>10.6%</b> da carga do balcão</span><span class="badge chat"><b>16.1×</b> iceberg</span>
+    </div>
+    <div class="rows">
+      <div class="row" title="Emissão bloqueada por indisponibilidade ou instabilidade do webservice municipal (erro de conexão, emissão temporariamente interrompida), incluindo falhas de transmissão genéricas sem causa raiz identificada no chamado — padrão típico de instabilidade da prefeitura. Municípios citados: São Paulo-SP (emissão interrompida), Jundiaí-SP, São José dos Campos-SP, Rio das Ostras-RJ, Tubarão/região-SC (Vidrocar, erro de conexão com servidor da prefeitura); demais chamados sem município explícito.">
+        <div class="rowhead">
+          <span class="rname">Instabilidade / webservice da prefeitura fora do ar</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>142</b> · 21% <span class="ab">2 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:100%"></i></div>
+        <p class="rsplit">8 chamados · 134 conversas · iceberg 17×</p>
+        <p class="rdesc">Emissão bloqueada por indisponibilidade ou instabilidade do webservice municipal (erro de conexão, emissão temporariamente interrompida), incluindo falhas de transmissão genéricas sem causa raiz identificada no chamado — padrão típico de instabilidade da prefeitura. Municípios citados: São Paulo-SP (emissão interrompida), Jundiaí-SP, São José dos Campos-SP, Rio das Ostras-RJ, Tubarão/região-SC (Vidrocar, erro de conexão com servidor da prefeitura); demais chamados sem município explícito.</p>
+      </div>
+      <div class="row" title="Municípios migrando a emissão de NFS-e para o Emissor Nacional por força da Reforma Tributária, exigindo adequação do ERP. Municípios envolvidos: Limeira-SP (obrigatório a partir de 01/09/2026), Rio Grande-RS (webservice interrompido e cidade ainda não migrada para o sistema nacional) e um pedido genérico de adequação às mudanças da NFS-e (Itajaí-SC, cliente Ducar).">
+        <div class="rowhead">
+          <span class="rname">Migração para Emissor Nacional / Reforma Tributária</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>139</b> · 21% <span class="ab">2 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:98%"></i></div>
+        <p class="rsplit">3 chamados · 136 conversas · iceberg 45×</p>
+        <p class="rdesc">Municípios migrando a emissão de NFS-e para o Emissor Nacional por força da Reforma Tributária, exigindo adequação do ERP. Municípios envolvidos: Limeira-SP (obrigatório a partir de 01/09/2026), Rio Grande-RS (webservice interrompido e cidade ainda não migrada para o sistema nacional) e um pedido genérico de adequação às mudanças da NFS-e (Itajaí-SC, cliente Ducar).</p>
+      </div>
+      <div class="row" title="Solicitações de mão na massa do suporte para cadastrar, instalar, configurar ou atualizar o certificado digital no sistema — sem erro técnico relatado, indicando que o fluxo self-service não é claro ou confiável para o cliente.">
+        <div class="rowhead">
+          <span class="rname">Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>138</b> · 21% <span class="ab">2 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:97%"></i></div>
+        <p class="rsplit">7 chamados · 131 conversas · iceberg 19×</p>
+        <p class="rdesc">Solicitações de mão na massa do suporte para cadastrar, instalar, configurar ou atualizar o certificado digital no sistema — sem erro técnico relatado, indicando que o fluxo self-service não é claro ou confiável para o cliente.</p>
+      </div>
+      <div class="row" title="Sistema acusa certificado vencido mesmo após o cliente instalar/cadastrar o certificado renovado e válido — o cache/vínculo do certificado antigo não é atualizado, bloqueando a emissão de notas.">
+        <div class="rowhead">
+          <span class="rname">Certificado: vencido / renovação não reconhecida pelo sistema</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 5 dias">última 31/07</span> <b>94</b> · 14% <span class="ab">1 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:66%"></i></div>
+        <p class="rsplit">4 chamados · 90 conversas · iceberg 22×</p>
+        <p class="rdesc">Sistema acusa certificado vencido mesmo após o cliente instalar/cadastrar o certificado renovado e válido — o cache/vínculo do certificado antigo não é atualizado, bloqueando a emissão de notas.</p>
+      </div>
+      <div class="row" title="Municípios que alteraram o layout do XML/DANFE da NFS-e ou exigiram re-homologação, quebrando a emissão até ajuste do provedor (TecnoSpeed/PlugNotas). Municípios envolvidos: Ribeirão Preto-SP, Senador Canedo-GO (2 chamados, incl. re-homologação interna), Catanduva-SP (re-homologação), Serrinha-BA (ajuste de layout por Reforma Tributária), Presidente Prudente-SP (erro de alíquota após atualização de layout da prefeitura) e um caso de &#x27;Layout não implementado&#x27; (R.R Pneus, município não identificado no chamado).">
+        <div class="rowhead">
+          <span class="rname">Mudança de layout / re-homologação municipal</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>66</b> · 10% <span class="ab">3 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:46%"></i></div>
+        <p class="rsplit">7 chamados · 59 conversas · iceberg 8×</p>
+        <p class="rdesc">Municípios que alteraram o layout do XML/DANFE da NFS-e ou exigiram re-homologação, quebrando a emissão até ajuste do provedor (TecnoSpeed/PlugNotas). Municípios envolvidos: Ribeirão Preto-SP, Senador Canedo-GO (2 chamados, incl. re-homologação interna), Catanduva-SP (re-homologação), Serrinha-BA (ajuste de layout por Reforma Tributária), Presidente Prudente-SP (erro de alíquota após atualização de layout da prefeitura) e um caso de &#x27;Layout não implementado&#x27; (R.R Pneus, município não identificado no chamado).</p>
+      </div>
+      <div class="row" title="Particularidades de campos exigidos por município que o sistema não contempla ou obriga preenchimento manual repetitivo. Municípios envolvidos: Rio Verde-GO (exige código de cancelamento, sistema só trabalha com justificativa) e São Sebastião-SP (campo &#x27;código de contribuinte&#x27; deveria ser configurável no cadastro da empresa para preenchimento automático).">
+        <div class="rowhead">
+          <span class="rname">Campo/regra municipal específica não suportada</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>38</b> · 6% <span class="ab">1 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:27%"></i></div>
+        <p class="rsplit">2 chamados · 36 conversas · iceberg 18×</p>
+        <p class="rdesc">Particularidades de campos exigidos por município que o sistema não contempla ou obriga preenchimento manual repetitivo. Municípios envolvidos: Rio Verde-GO (exige código de cancelamento, sistema só trabalha com justificativa) e São Sebastião-SP (campo &#x27;código de contribuinte&#x27; deveria ser configurável no cadastro da empresa para preenchimento automático).</p>
+      </div>
+      <div class="row" title="Cliente não consegue subir ou salvar o arquivo .pfx do certificado A1: upload não conclui, sistema não carrega o certificado, erro ao definir o certificado no cadastro de empresas, ou certificado cadastrado que continua aparecendo como &#x27;não configurado&#x27;.">
+        <div class="rowhead">
+          <span class="rname">Certificado: falha no cadastro/upload do arquivo</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>28</b> · 4% </span>
+        </div>
+        <div class="track"><i style="width:20%"></i></div>
+        <p class="rsplit">6 chamados · 22 conversas · iceberg 4×</p>
+        <p class="rdesc">Cliente não consegue subir ou salvar o arquivo .pfx do certificado A1: upload não conclui, sistema não carrega o certificado, erro ao definir o certificado no cadastro de empresas, ou certificado cadastrado que continua aparecendo como &#x27;não configurado&#x27;.</p>
+      </div>
+      <div class="row" title="Emissão de NF/cupom fiscal que funcionava passou a falhar imediatamente após a troca/atualização do certificado digital, exigindo diagnóstico da configuração fiscal pós-troca (inclui 2 chamados recorrentes do mesmo cliente RCS Embreagem).">
+        <div class="rowhead">
+          <span class="rname">Certificado: atualização quebrou a emissão</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 8 dias">última 28/07</span> <b>14</b> · 2% </span>
+        </div>
+        <div class="track"><i style="width:10%"></i></div>
+        <p class="rsplit">3 chamados · 11 conversas · iceberg 4×</p>
+        <p class="rdesc">Emissão de NF/cupom fiscal que funcionava passou a falhar imediatamente após a troca/atualização do certificado digital, exigindo diagnóstico da configuração fiscal pós-troca (inclui 2 chamados recorrentes do mesmo cliente RCS Embreagem).</p>
+      </div>
+      <div class="row" title="Bloqueios administrativos no portal municipal que impedem a emissão: DTE/ISS.net não aceito, autorização de RPS pendente (L147/L039), permissão de acesso, credenciamento. Não é defeito do ERP, mas o cliente aciona o suporte e o atendente precisa diagnosticar.">
+        <div class="rowhead">
+          <span class="rname">Pendência administrativa no portal da prefeitura bloqueia a emissão</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>12</b> · 2% </span>
+        </div>
+        <div class="track"><i style="width:8%"></i></div>
+        <p class="rsplit">0 chamados · 12 conversas</p>
+        <p class="rdesc">Bloqueios administrativos no portal municipal que impedem a emissão: DTE/ISS.net não aceito, autorização de RPS pendente (L147/L039), permissão de acesso, credenciamento. Não é defeito do ERP, mas o cliente aciona o suporte e o atendente precisa diagnosticar.</p>
+      </div>
+    </div>
+  </section>
+  <section id="prop9">
+    <div class="sechead">
+      <span class="ptag">P9</span>
+      <div>
+        <h2>Frentes complementares</h2>
+        <p class="blurb">Temas fora das seis propostas originais. Cadastro/config fiscal sozinho soma 390 ocorrências, mais que a P4 inteira.</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge"><b>128</b> chamados</span>
+      <span class="badge"><b>25%</b> dos fiscais</span>
+      <span class="badge amber"><b>36</b> em aberto</span>
+      
+      <span class="badge chat"><b>1.061</b> conversas no chat</span><span class="badge chat"><b>8.3×</b> iceberg</span>
+    </div>
+    <div class="rows">
+      <div class="row" title="350 conversas no chat sobre o mesmo tema.">
+        <div class="rowhead">
+          <span class="rname">Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>390</b> · 33% <span class="ab">14 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:100%"></i></div>
+        <p class="rsplit">40 chamados · 350 conversas · iceberg 9×</p>
+        <p class="rdesc">350 conversas no chat sobre o mesmo tema.</p>
+      </div>
+      <div class="row" title="287 conversas no chat sobre o mesmo tema.">
+        <div class="rowhead">
+          <span class="rname">Cancelamento/exclusão de nota</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 04/08</span> <b>306</b> · 26% <span class="ab">2 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:78%"></i></div>
+        <p class="rsplit">19 chamados · 287 conversas · iceberg 15×</p>
+        <p class="rdesc">287 conversas no chat sobre o mesmo tema.</p>
+      </div>
+      <div class="row" title="214 conversas no chat sobre o mesmo tema.">
+        <div class="rowhead">
+          <span class="rname">XML de compra / importação / manifestação do destinatário</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 04/08</span> <b>226</b> · 19% <span class="ab">3 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:58%"></i></div>
+        <p class="rsplit">12 chamados · 214 conversas · iceberg 18×</p>
+        <p class="rdesc">214 conversas no chat sobre o mesmo tema.</p>
+      </div>
+      <div class="row" title="159 conversas no chat sobre o mesmo tema.">
+        <div class="rowhead">
+          <span class="rname">Integração financeiro/estoque/OS com a nota</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 04/08</span> <b>185</b> · 16% <span class="ab">9 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:47%"></i></div>
+        <p class="rsplit">26 chamados · 159 conversas · iceberg 6×</p>
+        <p class="rdesc">159 conversas no chat sobre o mesmo tema.</p>
+      </div>
+      <div class="row" title="33 conversas no chat sobre o mesmo tema.">
+        <div class="rowhead">
+          <span class="rname">Relatórios fiscais divergentes</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 01/08</span> <b>45</b> · 4% <span class="ab">3 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:12%"></i></div>
+        <p class="rsplit">12 chamados · 33 conversas</p>
+        <p class="rdesc">33 conversas no chat sobre o mesmo tema.</p>
+      </div>
+      <div class="row" title="15 conversas no chat sobre o mesmo tema.">
+        <div class="rowhead">
+          <span class="rname">Envio de nota por e-mail falha</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 27/07</span> <b>26</b> · 2% <span class="ab">4 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:7%"></i></div>
+        <p class="rsplit">11 chamados · 15 conversas</p>
+        <p class="rdesc">15 conversas no chat sobre o mesmo tema.</p>
+      </div>
+      <div class="row" title="3 conversas no chat sobre o mesmo tema.">
+        <div class="rowhead">
+          <span class="rname">NFS-e interna / API interna</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 24/07</span> <b>11</b> · 1% <span class="ab">1 em aberto</span></span>
+        </div>
+        <div class="track"><i style="width:3%"></i></div>
+        <p class="rsplit">8 chamados · 3 conversas</p>
+        <p class="rdesc">3 conversas no chat sobre o mesmo tema.</p>
+      </div>
+    </div>
+  </section>
+  <section id="prop7">
+    <div class="sechead">
+      <span class="ptag">P7</span>
+      <div>
+        <h2>Fluxo guiado de devolução, garantia e remessa</h2>
+        <p class="blurb">Nasceu da análise do chat: 861 conversas contra 24 chamados (iceberg 35,9×). Não é bug, é fluxo — o sistema não reaproveita os tributos do XML da compra.</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge"><b>24</b> chamados</span>
+      <span class="badge"><b>5%</b> dos fiscais</span>
+      <span class="badge amber"><b>2</b> em aberto</span>
+      <span class="badge"><b>369</b> dias de tratativa</span>
+      <span class="badge chat"><b>861</b> conversas no chat</span><span class="badge chat"><b>15.3%</b> da carga do balcão</span><span class="badge chat"><b>35.9×</b> iceberg</span>
+    </div>
+    <div class="rows">
+      <div class="row" title="O fornecedor manda um espelho/autorização de devolução exigindo BC ICMS, ICMS, ICMS ST, IPI, frete e outras despesas idênticos aos da nota de compra, e recusa a devolução se divergir — às vezes por um centavo. O sistema não traz esses valores da compra de origem: o cliente digita item a item na aba ICMS/IPI sem saber em qual campo, e o botão &#x27;calcular tributos&#x27; ainda sobrescreve o que ele preencheu à mão.">
+        <div class="rowhead">
+          <span class="rname">Destaque manual de impostos para bater com o espelho do fornecedor</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>204</b> · 24% </span>
+        </div>
+        <div class="track"><i style="width:100%"></i></div>
+        <p class="rsplit">0 chamados · 204 conversas</p>
+        <p class="rdesc">O fornecedor manda um espelho/autorização de devolução exigindo BC ICMS, ICMS, ICMS ST, IPI, frete e outras despesas idênticos aos da nota de compra, e recusa a devolução se divergir — às vezes por um centavo. O sistema não traz esses valores da compra de origem: o cliente digita item a item na aba ICMS/IPI sem saber em qual campo, e o botão &#x27;calcular tributos&#x27; ainda sobrescreve o que ele preencheu à mão.</p>
+      </div>
+      <div class="row" title="A maior parte das rejeições da SEFAZ vem de combinações inválidas: &#x27;CFOP inválido para NF-e com finalidade de devolução&#x27; (cliente usa 5949 ou um CFOP de entrada como 1202/1661 numa nota de saída), &#x27;Informado CST para emissor do Simples Nacional (CRT=1 ou 4)&#x27;, &#x27;CSOSN incompatível na operação com Não Contribuinte&#x27; e IE do destinatário ausente. O sistema oferece todas as opções sem filtrar por regime nem por finalidade, e o suporte se recusa (com razão) a dizer qual CFOP usar, gerando ping-pong com contabilidade e fornecedor.">
+        <div class="rowhead">
+          <span class="rname">CFOP, CST/CSOSN e regime tributário incompatíveis</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>120</b> · 14% </span>
+        </div>
+        <div class="track"><i style="width:59%"></i></div>
+        <p class="rsplit">0 chamados · 120 conversas</p>
+        <p class="rdesc">A maior parte das rejeições da SEFAZ vem de combinações inválidas: &#x27;CFOP inválido para NF-e com finalidade de devolução&#x27; (cliente usa 5949 ou um CFOP de entrada como 1202/1661 numa nota de saída), &#x27;Informado CST para emissor do Simples Nacional (CRT=1 ou 4)&#x27;, &#x27;CSOSN incompatível na operação com Não Contribuinte&#x27; e IE do destinatário ausente. O sistema oferece todas as opções sem filtrar por regime nem por finalidade, e o suporte se recusa (com razão) a dizer qual CFOP usar, gerando ping-pong com contabilidade e fornecedor.</p>
+      </div>
+      <div class="row" title="O sistema só tem &#x27;devolução de compra&#x27;. Para garantia, remessa em garantia, remessa/retorno de conserto, simples remessa e retorno de comodato, o cliente é instruído a montar uma NF-e manual em Fiscal &gt; Nota Fiscal &gt; Nova Nota, digitar a natureza da operação à mão, escolher CFOP 5949/6915 e a tributação por conta própria. Some-se a isso a garantia de peça já vendida, que é bloqueada por falta de saldo em estoque e exige correção manual de estoque.">
+        <div class="rowhead">
+          <span class="rname">Garantia, remessa para conserto e simples remessa sem operação nativa</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>117</b> · 14% </span>
+        </div>
+        <div class="track"><i style="width:57%"></i></div>
+        <p class="rsplit">0 chamados · 117 conversas</p>
+        <p class="rdesc">O sistema só tem &#x27;devolução de compra&#x27;. Para garantia, remessa em garantia, remessa/retorno de conserto, simples remessa e retorno de comodato, o cliente é instruído a montar uma NF-e manual em Fiscal &gt; Nota Fiscal &gt; Nova Nota, digitar a natureza da operação à mão, escolher CFOP 5949/6915 e a tributação por conta própria. Some-se a isso a garantia de peça já vendida, que é bloqueada por falta de saldo em estoque e exige correção manual de estoque.</p>
+      </div>
+      <div class="row" title="Um contingente grande de usuários novos (troca de responsável fiscal, migração de sistema, oficina pequena) diz literalmente &#x27;nunca fiz, não sei por onde começar&#x27;. A resposta padrão do suporte é enviar link do ajuda.ultracar ou um PDF/Word externo; o cliente não consegue seguir, insiste, e o atendimento termina em AnyDesk com o atendente emitindo a nota — o que o próprio suporte diz não poder fazer.">
+        <div class="rowhead">
+          <span class="rname">Primeira devolução: cliente aprende por PDF, não pelo sistema</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>101</b> · 12% </span>
+        </div>
+        <div class="track"><i style="width:50%"></i></div>
+        <p class="rsplit">0 chamados · 101 conversas</p>
+        <p class="rdesc">Um contingente grande de usuários novos (troca de responsável fiscal, migração de sistema, oficina pequena) diz literalmente &#x27;nunca fiz, não sei por onde começar&#x27;. A resposta padrão do suporte é enviar link do ajuda.ultracar ou um PDF/Word externo; o cliente não consegue seguir, insiste, e o atendimento termina em AnyDesk com o atendente emitindo a nota — o que o próprio suporte diz não poder fazer.</p>
+      </div>
+      <div class="row" title="O cliente abre Movimentação &gt; Compras &gt; Devolução de Compra, preenche empresa/fornecedor/período e a busca volta vazia ou sem o item desejado, porque a compra não foi importada, não está autorizada, está com &#x27;tipo de documento&#x27; diferente de NOTA FISCAL, foi filtrada pela data errada (data de lançamento vs. data de emissão), está dentro de um agrupamento de compras, ou o item foi lançado como insumo/vinculado a uma OS. A tela não diz nada disso: só devolve lista vazia e o cliente vai ao suporte.">
+        <div class="rowhead">
+          <span class="rname">Compra não elegível: a devolução não enxerga o item</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>94</b> · 11% </span>
+        </div>
+        <div class="track"><i style="width:46%"></i></div>
+        <p class="rsplit">0 chamados · 94 conversas</p>
+        <p class="rdesc">O cliente abre Movimentação &gt; Compras &gt; Devolução de Compra, preenche empresa/fornecedor/período e a busca volta vazia ou sem o item desejado, porque a compra não foi importada, não está autorizada, está com &#x27;tipo de documento&#x27; diferente de NOTA FISCAL, foi filtrada pela data errada (data de lançamento vs. data de emissão), está dentro de um agrupamento de compras, ou o item foi lançado como insumo/vinculado a uma OS. A tela não diz nada disso: só devolve lista vazia e o cliente vai ao suporte.</p>
+      </div>
+      <div class="row" title="Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas.">
+        <div class="rowhead">
+          <span class="rname">Outro / não classificado</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>93</b> · 11% </span>
+        </div>
+        <div class="track"><i style="width:46%"></i></div>
+        <p class="rsplit">0 chamados · 93 conversas</p>
+        <p class="rdesc">Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas.</p>
+      </div>
+      <div class="row" title="Como não existe pré-visualização do DANFE antes de transmitir, o cliente só descobre o erro depois de autorizar; aí precisa cancelar e refazer — e o item não volta a ficar disponível para nova devolução até que alguém clique &#x27;Consultar situação&#x27; duas ou três vezes, truque que só o suporte conhece. Quando passam as 24h, entra o cancelamento extemporâneo com a contabilidade e o estoque fica inconsistente.">
+        <div class="rowhead">
+          <span class="rname">Ciclo cancelar-refazer: sem pré-visualização e com item travado</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>72</b> · 8% </span>
+        </div>
+        <div class="track"><i style="width:35%"></i></div>
+        <p class="rsplit">0 chamados · 72 conversas</p>
+        <p class="rdesc">Como não existe pré-visualização do DANFE antes de transmitir, o cliente só descobre o erro depois de autorizar; aí precisa cancelar e refazer — e o item não volta a ficar disponível para nova devolução até que alguém clique &#x27;Consultar situação&#x27; duas ou três vezes, truque que só o suporte conhece. Quando passam as 24h, entra o cancelamento extemporâneo com a contabilidade e o estoque fica inconsistente.</p>
+      </div>
+      <div class="row" title="Rejeições &#x27;NF-e de devolução de mercadoria não possui documento fiscal referenciado&#x27; e &#x27;exige referenciamento a nível de item&#x27; aparecem em série. O campo de chave só aceita 44 dígitos sem espaços — como o cliente copia e cola do portal ou do PDF, o valor vem com espaços e é recusado sem explicar o motivo; quem monta a nota manualmente nem sabe onde fica o campo.">
+        <div class="rowhead">
+          <span class="rname">Documento fiscal referenciado e chave de acesso</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>47</b> · 5% </span>
+        </div>
+        <div class="track"><i style="width:23%"></i></div>
+        <p class="rsplit">0 chamados · 47 conversas</p>
+        <p class="rdesc">Rejeições &#x27;NF-e de devolução de mercadoria não possui documento fiscal referenciado&#x27; e &#x27;exige referenciamento a nível de item&#x27; aparecem em série. O campo de chave só aceita 44 dígitos sem espaços — como o cliente copia e cola do portal ou do PDF, o valor vem com espaços e é recusado sem explicar o motivo; quem monta a nota manualmente nem sabe onde fica o campo.</p>
+      </div>
+      <div class="row" title="Erro no campo de condição de pagamento (&#x27;sem pagamento&#x27; / valor 0,00) ao emitir nota de devolução. Bloco recorrente identificado no censo, sem subgrupo previsto.">
+        <div class="rowhead">
+          <span class="rname">Condição de pagamento inválida na nota de devolução</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 21 dias">última 15/07</span> <b>7</b> · 1% </span>
+        </div>
+        <div class="track"><i style="width:3%"></i></div>
+        <p class="rsplit">0 chamados · 7 conversas</p>
+        <p class="rdesc">Erro no campo de condição de pagamento (&#x27;sem pagamento&#x27; / valor 0,00) ao emitir nota de devolução. Bloco recorrente identificado no censo, sem subgrupo previsto.</p>
+      </div>
+      <div class="row" title="Erros de IBS/CBS que só aparecem no fluxo de devolução (cMunFGIBS, Grupo de Devolução do IBS). Apareceu no censo dentro do bucket &#x27;Outro&#x27; e cruza com a curva de IBS/CBS da P3.">
+        <div class="rowhead">
+          <span class="rname">Devolução sob a reforma tributária (IBS/CBS)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>6</b> · 1% </span>
+        </div>
+        <div class="track"><i style="width:3%"></i></div>
+        <p class="rsplit">0 chamados · 6 conversas</p>
+        <p class="rdesc">Erros de IBS/CBS que só aparecem no fluxo de devolução (cMunFGIBS, Grupo de Devolução do IBS). Apareceu no censo dentro do bucket &#x27;Outro&#x27; e cruza com a curva de IBS/CBS da P3.</p>
+      </div>
+    </div>
+  </section>
+  <section id="prop8">
+    <div class="sechead">
+      <span class="ptag">P8</span>
+      <div>
+        <h2>Autonomia do cliente (self-service)</h2>
+        <p class="blurb">Invisível nos chamados: 994 conversas sem equivalente em ticket. 26% delas mencionam AnyDesk — o operador entra na máquina para ajustar um parâmetro.</p>
+      </div>
+    </div>
+    <div class="badges">
+      
+      
+      
+      
+      <span class="badge chat"><b>994</b> conversas no chat</span><span class="badge chat"><b>15.4%</b> da carga do balcão</span>
+    </div>
+    <div class="rows">
+      <div class="row" title="Um quinto das conversas é o cliente perguntando pelo próprio chamado — muitos nem sabem o número (&#x27;anotei não&#x27;), não têm previsão, descobrem que foi &#x27;finalizado&#x27; sem terem validado, ou não sabem se a lentidão/erro é do Ultracar, da SEFAZ, da prefeitura ou da integradora. O suporte gasta o atendimento consultando internamente e às vezes entra por AnyDesk só para reproduzir o erro.">
+        <div class="rowhead">
+          <span class="rname">Cliente sem visibilidade do status do chamado e da origem da falha</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>276</b> · 28% </span>
+        </div>
+        <div class="track"><i style="width:100%"></i></div>
+        <p class="rsplit">0 chamados · 276 conversas</p>
+        <p class="rdesc">Um quinto das conversas é o cliente perguntando pelo próprio chamado — muitos nem sabem o número (&#x27;anotei não&#x27;), não têm previsão, descobrem que foi &#x27;finalizado&#x27; sem terem validado, ou não sabem se a lentidão/erro é do Ultracar, da SEFAZ, da prefeitura ou da integradora. O suporte gasta o atendimento consultando internamente e às vezes entra por AnyDesk só para reproduzir o erro.</p>
+      </div>
+      <div class="row" title="Cliente para porque a nota fica &#x27;Em digitação&#x27; ou &#x27;Processando&#x27; e ele não sabe que precisa clicar Transmitir e depois Consultar Situação — é só aí que a mensagem de erro aparece. Inclui o grande volume de &#x27;como emito minha primeira nota&#x27; e a escolha entre NF-e, NFC-e e NFS-e.">
+        <div class="rowhead">
+          <span class="rname">Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>159</b> · 16% </span>
+        </div>
+        <div class="track"><i style="width:58%"></i></div>
+        <p class="rsplit">0 chamados · 159 conversas</p>
+        <p class="rdesc">Cliente para porque a nota fica &#x27;Em digitação&#x27; ou &#x27;Processando&#x27; e ele não sabe que precisa clicar Transmitir e depois Consultar Situação — é só aí que a mensagem de erro aparece. Inclui o grande volume de &#x27;como emito minha primeira nota&#x27; e a escolha entre NF-e, NFC-e e NFS-e.</p>
+      </div>
+      <div class="row" title="Em toda primeira emissão o suporte entra por AnyDesk e preenche à mão Cadastros &gt; Empresas &gt; aba Nota Fiscal: habilita NF-e/NFC-e/NFS-e, série, numeração da próxima nota, CFOP padrão, CSOSN/CST, PIS/COFINS, regime e login do portal da prefeitura — sempre pedindo antes o XML+PDF da última nota emitida fora do sistema. O cliente não consegue sozinho porque a tela é um formulário fiscal cru, sem explicação de cada campo, sem validação e sem saber que a numeração precisa dar continuidade à do sistema anterior.">
+        <div class="rowhead">
+          <span class="rname">Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>149</b> · 15% </span>
+        </div>
+        <div class="track"><i style="width:54%"></i></div>
+        <p class="rsplit">0 chamados · 149 conversas</p>
+        <p class="rdesc">Em toda primeira emissão o suporte entra por AnyDesk e preenche à mão Cadastros &gt; Empresas &gt; aba Nota Fiscal: habilita NF-e/NFC-e/NFS-e, série, numeração da próxima nota, CFOP padrão, CSOSN/CST, PIS/COFINS, regime e login do portal da prefeitura — sempre pedindo antes o XML+PDF da última nota emitida fora do sistema. O cliente não consegue sozinho porque a tela é um formulário fiscal cru, sem explicação de cada campo, sem validação e sem saber que a numeração precisa dar continuidade à do sistema anterior.</p>
+      </div>
+      <div class="row" title="O suporte entra por AnyDesk para configurar as TAGs de dados adicionais (placa, modelo, KM, inscrição estadual, número do pedido de compra) por tipo de nota, ou para marcar item a item retenção de ISS, desconto, CEST e condição de pagamento — ajustes que o cliente precisa repetir em toda nota. Ele não consegue sozinho porque esses campos estão espalhados entre cadastro da empresa, cadastro do produto e a nota, sem padrão salvável.">
+        <div class="rowhead">
+          <span class="rname">Conteúdo da nota: dados adicionais e ajustes por operação</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 5 dias">última 31/07</span> <b>116</b> · 12% </span>
+        </div>
+        <div class="track"><i style="width:42%"></i></div>
+        <p class="rsplit">0 chamados · 116 conversas</p>
+        <p class="rdesc">O suporte entra por AnyDesk para configurar as TAGs de dados adicionais (placa, modelo, KM, inscrição estadual, número do pedido de compra) por tipo de nota, ou para marcar item a item retenção de ISS, desconto, CEST e condição de pagamento — ajustes que o cliente precisa repetir em toda nota. Ele não consegue sozinho porque esses campos estão espalhados entre cadastro da empresa, cadastro do produto e a nota, sem padrão salvável.</p>
+      </div>
+      <div class="row" title="Todo início de mês o cliente abre o chat para lembrar como baixar XMLs por período, tirar relatórios de entradas/saídas, monofásico, NCM x CST e enviar o pacote ao contador; muitas vezes o suporte entra remotamente e faz o download pelo cliente. Ele não consegue sozinho porque os arquivos estão espalhados em três caminhos diferentes (Fiscal &gt; Baixar arquivos, Movimentação &gt; Compras, Relatórios &gt; Fiscal) e não existe um pacote único.">
+        <div class="rowhead">
+          <span class="rname">Fechamento mensal para a contabilidade</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>92</b> · 9% </span>
+        </div>
+        <div class="track"><i style="width:33%"></i></div>
+        <p class="rsplit">0 chamados · 92 conversas</p>
+        <p class="rdesc">Todo início de mês o cliente abre o chat para lembrar como baixar XMLs por período, tirar relatórios de entradas/saídas, monofásico, NCM x CST e enviar o pacote ao contador; muitas vezes o suporte entra remotamente e faz o download pelo cliente. Ele não consegue sozinho porque os arquivos estão espalhados em três caminhos diferentes (Fiscal &gt; Baixar arquivos, Movimentação &gt; Compras, Relatórios &gt; Fiscal) e não existe um pacote único.</p>
+      </div>
+      <div class="row" title="Alíquota efetiva do Simples, ISS, ICMS, PIS/COFINS e agora IBS/CBS chegam da contabilidade por mensagem e o operador entra por AnyDesk para digitá-las em Cadastros &gt; Empresa &gt; Nota Fiscal &gt; Tributos, mês após mês; mudança de regime (Simples para Presumido) segue o mesmo caminho. O cliente não faz sozinho porque não sabe o caminho da tela, não sabe se o valor vale para NF-e, NFS-e ou ambas, e relata que &#x27;no sistema anterior isso era automático&#x27;.">
+        <div class="rowhead">
+          <span class="rname">Parâmetros tributários que mudam todo mês</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 0 dias">última 05/08</span> <b>68</b> · 7% </span>
+        </div>
+        <div class="track"><i style="width:25%"></i></div>
+        <p class="rsplit">0 chamados · 68 conversas</p>
+        <p class="rdesc">Alíquota efetiva do Simples, ISS, ICMS, PIS/COFINS e agora IBS/CBS chegam da contabilidade por mensagem e o operador entra por AnyDesk para digitá-las em Cadastros &gt; Empresa &gt; Nota Fiscal &gt; Tributos, mês após mês; mudança de regime (Simples para Presumido) segue o mesmo caminho. O cliente não faz sozinho porque não sabe o caminho da tela, não sabe se o valor vale para NF-e, NFS-e ou ambas, e relata que &#x27;no sistema anterior isso era automático&#x27;.</p>
+      </div>
+      <div class="row" title="A nota saiu errada e o cliente não sabe o caminho: o que a carta de correção pode e não pode alterar (CFOP não pode), qual o prazo de cancelamento da sua cidade e quando usar nota de ajuste. O suporte repete o mesmo passo a passo de CC-e várias vezes por semana.">
+        <div class="rowhead">
+          <span class="rname">Correção pós-emissão: limites da CC-e e prazo de cancelamento</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>65</b> · 7% </span>
+        </div>
+        <div class="track"><i style="width:24%"></i></div>
+        <p class="rsplit">0 chamados · 65 conversas</p>
+        <p class="rdesc">A nota saiu errada e o cliente não sabe o caminho: o que a carta de correção pode e não pode alterar (CFOP não pode), qual o prazo de cancelamento da sua cidade e quando usar nota de ajuste. O suporte repete o mesmo passo a passo de CC-e várias vezes por semana.</p>
+      </div>
+      <div class="row" title="Recorrentemente o suporte acessa a máquina do cliente só para instalar/trocar o arquivo do certificado digital e digitar a senha, colar o CSC/token de NFC-e, gravar login e senha do portal da prefeitura ou cadastrar credenciais de banco para boleto. O cliente não faz sozinho porque não sabe onde fica o campo, erra a senha do .pfx, não distingue ambiente de produção de homologação e só descobre o vencimento quando a nota é rejeitada.">
+        <div class="rowhead">
+          <span class="rname">Certificados, tokens e credenciais que expiram</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 1 dias">última 04/08</span> <b>57</b> · 6% </span>
+        </div>
+        <div class="track"><i style="width:21%"></i></div>
+        <p class="rsplit">0 chamados · 57 conversas</p>
+        <p class="rdesc">Recorrentemente o suporte acessa a máquina do cliente só para instalar/trocar o arquivo do certificado digital e digitar a senha, colar o CSC/token de NFC-e, gravar login e senha do portal da prefeitura ou cadastrar credenciais de banco para boleto. O cliente não faz sozinho porque não sabe onde fica o campo, erra a senha do .pfx, não distingue ambiente de produção de homologação e só descobre o vencimento quando a nota é rejeitada.</p>
+      </div>
+      <div class="row" title="Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas.">
+        <div class="rowhead">
+          <span class="rname">Outro / não classificado</span>
+          <span class="rnums"><span class="last recente" title="Última incidência há 2 dias">última 03/08</span> <b>12</b> · 1% </span>
+        </div>
+        <div class="track"><i style="width:4%"></i></div>
+        <p class="rsplit">0 chamados · 12 conversas</p>
+        <p class="rdesc">Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas.</p>
+      </div>
+    </div>
+  </section>
+<section id="rebal">
+  <div class="sechead">
+    <span class="ptag">↺</span>
+    <div>
+      <h2>Rebalanceamento após a análise do balcão</h2>
+      <p class="blurb">As 5.975 conversas fiscais do chat (11,4&times; o volume de chamados) mostram que a priorização
+      feita só com tickets enxergava menos de 10% da demanda. Duas propostas mudam de posição e duas novas aparecem.</p>
+    </div>
+  </div>
+  <div class="tblwrap">
+  <table class="rebal">
+    <thead><tr><th>Proposta</th><th class="n">Chamados</th><th class="n">Conversas</th><th class="n">Carga do chat</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr><td>P1 Pr&eacute;-valida&ccedil;&atilde;o</td><td class="n">80</td><td class="n">1.409</td><td class="n">21,7%</td><td><span class="verd keep">confirmada n&ordm; 1</span></td></tr>
+      <tr><td><b>P7 Devolu&ccedil;&atilde;o guiada</b> <span style="color:var(--ink3)">(nova)</span></td><td class="n">24</td><td class="n">861</td><td class="n">15,3%</td><td><span class="verd new">criar &mdash; iceberg 35,9&times;</span></td></tr>
+      <tr><td><b>P8 Autonomia / self-service</b> <span style="color:var(--ink3)">(nova)</span></td><td class="n">&mdash;</td><td class="n">994</td><td class="n">15,4%</td><td><span class="verd new">criar &mdash; invis&iacute;vel nos tickets</span></td></tr>
+      <tr><td>P6 Municipal + certificado</td><td class="n">40</td><td class="n">642</td><td class="n">10,6%</td><td><span class="verd up">subir &mdash; 2,6&times; maior</span></td></tr>
+      <tr><td>P2 Reconcilia&ccedil;&atilde;o</td><td class="n">109</td><td class="n">499</td><td class="n">9,0%</td><td><span class="verd keep">manter &mdash; tamanho j&aacute; fiel</span></td></tr>
+      <tr><td>P3 Impostos</td><td class="n">38</td><td class="n">377</td><td class="n">7,2%</td><td><span class="verd keep">manter &mdash; cresce c/ IBS-CBS</span></td></tr>
+      <tr><td>P5 Triagem</td><td class="n">61</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td><span class="verd keep">manter &mdash; processo</span></td></tr>
+      <tr><td>P4 PDF/DANFE</td><td class="n">42</td><td class="n">132</td><td class="n">2,0%</td><td><span class="verd down">rebaixar &mdash; iceberg 3,1&times;</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="rdesc" style="margin-top:14px">Iceberg = conversas por chamado do mesmo tema. Alto significa que a dor &eacute;
+  absorvida no balc&atilde;o e quase nunca vira ticket; baixo significa que o ticket j&aacute; media bem a dor.
+  Detalhamento em <em>analise_balcao_conversas_2026-08-05.md</em>.</p>
+</section>
+
+<footer>
+  Metodologia: classificação por leitura completa dos 522 chamados (validada por amostragem), causas dos genéricos
+  recuperadas do chat de Open Lines quando disponível, subgrupos derivados chamado a chamado. Detalhes e trilha de
+  auditoria em <em>analise_chamados_fiscais_2026-08-04.md</em> e <em>chamados_fiscais_2026-08-04.xlsx</em>.
+  "Dias de tratativa" = soma de (fechamento − abertura) dos chamados concluídos do subgrupo.
+</footer>
+</main>

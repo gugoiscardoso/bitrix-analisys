@@ -1,0 +1,347 @@
+{
+ "P1||Regime/al\u00edquota de ISSQN inv\u00e1lidos (regEspTrib, E0175/E0178, tributa\u00e7\u00e3o de servi\u00e7o)": [
+  0,
+  11,
+  19,
+  13
+ ],
+ "P1||C\u00f3digos fiscais do item/servi\u00e7o inexistentes ou faltantes (NCM, c\u00f3digo de barras, c\u00f3d. tributa\u00e7\u00e3o municipal/nacional, UF de consumo)": [
+  51,
+  6,
+  0,
+  31
+ ],
+ "P1||Cadastro do destinat\u00e1rio/tomador incompleto ou inv\u00e1lido (IE, CEP, endere\u00e7o, documento, raz\u00e3o social)": [
+  6,
+  22,
+  13,
+  34,
+  1,
+  0,
+  8
+ ],
+ "P1||S\u00e9rie/numera\u00e7\u00e3o de RPS e habilita\u00e7\u00e3o/configura\u00e7\u00e3o do emissor (s\u00e9rie num\u00e9rica, nDPS, credenciamento, padr\u00e3o municipal, ambiente)": [
+  9,
+  0,
+  1,
+  16
+ ],
+ "P1||Falha de schema XML na gera\u00e7\u00e3o (caracteres/conte\u00fado inv\u00e1lido em tags, informa\u00e7\u00f5es complementares, tags fora de ordem)": [
+  0,
+  31,
+  0,
+  34,
+  11,
+  3
+ ],
+ "P1||CFOP/CST incompat\u00edveis com a opera\u00e7\u00e3o ou regime (devolu\u00e7\u00e3o, idDest, grupos de imposto)": [
+  11,
+  8,
+  32
+ ],
+ "P1||Consist\u00eancia de pagamento/fatura e campos condicionais da NF-e (troco, grupo Fatura, intermediador, transporte)": [
+  14,
+  14,
+  8
+ ],
+ "P1||Outros/heterog\u00eaneos": [
+  14
+ ],
+ "P2||Nota autorizada no portal continua em digita\u00e7\u00e3o/processando no sistema": [
+  1,
+  9,
+  3,
+  3,
+  1,
+  20,
+  23,
+  13,
+  7,
+  11,
+  5,
+  3,
+  7,
+  0,
+  0,
+  6,
+  1
+ ],
+ "P2||Nota presa em processando/transmitindo sem retorno da prefeitura": [
+  2,
+  2,
+  49,
+  20,
+  23,
+  23,
+  1,
+  1
+ ],
+ "P2||Nota cancelada na prefeitura permanece autorizada no sistema": [
+  48,
+  63,
+  2,
+  4,
+  28,
+  7,
+  0,
+  14,
+  15,
+  9,
+  16,
+  2,
+  15,
+  1
+ ],
+ "P2||Duplicidade de DPS/RPS/chave por contador de numera\u00e7\u00e3o dessincronizado (E0014/E2404)": [
+  1,
+  9,
+  20,
+  4,
+  11,
+  6,
+  5,
+  4
+ ],
+ "P2||Lacunas na sequ\u00eancia de numera\u00e7\u00e3o (n\u00fameros pulados sem emiss\u00e3o)": [
+  6,
+  19,
+  1,
+  0,
+  9
+ ],
+ "P2||Nota emitida na SEFAZ n\u00e3o aparece no sistema": [
+  0,
+  10,
+  11,
+  7,
+  0,
+  2,
+  0,
+  0,
+  10,
+  2
+ ],
+ "P2||Outros/heterog\u00eaneos": [
+  25,
+  0
+ ],
+ "P3||IBS/CBS \u2014 reforma tribut\u00e1ria (base de c\u00e1lculo, al\u00edquota, CST 515, Simples Nacional)": [
+  16,
+  39,
+  31,
+  31,
+  0
+ ],
+ "P3||PIS/COFINS \u2014 reten\u00e7\u00f5es, CST e valores zerados/divergentes": [
+  54,
+  0,
+  31,
+  9
+ ],
+ "P3||Valor l\u00edquido / base de c\u00e1lculo divergente na nota": [
+  32,
+  43,
+  15,
+  5
+ ],
+ "P3||ISS/ISSQN \u2014 reten\u00e7\u00e3o e al\u00edquota na NFS-e": [
+  25
+ ],
+ "P3||ICMS \u2014 diferimento, destaque e devolu\u00e7\u00e3o": [
+  32
+ ],
+ "P3||C\u00e1lculo de tributos em Compras": [],
+ "P3||Outros/heterog\u00eaneos": [
+  33
+ ],
+ "P3||IPI e IRRF \u2014 enquadramento, CST e base de c\u00e1lculo": [],
+ "P4||PDF n\u00e3o gera / n\u00e3o baixa / erro ou lentid\u00e3o na gera\u00e7\u00e3o": [
+  31,
+  26,
+  11,
+  34,
+  3,
+  9,
+  11
+ ],
+ "P4||Valores e campos fiscais incorretos ou ausentes no PDF": [
+  44,
+  24,
+  9,
+  8,
+  14,
+  4
+ ],
+ "P4||Dados adicionais / informa\u00e7\u00f5es complementares no lugar errado ou ausentes": [
+  36,
+  5,
+  3,
+  9,
+  1,
+  3
+ ],
+ "P4||Layout de impress\u00e3o n\u00e3o atende necessidades do cliente (logo, 58mm, DANFE de compra)": [
+  9
+ ],
+ "P4||Campos operacionais da OS ausentes (quilometragem, sinistro, data/assinatura)": [
+  15,
+  1,
+  13
+ ],
+ "P4||Layout / pagina\u00e7\u00e3o quebrada": [
+  12,
+  13
+ ],
+ "P5||Matrix \u2014 'erro/dificuldade ao emitir' sem nenhuma evid\u00eancia": [
+  31,
+  32,
+  49,
+  23,
+  23,
+  3,
+  11,
+  21,
+  20,
+  19,
+  11,
+  11,
+  3,
+  0,
+  11
+ ],
+ "P5||Matrix \u2014 pedido de assist\u00eancia/how-to sem problema definido": [
+  41,
+  31
+ ],
+ "P5||Analista \u2014 formul\u00e1rio fiscal com campos de evid\u00eancia em branco": [
+  10,
+  0,
+  0
+ ],
+ "P5||Matrix \u2014 mensagem de erro gen\u00e9rica citada, sem identifica\u00e7\u00e3o da nota": [
+  32,
+  31,
+  3
+ ],
+ "P5||Matrix \u2014 solicita\u00e7\u00e3o de altera\u00e7\u00e3o/ajuste em nota sem especificar o qu\u00ea": [
+  0
+ ],
+ "P6||Instabilidade / webservice da prefeitura fora do ar": [
+  3,
+  14,
+  19,
+  7,
+  49,
+  32
+ ],
+ "P6||Mudan\u00e7a de layout / re-homologa\u00e7\u00e3o municipal": [
+  6,
+  13
+ ],
+ "P6||Certificado: cliente n\u00e3o conclui a instala\u00e7\u00e3o sozinho e pede que o suporte fa\u00e7a": [
+  31
+ ],
+ "P6||Certificado: falha no cadastro/upload do arquivo": [
+  1,
+  0,
+  0,
+  11,
+  0
+ ],
+ "P6||Certificado: vencido / renova\u00e7\u00e3o n\u00e3o reconhecida pelo sistema": [
+  17,
+  0
+ ],
+ "P6||Migra\u00e7\u00e3o para Emissor Nacional / Reforma Tribut\u00e1ria": [],
+ "P6||Certificado: atualiza\u00e7\u00e3o quebrou a emiss\u00e3o": [
+  25,
+  21
+ ],
+ "P6||Campo/regra municipal espec\u00edfica n\u00e3o suportada": [
+  61
+ ],
+ "P6||Pend\u00eancia administrativa no portal da prefeitura bloqueia a emiss\u00e3o": [],
+ "P9||Cadastro/config fiscal (NCM, CFOP, CST, c\u00f3d. servi\u00e7o, SPED, regime)": [
+  28,
+  6,
+  0,
+  32,
+  16,
+  31,
+  21,
+  0,
+  22,
+  16,
+  3,
+  3,
+  3,
+  1,
+  0,
+  0,
+  9,
+  0,
+  0,
+  1
+ ],
+ "P9||Integra\u00e7\u00e3o financeiro/estoque/OS com a nota": [
+  28,
+  8,
+  0,
+  55,
+  6,
+  31,
+  39,
+  0,
+  11,
+  19,
+  15,
+  0,
+  18,
+  0,
+  9
+ ],
+ "P9||Cancelamento/exclus\u00e3o de nota": [
+  35,
+  5,
+  5,
+  23,
+  23,
+  3,
+  0,
+  0,
+  14,
+  8,
+  3,
+  0
+ ],
+ "P9||Relat\u00f3rios fiscais divergentes": [
+  40,
+  4,
+  52,
+  31,
+  31,
+  0,
+  15,
+  27
+ ],
+ "P9||XML de compra / importa\u00e7\u00e3o / manifesta\u00e7\u00e3o do destinat\u00e1rio": [
+  2,
+  8
+ ],
+ "P9||Envio de nota por e-mail falha": [
+  16,
+  25,
+  11,
+  20,
+  7,
+  18
+ ],
+ "P9||NFS-e interna / API interna": [
+  56,
+  5,
+  0,
+  22,
+  4,
+  0
+ ]
+}
