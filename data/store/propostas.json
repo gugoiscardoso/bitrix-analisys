@@ -144,7 +144,7 @@
    },
    {
     "nome": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
-    "descricao": "Validar a coerência tributária da NF-e de produto antes do envio: CFOP compatível com o tipo de operação (interna vs interestadual, devolução) e com o grupo de tributação, CST vs CRT do Simples Nacional (usar CSOSN), campos de PIS mutuamente exclusivos e grupo de ICMS-ST retido obrigatório em devoluções. Hoje geram rejeições como 374, 'CFOP de operação interna e idDest<>1' e 'Informado CST para emissor do Simples Nacional'.",
+    "descricao": "Validar a coerência tributária da NF-e de produto antes do envio: CFOP compatível com o tipo de operação (interna vs interestadual, devolução) e com o grupo de tributação, CST vs CRT do Simples Nacional (usar CSOSN), campos de PIS mutuamente exclusivos e grupo de ICMS-ST retido obrigatório em devoluções. Hoje geram rejeições como 374, 'CFOP de operação interna e idDest<>1' e 'Informado CST para emissor do Simples Nacional'. FRONTEIRA COM P7: use este subgrupo apenas quando o documento em questão é uma nota de VENDA, serviço ou operação comum. Se o erro de CFOP/CST está acontecendo na emissão de uma nota de DEVOLUÇÃO, GARANTIA, REMESSA ou RETORNO, o subgrupo correto é 'CFOP, CST/CSOSN e regime tributário incompatíveis' (P7), mesmo que a mensagem de rejeição seja idêntica. O discriminador é a finalidade do documento, não o erro.",
     "ids": [
      "102639",
      "102641",

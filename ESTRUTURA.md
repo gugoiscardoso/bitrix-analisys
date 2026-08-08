@@ -31,11 +31,11 @@ Consequência intencional: rodar o relatório de junho hoje ou daqui a seis mese
 
 Gerados por `pipeline/consolidar_store.py`, que reconstrói tudo a partir de `data/raw/`.
 
-**`taxonomia.json`** — 9 frentes, 23 temas e 69 subgrupos, congelados e versionados. O prompt do classificador é *gerado* deste arquivo, então é idêntico em toda execução e a IA nunca inventa categoria: o que não encaixa vai para "Outro". Alterar exige bump de versão.
+**`taxonomia.json`** — 13 frentes, 23 temas e 69 subgrupos, congelados e versionados. O prompt do classificador é *gerado* deste arquivo, então é idêntico em toda execução e a IA nunca inventa categoria: o que não encaixa vai para "Outro". Alterar exige bump de versão.
 
 **`classificacao.json`** — o cache que garante consistência. Uma entrada por chamado/conversa com tema, subgrupo, frente, origem (`llm`, `chat`, `manual`) e o hash do texto classificado. Na execução, quem já está aqui é **reusado sem chamar IA**; só o que é novo entra na fila de classificação. Entradas com origem `manual` são imunes a reprocessamento.
 
-**`base_historica.jsonl`** — um registro por linha (14.509 hoje: 1.227 chamados e 13.282 conversas), com os campos usados nas métricas: datas de abertura, início de desenvolvimento, alteração e fechamento; status, canal, cliente, CNPJ, duração, mensagens e o texto.
+**`base_historica.jsonl`** — um registro por linha (15.935 hoje: 2.653 chamados e 13.282 conversas), com os campos usados nas métricas: datas de abertura, início de desenvolvimento, alteração e fechamento; status, canal, cliente, CNPJ, duração, mensagens e o texto.
 
 `data/store/_legado/` guarda os 38 arquivos da análise exploratória que deram origem a esses três. Servem só de rastreabilidade e podem ser apagados quando a consolidação estiver comprovada em uso.
 

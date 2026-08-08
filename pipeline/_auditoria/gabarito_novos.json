@@ -1,0 +1,1424 @@
+{
+ "N|conversa|241179": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "241179",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: falha no cadastro/upload do arquivo",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|248927": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "248927",
+  "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+  "subgrupo": "Instabilidade / webservice da prefeitura fora do ar",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|260073": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "260073",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|265027": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "265027",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|249665": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "249665",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|251805": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "251805",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: falha no cadastro/upload do arquivo",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|241391": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "241391",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|248597": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "248597",
+  "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+  "subgrupo": "Instabilidade / webservice da prefeitura fora do ar",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|251587": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "251587",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|262401": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "262401",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: vencido / renovação não reconhecida pelo sistema",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|252751": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "252751",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|247549": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "247549",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: falha no cadastro/upload do arquivo",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|265221": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "265221",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|243119": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243119",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|263807": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "263807",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|243389": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243389",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|256191": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "256191",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|264013": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "264013",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|263449": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "263449",
+  "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+  "subgrupo": "Instabilidade / webservice da prefeitura fora do ar",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|254535": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "254535",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: falha no cadastro/upload do arquivo",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "N|conversa|243633": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243633",
+  "tema": "Conversa vazia / sem conteúdo útil",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|267405": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "267405",
+  "tema": "Conversa vazia / sem conteúdo útil",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|267277": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "267277",
+  "tema": "Conversa vazia / sem conteúdo útil",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|261605": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "261605",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|266411": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "266411",
+  "tema": "Conversa vazia / sem conteúdo útil",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|242333": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "242333",
+  "tema": "Conversa vazia / sem conteúdo útil",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|241705": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "241705",
+  "tema": "Conversa vazia / sem conteúdo útil",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|266821": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "266821",
+  "tema": "Conversa vazia / sem conteúdo útil",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|258633": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "258633",
+  "tema": "Conversa vazia / sem conteúdo útil",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|251795": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "251795",
+  "tema": "Outro / não se encaixa",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|260631": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "260631",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|241353": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "241353",
+  "tema": "Conversa vazia / sem conteúdo útil",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|264851": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "264851",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|264473": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "264473",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "N|conversa|251389": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "251389",
+  "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "subgrupo": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "frente": "P10",
+  "fonte": "llm"
+ },
+ "N|conversa|266683": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "266683",
+  "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "subgrupo": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "frente": "P10",
+  "fonte": "llm"
+ },
+ "N|conversa|240343": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "240343",
+  "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "subgrupo": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "frente": "P10",
+  "fonte": "llm"
+ },
+ "N|conversa|253737": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "253737",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|243957": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243957",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Documento fiscal referenciado e chave de acesso",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|266751": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "266751",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|243809": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243809",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|257961": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "257961",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Condição de pagamento inválida na nota de devolução",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|245399": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "245399",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Destaque manual de impostos para bater com o espelho do fornecedor",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|254715": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "254715",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|267467": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "267467",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|249533": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "249533",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|255839": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "255839",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|244521": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "244521",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|261349": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "261349",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|246557": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "246557",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Destaque manual de impostos para bater com o espelho do fornecedor",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|243169": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243169",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Devolução sob a reforma tributária (IBS/CBS)",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|246267": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "246267",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "N|conversa|243733": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243733",
+  "tema": "Cancelamento/exclusão de nota",
+  "subgrupo": "Cancelamento/exclusão de nota",
+  "frente": "P11",
+  "fonte": "llm"
+ },
+ "N|conversa|246545": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "246545",
+  "tema": "Cancelamento/exclusão de nota",
+  "subgrupo": "Cancelamento/exclusão de nota",
+  "frente": "P11",
+  "fonte": "llm"
+ },
+ "N|conversa|244943": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "244943",
+  "tema": "Cancelamento/exclusão de nota",
+  "subgrupo": "Cancelamento/exclusão de nota",
+  "frente": "P11",
+  "fonte": "llm"
+ },
+ "N|conversa|249027": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "249027",
+  "tema": "Cancelamento/exclusão de nota",
+  "subgrupo": "Cancelamento/exclusão de nota",
+  "frente": "P11",
+  "fonte": "llm"
+ },
+ "N|conversa|240575": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "240575",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|248105": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "248105",
+  "tema": "Instabilidade geral / lentidão do sistema",
+  "subgrupo": "Cliente sem visibilidade do status do chamado e da origem da falha",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|243415": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243415",
+  "tema": "Configuração assistida pelo suporte",
+  "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|241757": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "241757",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|262873": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "262873",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|244289": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "244289",
+  "tema": "Configuração assistida pelo suporte",
+  "subgrupo": "Certificados, tokens e credenciais que expiram",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|259965": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "259965",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Fechamento mensal para a contabilidade",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|258183": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "258183",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|256597": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "256597",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|262209": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "262209",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|257717": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "257717",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|247611": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "247611",
+  "tema": "Configuração assistida pelo suporte",
+  "subgrupo": "Certificados, tokens e credenciais que expiram",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|258809": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "258809",
+  "tema": "Instabilidade geral / lentidão do sistema",
+  "subgrupo": "Cliente sem visibilidade do status do chamado e da origem da falha",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|265173": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "265173",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|264069": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "264069",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Correção pós-emissão: limites da CC-e e prazo de cancelamento",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|260273": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "260273",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|258217": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "258217",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|247279": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "247279",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|253257": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "253257",
+  "tema": "Instabilidade geral / lentidão do sistema",
+  "subgrupo": "Cliente sem visibilidade do status do chamado e da origem da falha",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|253795": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "253795",
+  "tema": "Dúvida de uso / orientação (how-to fiscal)",
+  "subgrupo": "Correção pós-emissão: limites da CC-e e prazo de cancelamento",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|243277": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243277",
+  "tema": "Instabilidade geral / lentidão do sistema",
+  "subgrupo": "Cliente sem visibilidade do status do chamado e da origem da falha",
+  "frente": "P8",
+  "fonte": "llm"
+ },
+ "N|conversa|245535": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "245535",
+  "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)",
+  "subgrupo": "PDF não gera / não baixa / erro ou lentidão na geração",
+  "frente": "P4",
+  "fonte": "llm"
+ },
+ "N|conversa|265055": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "265055",
+  "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)",
+  "subgrupo": "PDF não gera / não baixa / erro ou lentidão na geração",
+  "frente": "P4",
+  "fonte": "llm"
+ },
+ "N|conversa|242095": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "242095",
+  "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)",
+  "subgrupo": "PDF não gera / não baixa / erro ou lentidão na geração",
+  "frente": "P4",
+  "fonte": "llm"
+ },
+ "N|conversa|256333": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "256333",
+  "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)",
+  "subgrupo": "PDF não gera / não baixa / erro ou lentidão na geração",
+  "frente": "P4",
+  "fonte": "llm"
+ },
+ "N|conversa|250203": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "250203",
+  "tema": "Integração financeiro/estoque/OS com a nota",
+  "subgrupo": "Integração financeiro/estoque/OS com a nota",
+  "frente": "P13",
+  "fonte": "llm"
+ },
+ "N|conversa|243943": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243943",
+  "tema": "Integração financeiro/estoque/OS com a nota",
+  "subgrupo": "Integração financeiro/estoque/OS com a nota",
+  "frente": "P13",
+  "fonte": "llm"
+ },
+ "N|conversa|242871": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "242871",
+  "tema": "Integração financeiro/estoque/OS com a nota",
+  "subgrupo": "Integração financeiro/estoque/OS com a nota",
+  "frente": "P13",
+  "fonte": "llm"
+ },
+ "N|conversa|248561": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "248561",
+  "tema": "Integração financeiro/estoque/OS com a nota",
+  "subgrupo": "Integração financeiro/estoque/OS com a nota",
+  "frente": "P13",
+  "fonte": "llm"
+ },
+ "N|conversa|267987": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "267987",
+  "tema": "Integração financeiro/estoque/OS com a nota",
+  "subgrupo": "Integração financeiro/estoque/OS com a nota",
+  "frente": "P13",
+  "fonte": "llm"
+ },
+ "N|conversa|264179": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "264179",
+  "tema": "Integração financeiro/estoque/OS com a nota",
+  "subgrupo": "Integração financeiro/estoque/OS com a nota",
+  "frente": "P13",
+  "fonte": "llm"
+ },
+ "N|conversa|259963": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "259963",
+  "tema": "Integração financeiro/estoque/OS com a nota",
+  "subgrupo": "Integração financeiro/estoque/OS com a nota",
+  "frente": "P13",
+  "fonte": "llm"
+ },
+ "N|conversa|262303": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "262303",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|268181": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "268181",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Consistência de pagamento/fatura e campos condicionais da NF-e (troco, grupo Fatura, intermediador, transporte)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|262247": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "262247",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|266661": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "266661",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|248271": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "248271",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|259537": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "259537",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|246497": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "246497",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Consistência de pagamento/fatura e campos condicionais da NF-e (troco, grupo Fatura, intermediador, transporte)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|266205": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "266205",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|260015": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "260015",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|250001": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "250001",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|246245": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "246245",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|264739": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "264739",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|243231": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243231",
+  "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+  "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+  "frente": "P1",
+  "fonte": "llm"
+ },
+ "N|conversa|251991": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "251991",
+  "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+  "subgrupo": "PIS/COFINS — retenções, CST e valores zerados/divergentes",
+  "frente": "P3",
+  "fonte": "llm"
+ },
+ "N|conversa|260879": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "260879",
+  "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+  "subgrupo": "IBS/CBS — reforma tributária (base de cálculo, alíquota, CST 515, Simples Nacional)",
+  "frente": "P3",
+  "fonte": "llm"
+ },
+ "N|conversa|258019": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "258019",
+  "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+  "subgrupo": "IBS/CBS — reforma tributária (base de cálculo, alíquota, CST 515, Simples Nacional)",
+  "frente": "P3",
+  "fonte": "llm"
+ },
+ "N|conversa|259567": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "259567",
+  "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+  "subgrupo": "Valor líquido / base de cálculo divergente na nota",
+  "frente": "P3",
+  "fonte": "llm"
+ },
+ "N|conversa|241773": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "241773",
+  "tema": "Envio de nota por e-mail falha",
+  "subgrupo": "Envio de nota por e-mail falha",
+  "frente": "P9",
+  "fonte": "llm"
+ },
+ "N|conversa|259029": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "259029",
+  "tema": "Envio de nota por e-mail falha",
+  "subgrupo": "Envio de nota por e-mail falha",
+  "frente": "P9",
+  "fonte": "llm"
+ },
+ "N|conversa|258757": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "258757",
+  "tema": "Relatórios fiscais divergentes",
+  "subgrupo": "Relatórios fiscais divergentes",
+  "frente": "P9",
+  "fonte": "llm"
+ },
+ "N|conversa|260801": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "260801",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "N|conversa|251045": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "251045",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "N|conversa|251591": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "251591",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "N|conversa|251531": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "251531",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "N|conversa|253481": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "253481",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "N|conversa|253141": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "253141",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "N|conversa|253739": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "253739",
+  "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)",
+  "subgrupo": "Duplicidade de DPS/RPS/chave por contador de numeração dessincronizado (E0014/E2404)",
+  "frente": "P2",
+  "fonte": "llm"
+ },
+ "N|conversa|251577": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "251577",
+  "tema": "Nota travada em processamento/transmissão sem retorno",
+  "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+  "frente": "P2",
+  "fonte": "llm"
+ },
+ "N|conversa|256075": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "256075",
+  "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)",
+  "subgrupo": "Nota emitida na SEFAZ não aparece no sistema",
+  "frente": "P2",
+  "fonte": "llm"
+ },
+ "N|conversa|267239": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "267239",
+  "tema": "Nota travada em processamento/transmissão sem retorno",
+  "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+  "frente": "P2",
+  "fonte": "llm"
+ },
+ "N|conversa|243045": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "243045",
+  "tema": "Nota travada em processamento/transmissão sem retorno",
+  "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+  "frente": "P2",
+  "fonte": "llm"
+ },
+ "N|conversa|250239": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "250239",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "N|conversa|249179": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "249179",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "N|conversa|256179": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "256179",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "N|conversa|256765": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "256765",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "N|conversa|255097": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "255097",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — pedido de assistência/how-to sem problema definido",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "N|conversa|255071": {
+  "camada": "N",
+  "tipo": "conversa",
+  "id": "255071",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "M|chamado|101859": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "101859",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "M|chamado|104485": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104485",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "M|chamado|104583": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104583",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "M|chamado|102245": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "102245",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "M|chamado|102801": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "102801",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "M|chamado|105281": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "105281",
+  "tema": "Outro / não se encaixa",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "M|chamado|101895": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "101895",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "M|chamado|104847": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104847",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "M|chamado|103013": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "103013",
+  "tema": "Não fiscal (falso positivo)",
+  "subgrupo": "",
+  "frente": null,
+  "fonte": "llm"
+ },
+ "M|chamado|102689": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "102689",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: falha no cadastro/upload do arquivo",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "M|chamado|103259": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "103259",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "M|chamado|102371": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "102371",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "M|chamado|102071": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "102071",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "M|chamado|104101": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104101",
+  "tema": "Certificado digital (cadastro, vencimento, atualização)",
+  "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+  "frente": "P6",
+  "fonte": "llm"
+ },
+ "M|chamado|104179": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104179",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "M|chamado|102361": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "102361",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "M|chamado|103933": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "103933",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — pedido de assistência/how-to sem problema definido",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "M|chamado|103963": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "103963",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "M|chamado|103819": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "103819",
+  "tema": "Sem causa identificável na descrição",
+  "subgrupo": "Matrix — pedido de assistência/how-to sem problema definido",
+  "frente": "P5",
+  "fonte": "llm"
+ },
+ "M|chamado|102475": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "102475",
+  "tema": "Integração financeiro/estoque/OS com a nota",
+  "subgrupo": "Integração financeiro/estoque/OS com a nota",
+  "frente": "P13",
+  "fonte": "llm"
+ },
+ "M|chamado|102541": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "102541",
+  "tema": "Cancelamento/exclusão de nota",
+  "subgrupo": "Cancelamento/exclusão de nota",
+  "frente": "P11",
+  "fonte": "llm"
+ },
+ "M|chamado|103123": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "103123",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "M|chamado|104779": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104779",
+  "tema": "Nota de devolução/garantia/remessa/complemento",
+  "subgrupo": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
+  "frente": "P7",
+  "fonte": "llm"
+ },
+ "M|chamado|104525": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104525",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "M|chamado|105265": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "105265",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "M|chamado|103491": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "103491",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "M|chamado|103779": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "103779",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "M|chamado|104161": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104161",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "M|chamado|104089": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104089",
+  "tema": "XML de compra / importação / manifestação do destinatário",
+  "subgrupo": "XML de compra / importação / manifestação do destinatário",
+  "frente": "P12",
+  "fonte": "llm"
+ },
+ "M|chamado|104477": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "104477",
+  "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "subgrupo": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "frente": "P10",
+  "fonte": "llm"
+ },
+ "M|chamado|105295": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "105295",
+  "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "subgrupo": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "frente": "P10",
+  "fonte": "llm"
+ },
+ "M|chamado|103633": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "103633",
+  "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "subgrupo": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "frente": "P10",
+  "fonte": "llm"
+ },
+ "M|chamado|105263": {
+  "camada": "M",
+  "tipo": "chamado",
+  "id": "105263",
+  "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "subgrupo": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+  "frente": "P10",
+  "fonte": "llm"
+ }
+}

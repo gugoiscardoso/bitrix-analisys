@@ -73,10 +73,14 @@ def enriquecer_taxonomia() -> dict:
             if v.get("subgrupo"):
                 votos[v["subgrupo"]][v["tema"]] += 1
     faltando = []
+    # Frentes de tema único (P9 e as que saíram dele) têm o subgrupo == o próprio tema.
+    # Derivado da taxonomia em vez de listado à mão: assim um bump futuro que crie ou
+    # dissolva frentes desse tipo não precisa lembrar de editar aqui.
+    nomes_tema = {t["nome"] for t in tax["temas"]}
     for sg in tax["subgrupos"]:
         c = votos.get(sg["nome"])
-        if sg["frente"] == "P9":
-            sg["tema"] = sg["nome"]          # em P9 o subgrupo é o próprio tema
+        if sg["nome"] in nomes_tema:
+            sg["tema"] = sg["nome"]
         elif c:
             sg["tema"] = c.most_common(1)[0][0]
         elif sg["nome"].startswith("Outro"):
@@ -114,14 +118,22 @@ def montar_prompt(tax: dict, tipo: str) -> str:
             L.append(f'- "{sg["nome"]}"')
             d = (sg.get("descricao") or "").strip()
             if d:
-                L.append(f"  {d[:300]}")
+                # SEM truncar. O corte em 300 chars silenciava metade da taxonomia: 38 dos
+                # 69 subgrupos têm descrição maior, então o classificador nunca via a
+                # definição completa deles — e as regras de fronteira, que ficam no fim
+                # da descrição, nunca chegavam. Custo de mandar inteiro: ~2k tokens.
+                L.append(f"  {d}")
         L.append("")
     L += ["## Casos especiais", ""]
     if tipo == "conversa":
         L += [f'- "{VAZIA}" — sem assunto identificável: só saudação, chat abandonado, '
-              "atendimento resolvido sem descrever o problema.",
-              f'- "{FALSO}" — o assunto real não é fiscal (financeiro puro, estoque, acesso); '
-              "o termo fiscal apareceu de passagem.", ""]
+              "atendimento resolvido sem descrever o problema."]
+    # "Não fiscal" vale para os DOIS tipos. Antes só a conversa tinha essa saída, porque
+    # o filtro de chamado era circular e por definição não trazia falso positivo. Agora
+    # que o chamado passa pelo regex, ~55% do que ele traz a mais NÃO é fiscal; sem esta
+    # opção esses registros seriam empurrados à força para alguma categoria fiscal.
+    L += [f'- "{FALSO}" — o assunto real não é fiscal (financeiro puro, estoque, acesso); '
+          "o termo fiscal apareceu de passagem.", ""]
     L += [f'- "{OUTRO}" — é fiscal e tem assunto claro, mas não cabe em NENHUM subgrupo acima. '
           "Use com parcimônia: é o sinal de que a taxonomia precisa crescer.", "",
           "## Regras",
@@ -139,6 +151,87 @@ def montar_prompt(tax: dict, tipo: str) -> str:
     return "\n".join(L)
 
 
+def frentes_com_quebra(tax: dict) -> dict:
+    """Frentes que têm subgrupos de verdade — as únicas que precisam da etapa 2.
+
+    Numa frente de tema único (P9 e as que saíram dela) o subgrupo É o tema, então
+    perguntar de novo seria gastar tokens para receber a resposta que já se tem.
+    """
+    por_frente = collections.defaultdict(list)
+    nomes_tema = {t["nome"] for t in tax["temas"]}
+    for sg in tax["subgrupos"]:
+        if not sg["nome"].startswith("Outro") and sg["nome"] not in nomes_tema:
+            por_frente[sg["frente"]].append(sg)
+    return {f: v for f, v in por_frente.items() if len(v) > 1}
+
+
+def montar_prompt_tema(tax: dict, tipo: str) -> str:
+    """ETAPA 1 — escolher o TEMA entre ~22 opções.
+
+    Medido em 07/08/2026, no mesmo gabarito e mesma população: uma escolha entre 22
+    acerta 83,6%, contra 72,7% de uma escolha única entre os 69 subgrupos (McNemar
+    p=0,013). Duas decisões fáceis erram menos que uma difícil. Custa ~1,7x mais
+    tokens porque o texto é lido duas vezes; a troca foi aceita de propósito.
+    """
+    rotulo = "chamado de suporte" if tipo == "chamado" else "conversa de chat"
+    campo = "título e descrição" if tipo == "chamado" else "transcrição"
+    L = [f"# Etapa 1 — assunto do atendimento ({rotulo}s, Ultracar)", "",
+         f"Cada item tem `id` e `t` ({campo}). Atribua a CADA item EXATAMENTE UM assunto",
+         "da lista, copiando a string EXATA. Não invente categorias.", "",
+         "## Assuntos", ""]
+    for t in tax["temas"]:
+        if t["nome"] in (VAZIA, FALSO):
+            continue
+        if tipo == "chamado" and t["frente"] == "P8":
+            continue                       # P8 só existe no chat
+        if tipo == "conversa" and t["frente"] == "P5":
+            continue                       # 'sem causa' é conceito de chamado
+        L.append(f'- "{t["nome"]}"')
+    L += ["", "## Casos especiais", ""]
+    if tipo == "conversa":
+        L.append(f'- "{VAZIA}" — sem assunto identificável: só saudação, chat abandonado, '
+                 "atendimento resolvido sem descrever o problema.")
+    L += [f'- "{FALSO}" — o assunto real não é fiscal (financeiro puro, estoque, acesso); '
+          "o termo fiscal apareceu de passagem.", "",
+          "## Regras",
+          "- Vale o motivo pelo qual o cliente procurou o suporte, não termos soltos.",
+          "- Se houver dois motivos, fique com o que consumiu o atendimento.",
+          "- Julgue só pelo que está escrito. Não complete o que falta.", "",
+          "## Saída",
+          "Escreva `resp_<nome-do-lote>.json` no mesmo diretório: JSON UTF-8 sem BOM,",
+          '{"<id>": "<assunto exato>", ...}, cobrindo TODOS os ids do lote.', "",
+          "## Eficiência",
+          "Leia o lote UMA vez e escreva a saída UMA vez. Não releia o arquivo."]
+    return "\n".join(L)
+
+
+def montar_prompt_subgrupo(tax: dict, frente: str) -> str:
+    """ETAPA 2 — escolher o subgrupo DENTRO da frente já decidida na etapa 1."""
+    titulos = {f["tag"]: f["titulo"] for f in tax["frentes"]}
+    subs = frentes_com_quebra(tax)[frente]
+    L = [f"# Etapa 2 — subgrupo dentro de {frente} — {titulos.get(frente, '')}", "",
+         f"Todos os itens abaixo JÁ pertencem à frente {frente}; isso está decidido e não",
+         "deve ser reavaliado. Atribua a CADA item EXATAMENTE UM subgrupo da lista,",
+         "copiando a string EXATA.", ""]
+    for sg in subs:
+        L.append(f'- "{sg["nome"]}"')
+        d = (sg.get("descricao") or "").strip()
+        if d:
+            L.append(f"  {d}")
+    L += ["", f'- "{OUTRO}" — é de {frente} mas não cabe em nenhum subgrupo acima.',
+          "  Use com parcimônia: é o sinal de que a taxonomia precisa crescer.", "",
+          "## Regras",
+          "- Classifique pela CAUSA CENTRAL, não por palavras soltas.",
+          "- Se o item toca dois subgrupos, escolha o que dominou o atendimento.",
+          "- Na dúvida entre um subgrupo específico e 'Outro', prefira o específico.", "",
+          "## Saída",
+          "Escreva `resp_<nome-do-lote>.json` no mesmo diretório: JSON UTF-8 sem BOM,",
+          '{"<id>": "<subgrupo exato>", ...}, cobrindo TODOS os ids do lote.', "",
+          "## Eficiência",
+          "Leia o lote UMA vez e escreva a saída UMA vez. Não releia o arquivo."]
+    return "\n".join(L)
+
+
 # ─────────────────────── preparar ───────────────────────
 
 def preparar(de: str, ate: str) -> int:
@@ -149,7 +242,9 @@ def preparar(de: str, ate: str) -> int:
               f"atual é {tax['versao']}. Classificações antigas são mantidas.")
 
     FILA.mkdir(exist_ok=True)
-    for velho in FILA.glob("*.json"):
+    # limpa também os .md: um prompt de execução anterior sobrando na fila é pior que
+    # inútil — o classificador pode ler o antigo e responder no formato errado.
+    for velho in list(FILA.glob("*.json")) + list(FILA.glob("*.md")):
         velho.unlink()
 
     pendentes = {"chamado": [], "conversa": []}
@@ -159,14 +254,18 @@ def preparar(de: str, ate: str) -> int:
             continue
         chave = "chamados" if r["tipo"] == "chamado" else "conversas"
         anterior = cache[chave].get(str(r["id"]))
-        texto = (r.get("titulo", "") + " " + r.get("texto", "")).strip()
+        # O hash tem que ser do MESMO texto que vai ao classificador — ou seja, do
+        # truncado. Antes `preparar` hasheava o texto inteiro e `absorver` gravava o
+        # hash do truncado: para todo registro acima de 1200 chars os dois nunca
+        # batiam, e ele era reclassificado a cada execução, indefinidamente.
+        texto = (r.get("titulo", "") + " " + r.get("texto", "")).strip()[:1200]
         if anterior:
             mudou = anterior.get("hash") and anterior["hash"] != hash_texto(texto)
             if not mudou or anterior.get("fonte") == "manual":
                 ja += 1                      # curadoria humana nunca é refeita
                 continue
             reclassificar.append(r["id"])    # texto mudou: reclassifica
-        pendentes[r["tipo"]].append({"id": r["id"], "t": texto[:1200]})
+        pendentes[r["tipo"]].append({"id": r["id"], "t": texto})
 
     total = sum(len(v) for v in pendentes.values())
     print(f"Janela {de} a {ate}")
@@ -186,65 +285,135 @@ def preparar(de: str, ate: str) -> int:
     for tipo, itens in pendentes.items():
         if not itens:
             continue
-        (FILA / f"prompt_{tipo}.md").write_text(montar_prompt(tax, tipo), encoding="utf-8")
+        (FILA / f"prompt_tema_{tipo}.md").write_text(
+            montar_prompt_tema(tax, tipo), encoding="utf-8")
         for i in range(0, len(itens), TAM_LOTE):
             lotes += 1
-            nome = f"lote_{tipo}_{i // TAM_LOTE + 1}"
-            gravar(FILA / f"{nome}.json", itens[i:i + TAM_LOTE])
-    print(f"\n{lotes} lote(s) escritos em {FILA.relative_to(RAIZ)}")
+            gravar(FILA / f"lote_tema_{tipo}_{i // TAM_LOTE + 1}.json",
+                   itens[i:i + TAM_LOTE])
+    gravar(FILA / "etapa.json", {"etapa": 1})
+    print(f"\nETAPA 1 de 2 (assunto): {lotes} lote(s) em {FILA.relative_to(RAIZ)}")
     print("Prompts: " + ", ".join(p.name for p in sorted(FILA.glob('prompt_*.md'))))
+    print("Depois de classificar, rode `absorver` — ele grava a etapa 1 e prepara a 2.")
     return 0
 
 
 # ─────────────────────── absorver ───────────────────────
 
 def absorver() -> int:
+    """Absorve a etapa corrente. Na etapa 1 grava tema/frente e já prepara a etapa 2
+    para as frentes que têm quebra; na etapa 2 preenche o subgrupo."""
     tax = ler(STORE / "taxonomia.json")
-    por_nome = {sg["nome"]: sg for sg in tax["subgrupos"]}
     cache = ler(STORE / "classificacao.json")
     hoje = date.today().isoformat()
+    etapa = ler(FILA / "etapa.json").get("etapa", 1) if (FILA / "etapa.json").exists() else 1
+    com_quebra = frentes_com_quebra(tax)
+    tema_frente = {t["nome"]: t["frente"] for t in tax["temas"]}
+    por_nome = {sg["nome"]: sg for sg in tax["subgrupos"]}
 
-    textos = {}
+    # Na etapa 2 o lote é nomeado pela FRENTE (lote_sub_P1_1.json), não pelo tipo, então
+    # deduzir o tipo do nome do arquivo manda todo chamado para cache["conversas"] e ele
+    # some como "rótulo inválido". Por isso o item carrega o próprio tipo desde a etapa 1.
+    textos, tipo_de = {}, {}
     for lote in FILA.glob("lote_*.json"):
-        tipo = "chamado" if "_chamado_" in lote.name else "conversa"
+        padrao = "chamado" if "_chamado_" in lote.name else "conversa"
         for it in ler(lote):
-            textos[(tipo, str(it["id"]))] = it["t"]
+            tp = it.get("tipo", padrao)
+            textos[(tp, str(it["id"]))] = it["t"]
+            tipo_de[str(it["id"])] = tp
 
     respostas = sorted(FILA.glob("resp_lote_*.json"))
     if not respostas:
         print("Nenhuma resposta encontrada em _fila/. Rode os classificadores primeiro.")
         return 1
 
-    novos, invalidos, absorvidos_lotes = 0, [], 0
+    novos, invalidos, absorvidos_lotes, movidos = 0, [], 0, 0
+    pendentes_sub = collections.defaultdict(list)   # frente -> itens para a etapa 2
+
     for resp in respostas:
-        tipo = "chamado" if "_chamado_" in resp.name else "conversa"
-        chave = "chamados" if tipo == "chamado" else "conversas"
+        padrao = "chamado" if "_chamado_" in resp.name else "conversa"
         for rid, nome in ler(resp).items():
             rid = str(rid)
+            tipo = tipo_de.get(rid, padrao)
+            chave = "chamados" if tipo == "chamado" else "conversas"
             if cache[chave].get(rid, {}).get("fonte") == "manual":
                 continue                                  # curadoria humana é intocável
-            if nome in ESPECIAIS:
-                tema, frente, sub = nome, None, ""
-            elif nome in por_nome:
-                sg = por_nome[nome]
-                tema, frente, sub = sg.get("tema") or nome, sg["frente"], nome
+
+            if etapa == 1:
+                if nome in ESPECIAIS:
+                    tema, frente, sub = nome, None, ""
+                elif nome in tema_frente:
+                    tema, frente = nome, tema_frente[nome]
+                    # frente de tema único: o subgrupo é o próprio tema, sem etapa 2
+                    sub = "" if frente in com_quebra else nome
+                else:
+                    invalidos.append((rid, nome))
+                    continue
+                cache[chave][rid] = {
+                    "tema": tema, "subgrupo": sub, "frente": frente, "fonte": "llm",
+                    "hash": hash_texto(textos.get((tipo, rid), "")), "em": hoje}
+                if frente in com_quebra:
+                    pendentes_sub[frente].append(
+                        {"id": rid, "tipo": tipo, "t": textos.get((tipo, rid), "")})
             else:
-                invalidos.append((rid, nome))
-                continue
-            cache[chave][rid] = {"tema": tema, "subgrupo": sub, "frente": frente,
-                                 "fonte": "llm", "hash": hash_texto(textos.get((tipo, rid), "")),
-                                 "em": hoje}
+                d = cache[chave].get(rid)
+                if not d:
+                    invalidos.append((rid, nome))
+                    continue
+                if nome.startswith("Outro"):
+                    d["subgrupo"] = ""          # fica sem subgrupo e conta como deriva
+                elif nome in por_nome and por_nome[nome]["frente"] == d.get("frente"):
+                    d["subgrupo"] = nome
+                elif nome in por_nome:
+                    # Subgrupo de OUTRA frente. Não é erro: as cláusulas FRONTEIRA
+                    # mandam explicitamente atravessar (ex.: erro de CFOP numa nota de
+                    # devolução é P7, não P1). Rejeitar deixaria o registro sem subgrupo
+                    # e perderia uma correção da etapa 1 — então move a frente inteira.
+                    sg = por_nome[nome]
+                    d["frente"] = sg["frente"]
+                    d["tema"] = sg.get("tema") or d["tema"]
+                    d["subgrupo"] = nome
+                    movidos += 1
+                else:
+                    invalidos.append((rid, nome))
+                    continue
             novos += 1
-        # grava a cada lote: uma queda no meio não perde o que já foi feito
-        gravar(STORE / "classificacao.json", cache)
+        gravar(STORE / "classificacao.json", cache)   # queda no meio não perde o feito
         absorvidos_lotes += 1
 
-    print(f"{absorvidos_lotes} lote(s) absorvidos, {novos} registros novos no cache")
+    print(f"ETAPA {etapa}: {absorvidos_lotes} lote(s) absorvidos, {novos} registros")
+    if movidos:
+        print(f"  {movidos} mudaram de frente na etapa 2 (cláusula FRONTEIRA corrigindo a etapa 1)")
     if invalidos:
-        print(f"  {len(invalidos)} rótulos fora da taxonomia foram IGNORADOS: "
+        print(f"  {len(invalidos)} rótulos inválidos IGNORADOS: "
               f"{sorted({n for _, n in invalidos})[:3]}")
+
     for f in list(FILA.glob("lote_*.json")) + list(FILA.glob("resp_lote_*.json")):
         f.unlink()
+    for f in FILA.glob("prompt_*.md"):
+        f.unlink()
+
+    if etapa == 1 and pendentes_sub:
+        lotes = 0
+        for frente, itens in sorted(pendentes_sub.items()):
+            (FILA / f"prompt_sub_{frente}.md").write_text(
+                montar_prompt_subgrupo(tax, frente), encoding="utf-8")
+            for i in range(0, len(itens), TAM_LOTE):
+                lotes += 1
+                gravar(FILA / f"lote_sub_{frente}_{i // TAM_LOTE + 1}.json",
+                       itens[i:i + TAM_LOTE])
+        gravar(FILA / "etapa.json", {"etapa": 2})
+        pulou = novos - sum(len(v) for v in pendentes_sub.values())
+        print(f"\nETAPA 2 de 2 (subgrupo): {lotes} lote(s) em "
+              f"{len(pendentes_sub)} frente(s)")
+        print(f"  {pulou} registros pularam a etapa 2 (caso especial ou frente de tema único)")
+        print("  Classifique e rode `absorver` de novo para fechar.")
+    elif etapa == 1:
+        gravar(FILA / "etapa.json", {"etapa": 2})
+        print("\nNada para a etapa 2.")
+    else:
+        (FILA / "etapa.json").unlink(missing_ok=True)
+        print("\nClassificação completa nas duas etapas.")
     return 0
 
 

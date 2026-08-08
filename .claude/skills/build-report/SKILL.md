@@ -49,7 +49,15 @@ python pipeline/consolidar_store.py
 Mescla todos os exports de `data/raw/` por id e reconstrói `base_historica.jsonl`.
 O cache de classificação é **preservado**, nunca reconstruído.
 
-### 3. Classificar apenas o que é novo
+### 3. Classificar apenas o que é novo — **DUAS ETAPAS**
+
+A classificação tem duas rodadas: primeiro o **assunto** (tema, entre ~22 opções), depois o
+**subgrupo** dentro da frente já decidida. Medido em 07/08/2026 contra gabarito cego: duas
+decisões fáceis acertam 89,5% onde uma escolha única entre 69 acertava 66,7%. Custa ~1,7x
+mais tokens porque o texto é lido nas duas etapas — a troca foi aceita de propósito.
+
+**Não pare depois da primeira rodada.** Se parar, todo registro fica sem subgrupo e o
+relatório sai com as frentes certas e nenhuma subdivisão acionável.
 
 ```
 python pipeline/classificar.py preparar --de <de> --ate <ate>
@@ -57,31 +65,73 @@ python pipeline/classificar.py preparar --de <de> --ate <ate>
 
 Se disser "Nada a classificar", **pule direto para o passo 4** — o relatório sai inteiro do cache.
 
-Se houver pendências, o comando escreve em `data/store/_fila/`:
-- `prompt_chamado.md` e/ou `prompt_conversa.md` — as instruções, geradas da taxonomia
-- `lote_<tipo>_<n>.json` — os lotes de até 250 itens
+Se houver pendências, o comando escreve em `data/store/_fila/`. **O ciclo abaixo se repete
+até `absorver` imprimir "Classificação completa nas duas etapas".**
 
-Para cada lote, lance um subagente com esta instrução, substituindo os nomes:
+1. Veja quais lotes existem em `data/store/_fila/`. Cada `lote_*.json` tem um
+   `prompt_*.md` correspondente, pelo mesmo sufixo:
+   - etapa 1: `lote_tema_<tipo>_<n>.json` → `prompt_tema_<tipo>.md`
+   - etapa 2: `lote_sub_<frente>_<n>.json` → `prompt_sub_<frente>.md`
+2. Para cada lote, lance um subagente:
 
-> Siga exatamente as instruções de `data/store/_fila/prompt_<tipo>.md`, processando o arquivo
-> `data/store/_fila/lote_<tipo>_<n>.json`. Máxima economia de tokens: leia o lote uma única vez
-> e escreva a saída uma única vez. Grave o JSON em UTF-8 sem BOM.
+   > Siga exatamente as instruções de `data/store/_fila/<prompt correspondente>.md`,
+   > processando `data/store/_fila/<lote>.json`. Use somente os nomes exatos da lista.
+   > Todos os ids do lote devem aparecer na saída — confira a contagem antes de gravar.
+   > Leia o lote uma única vez e escreva a saída uma única vez. JSON em UTF-8 sem BOM.
+
+3. Quando todos terminarem:
+   ```
+   python pipeline/classificar.py absorver
+   ```
+   Ele diz em qual etapa está. Se anunciar "ETAPA 2 de 2", **volte ao passo 1** — os lotes
+   da segunda rodada já estão na fila.
 
 Lance no máximo 6 subagentes em paralelo. Se houver mais lotes, faça em ondas — disparar muitos
 de uma vez já estourou o limite de cota antes e derrubou 12 de 16 lotes.
 
-Quando todos terminarem:
-```
-python pipeline/classificar.py absorver
-```
 A absorção grava lote a lote, então uma queda no meio não perde o que já entrou. Se algum lote
-falhar, relance só ele e rode `absorver` de novo.
+falhar, relance só ele e rode `absorver` de novo. O estado da rodada fica em `_fila/etapa.json`.
+
+Registros de frente de tema único (P9–P13) e os casos especiais (`Não fiscal`,
+`Conversa vazia`) **pulam a etapa 2** automaticamente — ali o subgrupo é o próprio tema.
 
 ### 4. Gerar a saída
 
 ```
 python pipeline/gerar_relatorio.py --de <de> --ate <ate>
 ```
+
+### 4b. Auditar a amostra — **não pule**
+
+```
+python pipeline/auditar.py preparar --de <de> --ate <ate> --n 50
+```
+
+Sorteia 50 registros já classificados, estratificados por frente, e escreve lotes **cegos**
+(sem o rótulo atual) em `data/store/_auditoria/` para dois avaliadores independentes.
+Lance um subagente por lote:
+
+> Siga `data/store/_auditoria/prompt_<tipo>.md` para classificar
+> `data/store/_auditoria/lote_<av>_<tipo>.json`. Use só os nomes exatos da lista, todo id
+> deve aparecer, e grave `resp_lote_<av>_<tipo>.json` no mesmo diretório.
+
+São no máximo 4 lotes — custo desprezível perto da classificação. Depois:
+
+```
+python pipeline/auditar.py medir --de <de> --ate <ate>
+```
+
+Reporte os três números ao usuário: **erro por consenso**, **ambiguidade** e **kappa**.
+Eles significam coisas diferentes e não devem ser somados:
+
+- **erro** — os dois avaliadores concordam entre si e contra o rótulo. É erro de execução.
+- **ambiguidade** — os dois discordam *entre si*. Aí a fronteira da taxonomia é que está
+  mal definida; reclassificar não resolve, só um bump de taxonomia resolve.
+- **kappa** — concordância entre avaliadores descontado o acaso.
+
+Se o comando imprimir `ATENÇÃO`, **repasse o aviso ao usuário junto com o relatório**.
+Erro acima de 30% ou kappa abaixo de 0,75 significa que aquela janela não sustenta decisão
+de roadmap sem revisão. Não omita isso para o relatório parecer mais sólido do que é.
 
 ### 5. Reportar ao usuário
 

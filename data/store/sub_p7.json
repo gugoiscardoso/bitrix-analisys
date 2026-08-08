@@ -2,8 +2,6 @@
  "proposta": "P7 — Fluxo guiado de devolução, garantia e remessa",
  "subgrupos": [
   {
-   "nome": "Destaque manual de impostos para bater com o espelho do fornecedor",
-   "descricao": "O fornecedor manda um espelho/autorização de devolução exigindo BC ICMS, ICMS, ICMS ST, IPI, frete e outras despesas idênticos aos da nota de compra, e recusa a devolução se divergir — às vezes por um centavo. O sistema não traz esses valores da compra de origem: o cliente digita item a item na aba ICMS/IPI sem saber em qual campo, e o botão 'calcular tributos' ainda sobrescreve o que ele preencheu à mão.",
    "share_pct": 24,
    "acoes": [
     "Herdar automaticamente da compra de origem, item a item, BC ICMS, alíquota, valor de ICMS, BC/valor de ICMS ST, IPI, frete e outras despesas, pré-preenchidos e editáveis — a devolução já sabe qual é a NF-e de compra, os dados estão no XML importado.",
@@ -23,11 +21,37 @@
    "heat": "recente",
    "idade_dias": 0,
    "ultima_chamado": null,
-   "ultima_conversa": "2026-08-05"
+   "ultima_conversa": "2026-08-05",
+   "nome": "Espelho do fornecedor: valores da compra de origem não são herdados",
+   "descricao": "DEFEITO DE SISTEMA. O fornecedor manda espelho/autorização de devolução exigindo BC ICMS, ICMS, ICMS ST, IPI, frete e outras despesas idênticos aos da nota de compra, e recusa se divergir — às vezes por um centavo. O sistema não traz esses valores da compra de origem, mesmo já sabendo qual é a NF-e de compra e tendo os dados no XML importado; o cliente digita item a item, e o botão 'calcular tributos' sobrescreve o que ele preencheu à mão. Use quando o atendimento mostra o cliente TENTANDO bater valores com um espelho/nota de origem, ou perdendo o que digitou. FRONTEIRA: se o cliente apenas não sabe qual campo preencher ou o que é cada imposto, sem espelho a bater, use o subgrupo de dúvida de preenchimento."
+  },
+  {
+   "share_pct": 24,
+   "acoes": [
+    "Herdar automaticamente da compra de origem, item a item, BC ICMS, alíquota, valor de ICMS, BC/valor de ICMS ST, IPI, frete e outras despesas, pré-preenchidos e editáveis — a devolução já sabe qual é a NF-e de compra, os dados estão no XML importado.",
+    "Criar a aba única 'Destaque de impostos (espelho do fornecedor)': todos os campos exigidos numa só tela, com comparação lado a lado contra os valores da compra e alerta de divergência (inclusive de arredondamento de centavos) antes de transmitir.",
+    "Impedir que 'Calcular tributos' apague destaques informados manualmente: desabilitar o botão quando houver destaque manual, ou pedir confirmação explícita mostrando o que será recalculado.",
+    "Guardar no cadastro do fornecedor o perfil 'exige destaque de ICMS/ST/IPI' e aplicar automaticamente nas próximas devoluções desse fornecedor, com opção de importar o espelho em XML/PDF para conferência."
+   ],
+   "exemplos": [
+    257523,
+    262365,
+    246327,
+    261745
+   ],
+   "n_exato": 204,
+   "share_real": 23.7,
+   "ultima": "2026-08-05",
+   "heat": "recente",
+   "idade_dias": 0,
+   "ultima_chamado": null,
+   "ultima_conversa": "2026-08-05",
+   "nome": "Dúvida de preenchimento de imposto na devolução (IPI, PIS/COFINS, ICMS, frete)",
+   "descricao": "FALTA DE ORIENTAÇÃO, não defeito. O cliente está emitindo devolução ou garantia e pergunta o que colocar em IPI, PIS/COFINS, ICMS ou frete — não sabe se inclui, se zera, qual CST usar no imposto, onde fica o campo. Não há espelho do fornecedor a ser replicado nem valor perdido: é desconhecimento da regra fiscal ou da tela. FRONTEIRA: se o cliente está tentando REPRODUZIR valores de uma nota de origem, ou se o sistema apagou o que ele digitou, use o subgrupo do espelho do fornecedor."
   },
   {
    "nome": "CFOP, CST/CSOSN e regime tributário incompatíveis",
-   "descricao": "A maior parte das rejeições da SEFAZ vem de combinações inválidas: 'CFOP inválido para NF-e com finalidade de devolução' (cliente usa 5949 ou um CFOP de entrada como 1202/1661 numa nota de saída), 'Informado CST para emissor do Simples Nacional (CRT=1 ou 4)', 'CSOSN incompatível na operação com Não Contribuinte' e IE do destinatário ausente. O sistema oferece todas as opções sem filtrar por regime nem por finalidade, e o suporte se recusa (com razão) a dizer qual CFOP usar, gerando ping-pong com contabilidade e fornecedor.",
+   "descricao": "A maior parte das rejeições da SEFAZ vem de combinações inválidas: 'CFOP inválido para NF-e com finalidade de devolução' (cliente usa 5949 ou um CFOP de entrada como 1202/1661 numa nota de saída), 'Informado CST para emissor do Simples Nacional (CRT=1 ou 4)', 'CSOSN incompatível na operação com Não Contribuinte' e IE do destinatário ausente. O sistema oferece todas as opções sem filtrar por regime nem por finalidade, e o suporte se recusa (com razão) a dizer qual CFOP usar, gerando ping-pong com contabilidade e fornecedor. FRONTEIRA COM P1: use este subgrupo apenas quando o documento em questão é uma nota de DEVOLUÇÃO, GARANTIA, REMESSA ou RETORNO. Se o erro de CFOP/CST está acontecendo numa nota de VENDA ou serviço comum, o subgrupo correto é 'CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)' (P1), mesmo que a mensagem de rejeição seja idêntica. O discriminador é a finalidade do documento, não o erro.",
    "share_pct": 15,
    "acoes": [
     "Sugerir o CFOP de devolução a partir do CFOP da nota de compra de origem (inverso e ajustado para operação interna/interestadual), exibindo a justificativa e permitindo override consciente.",

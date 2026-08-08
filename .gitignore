@@ -32,3 +32,14 @@ __pycache__/
 
 # Arquivos de bloqueio do Excel (aparecem quando a planilha está aberta)
 ~$*.xlsx
+
+# Área de trabalho da auditoria de amostra: regerada a cada execução do /build-report
+data/store/_auditoria/
+
+# Lotes e respostas da auditoria de 07/08/2026: 8,5 MB de JSON reprodutível pelos
+# scripts ao lado. Os scripts ficam versionados; o material bruto, não.
+pipeline/_auditoria/lotes/
+pipeline/_auditoria/reclass/
+pipeline/_auditoria/respostas/
+pipeline/_auditoria/respostas_v1_viciada/
+pipeline/_auditoria/prompts/

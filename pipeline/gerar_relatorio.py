@@ -74,6 +74,9 @@ def calor_de(ultima: str, ate: str) -> tuple[str, str]:
 def carregar(de: str, ate: str):
     cache = ler(STORE / "classificacao.json")
     tax = ler(STORE / "taxonomia.json")
+    subs_por_frente = collections.defaultdict(set)
+    for s in tax["subgrupos"]:
+        subs_por_frente[s["frente"]].add(s["nome"])
     registros = []
     with (STORE / "base_historica.jsonl").open(encoding="utf-8") as fh:
         for linha in fh:
@@ -85,8 +88,11 @@ def carregar(de: str, ate: str):
             if not c:
                 continue
             sub = c.get("subgrupo", "")
-            if not sub and c.get("frente") == "P9":
-                sub = c["tema"]          # em P9 o subgrupo é o próprio tema
+            # Frentes de tema único: o subgrupo é o próprio tema. Derivado da taxonomia
+            # (o tema consta como subgrupo daquela frente) em vez de "== P9" fixo, que
+            # deixaria de valer assim que P9 fosse dissolvida.
+            if not sub and c["tema"] in subs_por_frente.get(c.get("frente"), ()):
+                sub = c["tema"]
             r |= {"tema": c["tema"], "subgrupo": sub,
                   "frente": c.get("frente"), "fonte_cls": c.get("fonte", "")}
             registros.append(r)
@@ -134,7 +140,12 @@ def executivo(regs: list[dict], tax: dict, de: str, ate: str, saida: Path):
         c.alignment = Alignment(vertical="center", wrap_text=True)
     ws.row_dimensions[1].height = 30
 
+    # Ordem curada de apresentação. Qualquer frente da taxonomia que não esteja aqui
+    # entra no fim em vez de SUMIR: com a lista fixa, criar uma frente nova descartava
+    # as linhas dela do relatório sem erro nenhum (P10–P13 perderam 1.107 registros
+    # assim, na dissolução de P9).
     ordem = ["P1", "P2", "P3", "P4", "P5", "P6", "P9", "P7", "P8"]
+    ordem += [f["tag"] for f in tax["frentes"] if f["tag"] not in ordem]
     anterior = None
     for fr in ordem:
         itens = sorted(((k, v) for k, v in grupos.items() if k[0] == fr),

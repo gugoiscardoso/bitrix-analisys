@@ -35,8 +35,24 @@
    "titulo": "Autonomia do cliente (self-service)"
   },
   {
+   "tag": "P10",
+   "titulo": "Cadastro fiscal mestre (NCM, CFOP, CST, código de serviço, regime)"
+  },
+  {
+   "tag": "P11",
+   "titulo": "Ciclo de cancelamento de nota"
+  },
+  {
+   "tag": "P12",
+   "titulo": "Entrada: XML de compra e manifestação do destinatário"
+  },
+  {
+   "tag": "P13",
+   "titulo": "Integração ERP × nota (financeiro, estoque, OS)"
+  },
+  {
    "tag": "P9",
-   "titulo": "Frentes complementares"
+   "titulo": "Complementares (relatórios, e-mail, API interna)"
   }
  ],
  "temas": [
@@ -98,22 +114,22 @@
   },
   {
    "nome": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
-   "frente": "P9"
-  },
-  {
-   "nome": "Integração financeiro/estoque/OS com a nota",
-   "frente": "P9"
+   "frente": "P10"
   },
   {
    "nome": "Cancelamento/exclusão de nota",
-   "frente": "P9"
-  },
-  {
-   "nome": "Relatórios fiscais divergentes",
-   "frente": "P9"
+   "frente": "P11"
   },
   {
    "nome": "XML de compra / importação / manifestação do destinatário",
+   "frente": "P12"
+  },
+  {
+   "nome": "Integração financeiro/estoque/OS com a nota",
+   "frente": "P13"
+  },
+  {
+   "nome": "Relatórios fiscais divergentes",
    "frente": "P9"
   },
   {
@@ -137,347 +153,590 @@
   {
    "frente": "P1",
    "nome": "Regime/alíquota de ISSQN inválidos (regEspTrib, E0175/E0178, tributação de serviço)",
-   "descricao": "Validar antes do envio a coerência entre regime tributário do prestador e os campos de ISSQN: para Simples Nacional exigir regEspTrib=0, aceitar apenas valores válidos da enumeração de regEspTrib, alíquota de ISSQN dentro da faixa permitida e tipo de tributação/ISSRF suportado. Hoje a nota é transmitida e volta com rejeições E0175/E0178/E228/1454 da prefeitura."
+   "descricao": "Validar antes do envio a coerência entre regime tributário do prestador e os campos de ISSQN: para Simples Nacional exigir regEspTrib=0, aceitar apenas valores válidos da enumeração de regEspTrib, alíquota de ISSQN dentro da faixa permitida e tipo de tributação/ISSRF suportado. Hoje a nota é transmitida e volta com rejeições E0175/E0178/E228/1454 da prefeitura.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P1",
    "nome": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
-   "descricao": "Validar na montagem da nota se cada item/serviço tem códigos fiscais existentes e no formato exigido: NCM válido, código de barras (GTIN) consistente, código de tributação municipal/nacional administrado pelo município (cTribMun, codigoServicoNacional), finNFSe e UF de consumo para CFOPs de combustíveis. Hoje o erro só aparece na rejeição da SEFAZ/prefeitura ou em falha de schema no campo do produto."
+   "descricao": "Validar na montagem da nota se cada item/serviço tem códigos fiscais existentes e no formato exigido: NCM válido, código de barras (GTIN) consistente, código de tributação municipal/nacional administrado pelo município (cTribMun, codigoServicoNacional), finNFSe e UF de consumo para CFOPs de combustíveis. Hoje o erro só aparece na rejeição da SEFAZ/prefeitura ou em falha de schema no campo do produto.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P1",
    "nome": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
-   "descricao": "Validar os dados cadastrais do destinatário/tomador antes de transmitir: IE presente/coerente com indIEDest e situação de isenção, CEP com 8 dígitos, endereço completo, CNPJ/CPF informado, razão social até 60 caracteres, telefone do tomador em formato aceito e apenas um destinatário definido. Hoje o usuário recebe rejeições de IE/CEP/xNome e precisa corrigir cadastro por tentativa e erro."
+   "descricao": "Validar os dados cadastrais do destinatário/tomador antes de transmitir: IE presente/coerente com indIEDest e situação de isenção, CEP com 8 dígitos, endereço completo, CNPJ/CPF informado, razão social até 60 caracteres, telefone do tomador em formato aceito e apenas um destinatário definido. Hoje o usuário recebe rejeições de IE/CEP/xNome e precisa corrigir cadastro por tentativa e erro.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P1",
    "nome": "Série/numeração de RPS e habilitação/configuração do emissor (série numérica, nDPS, credenciamento, padrão municipal, ambiente)",
-   "descricao": "Validar a configuração fiscal do emissor antes de enviar: série compatível com o modelo (numérica para NFS-e Nacional, sem série de NFS-e em nota de peças), número de RPS/DPS válido e no tipo correto, emissor habilitado/credenciado para NF-e/NFC-e, padrão municipal e token configurados, data de emissão dentro do prazo da prefeitura e razão social de teste em ambiente de homologação. Hoje o erro retorna da integradora/prefeitura após a tentativa de envio e o usuário não consegue corrigir sozinho."
+   "descricao": "Validar a configuração fiscal do emissor antes de enviar: série compatível com o modelo (numérica para NFS-e Nacional, sem série de NFS-e em nota de peças), número de RPS/DPS válido e no tipo correto, emissor habilitado/credenciado para NF-e/NFC-e, padrão municipal e token configurados, data de emissão dentro do prazo da prefeitura e razão social de teste em ambiente de homologação. Hoje o erro retorna da integradora/prefeitura após a tentativa de envio e o usuário não consegue corrigir sozinho.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P1",
    "nome": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
-   "descricao": "Validar o XML gerado contra o XSD antes de transmitir e sanear conteúdo que quebra o schema: caracteres inválidos em informações complementares (xInfComp/TSDescInfCompl), tags geradas fora de ordem ou indevidas (IBSCBS/indDest, Signature) e falhas genéricas de 'Schema XML do lote'. Hoje o lote é rejeitado com E1235/E317/L4 e mensagens técnicas que o usuário não entende."
+   "descricao": "Validar o XML gerado contra o XSD antes de transmitir e sanear conteúdo que quebra o schema: caracteres inválidos em informações complementares (xInfComp/TSDescInfCompl), tags geradas fora de ordem ou indevidas (IBSCBS/indDest, Signature) e falhas genéricas de 'Schema XML do lote'. Hoje o lote é rejeitado com E1235/E317/L4 e mensagens técnicas que o usuário não entende.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P1",
    "nome": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
-   "descricao": "Validar a coerência tributária da NF-e de produto antes do envio: CFOP compatível com o tipo de operação (interna vs interestadual, devolução) e com o grupo de tributação, CST vs CRT do Simples Nacional (usar CSOSN), campos de PIS mutuamente exclusivos e grupo de ICMS-ST retido obrigatório em devoluções. Hoje geram rejeições como 374, 'CFOP de operação interna e idDest<>1' e 'Informado CST para emissor do Simples Nacional'."
+   "descricao": "Validar a coerência tributária da NF-e de produto antes do envio: CFOP compatível com o tipo de operação (interna vs interestadual, devolução) e com o grupo de tributação, CST vs CRT do Simples Nacional (usar CSOSN), campos de PIS mutuamente exclusivos e grupo de ICMS-ST retido obrigatório em devoluções. Hoje geram rejeições como 374, 'CFOP de operação interna e idDest<>1' e 'Informado CST para emissor do Simples Nacional'. FRONTEIRA COM P7: use este subgrupo apenas quando o documento em questão é uma nota de VENDA, serviço ou operação comum. Se o erro de CFOP/CST está acontecendo na emissão de uma nota de DEVOLUÇÃO, GARANTIA, REMESSA ou RETORNO, o subgrupo correto é 'CFOP, CST/CSOSN e regime tributário incompatíveis' (P7), mesmo que a mensagem de rejeição seja idêntica. O discriminador é a finalidade do documento, não o erro.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P1",
    "nome": "Consistência de pagamento/fatura e campos condicionais da NF-e (troco, grupo Fatura, intermediador, transporte)",
-   "descricao": "Validar antes da transmissão que a soma dos pagamentos bate com o total da nota (exigindo valorTroco quando exceder), que o grupo Fatura está preenchido quando obrigatório, que o indicativo de intermediador está informado e que os dados de transporte (CPF/CNPJ do transportador) estão completos. Hoje essas inconsistências só aparecem como 'Impossibilidade de envio' ou rejeição da SEFAZ."
+   "descricao": "Validar antes da transmissão que a soma dos pagamentos bate com o total da nota (exigindo valorTroco quando exceder), que o grupo Fatura está preenchido quando obrigatório, que o indicativo de intermediador está informado e que os dados de transporte (CPF/CNPJ do transportador) estão completos. Hoje essas inconsistências só aparecem como 'Impossibilidade de envio' ou rejeição da SEFAZ.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P1",
    "nome": "Outros/heterogêneos",
-   "descricao": "Chamados de rejeição sem mensagem de erro identificável no relato (nota travada em 'Processando', emissão não finalizada, rejeição de motivo desconhecido), que não mapeiam para uma regra de pré-validação específica."
+   "descricao": "Chamados de rejeição sem mensagem de erro identificável no relato (nota travada em 'Processando', emissão não finalizada, rejeição de motivo desconhecido), que não mapeiam para uma regra de pré-validação específica.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P2",
    "nome": "Nota autorizada no portal continua em digitação/processando no sistema",
-   "descricao": "Job varre notas em 'digitação' ou 'processando' que já possuem emissão correspondente no portal nacional/prefeitura/SEFAZ (ou constam como concluídas na TecnoSpeed/Plugnotas), consulta por chave/DPS/RPS e atualiza o status para autorizada, vinculando a nota emitida ao registro do sistema. Padrão dominante: 'nota aprovada no portal e no sistema consta em digitação'."
+   "descricao": "Job varre notas em 'digitação' ou 'processando' que já possuem emissão correspondente no portal nacional/prefeitura/SEFAZ (ou constam como concluídas na TecnoSpeed/Plugnotas), consulta por chave/DPS/RPS e atualiza o status para autorizada, vinculando a nota emitida ao registro do sistema. Padrão dominante: 'nota aprovada no portal e no sistema consta em digitação'.",
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ"
   },
   {
    "frente": "P2",
    "nome": "Nota presa em processando/transmitindo sem retorno da prefeitura",
-   "descricao": "Job detecta notas paradas em 'processando/transmitindo/validando' além de um tempo limite — inclusive as que nem geraram PlugID/IntegrationID ou falharam com 'Connection reset' — re-consulta o protocolo na TecnoSpeed/prefeitura, reenvia a transmissão quando não houve envio efetivo e devolve a nota para 'digitação' com erro claro quando não há emissão, eliminando notas presas por dias ou anos."
+   "descricao": "Job detecta notas paradas em 'processando/transmitindo/validando' além de um tempo limite — inclusive as que nem geraram PlugID/IntegrationID ou falharam com 'Connection reset' — re-consulta o protocolo na TecnoSpeed/prefeitura, reenvia a transmissão quando não houve envio efetivo e devolve a nota para 'digitação' com erro claro quando não há emissão, eliminando notas presas por dias ou anos.",
+   "tema": "Nota travada em processamento/transmissão sem retorno"
   },
   {
    "frente": "P2",
    "nome": "Nota cancelada na prefeitura permanece autorizada no sistema",
-   "descricao": "Job consulta periodicamente notas autorizadas (ou 'em cancelamento') contra o portal e, quando o portal retorna cancelada, propaga o cancelamento para o sistema, refletindo o evento nos módulos financeiro/relatórios. Cobre casos em que a sincronização manual ('sincronizar com prefeitura') não altera o status e pedidos de suporte para 'passar nota para cancelada'."
+   "descricao": "Job consulta periodicamente notas autorizadas (ou 'em cancelamento') contra o portal e, quando o portal retorna cancelada, propaga o cancelamento para o sistema, refletindo o evento nos módulos financeiro/relatórios. Cobre casos em que a sincronização manual ('sincronizar com prefeitura') não altera o status e pedidos de suporte para 'passar nota para cancelada'.",
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ"
   },
   {
    "frente": "P2",
    "nome": "Duplicidade de DPS/RPS/chave por contador de numeração dessincronizado (E0014/E2404)",
-   "descricao": "Job trata rejeições de duplicidade na emissão — 'E0014: conjunto Série/Número/Município/CNPJ já existe em NFS-e anterior', DPS acusado como utilizado sem estar, RPS enviado zerado ou dessincronizado após migração para API interna, série reiniciada colidindo com numeração antiga — consultando o último número realmente autorizado no ambiente nacional e realinhando automaticamente o contador de DPS/RPS/nota da empresa."
+   "descricao": "Job trata rejeições de duplicidade na emissão — 'E0014: conjunto Série/Número/Município/CNPJ já existe em NFS-e anterior', DPS acusado como utilizado sem estar, RPS enviado zerado ou dessincronizado após migração para API interna, série reiniciada colidindo com numeração antiga — consultando o último número realmente autorizado no ambiente nacional e realinhando automaticamente o contador de DPS/RPS/nota da empresa.",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
   },
   {
    "frente": "P2",
    "nome": "Lacunas na sequência de numeração (números pulados sem emissão)",
-   "descricao": "Job audita a sequência numérica por empresa/série, detecta lacunas (números pulados/saltados), verifica na SEFAZ/Plugnotas se o número foi de fato emitido e, quando não foi, sugere ou executa a inutilização (NF-e) ou orienta o realinhamento (NFS-e, onde não há inutilização). Cobre também pedidos manuais de inutilização de numeração."
+   "descricao": "Job audita a sequência numérica por empresa/série, detecta lacunas (números pulados/saltados), verifica na SEFAZ/Plugnotas se o número foi de fato emitido e, quando não foi, sugere ou executa a inutilização (NF-e) ou orienta o realinhamento (NFS-e, onde não há inutilização). Cobre também pedidos manuais de inutilização de numeração.",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
   },
   {
    "frente": "P2",
    "nome": "Nota emitida na SEFAZ não aparece no sistema",
-   "descricao": "Job identifica números presentes na SEFAZ/portal mas ausentes da base (nota emitida durante instabilidade, apagada após tentativa de cancelamento, ou emissão duplicada em que só uma via aparece), reimporta/reconstrói o registro a partir da chave de acesso e o exibe em fiscal e relatórios. Sintoma típico: 'numeração sumiu' e ao inutilizar retorna 'número já utilizado'."
+   "descricao": "Job identifica números presentes na SEFAZ/portal mas ausentes da base (nota emitida durante instabilidade, apagada após tentativa de cancelamento, ou emissão duplicada em que só uma via aparece), reimporta/reconstrói o registro a partir da chave de acesso e o exibe em fiscal e relatórios. Sintoma típico: 'numeração sumiu' e ao inutilizar retorna 'número já utilizado'.",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
   },
   {
    "frente": "P2",
    "nome": "Outros/heterogêneos",
-   "descricao": "Chamados com descrição genérica ('erro na nota fiscal', 'não consegue emitir') sem sintoma detalhado suficiente para atribuir a uma função específica do job; entram como candidatos a triagem pelo diagnóstico automático do job de reconciliação."
+   "descricao": "Chamados com descrição genérica ('erro na nota fiscal', 'não consegue emitir') sem sintoma detalhado suficiente para atribuir a uma função específica do job; entram como candidatos a triagem pelo diagnóstico automático do job de reconciliação.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P3",
    "nome": "IBS/CBS — reforma tributária (base de cálculo, alíquota, CST 515, Simples Nacional)",
-   "descricao": "Motor de cálculo dos novos tributos IBS/CBS: base de cálculo incorreta (não deduz ISS, deduz retenções de PIS/COFINS indevidamente, cascata de deduções fora do padrão), alíquota municipal cadastrada não sendo puxada (erro 'ibscbs.municipio.aliquota - Preenchimento obrigatório'), IBS/CBS não destacados nas notas de venda apesar do cadastro, rejeição de NF-e com CST 515 (percentual de diferimento informado não é calculado) e emitentes do Simples Nacional que não devem destacar IBS/CBS mas recebem erro de schema ('gIBSCBS is not complete, cClassTrib is expected')."
+   "descricao": "Motor de cálculo dos novos tributos IBS/CBS: base de cálculo incorreta (não deduz ISS, deduz retenções de PIS/COFINS indevidamente, cascata de deduções fora do padrão), alíquota municipal cadastrada não sendo puxada (erro 'ibscbs.municipio.aliquota - Preenchimento obrigatório'), IBS/CBS não destacados nas notas de venda apesar do cadastro, rejeição de NF-e com CST 515 (percentual de diferimento informado não é calculado) e emitentes do Simples Nacional que não devem destacar IBS/CBS mas recebem erro de schema ('gIBSCBS is not complete, cClassTrib is expected').",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
   },
   {
    "frente": "P3",
    "nome": "PIS/COFINS — retenções, CST e valores zerados/divergentes",
-   "descricao": "Retenção de PIS/COFINS/CSLL gerando erro de schema (tpRetPisCofins inválido) ou valor divergente na nota; alíquotas cadastradas não puxadas para CSTs 04/07/08/99; total de vCOFINS calculado com diferença de arredondamento; valores de PIS/COFINS retidos não apresentados no PDF/nota da NFS-e."
+   "descricao": "Retenção de PIS/COFINS/CSLL gerando erro de schema (tpRetPisCofins inválido) ou valor divergente na nota; alíquotas cadastradas não puxadas para CSTs 04/07/08/99; total de vCOFINS calculado com diferença de arredondamento; valores de PIS/COFINS retidos não apresentados no PDF/nota da NFS-e.",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
   },
   {
    "frente": "P3",
    "nome": "Valor líquido / base de cálculo divergente na nota",
-   "descricao": "Divergências entre base de cálculo, alíquota e valor líquido apresentados na nota: valor líquido incorreto na NFS-e, rejeição E1289 do ADN (base x alíquota não confere), 'Valor aproximado total de tributos' destacado indevidamente no PDF e erros de valor/alíquota apontados na validação da nota."
+   "descricao": "Divergências entre base de cálculo, alíquota e valor líquido apresentados na nota: valor líquido incorreto na NFS-e, rejeição E1289 do ADN (base x alíquota não confere), 'Valor aproximado total de tributos' destacado indevidamente no PDF e erros de valor/alíquota apontados na validação da nota.",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
   },
   {
    "frente": "P3",
    "nome": "ISS/ISSQN — retenção e alíquota na NFS-e",
-   "descricao": "Flag de retenção de ISS não é gravada na emissão, dificuldade de configurar retenção de ISS, alíquota de ISS configurada não destacada para tomadores fora do município do prestador, e valores de ISSQN incorretos na impressão/emissão da nota de serviço."
+   "descricao": "Flag de retenção de ISS não é gravada na emissão, dificuldade de configurar retenção de ISS, alíquota de ISS configurada não destacada para tomadores fora do município do prestador, e valores de ISSQN incorretos na impressão/emissão da nota de serviço.",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
   },
   {
    "frente": "P3",
    "nome": "ICMS — diferimento, destaque e devolução",
-   "descricao": "Cálculo de ICMS com diferimento incorreto (CST 51 com cBenef bloqueando conversão de NF-e, percentual de diferimento não aplicado), ICMS não destacado na nota gerada e configuração de alíquota de ICMS em notas de devolução."
+   "descricao": "Cálculo de ICMS com diferimento incorreto (CST 51 com cBenef bloqueando conversão de NF-e, percentual de diferimento não aplicado), ICMS não destacado na nota gerada e configuração de alíquota de ICMS em notas de devolução.",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
   },
   {
    "frente": "P3",
    "nome": "Cálculo de tributos em Compras",
-   "descricao": "Erro técnico ao acionar 'calcular tributos' no módulo de compras após preenchimento de ST: exceção 'failed to lazily initialize a collection of role: Purchase.purchaseItems - no Session' exibida em tela, impedindo o cálculo."
+   "descricao": "Erro técnico ao acionar 'calcular tributos' no módulo de compras após preenchimento de ST: exceção 'failed to lazily initialize a collection of role: Purchase.purchaseItems - no Session' exibida em tela, impedindo o cálculo.",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
   },
   {
    "frente": "P3",
    "nome": "Outros/heterogêneos",
-   "descricao": "Casos fiscais correlatos sem padrão comum: data de emissão da NFS-e gravada retroativamente (impedindo cancelamento no prazo) e erro genérico na emissão de nota fiscal sem detalhamento do tributo afetado."
+   "descricao": "Casos fiscais correlatos sem padrão comum: data de emissão da NFS-e gravada retroativamente (impedindo cancelamento no prazo) e erro genérico na emissão de nota fiscal sem detalhamento do tributo afetado.",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   {
    "frente": "P3",
    "nome": "IPI e IRRF — enquadramento, CST e base de cálculo",
-   "descricao": "Erros de IPI (código de enquadramento, CST de IPI, base de cálculo, IPI não destacado) e de IRRF. Não tinham subgrupo previsto; apareceram no censo dentro do bucket 'Outro'."
+   "descricao": "Erros de IPI (código de enquadramento, CST de IPI, base de cálculo, IPI não destacado) e de IRRF. Não tinham subgrupo previsto; apareceram no censo dentro do bucket 'Outro'.",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
   },
   {
    "frente": "P4",
    "nome": "PDF não gera / não baixa / erro ou lentidão na geração",
-   "descricao": "Falhas operacionais na geração, download ou visualização do PDF/DANFE: nota autorizada mas PDF não gera, erro de requisição ao baixar PDF/XML, sistema travado em 'gerando PDF', e reclamações de demora na geração. Requer retry/timeout robusto na integração com TecnoSpeed/PlugNotas, fallback de geração e feedback claro ao usuário."
+   "descricao": "Falhas operacionais na geração, download ou visualização do PDF/DANFE: nota autorizada mas PDF não gera, erro de requisição ao baixar PDF/XML, sistema travado em 'gerando PDF', e reclamações de demora na geração. Requer retry/timeout robusto na integração com TecnoSpeed/PlugNotas, fallback de geração e feedback claro ao usuário.",
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)"
   },
   {
    "frente": "P4",
    "nome": "Valores e campos fiscais incorretos ou ausentes no PDF",
-   "descricao": "Divergência entre o PDF e o XML/JSON autorizado: valor total ou líquido errado, casas decimais a mais, alíquota/ISSQN/quantidade não exibidos, tributação nacional ausente, desconto incondicionado não impresso, chave de acesso/código de autenticidade nacional faltando e até destinatário trocado. Requer renderização do PDF a partir dos dados autorizados e conformidade com o layout padrão nacional da NFS-e."
+   "descricao": "Divergência entre o PDF e o XML/JSON autorizado: valor total ou líquido errado, casas decimais a mais, alíquota/ISSQN/quantidade não exibidos, tributação nacional ausente, desconto incondicionado não impresso, chave de acesso/código de autenticidade nacional faltando e até destinatário trocado. Requer renderização do PDF a partir dos dados autorizados e conformidade com o layout padrão nacional da NFS-e.",
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)"
   },
   {
    "frente": "P4",
    "nome": "Dados adicionais / informações complementares no lugar errado ou ausentes",
-   "descricao": "Informações adicionais/complementares da nota saindo na discriminação do serviço em vez do campo próprio, sendo truncadas, não destacadas ou simplesmente não aparecendo no PDF gerado. Requer mapeamento correto dos campos de texto livre no template da NFS-e."
+   "descricao": "Informações adicionais/complementares da nota saindo na discriminação do serviço em vez do campo próprio, sendo truncadas, não destacadas ou simplesmente não aparecendo no PDF gerado. Requer mapeamento correto dos campos de texto livre no template da NFS-e.",
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)"
   },
   {
    "frente": "P4",
    "nome": "Layout de impressão não atende necessidades do cliente (logo, 58mm, DANFE de compra)",
-   "descricao": "Solicitações de evolução: gerar DANFE de NF de compra a partir do XML dentro do sistema, incluir logo da empresa na nota, layout com menos grades, e impressão de relatórios/entregas em formato 58mm para impressoras de cupom. Backlog de customização do módulo de impressão."
+   "descricao": "Solicitações de evolução: gerar DANFE de NF de compra a partir do XML dentro do sistema, incluir logo da empresa na nota, layout com menos grades, e impressão de relatórios/entregas em formato 58mm para impressoras de cupom. Backlog de customização do módulo de impressão.",
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)"
   },
   {
    "frente": "P4",
    "nome": "Campos operacionais da OS ausentes (quilometragem, sinistro, data/assinatura)",
-   "descricao": "Dados vindos da Ordem de Serviço que deveriam constar na nota impressa não aparecem: quilometragem, número de sinistro e campos de data/assinatura. Requer propagação confiável dos campos da OS para o template do documento."
+   "descricao": "Dados vindos da Ordem de Serviço que deveriam constar na nota impressa não aparecem: quilometragem, número de sinistro e campos de data/assinatura. Requer propagação confiável dos campos da OS para o template do documento.",
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)"
   },
   {
    "frente": "P4",
    "nome": "Layout / paginação quebrada",
-   "descricao": "Regressões visuais no documento gerado: quebra de página indevida jogando informações para a segunda página com espaço sobrando, e mudança não solicitada de layout em relação ao padrão da prefeitura. Requer testes de regressão visual do template de impressão."
+   "descricao": "Regressões visuais no documento gerado: quebra de página indevida jogando informações para a segunda página com espaço sobrando, e mudança não solicitada de layout em relação ao padrão da prefeitura. Requer testes de regressão visual do template de impressão.",
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)"
   },
   {
    "frente": "P5",
    "nome": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
-   "descricao": "Chamados do canal automatizado (Matrix) que relatam falha na emissão/geração/autorização/transmissão de nota apenas em termos genéricos ('está dando erro', 'não consigo emitir', 'dificuldade na emissão'), sem mensagem de erro, print, número da nota ou passo a passo. É o núcleo do problema de triagem: o bot registra a queixa mas não coleta a evidência mínima que permitiria diagnóstico. O novo fluxo deve exigir captura da mensagem de erro/tela e identificação da nota/OS antes de abrir o chamado."
+   "descricao": "Chamados do canal automatizado (Matrix) que relatam falha na emissão/geração/autorização/transmissão de nota apenas em termos genéricos ('está dando erro', 'não consigo emitir', 'dificuldade na emissão'), sem mensagem de erro, print, número da nota ou passo a passo. É o núcleo do problema de triagem: o bot registra a queixa mas não coleta a evidência mínima que permitiria diagnóstico. O novo fluxo deve exigir captura da mensagem de erro/tela e identificação da nota/OS antes de abrir o chamado.",
+   "tema": "Sem causa identificável na descrição"
   },
   {
    "frente": "P5",
    "nome": "Matrix — pedido de assistência/how-to sem problema definido",
-   "descricao": "Chamados do Matrix que são solicitações abertas de ajuda ('solicito assistência para emitir NFe', 'preciso de ajuda para emitir CTE', 'solicitação de emissão de nota') ou títulos que apenas nomeiam o tema ('Emissão de nota fiscal'), sem descrever qualquer falha. Não se sabe se é dúvida de uso, configuração pendente ou erro real. O fluxo de abertura deve forçar a distinção 'dúvida/treinamento' vs 'erro do sistema' e coletar o objetivo concreto do usuário."
+   "descricao": "Chamados do Matrix que são solicitações abertas de ajuda ('solicito assistência para emitir NFe', 'preciso de ajuda para emitir CTE', 'solicitação de emissão de nota') ou títulos que apenas nomeiam o tema ('Emissão de nota fiscal'), sem descrever qualquer falha. Não se sabe se é dúvida de uso, configuração pendente ou erro real. O fluxo de abertura deve forçar a distinção 'dúvida/treinamento' vs 'erro do sistema' e coletar o objetivo concreto do usuário.",
+   "tema": "Sem causa identificável na descrição"
   },
   {
    "frente": "P5",
    "nome": "Analista — formulário fiscal com campos de evidência em branco",
-   "descricao": "Chamados abertos por analistas nos templates [Fiscal]/[Cadastro], em que o próprio formulário prevê os campos certos (número da nota, situação, XML, ticket TecnoSpeed, evidência em vídeo) mas eles foram deixados vazios — resta só uma frase livre ('erro não catalogado', 'erro interno', 'impossibilidade de envio'). Mostra que ter template não basta: os campos de evidência precisam ser obrigatórios/validados também no canal humano, não só no automatizado."
+   "descricao": "Chamados abertos por analistas nos templates [Fiscal]/[Cadastro], em que o próprio formulário prevê os campos certos (número da nota, situação, XML, ticket TecnoSpeed, evidência em vídeo) mas eles foram deixados vazios — resta só uma frase livre ('erro não catalogado', 'erro interno', 'impossibilidade de envio'). Mostra que ter template não basta: os campos de evidência precisam ser obrigatórios/validados também no canal humano, não só no automatizado.",
+   "tema": "Sem causa identificável na descrição"
   },
   {
    "frente": "P5",
    "nome": "Matrix — mensagem de erro genérica citada, sem identificação da nota",
-   "descricao": "Chamados do Matrix em que o usuário chega a citar uma mensagem de erro, mas ela é genérica do sistema ('erro na requisição', 'Não foi possível finalizar a requisição, tente novamente', 'Erro 500: erro interno do servidor') e não vem acompanhada de número da nota, URL, horário ou reprodução. A evidência existe mas é insuficiente; o fluxo deve anexar automaticamente o contexto técnico (id da requisição, nota/OS envolvida, timestamp) quando o usuário reporta erro de sistema."
+   "descricao": "Chamados do Matrix em que o usuário chega a citar uma mensagem de erro, mas ela é genérica do sistema ('erro na requisição', 'Não foi possível finalizar a requisição, tente novamente', 'Erro 500: erro interno do servidor') e não vem acompanhada de número da nota, URL, horário ou reprodução. A evidência existe mas é insuficiente; o fluxo deve anexar automaticamente o contexto técnico (id da requisição, nota/OS envolvida, timestamp) quando o usuário reporta erro de sistema.",
+   "tema": "Sem causa identificável na descrição"
   },
   {
    "frente": "P5",
    "nome": "Matrix — solicitação de alteração/ajuste em nota sem especificar o quê",
-   "descricao": "Chamados do Matrix (majoritariamente rotulados [Dados]) pedindo alteração, inclusão de informação ou regularização em nota fiscal sem dizer qual campo, qual valor ou qual nota ('inclusão de uma informação que ficou faltando', 'alteração na nota fiscal de peça', 'solicitação relacionada a nota fiscal'). O fluxo deve exigir número da nota, campo a alterar e valor desejado como campos obrigatórios para esse tipo de pedido."
+   "descricao": "Chamados do Matrix (majoritariamente rotulados [Dados]) pedindo alteração, inclusão de informação ou regularização em nota fiscal sem dizer qual campo, qual valor ou qual nota ('inclusão de uma informação que ficou faltando', 'alteração na nota fiscal de peça', 'solicitação relacionada a nota fiscal'). O fluxo deve exigir número da nota, campo a alterar e valor desejado como campos obrigatórios para esse tipo de pedido.",
+   "tema": "Sem causa identificável na descrição"
   },
   {
    "frente": "P6",
    "nome": "Instabilidade / webservice da prefeitura fora do ar",
-   "descricao": "Emissão bloqueada por indisponibilidade ou instabilidade do webservice municipal (erro de conexão, emissão temporariamente interrompida), incluindo falhas de transmissão genéricas sem causa raiz identificada no chamado — padrão típico de instabilidade da prefeitura. Municípios citados: São Paulo-SP (emissão interrompida), Jundiaí-SP, São José dos Campos-SP, Rio das Ostras-RJ, Tubarão/região-SC (Vidrocar, erro de conexão com servidor da prefeitura); demais chamados sem município explícito."
+   "descricao": "Emissão bloqueada por indisponibilidade ou instabilidade do webservice municipal (erro de conexão, emissão temporariamente interrompida), incluindo falhas de transmissão genéricas sem causa raiz identificada no chamado — padrão típico de instabilidade da prefeitura. Municípios citados: São Paulo-SP (emissão interrompida), Jundiaí-SP, São José dos Campos-SP, Rio das Ostras-RJ, Tubarão/região-SC (Vidrocar, erro de conexão com servidor da prefeitura); demais chamados sem município explícito.",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   {
    "frente": "P6",
    "nome": "Mudança de layout / re-homologação municipal",
-   "descricao": "Municípios que alteraram o layout do XML/DANFE da NFS-e ou exigiram re-homologação, quebrando a emissão até ajuste do provedor (TecnoSpeed/PlugNotas). Municípios envolvidos: Ribeirão Preto-SP, Senador Canedo-GO (2 chamados, incl. re-homologação interna), Catanduva-SP (re-homologação), Serrinha-BA (ajuste de layout por Reforma Tributária), Presidente Prudente-SP (erro de alíquota após atualização de layout da prefeitura) e um caso de 'Layout não implementado' (R.R Pneus, município não identificado no chamado)."
+   "descricao": "Municípios que alteraram o layout do XML/DANFE da NFS-e ou exigiram re-homologação, quebrando a emissão até ajuste do provedor (TecnoSpeed/PlugNotas). Municípios envolvidos: Ribeirão Preto-SP, Senador Canedo-GO (2 chamados, incl. re-homologação interna), Catanduva-SP (re-homologação), Serrinha-BA (ajuste de layout por Reforma Tributária), Presidente Prudente-SP (erro de alíquota após atualização de layout da prefeitura) e um caso de 'Layout não implementado' (R.R Pneus, município não identificado no chamado).",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   {
    "frente": "P6",
    "nome": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
-   "descricao": "Solicitações de mão na massa do suporte para cadastrar, instalar, configurar ou atualizar o certificado digital no sistema — sem erro técnico relatado, indicando que o fluxo self-service não é claro ou confiável para o cliente."
+   "descricao": "Solicitações de mão na massa do suporte para cadastrar, instalar, configurar ou atualizar o certificado digital no sistema — sem erro técnico relatado, indicando que o fluxo self-service não é claro ou confiável para o cliente.",
+   "tema": "Certificado digital (cadastro, vencimento, atualização)"
   },
   {
    "frente": "P6",
    "nome": "Certificado: falha no cadastro/upload do arquivo",
-   "descricao": "Cliente não consegue subir ou salvar o arquivo .pfx do certificado A1: upload não conclui, sistema não carrega o certificado, erro ao definir o certificado no cadastro de empresas, ou certificado cadastrado que continua aparecendo como 'não configurado'."
+   "descricao": "Cliente não consegue subir ou salvar o arquivo .pfx do certificado A1: upload não conclui, sistema não carrega o certificado, erro ao definir o certificado no cadastro de empresas, ou certificado cadastrado que continua aparecendo como 'não configurado'.",
+   "tema": "Certificado digital (cadastro, vencimento, atualização)"
   },
   {
    "frente": "P6",
    "nome": "Certificado: vencido / renovação não reconhecida pelo sistema",
-   "descricao": "Sistema acusa certificado vencido mesmo após o cliente instalar/cadastrar o certificado renovado e válido — o cache/vínculo do certificado antigo não é atualizado, bloqueando a emissão de notas."
+   "descricao": "Sistema acusa certificado vencido mesmo após o cliente instalar/cadastrar o certificado renovado e válido — o cache/vínculo do certificado antigo não é atualizado, bloqueando a emissão de notas.",
+   "tema": "Certificado digital (cadastro, vencimento, atualização)"
   },
   {
    "frente": "P6",
    "nome": "Migração para Emissor Nacional / Reforma Tributária",
-   "descricao": "Municípios migrando a emissão de NFS-e para o Emissor Nacional por força da Reforma Tributária, exigindo adequação do ERP. Municípios envolvidos: Limeira-SP (obrigatório a partir de 01/09/2026), Rio Grande-RS (webservice interrompido e cidade ainda não migrada para o sistema nacional) e um pedido genérico de adequação às mudanças da NFS-e (Itajaí-SC, cliente Ducar)."
+   "descricao": "Municípios migrando a emissão de NFS-e para o Emissor Nacional por força da Reforma Tributária, exigindo adequação do ERP. Municípios envolvidos: Limeira-SP (obrigatório a partir de 01/09/2026), Rio Grande-RS (webservice interrompido e cidade ainda não migrada para o sistema nacional) e um pedido genérico de adequação às mudanças da NFS-e (Itajaí-SC, cliente Ducar).",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   {
    "frente": "P6",
    "nome": "Certificado: atualização quebrou a emissão",
-   "descricao": "Emissão de NF/cupom fiscal que funcionava passou a falhar imediatamente após a troca/atualização do certificado digital, exigindo diagnóstico da configuração fiscal pós-troca (inclui 2 chamados recorrentes do mesmo cliente RCS Embreagem)."
+   "descricao": "Emissão de NF/cupom fiscal que funcionava passou a falhar imediatamente após a troca/atualização do certificado digital, exigindo diagnóstico da configuração fiscal pós-troca (inclui 2 chamados recorrentes do mesmo cliente RCS Embreagem).",
+   "tema": "Certificado digital (cadastro, vencimento, atualização)"
   },
   {
    "frente": "P6",
    "nome": "Campo/regra municipal específica não suportada",
-   "descricao": "Particularidades de campos exigidos por município que o sistema não contempla ou obriga preenchimento manual repetitivo. Municípios envolvidos: Rio Verde-GO (exige código de cancelamento, sistema só trabalha com justificativa) e São Sebastião-SP (campo 'código de contribuinte' deveria ser configurável no cadastro da empresa para preenchimento automático)."
+   "descricao": "Particularidades de campos exigidos por município que o sistema não contempla ou obriga preenchimento manual repetitivo. Municípios envolvidos: Rio Verde-GO (exige código de cancelamento, sistema só trabalha com justificativa) e São Sebastião-SP (campo 'código de contribuinte' deveria ser configurável no cadastro da empresa para preenchimento automático).",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   {
    "frente": "P6",
    "nome": "Pendência administrativa no portal da prefeitura bloqueia a emissão",
-   "descricao": "Bloqueios administrativos no portal municipal que impedem a emissão: DTE/ISS.net não aceito, autorização de RPS pendente (L147/L039), permissão de acesso, credenciamento. Não é defeito do ERP, mas o cliente aciona o suporte e o atendente precisa diagnosticar."
+   "descricao": "Bloqueios administrativos no portal municipal que impedem a emissão: DTE/ISS.net não aceito, autorização de RPS pendente (L147/L039), permissão de acesso, credenciamento. Não é defeito do ERP, mas o cliente aciona o suporte e o atendente precisa diagnosticar.",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   {
    "frente": "P7",
-   "nome": "Destaque manual de impostos para bater com o espelho do fornecedor",
-   "descricao": "O fornecedor manda um espelho/autorização de devolução exigindo BC ICMS, ICMS, ICMS ST, IPI, frete e outras despesas idênticos aos da nota de compra, e recusa a devolução se divergir — às vezes por um centavo. O sistema não traz esses valores da compra de origem: o cliente digita item a item na aba ICMS/IPI sem saber em qual campo, e o botão 'calcular tributos' ainda sobrescreve o que ele preencheu à mão."
+   "nome": "Espelho do fornecedor: valores da compra de origem não são herdados",
+   "descricao": "DEFEITO DE SISTEMA. O fornecedor manda espelho/autorização de devolução exigindo BC ICMS, ICMS, ICMS ST, IPI, frete e outras despesas idênticos aos da nota de compra, e recusa se divergir — às vezes por um centavo. O sistema não traz esses valores da compra de origem, mesmo já sabendo qual é a NF-e de compra e tendo os dados no XML importado; o cliente digita item a item, e o botão 'calcular tributos' sobrescreve o que ele preencheu à mão. Use quando o atendimento mostra o cliente TENTANDO bater valores com um espelho/nota de origem, ou perdendo o que digitou. FRONTEIRA: se o cliente apenas não sabe qual campo preencher ou o que é cada imposto, sem espelho a bater, use o subgrupo de dúvida de preenchimento.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  {
+   "frente": "P7",
+   "nome": "Dúvida de preenchimento de imposto na devolução (IPI, PIS/COFINS, ICMS, frete)",
+   "descricao": "FALTA DE ORIENTAÇÃO, não defeito. O cliente está emitindo devolução ou garantia e pergunta o que colocar em IPI, PIS/COFINS, ICMS ou frete — não sabe se inclui, se zera, qual CST usar no imposto, onde fica o campo. Não há espelho do fornecedor a ser replicado nem valor perdido: é desconhecimento da regra fiscal ou da tela. FRONTEIRA: se o cliente está tentando REPRODUZIR valores de uma nota de origem, ou se o sistema apagou o que ele digitou, use o subgrupo do espelho do fornecedor.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   {
    "frente": "P7",
    "nome": "CFOP, CST/CSOSN e regime tributário incompatíveis",
-   "descricao": "A maior parte das rejeições da SEFAZ vem de combinações inválidas: 'CFOP inválido para NF-e com finalidade de devolução' (cliente usa 5949 ou um CFOP de entrada como 1202/1661 numa nota de saída), 'Informado CST para emissor do Simples Nacional (CRT=1 ou 4)', 'CSOSN incompatível na operação com Não Contribuinte' e IE do destinatário ausente. O sistema oferece todas as opções sem filtrar por regime nem por finalidade, e o suporte se recusa (com razão) a dizer qual CFOP usar, gerando ping-pong com contabilidade e fornecedor."
+   "descricao": "A maior parte das rejeições da SEFAZ vem de combinações inválidas: 'CFOP inválido para NF-e com finalidade de devolução' (cliente usa 5949 ou um CFOP de entrada como 1202/1661 numa nota de saída), 'Informado CST para emissor do Simples Nacional (CRT=1 ou 4)', 'CSOSN incompatível na operação com Não Contribuinte' e IE do destinatário ausente. O sistema oferece todas as opções sem filtrar por regime nem por finalidade, e o suporte se recusa (com razão) a dizer qual CFOP usar, gerando ping-pong com contabilidade e fornecedor. FRONTEIRA COM P1: use este subgrupo apenas quando o documento em questão é uma nota de DEVOLUÇÃO, GARANTIA, REMESSA ou RETORNO. Se o erro de CFOP/CST está acontecendo numa nota de VENDA ou serviço comum, o subgrupo correto é 'CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)' (P1), mesmo que a mensagem de rejeição seja idêntica. O discriminador é a finalidade do documento, não o erro.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   {
    "frente": "P7",
    "nome": "Garantia, remessa para conserto e simples remessa sem operação nativa",
-   "descricao": "O sistema só tem 'devolução de compra'. Para garantia, remessa em garantia, remessa/retorno de conserto, simples remessa e retorno de comodato, o cliente é instruído a montar uma NF-e manual em Fiscal > Nota Fiscal > Nova Nota, digitar a natureza da operação à mão, escolher CFOP 5949/6915 e a tributação por conta própria. Some-se a isso a garantia de peça já vendida, que é bloqueada por falta de saldo em estoque e exige correção manual de estoque."
+   "descricao": "O sistema só tem 'devolução de compra'. Para garantia, remessa em garantia, remessa/retorno de conserto, simples remessa e retorno de comodato, o cliente é instruído a montar uma NF-e manual em Fiscal > Nota Fiscal > Nova Nota, digitar a natureza da operação à mão, escolher CFOP 5949/6915 e a tributação por conta própria. Some-se a isso a garantia de peça já vendida, que é bloqueada por falta de saldo em estoque e exige correção manual de estoque.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   {
    "frente": "P7",
    "nome": "Outro / não classificado",
-   "descricao": "Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas."
+   "descricao": "Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas.",
+   "tema": "Outro / não se encaixa"
   },
   {
    "frente": "P7",
    "nome": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
-   "descricao": "Um contingente grande de usuários novos (troca de responsável fiscal, migração de sistema, oficina pequena) diz literalmente 'nunca fiz, não sei por onde começar'. A resposta padrão do suporte é enviar link do ajuda.ultracar ou um PDF/Word externo; o cliente não consegue seguir, insiste, e o atendimento termina em AnyDesk com o atendente emitindo a nota — o que o próprio suporte diz não poder fazer."
+   "descricao": "Um contingente grande de usuários novos (troca de responsável fiscal, migração de sistema, oficina pequena) diz literalmente 'nunca fiz, não sei por onde começar'. A resposta padrão do suporte é enviar link do ajuda.ultracar ou um PDF/Word externo; o cliente não consegue seguir, insiste, e o atendimento termina em AnyDesk com o atendente emitindo a nota — o que o próprio suporte diz não poder fazer.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   {
    "frente": "P7",
    "nome": "Compra não elegível: a devolução não enxerga o item",
-   "descricao": "O cliente abre Movimentação > Compras > Devolução de Compra, preenche empresa/fornecedor/período e a busca volta vazia ou sem o item desejado, porque a compra não foi importada, não está autorizada, está com 'tipo de documento' diferente de NOTA FISCAL, foi filtrada pela data errada (data de lançamento vs. data de emissão), está dentro de um agrupamento de compras, ou o item foi lançado como insumo/vinculado a uma OS. A tela não diz nada disso: só devolve lista vazia e o cliente vai ao suporte."
+   "descricao": "O cliente abre Movimentação > Compras > Devolução de Compra, preenche empresa/fornecedor/período e a busca volta vazia ou sem o item desejado, porque a compra não foi importada, não está autorizada, está com 'tipo de documento' diferente de NOTA FISCAL, foi filtrada pela data errada (data de lançamento vs. data de emissão), está dentro de um agrupamento de compras, ou o item foi lançado como insumo/vinculado a uma OS. A tela não diz nada disso: só devolve lista vazia e o cliente vai ao suporte.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   {
    "frente": "P7",
    "nome": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
-   "descricao": "Como não existe pré-visualização do DANFE antes de transmitir, o cliente só descobre o erro depois de autorizar; aí precisa cancelar e refazer — e o item não volta a ficar disponível para nova devolução até que alguém clique 'Consultar situação' duas ou três vezes, truque que só o suporte conhece. Quando passam as 24h, entra o cancelamento extemporâneo com a contabilidade e o estoque fica inconsistente."
+   "descricao": "Como não existe pré-visualização do DANFE antes de transmitir, o cliente só descobre o erro depois de autorizar; aí precisa cancelar e refazer — e o item não volta a ficar disponível para nova devolução até que alguém clique 'Consultar situação' duas ou três vezes, truque que só o suporte conhece. Quando passam as 24h, entra o cancelamento extemporâneo com a contabilidade e o estoque fica inconsistente.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   {
    "frente": "P7",
    "nome": "Documento fiscal referenciado e chave de acesso",
-   "descricao": "Rejeições 'NF-e de devolução de mercadoria não possui documento fiscal referenciado' e 'exige referenciamento a nível de item' aparecem em série. O campo de chave só aceita 44 dígitos sem espaços — como o cliente copia e cola do portal ou do PDF, o valor vem com espaços e é recusado sem explicar o motivo; quem monta a nota manualmente nem sabe onde fica o campo."
+   "descricao": "Rejeições 'NF-e de devolução de mercadoria não possui documento fiscal referenciado' e 'exige referenciamento a nível de item' aparecem em série. O campo de chave só aceita 44 dígitos sem espaços — como o cliente copia e cola do portal ou do PDF, o valor vem com espaços e é recusado sem explicar o motivo; quem monta a nota manualmente nem sabe onde fica o campo.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   {
    "frente": "P7",
    "nome": "Devolução sob a reforma tributária (IBS/CBS)",
-   "descricao": "Erros de IBS/CBS que só aparecem no fluxo de devolução (cMunFGIBS, Grupo de Devolução do IBS). Apareceu no censo dentro do bucket 'Outro' e cruza com a curva de IBS/CBS da P3."
+   "descricao": "Erros de IBS/CBS que só aparecem no fluxo de devolução (cMunFGIBS, Grupo de Devolução do IBS). Apareceu no censo dentro do bucket 'Outro' e cruza com a curva de IBS/CBS da P3.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   {
    "frente": "P7",
    "nome": "Condição de pagamento inválida na nota de devolução",
-   "descricao": "Erro no campo de condição de pagamento ('sem pagamento' / valor 0,00) ao emitir nota de devolução. Bloco recorrente identificado no censo, sem subgrupo previsto."
+   "descricao": "Erro no campo de condição de pagamento ('sem pagamento' / valor 0,00) ao emitir nota de devolução. Bloco recorrente identificado no censo, sem subgrupo previsto.",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   {
    "frente": "P8",
    "nome": "Cliente sem visibilidade do status do chamado e da origem da falha",
-   "descricao": "Um quinto das conversas é o cliente perguntando pelo próprio chamado — muitos nem sabem o número ('anotei não'), não têm previsão, descobrem que foi 'finalizado' sem terem validado, ou não sabem se a lentidão/erro é do Ultracar, da SEFAZ, da prefeitura ou da integradora. O suporte gasta o atendimento consultando internamente e às vezes entra por AnyDesk só para reproduzir o erro."
+   "descricao": "Um quinto das conversas é o cliente perguntando pelo próprio chamado — muitos nem sabem o número ('anotei não'), não têm previsão, descobrem que foi 'finalizado' sem terem validado, ou não sabem se a lentidão/erro é do Ultracar, da SEFAZ, da prefeitura ou da integradora. O suporte gasta o atendimento consultando internamente e às vezes entra por AnyDesk só para reproduzir o erro.",
+   "tema": "Acompanhamento de chamado já aberto"
   },
   {
    "frente": "P8",
    "nome": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
-   "descricao": "Cliente para porque a nota fica 'Em digitação' ou 'Processando' e ele não sabe que precisa clicar Transmitir e depois Consultar Situação — é só aí que a mensagem de erro aparece. Inclui o grande volume de 'como emito minha primeira nota' e a escolha entre NF-e, NFC-e e NFS-e."
+   "descricao": "Cliente para porque a nota fica 'Em digitação' ou 'Processando' e ele não sabe que precisa clicar Transmitir e depois Consultar Situação — é só aí que a mensagem de erro aparece. Inclui o grande volume de 'como emito minha primeira nota' e a escolha entre NF-e, NFC-e e NFS-e.",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   {
    "frente": "P8",
    "nome": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
-   "descricao": "Em toda primeira emissão o suporte entra por AnyDesk e preenche à mão Cadastros > Empresas > aba Nota Fiscal: habilita NF-e/NFC-e/NFS-e, série, numeração da próxima nota, CFOP padrão, CSOSN/CST, PIS/COFINS, regime e login do portal da prefeitura — sempre pedindo antes o XML+PDF da última nota emitida fora do sistema. O cliente não consegue sozinho porque a tela é um formulário fiscal cru, sem explicação de cada campo, sem validação e sem saber que a numeração precisa dar continuidade à do sistema anterior."
+   "descricao": "Em toda primeira emissão o suporte entra por AnyDesk e preenche à mão Cadastros > Empresas > aba Nota Fiscal: habilita NF-e/NFC-e/NFS-e, série, numeração da próxima nota, CFOP padrão, CSOSN/CST, PIS/COFINS, regime e login do portal da prefeitura — sempre pedindo antes o XML+PDF da última nota emitida fora do sistema. O cliente não consegue sozinho porque a tela é um formulário fiscal cru, sem explicação de cada campo, sem validação e sem saber que a numeração precisa dar continuidade à do sistema anterior.",
+   "tema": "Configuração assistida pelo suporte"
   },
   {
    "frente": "P8",
    "nome": "Conteúdo da nota: dados adicionais e ajustes por operação",
-   "descricao": "O suporte entra por AnyDesk para configurar as TAGs de dados adicionais (placa, modelo, KM, inscrição estadual, número do pedido de compra) por tipo de nota, ou para marcar item a item retenção de ISS, desconto, CEST e condição de pagamento — ajustes que o cliente precisa repetir em toda nota. Ele não consegue sozinho porque esses campos estão espalhados entre cadastro da empresa, cadastro do produto e a nota, sem padrão salvável."
+   "descricao": "O suporte entra por AnyDesk para configurar as TAGs de dados adicionais (placa, modelo, KM, inscrição estadual, número do pedido de compra) por tipo de nota, ou para marcar item a item retenção de ISS, desconto, CEST e condição de pagamento — ajustes que o cliente precisa repetir em toda nota. Ele não consegue sozinho porque esses campos estão espalhados entre cadastro da empresa, cadastro do produto e a nota, sem padrão salvável.",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   {
    "frente": "P8",
    "nome": "Fechamento mensal para a contabilidade",
-   "descricao": "Todo início de mês o cliente abre o chat para lembrar como baixar XMLs por período, tirar relatórios de entradas/saídas, monofásico, NCM x CST e enviar o pacote ao contador; muitas vezes o suporte entra remotamente e faz o download pelo cliente. Ele não consegue sozinho porque os arquivos estão espalhados em três caminhos diferentes (Fiscal > Baixar arquivos, Movimentação > Compras, Relatórios > Fiscal) e não existe um pacote único."
+   "descricao": "Todo início de mês o cliente abre o chat para lembrar como baixar XMLs por período, tirar relatórios de entradas/saídas, monofásico, NCM x CST e enviar o pacote ao contador; muitas vezes o suporte entra remotamente e faz o download pelo cliente. Ele não consegue sozinho porque os arquivos estão espalhados em três caminhos diferentes (Fiscal > Baixar arquivos, Movimentação > Compras, Relatórios > Fiscal) e não existe um pacote único.",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   {
    "frente": "P8",
    "nome": "Parâmetros tributários que mudam todo mês",
-   "descricao": "Alíquota efetiva do Simples, ISS, ICMS, PIS/COFINS e agora IBS/CBS chegam da contabilidade por mensagem e o operador entra por AnyDesk para digitá-las em Cadastros > Empresa > Nota Fiscal > Tributos, mês após mês; mudança de regime (Simples para Presumido) segue o mesmo caminho. O cliente não faz sozinho porque não sabe o caminho da tela, não sabe se o valor vale para NF-e, NFS-e ou ambas, e relata que 'no sistema anterior isso era automático'."
+   "descricao": "Alíquota efetiva do Simples, ISS, ICMS, PIS/COFINS e agora IBS/CBS chegam da contabilidade por mensagem e o operador entra por AnyDesk para digitá-las em Cadastros > Empresa > Nota Fiscal > Tributos, mês após mês; mudança de regime (Simples para Presumido) segue o mesmo caminho. O cliente não faz sozinho porque não sabe o caminho da tela, não sabe se o valor vale para NF-e, NFS-e ou ambas, e relata que 'no sistema anterior isso era automático'.",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   {
    "frente": "P8",
    "nome": "Correção pós-emissão: limites da CC-e e prazo de cancelamento",
-   "descricao": "A nota saiu errada e o cliente não sabe o caminho: o que a carta de correção pode e não pode alterar (CFOP não pode), qual o prazo de cancelamento da sua cidade e quando usar nota de ajuste. O suporte repete o mesmo passo a passo de CC-e várias vezes por semana."
+   "descricao": "A nota saiu errada e o cliente não sabe o caminho: o que a carta de correção pode e não pode alterar (CFOP não pode), qual o prazo de cancelamento da sua cidade e quando usar nota de ajuste. O suporte repete o mesmo passo a passo de CC-e várias vezes por semana.",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   {
    "frente": "P8",
    "nome": "Certificados, tokens e credenciais que expiram",
-   "descricao": "Recorrentemente o suporte acessa a máquina do cliente só para instalar/trocar o arquivo do certificado digital e digitar a senha, colar o CSC/token de NFC-e, gravar login e senha do portal da prefeitura ou cadastrar credenciais de banco para boleto. O cliente não faz sozinho porque não sabe onde fica o campo, erra a senha do .pfx, não distingue ambiente de produção de homologação e só descobre o vencimento quando a nota é rejeitada."
+   "descricao": "Recorrentemente o suporte acessa a máquina do cliente só para instalar/trocar o arquivo do certificado digital e digitar a senha, colar o CSC/token de NFC-e, gravar login e senha do portal da prefeitura ou cadastrar credenciais de banco para boleto. O cliente não faz sozinho porque não sabe onde fica o campo, erra a senha do .pfx, não distingue ambiente de produção de homologação e só descobre o vencimento quando a nota é rejeitada.",
+   "tema": "Configuração assistida pelo suporte"
   },
   {
    "frente": "P8",
    "nome": "Outro / não classificado",
-   "descricao": "Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas."
+   "descricao": "Conversas da frente que não se encaixaram em nenhum subgrupo definido, na classificação de 100% das conversas.",
+   "tema": "Outro / não se encaixa"
   },
   {
-   "frente": "P9",
-   "nome": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
-   "descricao": "Tema completo; em P9 o subgrupo equivale ao tema."
+   "frente": "P10",
+   "nome": "NCM ou CEST ausente no item derruba a transmissão da NF-e",
+   "descricao": "A nota é rejeitada com mensagem que aponta o item exato — 'Informado NCM inexistente - nItem: 3', 'documento[0].itens[2].ncm Preenchimento obrigatório' ou 'Operação com ICMS-ST sem informação do CEST'. Acontece porque a peça foi cadastrada no estoque (ou importada) sem NCM/CEST válido, e o campo só é cobrado no momento da transmissão. O cliente vê a nota travada em digitação ou em processamento e o suporte preenche item a item por AnyDesk, muitas vezes com um NCM genérico (87089990) que nem descreve o produto. Entram aqui também os casos em que o cadastro do NCM/CFOP do produto retorna erro ao salvar. FRONTEIRA: Confunde-se com 'Cadastro do item não alimenta a nota'. Critério: aqui existe uma nota concreta rejeitada e o texto traz a mensagem de erro com o item apontado; no outro não há rejeição em curso — o cliente pergunta onde cadastrar o campo ou reclama que ele não vem sozinho.",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
   },
   {
-   "frente": "P9",
-   "nome": "Integração financeiro/estoque/OS com a nota",
-   "descricao": "Tema completo; em P9 o subgrupo equivale ao tema."
+   "frente": "P10",
+   "nome": "Cadastro do item não alimenta a nota: NCM, CEST e CST preenchidos à mão",
+   "descricao": "O cliente quer entender de onde a nota puxa a tributação e como parar de digitar tudo manualmente: onde vincular o NCM na peça, como criar um NCM novo em Fiscal > NCM, onde achar o CEST, como fixar o CST por NCM em vez de trocar item a item. Aparece também como reclamação de que o CFOP/CST/CEST cadastrado não é herdado — o sistema mantém no item o CFOP da compra importada por XML, e o cliente argumenta que CFOP de entrada nunca deveria virar CFOP de saída. É dúvida e insatisfação com a herança de dados, não rejeição de nota. FRONTEIRA: Confunde-se com 'NCM ou CEST ausente no item derruba a transmissão da NF-e'. Critério: se o atendimento cita uma mensagem de rejeição da SEFAZ com item numerado, é o outro; se o cliente pergunta 'onde preencho', 'como cadastro', 'por que não puxa automático', é este.",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
   },
   {
-   "frente": "P9",
-   "nome": "Cancelamento/exclusão de nota",
-   "descricao": "Tema completo; em P9 o subgrupo equivale ao tema."
+   "frente": "P10",
+   "nome": "CFOP não corresponde ao destino ou à natureza da operação",
+   "descricao": "Rejeições do tipo 'CFOP de operação interna e idDest <> 1' ou 'CFOP inválida' porque o item saiu com CFOP 5xxx numa venda interestadual, ou porque o CFOP escolhido é de devolução/estorno numa nota de entrada normal. O suporte ensina a regra 5/1 = dentro do estado, 6/2 = fora, e manda trocar o CFOP em todos os itens da nota. Uma parte dos casos empaca porque o CFOP indicado pelo contador (ex.: 1656 para estorno) não existe na tabela do sistema, ou porque o cliente quer alterar CFOP de nota já transmitida. FRONTEIRA: Confunde-se com 'NCM ou CEST ausente no item derruba a transmissão da NF-e' — ambos são rejeição por campo de item. Critério: qual campo a mensagem cita. Se cita NCM, CEST ou ICMS-ST, é o outro; se cita CFOP, idDest, operação interna/interestadual ou natureza da operação, é este.",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  {
+   "frente": "P10",
+   "nome": "Código de serviço ou de tributação municipal recusado pela prefeitura na NFS-e",
+   "descricao": "A NFS-e volta rejeitada por causa do código informado: 'Código serviços - tamanho mínimo 6', 'valor inválido, consulte a LC 116', 'código de tributação municipal não existe ou não é administrado pelo município', 'item da lista de serviço 14.01 fora de vigência', 'não existe serviço associado vigente parametrizado'. A causa é o descasamento entre o código de serviço/tributação/NBS gravado no sistema e a tabela vigente do município, agravado pela migração para o padrão nacional que invalidou códigos usados até então. O cliente não sabe qual código usar, o suporte devolve a pergunta para a contabilidade, e há caso em que o sistema grava um código diferente do digitado (digita 140101, sai 010101 no XML). FRONTEIRA: Confunde-se com 'Base nunca parametrizada para NFS-e'. Critério: aqui a empresa já emite NFS-e pelo sistema e o erro nomeia um código específico (serviço, tributação municipal, NBS, item da lista); lá o cliente nunca emitiu pelo sistema e o suporte pede o XML/PDF de uma nota do portal antes de qualquer diagnóstico.",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  {
+   "frente": "P10",
+   "nome": "Base nunca parametrizada para NFS-e: configuração depende de nota emitida no portal",
+   "descricao": "O cliente quer passar a emitir nota de serviço pela Ultracar (ou acabou de abrir CNPJ/filial) e nada sai. O procedimento fixo do suporte é exigir o XML e o PDF da última nota emitida no portal da prefeitura ou no Emissor Nacional, mais um formulário preenchido pela contabilidade, para replicar a estrutura na base. O atendimento morre quando o cliente nunca emitiu nota nenhuma, só tem PDF, ou o portal está fora do ar — e volta em vários dias e vários atendentes seguidos, com o cliente recomeçando do zero a cada contato. FRONTEIRA: Confunde-se com 'Cadastro da empresa sem credenciais e campos fiscais obrigatórios'. Critério: se o que falta é o documento-modelo externo (XML/PDF da nota do portal, formulário da contabilidade), é este; se o que falta é um dado nomeado dentro do cadastro (login da prefeitura, token, CSC, IM, série, CFOP padrão) e o suporte já o preenche na hora, é o outro.",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  {
+   "frente": "P10",
+   "nome": "Cadastro da empresa sem credenciais e campos fiscais obrigatórios de emissão",
+   "descricao": "A emissão para por falta de um dado no cadastro da empresa: login e senha da prefeitura ('nfse.config.prefeitura.login'), token da NFS-e, CSC e token CLD da NFC-e, inscrição municipal, CNAE, série e numeração da próxima nota, CFOP padrão/CSOSN, ou simplesmente o modelo de nota que não foi habilitado. Também entram a liberação por webservice e o credenciamento na SEFAZ que ainda não foram solicitados. O cliente vê mensagens como 'campos necessários para a transmissão', 'empresa sem configuração de cupom fiscal', 'emissor não habilitado', ou a opção de NFS-e simplesmente não aparece na tela; nota emitida em homologação sai sem valor fiscal. FRONTEIRA: Confunde-se com 'Base nunca parametrizada para NFS-e'. Critério: aqui o atendimento identifica e preenche um campo ou credencial específico do cadastro e a nota passa no mesmo atendimento; lá o suporte bloqueia o avanço pedindo a nota-modelo do portal e o caso fica pendente do cliente.",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  {
+   "frente": "P10",
+   "nome": "Mudança de regime tributário e regras da reforma não refletidas no cadastro",
+   "descricao": "A empresa mudou de Simples Nacional para Lucro Presumido (ou o município deixou de reconhecê-la como Simples) e a nota é rejeitada por incoerência de regime — 'regime especial de tributação do ISSQN deve ser Nenhum', 'regime especial não permitido para o prestador', flag 'Simples Nacional = Não' na NFS-e, ou o sistema não oferece a opção do novo regime. O mesmo subgrupo cobre a adequação à reforma: padronizar CST de PIS/COFINS e natureza, CST de ICMS, CSOSN, e os novos campos IBS/CBS, cClassTrib e CBenef, que hoje são digitados manualmente e que o cliente quer fixar por NCM ou no cadastro da empresa. FRONTEIRA: Confunde-se com 'Cadastro da empresa sem credenciais e campos fiscais obrigatórios'. Critério: se o campo em disputa define o enquadramento ou a tributação (regime, regEspTrib, CST, CSOSN, IBS/CBS, cClassTrib, CBenef), é este; se é credencial, numeração, IM/CNAE ou habilitação do modelo de nota, é o outro.",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  {
+   "frente": "P10",
+   "nome": "Correção fiscal em massa: planilhas de NCM e arquivos SPED/Sintegra tratados fora do sistema",
+   "descricao": "O cliente ou a contabilidade manda uma planilha para atualizar NCM, CFOP e CST de todo o estoque, ou envia o arquivo Sintegra/SPED com erros para conserto. Não existe self-service: a importação de planilha foi descontinuada por gerar inconsistência, o orientado é correção manual item a item, e o arquivo Sintegra vai por e-mail para um analista com prazo de até cinco dias úteis. Aparecem também os limites desse caminho — não dá para unir dois arquivos Sintegra, o relatório exportado não traz NCM/CFOP/CST nem os campos de CBenef e cClassTrib, e o cadastro do contador no SPED não aceita CRC alfanumérico. FRONTEIRA: Confunde-se com 'Cadastro do item não alimenta a nota'. Critério: se o pedido é sobre um lote de produtos ou um arquivo de obrigação acessória entregue ao suporte (planilha, XLS, Sintegra, SPED, chamado interno), é este; se é ajuste unitário feito na tela pelo próprio cliente durante uma emissão, é o outro.",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  {
+   "frente": "P11",
+   "nome": "Justificativa curta demais derruba o cancelamento com erro de JSON",
+   "descricao": "O cliente clica em cancelar dentro do prazo e recebe 'Impossibilidade de envio - Falha na validacao do JSON de cancelamento NFe' ou 'E1235 - Falha no esquema XML do DF-e'. A causa real e a justificativa: a SEFAZ exige de 15 a 255 caracteres, sem acento, e o sistema devolve um erro tecnico que nao diz isso. O suporte resolve mandando digitar 'ERRO NA EMISSAO' ou 'CANCELAMENTO DE NOTA FISCAL' e a nota cancela na hora, o que mostra que nao ha nada de errado com a nota, so com a mensagem de erro. FRONTEIRA: Confunde-se com 'Prazo de 24h estourado exige cancelamento extemporaneo', porque os dois comecam com o cliente dizendo que nao consegue cancelar. Decide pelo desfecho e pela data: se o atendimento termina com o cliente reescrevendo a justificativa e a nota cancelando, e este subgrupo; se aparece data de emissao antiga, 'passou do prazo', 'Rejeicao: Prazo de cancelamento superior ao previsto na Legislacao' ou encaminhamento para a contabilidade, e o outro.",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  {
+   "frente": "P11",
+   "nome": "Prazo de 24h estourado empurra o cancelamento para a contabilidade",
+   "descricao": "O cliente descobre o erro na nota dias ou semanas depois e o sistema recusa o cancelamento porque o prazo legal ja passou. O suporte informa que o unico caminho e o cancelamento extemporaneo solicitado pela contabilidade junto a SEFAZ, e que sem isso nao da para reemitir nem refazer a devolucao. E frequente o cliente contestar o prazo, dizendo que o contador ou a lei do estado dariam 7 ou 15 dias, e o atendimento vira negociacao sobre a regra. FRONTEIRA: Confunde-se com 'Cancelamento extemporaneo ja pedido nao se conclui no sistema'. Aqui o atendimento termina na orientacao: o cliente e mandado falar com a contabilidade e sai para fazer isso. No outro, o cliente ja voltou depois disso, ja tem protocolo, guia paga ou deferimento e a duvida e o que fazer em seguida.",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  {
+   "frente": "P11",
+   "nome": "Cancelamento extemporaneo ja deferido nao se conclui no sistema",
+   "descricao": "O cliente ja acionou a contabilidade, pagou a guia ou recebeu o protocolo de deferimento, e volta ao suporte porque a nota continua autorizada no sistema ou porque nao sabe onde informar o codigo gerado na SEFAZ. Tambem entram aqui as duvidas sobre os requisitos do processo (declaracao assinada do cliente, NF-e de ajuste com natureza 'estorno de NF-e nao cancelada no prazo legal', CFOP inverso, chave referenciada) que o suporte nem sempre domina. O cliente fica no meio do caminho: pagou, mas continua sem conseguir emitir a nota correta. FRONTEIRA: Confunde-se com 'Prazo de 24h estourado empurra o cancelamento para a contabilidade'. O criterio e quem ja agiu: se o texto cita protocolo, chave cancelada, guia/DARJ paga, deferimento ou passo a passo da NF de estorno, e este subgrupo; se so ha a instrucao inicial de procurar a contabilidade, e o outro.",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  {
+   "frente": "P11",
+   "nome": "Prefeitura nao aceita cancelamento de NFS-e por webservice",
+   "descricao": "Ao cancelar uma nota de servico o sistema devolve 'Esta cidade nao permite o cancelamento por Webservice ou API' ou pede um codigo de cancelamento especifico do municipio. O padrao nacional de NFS-e nao existe: cada prefeitura decide o que expoe por integracao, e para varias cidades o cancelamento so acontece no portal municipal. O cliente entende isso como falha da Ultracar, porque emitir funciona pelo sistema mas cancelar nao, e muitas vezes descobre depois que o proprio portal tambem barra o caso dele. FRONTEIRA: Confunde-se com 'Nota cancelada fora do sistema continua como autorizada'. Aqui o cancelamento ainda nao aconteceu em lugar nenhum e a conversa e sobre onde ele pode ser feito. No outro, o cancelamento ja foi efetivado na prefeitura ou na SEFAZ e a conversa e sobre o sistema nao refletir isso.",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  {
+   "frente": "P11",
+   "nome": "Nota cancelada fora do sistema continua aparecendo como autorizada",
+   "descricao": "O cancelamento ja foi feito no portal da prefeitura, no SIARE ou pela contabilidade, mas na Ultracar a nota segue autorizada ou presa em 'EM CANCELAMENTO', o que trava a reemissao, o retorno do item ao estoque e a nova nota de devolucao. A atualizacao depende de o cliente clicar em 'consultar situacao', acao que nao e obvia e as vezes precisa ser repetida varias vezes ou vira chamado interno. O cliente ve duas verdades diferentes para a mesma nota e nao sabe qual vale. FRONTEIRA: Confunde-se com 'Prefeitura nao aceita cancelamento de NFS-e por webservice'. Decide pela existencia de cancelamento externo confirmado no texto: se o cliente afirma que a nota ja consta cancelada na prefeitura, na SEFAZ ou pelo contador, e este subgrupo; se a mensagem e sobre a cidade nao permitir o cancelamento por sistema externo, e o outro.",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  {
+   "frente": "P11",
+   "nome": "Destinatario ja manifestou o recebimento e bloqueia o cancelamento",
+   "descricao": "Mesmo dentro do prazo, a SEFAZ recusa com 'Rejeicao: Confirmado o recebimento da NF-e pelo destinatario' ou por haver CT-e/MDF-e vinculado a nota. O cancelamento so e liberado se o destinatario registrar 'Operacao nao Realizada' ou 'Desconhecimento da Operacao', ou seja, depende de um terceiro sobre quem o cliente da oficina nao tem controle. O cliente entende que esta no prazo e nao aceita a recusa, e o suporte precisa explicar que a trava e do destinatario, nao do sistema. FRONTEIRA: Confunde-se com 'Prazo de 24h estourado empurra o cancelamento para a contabilidade', porque nos dois o desfecho e um processo externo. O criterio e o texto da rejeicao: se cita confirmacao de recebimento pelo destinatario, recusa, manifestacao ou documento de transporte vinculado, e este subgrupo; se cita prazo, e o outro.",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  {
+   "frente": "P11",
+   "nome": "Nota emitida com dado errado so se corrige cancelando e reemitindo",
+   "descricao": "CFOP, CST, destaque de ICMS ou IPI, destinatario em CPF em vez de CNPJ, valor, frete e descricao da peca saem errados e o cliente pergunta se da para editar a nota ou resolver por carta de correcao. A resposta e sempre a mesma: nota autorizada nao se altera, e a CC-e nao cobre valor, imposto nem destinatario, entao o caminho e cancelar e emitir de novo. O cliente entra achando que existe uma edicao e sai descobrindo que precisa refazer todo o processo, muitas vezes ja sem prazo para isso. FRONTEIRA: Confunde-se com 'Prazo de 24h estourado empurra o cancelamento para a contabilidade', porque muitas dessas notas ja estao vencidas. Decide pelo que o cliente esta perguntando: se a pergunta e se da para alterar/corrigir a nota ou usar CC-e, e este subgrupo; se ele ja sabe que precisa cancelar e o assunto e a impossibilidade pelo prazo, e o outro.",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  {
+   "frente": "P11",
+   "nome": "Origem ou vinculo da nota impede a acao de cancelar no sistema",
+   "descricao": "A nota nao foi emitida pela Ultracar, veio de importacao ou de sistema anterior, ou esta amarrada a uma venda direta, a um orcamento ou a outro documento, e o sistema responde 'Impossibilidade de envio - Esta nota nao possui integracao' ou simplesmente nao oferece o botao. Sao os casos que viram chamado interno ou pedido de desvinculo manual pela equipe, porque nao ha caminho no produto para o cliente resolver sozinho. O cliente ve uma nota listada no sistema que nao consegue cancelar nem excluir. FRONTEIRA: Confunde-se com 'Justificativa curta demais derruba o cancelamento com erro de JSON', ja que ambos aparecem como 'impossibilidade de envio'. O criterio e a segunda linha da mensagem e a origem da nota: falta de integracao, nota de outro sistema, venda direta, exclusao/remocao de nota ou desvinculo feito pelo suporte apontam para este subgrupo; falha de validacao de JSON resolvida reescrevendo o motivo aponta para o outro.",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  {
+   "frente": "P12",
+   "nome": "Rotina de importação de XML fora do ar (incidente de plataforma)",
+   "descricao": "O cliente tenta importar ou salvar a compra e recebe 'Erro: O servidor não está disponível no momento', 'Impossibilidade de envio' ou erro 500/INTERNAL_SERVER_ERROR, sem relação com o conteúdo da nota. A causa é indisponibilidade da própria rotina: em vários atendimentos o suporte responde que o desenvolvimento desativou temporariamente a importação de XML ou que houve pico de instabilidade. O cliente vê a operação travada para todas as notas ao mesmo tempo e, com frequência, ela volta a funcionar sozinha minutos ou horas depois ('já normalizou'). FRONTEIRA: Confunde-se com 'XML ou chave recusados na importação'. Decide o texto do erro e a abrangência: se a mensagem é genérica de servidor/indisponibilidade, ou se falha em TODAS as notas e/ou o atendente cita instabilidade, chamado geral ou 'desativamos a importação', é este subgrupo. Se a mensagem aponta um dado específico do arquivo (chave já cadastrada, XML não compatível, TNfeProc) e outras notas importam normalmente, é o outro.",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  {
+   "frente": "P12",
+   "nome": "Código de barras duplicado bloqueia a importação ou vincula o item à peça errada",
+   "descricao": "Ao montar a compra, o sistema tenta casar o item do XML com o cadastro de estoque pelo GTIN e encontra outra peça já usando aquele código. O resultado é um de dois: erro BAD_REQUEST 'Já existe uma peça cadastrada com o código de barras informado' que impede autorizar a compra, ou uma vinculação silenciosa a uma peça diferente (pastilha entra como bucha, coxim Cofap vira Nakata). O cliente vê o item errado no estoque ou uma importação que não conclui, e a saída oferecida pelo suporte é editar o cadastro para 'SEM GTIN' ou remover a vinculação e reimportar. FRONTEIRA: Confunde-se com 'Valores, impostos e preço de venda da compra divergem do XML'. Decide O QUE está errado no item: se o problema é a identidade da peça (código de barras, descrição, peça vinculada a outro produto), é este subgrupo. Se a peça é a correta e o que não bate é número, valor, desconto, imposto ou margem, é o outro.",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  {
+   "frente": "P12",
+   "nome": "Manifestação do destinatário não retorna as notas emitidas contra o CNPJ",
+   "descricao": "Em Fiscal > Manifestação do Destinatário a consulta à SEFAZ não traz as notas, para em um mês antigo ('só puxa até o mês 04'), traz menos XMLs do que a contabilidade informa ou retorna rejeição (656 consumo indevido, erro 137, 'Connection or outbound has close', ambiente homologação). Sem essa listagem o cliente não consegue baixar o XML e fica sem dar entrada nas compras. Aparece muito em chamado formal aberto para desenvolvimento, com chave de acesso e CNPJ anexados. FRONTEIRA: Confunde-se com 'Dúvida de procedimento: como dar entrada da compra pelo XML'. Decide se o cliente já operou a tela: se ele descreve ter pesquisado/manifestado e o retorno veio vazio, incompleto ou com código de rejeição, é este subgrupo. Se ele pergunta onde fica a tela, o que é NSU, qual justificativa preencher ou pede tutorial, é o outro — mesmo que a palavra 'manifestação' apareça.",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  {
+   "frente": "P12",
+   "nome": "XML ou chave recusados antes de montar a compra (arquivo fora do padrão ou nota já cadastrada)",
+   "descricao": "O upload é rejeitado logo na entrada do arquivo: ou o XML veio de site de terceiros/contador e é recusado por estrutura ('Erro ao converter XML para objeto TNfeProc', 'formato não compatível', arquivo vazio ou corrompido), ou a chave de acesso informada já está vinculada a uma compra existente e o sistema responde que a nota já foi importada. O cliente vê a importação parar antes de qualquer item aparecer e, no segundo caso, muitas vezes cai numa compra que não é a dele. A saída é rebaixar o XML pela SEFAZ ou cancelar/excluir a compra anterior (e antes o financeiro gerado). FRONTEIRA: Confunde-se com 'Rotina de importação de XML fora do ar'. Decide a especificidade: aqui a recusa é sempre atrelada àquele arquivo ou àquela chave — o próprio cliente relata que as outras notas importaram normalmente. Se a falha atinge indistintamente todas as notas e a mensagem é de servidor indisponível, é o outro subgrupo.",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  {
+   "frente": "P12",
+   "nome": "Valores, impostos e preço de venda da compra divergem do XML importado",
+   "descricao": "A compra é criada, mas os números não batem com a nota: desconto do fornecedor não é trazido, ICMS/outras despesas não entram no custo, valor total sai diferente do XML, CFOP da nota não existe na lista de entrada, ou o preço de venda é gerado com acréscimo indevido (100% negativo) e a margem tem de ser recalculada à mão. O cliente vê o total do sistema diferente do boleto e do documento fiscal e precisa corrigir item a item antes de autorizar. Boa parte vira chamado de desenvolvimento com o valor certo e o errado anexados. FRONTEIRA: Confunde-se com 'Pedido de operação que o módulo de compras não cobre'. Decide se o dado existe no XML: se o valor está no arquivo e o sistema não o trouxe ou trouxe diferente, é este subgrupo. Se o cliente quer um comportamento que o XML não determina — desmembrar um tambor em litros, converter caixa em unidade, conferir mercadoria bipando — é o outro.",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  {
+   "frente": "P12",
+   "nome": "Pré-requisito de cadastro ou permissão trava a conclusão da importação",
+   "descricao": "A leitura do XML funciona, mas a compra não é finalizada porque falta um cadastro obrigatório a montante: tipo de documento sem nenhuma opção para selecionar, fabricante/grupo do item em branco, CST de entrada por NCM, ou o perfil do usuário sem liberação para movimentação e para o cadastro de tipo de documento. O cliente vê um campo obrigatório vazio e sem lista, ou um cadeado na tela de compras, e conclui que o sistema está com defeito. A solução é sempre um caminho de configuração (Financeiro > Contas > Tipos de Documento; Configurações > Grupos de Usuários). FRONTEIRA: Confunde-se com 'Dúvida de procedimento: como dar entrada da compra pelo XML'. Decide o ponto em que o cliente parou: aqui ele já está dentro da importação e é barrado por um campo obrigatório sem opção ou por falta de permissão. Lá ele ainda não iniciou ou não sabe qual é o caminho/fluxo, e nenhum bloqueio de cadastro ou de acesso é citado.",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  {
+   "frente": "P12",
+   "nome": "Pedido de operação que o módulo de compras não cobre (NFS-e, nota estrangeira, conversão de unidade, conferência)",
+   "descricao": "O cliente quer usar a importação para algo que ela não faz: dar entrada de NFS-e/nota de serviço por XML, lançar nota de importação estrangeira sem CNPJ e CEP, anexar o PDF junto ao XML, desmembrar um galão ou tambor em unidades automaticamente, conferir a mercadoria recebida bipando os itens, ou puxar as notas automaticamente sem comandar a consulta. O suporte responde que não é possível e indica o lançamento manual, um protocolo de melhoria ou o ajuste posterior de quantidade e preço. O cliente vê uma limitação de produto, não um erro. FRONTEIRA: Confunde-se com 'Dúvida de procedimento: como dar entrada da compra pelo XML'. Decide a resposta do atendente: se ele ensina um caminho existente (link de ajuda, vídeo, sequência de telas), é o outro subgrupo. Se ele responde 'não é possível', 'somente manualmente' ou encaminha melhoria, é este.",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  {
+   "frente": "P12",
+   "nome": "Dúvida de procedimento sobre a entrada de compra por XML (fluxo não aprendido no treinamento)",
+   "descricao": "Não há erro: o cliente é novo no sistema ou migrou de outro e não sabe o caminho para lançar a compra — onde importar, se precisa baixar o XML antes, como saber se a nota já foi lançada, como editar descrição e preço do item, como amarrar a compra ao financeiro ou à O.S. O suporte resolve com artigo de ajuda, vídeo do Vimeo ou passo a passo digitado, e em vários atendimentos aponta que o treinamento ainda não foi feito ou não foi absorvido. O cliente vê insegurança sobre o processo, não uma falha do software. FRONTEIRA: Confunde-se com 'Pedido de operação que o módulo de compras não cobre'. Decide se existe caminho: se o atendimento termina com o cliente aprendendo a fazer o que queria, é este subgrupo. Se termina com a informação de que o sistema não faz aquilo, é o outro. Na dúvida, procure o link de ajuda/tutorial no texto: sua presença aponta para este subgrupo.",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  {
+   "frente": "P13",
+   "nome": "Compra ou nota vinculada impede remover a peça da OS",
+   "descricao": "O cliente precisa tirar ou trocar uma peça de uma ordem de serviço, mas o sistema bloqueia porque aquele item tem uma compra, um XML importado ou uma nota fiscal vinculada. A regra do produto exige cancelar ou excluir a compra antes, o que o cliente não pode fazer quando a compra já teve nota de devolução emitida ou financeiro liquidado. O cliente vê mensagens do tipo 'não é possível remover, existe compra vinculada' e fica com a OS impossível de fechar, sem caminho oficial além de correção de estoque. FRONTEIRA: Confunde-se com 'Cancelamento da nota não devolve a peça ao estoque'. Aqui o texto mostra o cliente tentando DESVINCULAR/retirar o item da OS e sendo barrado por um vínculo; lá o vínculo já foi desfeito ou a nota já foi cancelada e a reclamação é sobre o SALDO que não voltou. Se a frase central é 'não consigo tirar a peça da OS', é este subgrupo; se é 'cancelei e o item não voltou pro estoque', é o outro.",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  {
+   "frente": "P13",
+   "nome": "Cancelamento da nota não devolve a peça ao estoque",
+   "descricao": "Depois de cancelar uma nota de venda ou de emitir uma nota de devolução, os itens não retornam ao saldo de estoque automaticamente. A causa é o evento de cancelamento não reprocessar a movimentação: o suporte contorna mandando clicar 'Consultar situação' duas vezes, e quando isso falha o item continua alocado em outra nota ou na própria OS. O cliente vê a nota como cancelada, mas o estoque continua zerado ou negativo e ele não consegue revender nem devolver a peça. FRONTEIRA: Confunde-se com 'Entrada de compra não movimenta o estoque'. O critério é a direção do documento: aqui existe uma nota de SAÍDA/devolução que foi cancelada ou emitida e o saldo deveria VOLTAR; lá é uma nota de ENTRADA/compra recém-lançada e o saldo deveria SUBIR e não subiu. Procure no texto se o cliente fala em cancelamento/devolução ou em importação/entrada.",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  {
+   "frente": "P13",
+   "nome": "Entrada de compra não movimenta o estoque (saldo zerado, negativo ou dobrado)",
+   "descricao": "O cliente importa o XML da compra ou lança a nota de entrada, a compra aparece autorizada, mas o estoque não reflete: fica zerado, entra duplicado ou vira negativo depois de uma venda. As causas variam entre compra não autorizada, item cadastrado em duplicidade, nota criada manualmente (que por regra não movimenta estoque) e falha real de gravação. O cliente vê a peça sem quantidade na hora de vincular ao veículo ou de faturar, e acaba fazendo correção de estoque para seguir. FRONTEIRA: Confunde-se com 'Sem saldo em estoque o sistema não deixa fechar a OS nem faturar'. Decide-se pelo que o cliente afirma ter feito: aqui ele DEU ENTRADA (importou XML, lançou compra) e o saldo não apareceu — é defeito; lá ele NUNCA lançou a compra (peça veio direto do fornecedor, sem XML, peça digitada) e só descobriu que o sistema exige saldo — é regra/documentação.",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  {
+   "frente": "P13",
+   "nome": "Sem saldo em estoque o sistema não deixa fechar a OS nem faturar",
+   "descricao": "A regra do ERP exige que toda peça da OS tenha saldo em estoque para o orçamento fechar e a nota ser gerada; enquanto isso o item fica vermelho ou com status 'aguardando cotação'. Isso quebra a operação de quem compra a peça avulsa para um veículo específico, sem XML ou com nota manual do fornecedor, e o cliente não sabe que precisa lançar compra ou fazer correção de estoque antes. O que ele vê é 'não consigo fechar a OS', 'não há dados financeiros para os complementos' ou o quadradinho da peça que não fica verde. FRONTEIRA: Confunde-se com 'Entrada de compra não movimenta o estoque'. Se no texto o cliente já lançou/importou a compra e reclama que o saldo não apareceu, é o outro subgrupo; se ele pergunta COMO deixar a peça verde, como fechar a OS sem ter a peça, ou é orientado a lançar compra/correção de estoque pela primeira vez, é este.",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  {
+   "frente": "P13",
+   "nome": "Desconto, taxa e dados da OS não são transportados para a nota",
+   "descricao": "O valor ou os dados que estão na ordem de serviço chegam diferentes na nota fiscal: desconto do vendedor não é abatido, juros e taxa de cartão lançados no financeiro não sobem para o total, somatório de mão de obra fecha com centavos de diferença, e campos como sinistro, franquia, placa e KM não são puxados para a NFS-e. A causa é o mapeamento OS → nota não reler os valores e campos depois de alterações. O cliente vê a nota com valor diferente do que combinou com o cliente dele, ou a nota de serviço sem os dados obrigatórios, e o suporte manda excluir e regerar a nota. FRONTEIRA: Confunde-se com 'Parcela do financeiro da OS precisa ser refeita antes de gerar a nota'. O critério é o que está errado: aqui o problema aparece NA NOTA já gerada ou no espelho dela (valor/campo divergente do orçamento); lá o problema é que a nota nem chega a ser gerada porque o financeiro está travado, negativo ou inexistente. Se o cliente cita dois valores diferentes (OS x NF), é este.",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  {
+   "frente": "P13",
+   "nome": "Parcela do financeiro da OS precisa ser refeita antes de gerar a nota",
+   "descricao": "A nota depende do financeiro gerado na OS, e qualquer alteração posterior (item adicionado, complemento, desconto, cliente trocado, OS de tipo retorno) deixa a parcela dessa OS incoerente e trava a emissão. O procedimento manual é copiar o código da parcela, excluí-la em contas a receber e gerar o financeiro de novo — passo que não é óbvio e reaparece em quase todo atendimento. O cliente vê mensagens como 'não há dados financeiros', complemento com valor negativo que não fecha, ou simplesmente a opção de gerar nota que não aparece. FRONTEIRA: Confunde-se com 'Agrupamento de compras e contas a pagar de notas de fornecedor'. Decide-se pelo lado da operação: aqui é financeiro de VENDA (OS, orçamento, contas a receber, parcela do cliente) travando a emissão da nota de saída; lá é financeiro de COMPRA (fornecedor, contas a pagar, boleto recebido, agrupamento de notas de entrada).",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  {
+   "frente": "P13",
+   "nome": "Agrupamento de compras e contas a pagar de notas de fornecedor não fecha",
+   "descricao": "Notas de entrada importadas precisam virar contas a pagar, mas o boleto do fornecedor quase nunca casa 1:1 com a nota: são vários boletos para várias notas, filial e matriz com CNPJs diferentes, brinde/bonificação sem valor, frete em documento separado e desconto de crédito que faz o boleto vir menor que a nota. O agrupamento depende do tipo de documento escolhido na importação (vale / não gera financeiro), decisão tomada antes de o cliente saber disso. O cliente vê a compra que não aparece no agrupamento, o erro de que as parcelas não conferem com o total, ou precisa refazer a entrada inteira. FRONTEIRA: Confunde-se com 'Parcela do financeiro da OS precisa ser refeita antes de gerar a nota'. O critério é de quem é o documento: se há FORNECEDOR, compra, XML de entrada, boleto a pagar ou agrupamento, é este subgrupo; se há CLIENTE, orçamento, OS e contas a receber, é o outro. Boleto emitido PELO sistema para o cliente não entra aqui.",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  {
+   "frente": "P13",
+   "nome": "Nota cancelada com dado errado não pode ser reemitida na mesma OS",
+   "descricao": "A nota sai com destinatário, CNPJ/CPF, forma de pagamento ou NCM errado e, ao cancelar, o cliente descobre que não consegue emitir a nova nota pela mesma ordem de serviço: a OS já está fechada, a nota antiga continua vinculada, ou o prazo legal de cancelamento venceu e sobra só a nota de devolução. O sistema também não permite cancelar a OS que tem NF vinculada, nem agrupar duas OS numa nota, o que empurra o cliente a recriar a OS do zero e perder a numeração. O cliente vê a opção de gerar nota sumida ou a mensagem de que já existe nota gerada para aquela venda. FRONTEIRA: Confunde-se com 'Compra ou nota vinculada impede remover a peça da OS'. O critério é o objeto que o cliente quer refazer: aqui é a NOTA inteira (emitida com dado errado, cancelada, precisa de uma segunda emissão para a mesma OS); lá é uma PEÇA específica dentro da OS que precisa sair ou ser trocada. Se o texto fala em CNPJ/destinatário/NCM errado ou prazo de cancelamento, é este.",
+   "tema": "Integração financeiro/estoque/OS com a nota"
   },
   {
    "frente": "P9",
    "nome": "Relatórios fiscais divergentes",
-   "descricao": "Tema completo; em P9 o subgrupo equivale ao tema."
-  },
-  {
-   "frente": "P9",
-   "nome": "XML de compra / importação / manifestação do destinatário",
-   "descricao": "Tema completo; em P9 o subgrupo equivale ao tema."
+   "descricao": "Tema completo; esta frente ainda não tem quebra própria, então o subgrupo equivale ao tema.",
+   "tema": "Relatórios fiscais divergentes"
   },
   {
    "frente": "P9",
    "nome": "Envio de nota por e-mail falha",
-   "descricao": "Tema completo; em P9 o subgrupo equivale ao tema."
+   "descricao": "Tema completo; esta frente ainda não tem quebra própria, então o subgrupo equivale ao tema.",
+   "tema": "Envio de nota por e-mail falha"
   },
   {
    "frente": "P9",
    "nome": "NFS-e interna / API interna",
-   "descricao": "Tema completo; em P9 o subgrupo equivale ao tema."
+   "descricao": "Tema completo; esta frente ainda não tem quebra própria, então o subgrupo equivale ao tema.",
+   "tema": "NFS-e interna / API interna"
   }
  ]
 }
