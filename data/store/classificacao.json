@@ -4943,6 +4943,102 @@
    "fonte": "llm",
    "hash": "11079609cb5c",
    "em": "2026-08-07"
+  },
+  "105303": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Regime/alíquota de ISSQN inválidos (regEspTrib, E0175/E0178, tributação de serviço)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "7e69f47838e3",
+   "em": "2026-08-08"
+  },
+  "105309": {
+   "tema": "Envio de nota por e-mail falha",
+   "subgrupo": "Envio de nota por e-mail falha",
+   "frente": "P9",
+   "fonte": "llm",
+   "hash": "f2209cb69a67",
+   "em": "2026-08-08"
+  },
+  "105321": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "CFOP não corresponde ao destino ou à natureza da operação",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "9a0253f8413a",
+   "em": "2026-08-08"
+  },
+  "105327": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "CFOP não corresponde ao destino ou à natureza da operação",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "9f1bc026a8bf",
+   "em": "2026-08-08"
+  },
+  "105333": {
+   "tema": "NFS-e interna / API interna",
+   "subgrupo": "NFS-e interna / API interna",
+   "frente": "P9",
+   "fonte": "llm",
+   "hash": "b39b77b96087",
+   "em": "2026-08-08"
+  },
+  "105353": {
+   "tema": "Sem causa identificável na descrição",
+   "subgrupo": "Matrix — solicitação de alteração/ajuste em nota sem especificar o quê",
+   "frente": "P5",
+   "fonte": "llm",
+   "hash": "a715103e4989",
+   "em": "2026-08-08"
+  },
+  "105357": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "ICMS — diferimento, destaque e devolução",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "fc57b926bf98",
+   "em": "2026-08-08"
+  },
+  "105359": {
+   "tema": "Sem causa identificável na descrição",
+   "subgrupo": "Matrix — 'erro/dificuldade ao emitir' sem nenhuma evidência",
+   "frente": "P5",
+   "fonte": "llm",
+   "hash": "58b7a5bb5f33",
+   "em": "2026-08-08"
+  },
+  "105365": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "f21181df7961",
+   "em": "2026-08-08"
+  },
+  "105371": {
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ",
+   "subgrupo": "Nota autorizada no portal continua em digitação/processando no sistema",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "eff577fe01c9",
+   "em": "2026-08-08"
+  },
+  "105379": {
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ",
+   "subgrupo": "Nota cancelada na prefeitura permanece autorizada no sistema",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "3eb0609cf745",
+   "em": "2026-08-08"
+  },
+  "105381": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Regime/alíquota de ISSQN inválidos (regEspTrib, E0175/E0178, tributação de serviço)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "fac81785196b",
+   "em": "2026-08-08"
   }
  },
  "conversas": {
@@ -55011,12 +55107,12 @@
    "em": "2026-08-05"
   },
   "267861": {
-   "tema": "Configuração assistida pelo suporte",
-   "subgrupo": "Parâmetros tributários que mudam todo mês",
-   "frente": "P8",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "Valor líquido / base de cálculo divergente na nota",
+   "frente": "P3",
    "fonte": "llm",
-   "hash": "c565f71ab4df",
-   "em": "2026-08-05"
+   "hash": "ceebae5e1c51",
+   "em": "2026-08-08"
   },
   "267865": {
    "tema": "Nota travada em processamento/transmissão sem retorno",
@@ -55519,8 +55615,8 @@
    "subgrupo": "Parâmetros tributários que mudam todo mês",
    "frente": "P8",
    "fonte": "llm",
-   "hash": "3e84a766cbc5",
-   "em": "2026-08-05"
+   "hash": "fb5898bbe00a",
+   "em": "2026-08-08"
   },
   "268141": {
    "tema": "Cancelamento/exclusão de nota",
@@ -55631,8 +55727,8 @@
    "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
    "frente": "P6",
    "fonte": "llm",
-   "hash": "a0fd12ede1bc",
-   "em": "2026-08-05"
+   "hash": "8dad527ef942",
+   "em": "2026-08-08"
   },
   "268187": {
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
@@ -55695,8 +55791,8 @@
    "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
    "frente": "P2",
    "fonte": "llm",
-   "hash": "d25ea30c2eb9",
-   "em": "2026-08-05"
+   "hash": "ea5b7feed3c3",
+   "em": "2026-08-08"
   },
   "268221": {
    "tema": "Configuração assistida pelo suporte",
@@ -55783,8 +55879,8 @@
    "subgrupo": "Desconto, taxa e dados da OS não são transportados para a nota",
    "frente": "P13",
    "fonte": "llm",
-   "hash": "4956c45e76fc",
-   "em": "2026-08-05"
+   "hash": "564bdc7690d4",
+   "em": "2026-08-08"
   },
   "268245": {
    "tema": "Nota de devolução/garantia/remessa/complemento",
@@ -55795,12 +55891,12 @@
    "em": "2026-08-05"
   },
   "268247": {
-   "tema": "Acompanhamento de chamado já aberto",
-   "subgrupo": "Cliente sem visibilidade do status do chamado e da origem da falha",
-   "frente": "P8",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Instabilidade / webservice da prefeitura fora do ar",
+   "frente": "P6",
    "fonte": "llm",
-   "hash": "1450dc44bbad",
-   "em": "2026-08-05"
+   "hash": "2f18e529c117",
+   "em": "2026-08-08"
   },
   "268251": {
    "tema": "Configuração assistida pelo suporte",
@@ -55811,20 +55907,20 @@
    "em": "2026-08-05"
   },
   "268255": {
-   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
-   "subgrupo": "Campo/regra municipal específica não suportada",
-   "frente": "P6",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Série/numeração de RPS e habilitação/configuração do emissor (série numérica, nDPS, credenciamento, padrão municipal, ambiente)",
+   "frente": "P1",
    "fonte": "llm",
-   "hash": "503a187f2184",
-   "em": "2026-08-05"
+   "hash": "1efdfef20561",
+   "em": "2026-08-08"
   },
   "268259": {
    "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
    "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
    "frente": "P6",
    "fonte": "llm",
-   "hash": "e8ed081ab900",
-   "em": "2026-08-05"
+   "hash": "a6c808fe50f1",
+   "em": "2026-08-08"
   },
   "268261": {
    "tema": "Configuração assistida pelo suporte",
@@ -55847,8 +55943,8 @@
    "subgrupo": "Espelho do fornecedor: valores da compra de origem não são herdados",
    "frente": "P7",
    "fonte": "llm",
-   "hash": "b2e44931b89d",
-   "em": "2026-08-05"
+   "hash": "d05b35806757",
+   "em": "2026-08-08"
   },
   "268269": {
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
@@ -55891,12 +55987,12 @@
    "em": "2026-08-05"
   },
   "268293": {
-   "tema": "Nota de devolução/garantia/remessa/complemento",
-   "subgrupo": "Espelho do fornecedor: valores da compra de origem não são herdados",
-   "frente": "P7",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "IPI e IRRF — enquadramento, CST e base de cálculo",
+   "frente": "P3",
    "fonte": "llm",
-   "hash": "177de12c8554",
-   "em": "2026-08-05"
+   "hash": "886cf9478262",
+   "em": "2026-08-08"
   },
   "268301": {
    "tema": "Dúvida de uso / orientação (how-to fiscal)",
@@ -55911,16 +56007,16 @@
    "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
    "frente": "P8",
    "fonte": "llm",
-   "hash": "86ea9b4a9357",
-   "em": "2026-08-05"
+   "hash": "c89e2fddac5d",
+   "em": "2026-08-08"
   },
   "268307": {
-   "tema": "Configuração assistida pelo suporte",
-   "subgrupo": "Parâmetros tributários que mudam todo mês",
-   "frente": "P8",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
    "fonte": "llm",
-   "hash": "ecc08d6a3264",
-   "em": "2026-08-05"
+   "hash": "3603155f2204",
+   "em": "2026-08-08"
   },
   "268309": {
    "tema": "Acompanhamento de chamado já aberto",
@@ -55939,20 +56035,20 @@
    "em": "2026-08-05"
   },
   "268323": {
-   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
-   "subgrupo": "IBS/CBS — reforma tributária (base de cálculo, alíquota, CST 515, Simples Nacional)",
-   "frente": "P3",
-   "fonte": "llm",
-   "hash": "213f7c42543c",
-   "em": "2026-08-05"
-  },
-  "268329": {
    "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
-   "subgrupo": "Cadastro do item não alimenta a nota: NCM, CEST e CST preenchidos à mão",
+   "subgrupo": "Mudança de regime tributário e regras da reforma não refletidas no cadastro",
    "frente": "P10",
    "fonte": "llm",
-   "hash": "b1ef4370a047",
-   "em": "2026-08-05"
+   "hash": "3bedeef029d2",
+   "em": "2026-08-08"
+  },
+  "268329": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Série/numeração de RPS e habilitação/configuração do emissor (série numérica, nDPS, credenciamento, padrão municipal, ambiente)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "f7e5e080001d",
+   "em": "2026-08-08"
   },
   "240211": {
    "tema": "Certificado digital (cadastro, vencimento, atualização)",
@@ -62359,8 +62455,2256 @@
    "subgrupo": "Cliente sem visibilidade do status do chamado e da origem da falha",
    "frente": "P8",
    "fonte": "llm",
-   "hash": "56604242b0bd",
-   "em": "2026-08-07"
+   "hash": "8dd502ae0449",
+   "em": "2026-08-08"
+  },
+  "268311": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "Cadastro do item não alimenta a nota: NCM, CEST e CST preenchidos à mão",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "3156229b27a7",
+   "em": "2026-08-08"
+  },
+  "268325": {
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)",
+   "subgrupo": "Valores e campos fiscais incorretos ou ausentes no PDF",
+   "frente": "P4",
+   "fonte": "llm",
+   "hash": "2feef573a5a8",
+   "em": "2026-08-08"
+  },
+  "268327": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "22f669778dd2",
+   "em": "2026-08-08"
+  },
+  "268333": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "ICMS — diferimento, destaque e devolução",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "f377f7d19e25",
+   "em": "2026-08-08"
+  },
+  "268339": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "Justificativa curta demais derruba o cancelamento com erro de JSON",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "ba8eda7664a6",
+   "em": "2026-08-08"
+  },
+  "268349": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "801bfe879886",
+   "em": "2026-08-08"
+  },
+  "268351": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "d16ef695eed4",
+   "em": "2026-08-08"
+  },
+  "268353": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: vencido / renovação não reconhecida pelo sistema",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "ea7f77182fae",
+   "em": "2026-08-08"
+  },
+  "268355": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "defde2ee914c",
+   "em": "2026-08-08"
+  },
+  "268361": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "cacba82e58ab",
+   "em": "2026-08-08"
+  },
+  "268365": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "9eaedaf88ec4",
+   "em": "2026-08-08"
+  },
+  "268371": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "7f421082b413",
+   "em": "2026-08-08"
+  },
+  "268373": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Pendência administrativa no portal da prefeitura bloqueia a emissão",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "312aa7d4e5d5",
+   "em": "2026-08-08"
+  },
+  "268377": {
+   "tema": "Nota travada em processamento/transmissão sem retorno",
+   "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "a439208b5ed0",
+   "em": "2026-08-08"
+  },
+  "268383": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "efdd56a2d4de",
+   "em": "2026-08-08"
+  },
+  "268391": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "ff0aa572e5b5",
+   "em": "2026-08-08"
+  },
+  "268395": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: vencido / renovação não reconhecida pelo sistema",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "d5d42b1fe5f6",
+   "em": "2026-08-08"
+  },
+  "268401": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "aa0b5e6f3f26",
+   "em": "2026-08-08"
+  },
+  "268403": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "3b59852c8f37",
+   "em": "2026-08-08"
+  },
+  "268409": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "5b2d99f57a9b",
+   "em": "2026-08-08"
+  },
+  "268415": {
+   "tema": "Relatórios fiscais divergentes",
+   "subgrupo": "Relatórios fiscais divergentes",
+   "frente": "P9",
+   "fonte": "llm",
+   "hash": "1b171ce7f5d7",
+   "em": "2026-08-08"
+  },
+  "268417": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "8cb8c3559de9",
+   "em": "2026-08-08"
+  },
+  "268423": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Conteúdo da nota: dados adicionais e ajustes por operação",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "72fb34cf5f4c",
+   "em": "2026-08-08"
+  },
+  "268433": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "2f7e2ff04f44",
+   "em": "2026-08-08"
+  },
+  "268435": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "CFOP não corresponde ao destino ou à natureza da operação",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "d70ef5945f33",
+   "em": "2026-08-08"
+  },
+  "268437": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "dc57efa37cd4",
+   "em": "2026-08-08"
+  },
+  "268441": {
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)",
+   "subgrupo": "Duplicidade de DPS/RPS/chave por contador de numeração dessincronizado (E0014/E2404)",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "8703a209dd84",
+   "em": "2026-08-08"
+  },
+  "268445": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "Mudança de regime tributário e regras da reforma não refletidas no cadastro",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "a0f1aaf04427",
+   "em": "2026-08-08"
+  },
+  "268449": {
+   "tema": "Nota travada em processamento/transmissão sem retorno",
+   "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "c66d9249eddd",
+   "em": "2026-08-08"
+  },
+  "268451": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "1f134303a647",
+   "em": "2026-08-08"
+  },
+  "268459": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "979d20df7f31",
+   "em": "2026-08-08"
+  },
+  "268465": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "97c8f9b8162f",
+   "em": "2026-08-08"
+  },
+  "268467": {
+   "tema": "Nota travada em processamento/transmissão sem retorno",
+   "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "f6b3b9925c1b",
+   "em": "2026-08-08"
+  },
+  "268469": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "NCM ou CEST ausente no item derruba a transmissão da NF-e",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "6df34826526c",
+   "em": "2026-08-08"
+  },
+  "268471": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "f4b150d5c9fb",
+   "em": "2026-08-08"
+  },
+  "268473": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Conteúdo da nota: dados adicionais e ajustes por operação",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "e9d4f3703d16",
+   "em": "2026-08-08"
+  },
+  "268475": {
+   "tema": "Relatórios fiscais divergentes",
+   "subgrupo": "Relatórios fiscais divergentes",
+   "frente": "P9",
+   "fonte": "llm",
+   "hash": "000d4b4fd980",
+   "em": "2026-08-08"
+  },
+  "268479": {
+   "tema": "Envio de nota por e-mail falha",
+   "subgrupo": "Envio de nota por e-mail falha",
+   "frente": "P9",
+   "fonte": "llm",
+   "hash": "ea9c3acd5dc5",
+   "em": "2026-08-08"
+  },
+  "268481": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "c26cb69393be",
+   "em": "2026-08-08"
+  },
+  "268483": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "d707c4738893",
+   "em": "2026-08-08"
+  },
+  "268493": {
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ",
+   "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "270edf280181",
+   "em": "2026-08-08"
+  },
+  "268495": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "c7743a37a240",
+   "em": "2026-08-08"
+  },
+  "268497": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "d1a7a8bc4fb0",
+   "em": "2026-08-08"
+  },
+  "268499": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "9327ebe0fb02",
+   "em": "2026-08-08"
+  },
+  "268501": {
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ",
+   "subgrupo": "",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "ca08019be866",
+   "em": "2026-08-08"
+  },
+  "268511": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "ICMS — diferimento, destaque e devolução",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "f9a9bb7a5c1b",
+   "em": "2026-08-08"
+  },
+  "268515": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "Mudança de regime tributário e regras da reforma não refletidas no cadastro",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "a35adde9bb43",
+   "em": "2026-08-08"
+  },
+  "268529": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "1e8cea0a82e1",
+   "em": "2026-08-08"
+  },
+  "268533": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Instabilidade / webservice da prefeitura fora do ar",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "5ef30d7734b7",
+   "em": "2026-08-08"
+  },
+  "268545": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "944e40946b2e",
+   "em": "2026-08-08"
+  },
+  "268549": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "7db99d0422fc",
+   "em": "2026-08-08"
+  },
+  "268555": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "Valor líquido / base de cálculo divergente na nota",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "928c59daea8b",
+   "em": "2026-08-08"
+  },
+  "268557": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "1c9b130cdb26",
+   "em": "2026-08-08"
+  },
+  "268561": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "Valor líquido / base de cálculo divergente na nota",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "bc018e85893d",
+   "em": "2026-08-08"
+  },
+  "268569": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "3b81597c11ec",
+   "em": "2026-08-08"
+  },
+  "268575": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "fc912ed104bb",
+   "em": "2026-08-08"
+  },
+  "268581": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "a179c91a7774",
+   "em": "2026-08-08"
+  },
+  "268587": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "8d3f96f13c1c",
+   "em": "2026-08-08"
+  },
+  "268591": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Dúvida de preenchimento de imposto na devolução (IPI, PIS/COFINS, ICMS, frete)",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "2c89b75e2308",
+   "em": "2026-08-08"
+  },
+  "268599": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "6cdaf1dff2dd",
+   "em": "2026-08-08"
+  },
+  "268603": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "c6979df2781f",
+   "em": "2026-08-08"
+  },
+  "268607": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "0b6c85d7695b",
+   "em": "2026-08-08"
+  },
+  "268609": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "254d3bb68aac",
+   "em": "2026-08-08"
+  },
+  "268617": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "a73407e35f0b",
+   "em": "2026-08-08"
+  },
+  "268619": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "3e6e52207c20",
+   "em": "2026-08-08"
+  },
+  "268631": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "CFOP não corresponde ao destino ou à natureza da operação",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "5d172b072c4e",
+   "em": "2026-08-08"
+  },
+  "268639": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "4421168d2bd1",
+   "em": "2026-08-08"
+  },
+  "268643": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "3c67e7b20d94",
+   "em": "2026-08-08"
+  },
+  "268647": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Fechamento mensal para a contabilidade",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "8731d7828668",
+   "em": "2026-08-08"
+  },
+  "268651": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "Correção fiscal em massa: planilhas de NCM e arquivos SPED/Sintegra tratados fora do sistema",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "39889a68624d",
+   "em": "2026-08-08"
+  },
+  "268653": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "9af9cbd562dc",
+   "em": "2026-08-08"
+  },
+  "268655": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "725377bd57dc",
+   "em": "2026-08-08"
+  },
+  "268657": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "7c48434cf654",
+   "em": "2026-08-08"
+  },
+  "268661": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "c480613565c5",
+   "em": "2026-08-08"
+  },
+  "268663": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "c4a614c421b6",
+   "em": "2026-08-08"
+  },
+  "268665": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Fechamento mensal para a contabilidade",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "3c1063603a67",
+   "em": "2026-08-08"
+  },
+  "268667": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "64b4a10cbbd3",
+   "em": "2026-08-08"
+  },
+  "268669": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "dd28537e98c6",
+   "em": "2026-08-08"
+  },
+  "268673": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "Nota cancelada fora do sistema continua aparecendo como autorizada",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "a34f284ade95",
+   "em": "2026-08-08"
+  },
+  "268677": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "42783f4b074f",
+   "em": "2026-08-08"
+  },
+  "268685": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "f114d2ac83a5",
+   "em": "2026-08-08"
+  },
+  "268687": {
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)",
+   "subgrupo": "Valores e campos fiscais incorretos ou ausentes no PDF",
+   "frente": "P4",
+   "fonte": "llm",
+   "hash": "37fc439980a7",
+   "em": "2026-08-08"
+  },
+  "268689": {
+   "tema": "Acompanhamento de chamado já aberto",
+   "subgrupo": "Cliente sem visibilidade do status do chamado e da origem da falha",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "b9f485e5a95d",
+   "em": "2026-08-08"
+  },
+  "268691": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "2fa88e1a6703",
+   "em": "2026-08-08"
+  },
+  "268705": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "4d4b3d711229",
+   "em": "2026-08-08"
+  },
+  "268707": {
+   "tema": "XML de compra / importação / manifestação do destinatário",
+   "subgrupo": "Pedido de operação que o módulo de compras não cobre (NFS-e, nota estrangeira, conversão de unidade, conferência)",
+   "frente": "P12",
+   "fonte": "llm",
+   "hash": "d0c265734dbd",
+   "em": "2026-08-08"
+  },
+  "268709": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "f81273bffd77",
+   "em": "2026-08-08"
+  },
+  "268713": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "87a2b70e5941",
+   "em": "2026-08-08"
+  },
+  "268715": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "fcba41a65ac7",
+   "em": "2026-08-08"
+  },
+  "268719": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Série/numeração de RPS e habilitação/configuração do emissor (série numérica, nDPS, credenciamento, padrão municipal, ambiente)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "4592faf461f9",
+   "em": "2026-08-08"
+  },
+  "268723": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "ISS/ISSQN — retenção e alíquota na NFS-e",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "383c52f50085",
+   "em": "2026-08-08"
+  },
+  "268727": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Dúvida de preenchimento de imposto na devolução (IPI, PIS/COFINS, ICMS, frete)",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "64726e3f57cd",
+   "em": "2026-08-08"
+  },
+  "268729": {
+   "tema": "Nota travada em processamento/transmissão sem retorno",
+   "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "a676b830b985",
+   "em": "2026-08-08"
+  },
+  "268731": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "f4b17938fcb5",
+   "em": "2026-08-08"
+  },
+  "268737": {
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ",
+   "subgrupo": "Duplicidade de DPS/RPS/chave por contador de numeração dessincronizado (E0014/E2404)",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "c27791dfb074",
+   "em": "2026-08-08"
+  },
+  "268745": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "6db78f3be427",
+   "em": "2026-08-08"
+  },
+  "268747": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "4a1c873cd72b",
+   "em": "2026-08-08"
+  },
+  "268751": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "7204bf5c62d4",
+   "em": "2026-08-08"
+  },
+  "268753": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Espelho do fornecedor: valores da compra de origem não são herdados",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "7e93b09ac345",
+   "em": "2026-08-08"
+  },
+  "268755": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Compra não elegível: a devolução não enxerga o item",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "2128d1f49714",
+   "em": "2026-08-08"
+  },
+  "268763": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Regime/alíquota de ISSQN inválidos (regEspTrib, E0175/E0178, tributação de serviço)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "5891d2273ff7",
+   "em": "2026-08-08"
+  },
+  "268767": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "b116cd4b8f2a",
+   "em": "2026-08-08"
+  },
+  "268769": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "17a7237a5396",
+   "em": "2026-08-08"
+  },
+  "268771": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "0a4954439473",
+   "em": "2026-08-08"
+  },
+  "268773": {
+   "tema": "Nota travada em processamento/transmissão sem retorno",
+   "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "bfa43f61b52d",
+   "em": "2026-08-08"
+  },
+  "268779": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "2b23a3850a66",
+   "em": "2026-08-08"
+  },
+  "268781": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "IBS/CBS — reforma tributária (base de cálculo, alíquota, CST 515, Simples Nacional)",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "75fde59611b0",
+   "em": "2026-08-08"
+  },
+  "268783": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "c571fa3c2c4d",
+   "em": "2026-08-08"
+  },
+  "268791": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "7aceb4797e99",
+   "em": "2026-08-08"
+  },
+  "268793": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "c7d01983edad",
+   "em": "2026-08-08"
+  },
+  "268795": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "f35a4d3e9eff",
+   "em": "2026-08-08"
+  },
+  "268797": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "d80b44daa93c",
+   "em": "2026-08-08"
+  },
+  "268803": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Espelho do fornecedor: valores da compra de origem não são herdados",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "1c552e4b0dc4",
+   "em": "2026-08-08"
+  },
+  "268805": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: vencido / renovação não reconhecida pelo sistema",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "3c81cf03b4c7",
+   "em": "2026-08-08"
+  },
+  "268807": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "bc37b18b1480",
+   "em": "2026-08-08"
+  },
+  "268809": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "db7de0e1a47a",
+   "em": "2026-08-08"
+  },
+  "268815": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "dcd7a861121d",
+   "em": "2026-08-08"
+  },
+  "268823": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "3fb2bc87bb8f",
+   "em": "2026-08-08"
+  },
+  "268825": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Espelho do fornecedor: valores da compra de origem não são herdados",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "6e86dd21ed8c",
+   "em": "2026-08-08"
+  },
+  "268827": {
+   "tema": "Nota travada em processamento/transmissão sem retorno",
+   "subgrupo": "Nota presa em processando/transmitindo sem retorno da prefeitura",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "b2fa3daa21de",
+   "em": "2026-08-08"
+  },
+  "268837": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "ea185133d7ad",
+   "em": "2026-08-08"
+  },
+  "268839": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Documento fiscal referenciado e chave de acesso",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "73ea4dfba504",
+   "em": "2026-08-08"
+  },
+  "268841": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Fechamento mensal para a contabilidade",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "f0b3d568fab7",
+   "em": "2026-08-08"
+  },
+  "268849": {
+   "tema": "XML de compra / importação / manifestação do destinatário",
+   "subgrupo": "XML ou chave recusados antes de montar a compra (arquivo fora do padrão ou nota já cadastrada)",
+   "frente": "P12",
+   "fonte": "llm",
+   "hash": "ef2851fd89c9",
+   "em": "2026-08-08"
+  },
+  "268851": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "97645b6688c0",
+   "em": "2026-08-08"
+  },
+  "268867": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "3866f2b86b37",
+   "em": "2026-08-08"
+  },
+  "268877": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "Cadastro da empresa sem credenciais e campos fiscais obrigatórios de emissão",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "894500d066b4",
+   "em": "2026-08-08"
+  },
+  "268881": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "bdd488dbfc3c",
+   "em": "2026-08-08"
+  },
+  "268883": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "Nota emitida com dado errado so se corrige cancelando e reemitindo",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "dfb4a0737dbb",
+   "em": "2026-08-08"
+  },
+  "268887": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "ea3ee5c4fd54",
+   "em": "2026-08-08"
+  },
+  "268891": {
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ",
+   "subgrupo": "",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "f8fa7d3f61f8",
+   "em": "2026-08-08"
+  },
+  "268893": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "063fd232e39c",
+   "em": "2026-08-08"
+  },
+  "268895": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "5123c086508e",
+   "em": "2026-08-08"
+  },
+  "268897": {
+   "tema": "XML de compra / importação / manifestação do destinatário",
+   "subgrupo": "XML ou chave recusados antes de montar a compra (arquivo fora do padrão ou nota já cadastrada)",
+   "frente": "P12",
+   "fonte": "llm",
+   "hash": "c8320bda6c05",
+   "em": "2026-08-08"
+  },
+  "268899": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "c29e0b2fcb6b",
+   "em": "2026-08-08"
+  },
+  "268907": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "45f1916ac278",
+   "em": "2026-08-08"
+  },
+  "268909": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "abc80d637e93",
+   "em": "2026-08-08"
+  },
+  "268911": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "f2a717fdabd1",
+   "em": "2026-08-08"
+  },
+  "268913": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "699a8f446530",
+   "em": "2026-08-08"
+  },
+  "268919": {
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)",
+   "subgrupo": "Valores e campos fiscais incorretos ou ausentes no PDF",
+   "frente": "P4",
+   "fonte": "llm",
+   "hash": "9449e3ba6462",
+   "em": "2026-08-08"
+  },
+  "268921": {
+   "tema": "XML de compra / importação / manifestação do destinatário",
+   "subgrupo": "Dúvida de procedimento sobre a entrada de compra por XML (fluxo não aprendido no treinamento)",
+   "frente": "P12",
+   "fonte": "llm",
+   "hash": "5f4edf33368c",
+   "em": "2026-08-08"
+  },
+  "268927": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "8517cb780db6",
+   "em": "2026-08-08"
+  },
+  "268929": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Pendência administrativa no portal da prefeitura bloqueia a emissão",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "d547ca777633",
+   "em": "2026-08-08"
+  },
+  "268931": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "15333e3a741b",
+   "em": "2026-08-08"
+  },
+  "268933": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Regime/alíquota de ISSQN inválidos (regEspTrib, E0175/E0178, tributação de serviço)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "0f7c765857e6",
+   "em": "2026-08-08"
+  },
+  "268935": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "Destinatario ja manifestou o recebimento e bloqueia o cancelamento",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "e20e85f4fc2a",
+   "em": "2026-08-08"
+  },
+  "268937": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "d7657cc4c6f1",
+   "em": "2026-08-08"
+  },
+  "268939": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "3332e8b7f302",
+   "em": "2026-08-08"
+  },
+  "268943": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "ICMS — diferimento, destaque e devolução",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "7f59bdb57f11",
+   "em": "2026-08-08"
+  },
+  "268953": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "Cancelamento extemporaneo ja deferido nao se conclui no sistema",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "0d9fa750f71b",
+   "em": "2026-08-08"
+  },
+  "268955": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "5019d8cb5264",
+   "em": "2026-08-08"
+  },
+  "268957": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Instabilidade / webservice da prefeitura fora do ar",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "5d2a2b08883b",
+   "em": "2026-08-08"
+  },
+  "268963": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Documento fiscal referenciado e chave de acesso",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "06cfd7189d68",
+   "em": "2026-08-08"
+  },
+  "268965": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "279b24caa67d",
+   "em": "2026-08-08"
+  },
+  "268971": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Consistência de pagamento/fatura e campos condicionais da NF-e (troco, grupo Fatura, intermediador, transporte)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "7b7c29d16e0e",
+   "em": "2026-08-08"
+  },
+  "268975": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Devolução sob a reforma tributária (IBS/CBS)",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "896d51f5e71d",
+   "em": "2026-08-08"
+  },
+  "268979": {
+   "tema": "Instabilidade geral / lentidão do sistema",
+   "subgrupo": "Cliente sem visibilidade do status do chamado e da origem da falha",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "8cf42943364a",
+   "em": "2026-08-08"
+  },
+  "268993": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Consistência de pagamento/fatura e campos condicionais da NF-e (troco, grupo Fatura, intermediador, transporte)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "73fb4e7e3517",
+   "em": "2026-08-08"
+  },
+  "268997": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "851f031a047b",
+   "em": "2026-08-08"
+  },
+  "269001": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "93fcde56b48d",
+   "em": "2026-08-08"
+  },
+  "269005": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "1710552a075f",
+   "em": "2026-08-08"
+  },
+  "269007": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Conteúdo da nota: dados adicionais e ajustes por operação",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "c726da3a4cf9",
+   "em": "2026-08-08"
+  },
+  "269013": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "dc8dd25f8ac2",
+   "em": "2026-08-08"
+  },
+  "269017": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "62a1b0241c0e",
+   "em": "2026-08-08"
+  },
+  "269019": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Espelho do fornecedor: valores da compra de origem não são herdados",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "80dd8c270baa",
+   "em": "2026-08-08"
+  },
+  "269025": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "943a409320dc",
+   "em": "2026-08-08"
+  },
+  "269027": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Dúvida de preenchimento de imposto na devolução (IPI, PIS/COFINS, ICMS, frete)",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "35e4c70a7b72",
+   "em": "2026-08-08"
+  },
+  "269031": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "Mudança de regime tributário e regras da reforma não refletidas no cadastro",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "1a19d85c6080",
+   "em": "2026-08-08"
+  },
+  "269033": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Documento fiscal referenciado e chave de acesso",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "539beb801012",
+   "em": "2026-08-08"
+  },
+  "269039": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "06d048c1e2a9",
+   "em": "2026-08-08"
+  },
+  "269041": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "207a77283665",
+   "em": "2026-08-08"
+  },
+  "269043": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "7911debb7085",
+   "em": "2026-08-08"
+  },
+  "269049": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "Mudança de regime tributário e regras da reforma não refletidas no cadastro",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "6fae5165a01e",
+   "em": "2026-08-08"
+  },
+  "269051": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "527b9dc597b5",
+   "em": "2026-08-08"
+  },
+  "269053": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "4f5254d1f9ed",
+   "em": "2026-08-08"
+  },
+  "269057": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "e83bd1949a28",
+   "em": "2026-08-08"
+  },
+  "269059": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "e4f7b22232e5",
+   "em": "2026-08-08"
+  },
+  "269061": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "33d536f9d2f2",
+   "em": "2026-08-08"
+  },
+  "269063": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "caf936bc1da4",
+   "em": "2026-08-08"
+  },
+  "269065": {
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ",
+   "subgrupo": "Nota autorizada no portal continua em digitação/processando no sistema",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "d9ac0eaf6420",
+   "em": "2026-08-08"
+  },
+  "269067": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "eeb34bf18ee1",
+   "em": "2026-08-08"
+  },
+  "269077": {
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)",
+   "subgrupo": "Duplicidade de DPS/RPS/chave por contador de numeração dessincronizado (E0014/E2404)",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "d20af5cff18a",
+   "em": "2026-08-08"
+  },
+  "269079": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "1338d1c06a88",
+   "em": "2026-08-08"
+  },
+  "269081": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "fdd0793d6083",
+   "em": "2026-08-08"
+  },
+  "269089": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Espelho do fornecedor: valores da compra de origem não são herdados",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "899a825100be",
+   "em": "2026-08-08"
+  },
+  "269091": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Fechamento mensal para a contabilidade",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "3749c6daf129",
+   "em": "2026-08-08"
+  },
+  "269095": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "af028527034d",
+   "em": "2026-08-08"
+  },
+  "269099": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "2466db99fd48",
+   "em": "2026-08-08"
+  },
+  "269103": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "CFOP não corresponde ao destino ou à natureza da operação",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "e7020c009f87",
+   "em": "2026-08-08"
+  },
+  "269109": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "cd7be080e3df",
+   "em": "2026-08-08"
+  },
+  "269117": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "32719ff290cc",
+   "em": "2026-08-08"
+  },
+  "269121": {
+   "tema": "XML de compra / importação / manifestação do destinatário",
+   "subgrupo": "XML ou chave recusados antes de montar a compra (arquivo fora do padrão ou nota já cadastrada)",
+   "frente": "P12",
+   "fonte": "llm",
+   "hash": "30cd6396f581",
+   "em": "2026-08-08"
+  },
+  "269125": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "ICMS — diferimento, destaque e devolução",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "638338b11458",
+   "em": "2026-08-08"
+  },
+  "269129": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Fechamento mensal para a contabilidade",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "fafb0d35829e",
+   "em": "2026-08-08"
+  },
+  "269139": {
+   "tema": "Envio de nota por e-mail falha",
+   "subgrupo": "Envio de nota por e-mail falha",
+   "frente": "P9",
+   "fonte": "llm",
+   "hash": "5812fb072dfb",
+   "em": "2026-08-08"
+  },
+  "269143": {
+   "tema": "XML de compra / importação / manifestação do destinatário",
+   "subgrupo": "Manifestação do destinatário não retorna as notas emitidas contra o CNPJ",
+   "frente": "P12",
+   "fonte": "llm",
+   "hash": "eed4e568e138",
+   "em": "2026-08-08"
+  },
+  "269145": {
+   "tema": "Acompanhamento de chamado já aberto",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "4941d22083f7",
+   "em": "2026-08-08"
+  },
+  "269155": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "ef3e00ae78d7",
+   "em": "2026-08-08"
+  },
+  "269157": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "a7c15af9d019",
+   "em": "2026-08-08"
+  },
+  "269163": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "9804732e1c56",
+   "em": "2026-08-08"
+  },
+  "269165": {
+   "tema": "Dúvida de uso / orientação (how-to fiscal)",
+   "subgrupo": "Fechamento mensal para a contabilidade",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "ab0dabfa8b77",
+   "em": "2026-08-08"
+  },
+  "269167": {
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ",
+   "subgrupo": "Nota cancelada na prefeitura permanece autorizada no sistema",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "ad5c6ec6b5aa",
+   "em": "2026-08-08"
+  },
+  "269169": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "b611f69036c7",
+   "em": "2026-08-08"
+  },
+  "269171": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "bd75c74d0665",
+   "em": "2026-08-08"
+  },
+  "269173": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "2b91d5949041",
+   "em": "2026-08-08"
+  },
+  "269181": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "8768d04b22d3",
+   "em": "2026-08-08"
+  },
+  "269185": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "695949eacabf",
+   "em": "2026-08-08"
+  },
+  "269193": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "3b72edd3a168",
+   "em": "2026-08-08"
+  },
+  "269195": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "54ea1df4144b",
+   "em": "2026-08-08"
+  },
+  "269201": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "c1e19b370ef8",
+   "em": "2026-08-08"
+  },
+  "269205": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "a4ce57813819",
+   "em": "2026-08-08"
+  },
+  "269211": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "c005d9430a90",
+   "em": "2026-08-08"
+  },
+  "269213": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "a654ae5a90fe",
+   "em": "2026-08-08"
+  },
+  "269215": {
+   "tema": "Envio de nota por e-mail falha",
+   "subgrupo": "Envio de nota por e-mail falha",
+   "frente": "P9",
+   "fonte": "llm",
+   "hash": "9796164a00f1",
+   "em": "2026-08-08"
+  },
+  "269217": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "9044639e04c7",
+   "em": "2026-08-08"
+  },
+  "269221": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "50556130a0e1",
+   "em": "2026-08-08"
+  },
+  "269223": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "3429fcf1f3fc",
+   "em": "2026-08-08"
+  },
+  "269227": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Espelho do fornecedor: valores da compra de origem não são herdados",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "8d72a245d2d8",
+   "em": "2026-08-08"
+  },
+  "269229": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Compra não elegível: a devolução não enxerga o item",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "544d8cf0cfc0",
+   "em": "2026-08-08"
+  },
+  "269231": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: cliente não conclui a instalação sozinho e pede que o suporte faça",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "227972b3f0e2",
+   "em": "2026-08-08"
+  },
+  "269233": {
+   "tema": "XML de compra / importação / manifestação do destinatário",
+   "subgrupo": "XML ou chave recusados antes de montar a compra (arquivo fora do padrão ou nota já cadastrada)",
+   "frente": "P12",
+   "fonte": "llm",
+   "hash": "2fa34c3754d2",
+   "em": "2026-08-08"
+  },
+  "269235": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "ICMS — diferimento, destaque e devolução",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "0085f6b1b57a",
+   "em": "2026-08-08"
+  },
+  "269237": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "Prazo de 24h estourado empurra o cancelamento para a contabilidade",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "255b4c9a6aea",
+   "em": "2026-08-08"
+  },
+  "269241": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "7a85e585e61b",
+   "em": "2026-08-08"
+  },
+  "269247": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "a5d1f528c986",
+   "em": "2026-08-08"
+  },
+  "269249": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "80210e5bf0f2",
+   "em": "2026-08-08"
+  },
+  "269257": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "396d908e104f",
+   "em": "2026-08-08"
+  },
+  "269259": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "fd35330c41f8",
+   "em": "2026-08-08"
+  },
+  "269261": {
+   "tema": "Envio de nota por e-mail falha",
+   "subgrupo": "Envio de nota por e-mail falha",
+   "frente": "P9",
+   "fonte": "llm",
+   "hash": "cf67de679137",
+   "em": "2026-08-08"
+  },
+  "269263": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "65943c2f296d",
+   "em": "2026-08-08"
+  },
+  "269267": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "Prazo de 24h estourado empurra o cancelamento para a contabilidade",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "b0729706a90a",
+   "em": "2026-08-08"
+  },
+  "269271": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Parâmetros tributários que mudam todo mês",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "344d768f1f4e",
+   "em": "2026-08-08"
+  },
+  "269275": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: vencido / renovação não reconhecida pelo sistema",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "72acaeb5d0d6",
+   "em": "2026-08-08"
+  },
+  "269283": {
+   "tema": "Integração financeiro/estoque/OS com a nota",
+   "subgrupo": "Desconto, taxa e dados da OS não são transportados para a nota",
+   "frente": "P13",
+   "fonte": "llm",
+   "hash": "140b066427d3",
+   "em": "2026-08-08"
+  },
+  "269285": {
+   "tema": "Integração financeiro/estoque/OS com a nota",
+   "subgrupo": "Nota cancelada com dado errado não pode ser reemitida na mesma OS",
+   "frente": "P13",
+   "fonte": "llm",
+   "hash": "f4031c5f51d8",
+   "em": "2026-08-08"
+  },
+  "269291": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "a691a743fa0d",
+   "em": "2026-08-08"
+  },
+  "269293": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Consistência de pagamento/fatura e campos condicionais da NF-e (troco, grupo Fatura, intermediador, transporte)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "2facf7f5c827",
+   "em": "2026-08-08"
+  },
+  "269295": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "98db460798b5",
+   "em": "2026-08-08"
+  },
+  "269297": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "d181d9b02dd7",
+   "em": "2026-08-08"
+  },
+  "269299": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "CFOP, CST/CSOSN e regime tributário incompatíveis",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "1448ed49bfc7",
+   "em": "2026-08-08"
+  },
+  "269303": {
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ",
+   "subgrupo": "Nota autorizada no portal continua em digitação/processando no sistema",
+   "frente": "P2",
+   "fonte": "llm",
+   "hash": "efae06fddee6",
+   "em": "2026-08-08"
+  },
+  "269307": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "Mudança de regime tributário e regras da reforma não refletidas no cadastro",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "8bc5f782fc68",
+   "em": "2026-08-08"
+  },
+  "269309": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "cfc3ac4935c1",
+   "em": "2026-08-08"
+  },
+  "269311": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "9b455ec652b8",
+   "em": "2026-08-08"
+  },
+  "269313": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "98f191b6b703",
+   "em": "2026-08-08"
+  },
+  "269325": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "ISS/ISSQN — retenção e alíquota na NFS-e",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "6fedecefdb74",
+   "em": "2026-08-08"
+  },
+  "269327": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Certificados, tokens e credenciais que expiram",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "058ea2cc89bd",
+   "em": "2026-08-08"
+  },
+  "269337": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "CFOP não corresponde ao destino ou à natureza da operação",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "ce688772cff4",
+   "em": "2026-08-08"
+  },
+  "269339": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Primeira devolução: cliente aprende por PDF, não pelo sistema",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "e8b06ad640a1",
+   "em": "2026-08-08"
+  },
+  "269345": {
+   "tema": "XML de compra / importação / manifestação do destinatário",
+   "subgrupo": "Manifestação do destinatário não retorna as notas emitidas contra o CNPJ",
+   "frente": "P12",
+   "fonte": "llm",
+   "hash": "ed2f2983f4a6",
+   "em": "2026-08-08"
+  },
+  "269351": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "b7df8c094f73",
+   "em": "2026-08-08"
+  },
+  "269357": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "CFOP não corresponde ao destino ou à natureza da operação",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "ff23a824a3d5",
+   "em": "2026-08-08"
+  },
+  "269361": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "bc4b8eef4ff3",
+   "em": "2026-08-08"
+  },
+  "269363": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "cb0ec7f8f282",
+   "em": "2026-08-08"
+  },
+  "269367": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "7b935120f69e",
+   "em": "2026-08-08"
+  },
+  "269371": {
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)",
+   "subgrupo": "ICMS — diferimento, destaque e devolução",
+   "frente": "P3",
+   "fonte": "llm",
+   "hash": "c46cd346cc44",
+   "em": "2026-08-08"
+  },
+  "269381": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "2cb64b4951bb",
+   "em": "2026-08-08"
+  },
+  "269387": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Migração para Emissor Nacional / Reforma Tributária",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "d725333e5fef",
+   "em": "2026-08-08"
+  },
+  "269389": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Ciclo cancelar-refazer: sem pré-visualização e com item travado",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "b7b2e4118b6d",
+   "em": "2026-08-08"
+  },
+  "269391": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Pendência administrativa no portal da prefeitura bloqueia a emissão",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "95cfc0ccad01",
+   "em": "2026-08-08"
+  },
+  "269393": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Garantia, remessa para conserto e simples remessa sem operação nativa",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "0b6ba7aabb49",
+   "em": "2026-08-08"
+  },
+  "269395": {
+   "tema": "Certificado digital (cadastro, vencimento, atualização)",
+   "subgrupo": "Certificado: vencido / renovação não reconhecida pelo sistema",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "31607e4bb101",
+   "em": "2026-08-08"
+  },
+  "269399": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Emissão não conclui: falta clicar Transmitir e o erro fica escondido em Consultar Situação",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "f010578c27dd",
+   "em": "2026-08-08"
+  },
+  "269403": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Instabilidade / webservice da prefeitura fora do ar",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "7478d468308e",
+   "em": "2026-08-08"
+  },
+  "269409": {
+   "tema": "Não fiscal (falso positivo)",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "d215bd72a5c1",
+   "em": "2026-08-08"
+  },
+  "269411": {
+   "tema": "Configuração assistida pelo suporte",
+   "subgrupo": "Configuração fiscal inicial só sai com o suporte fazendo (virada de sistema)",
+   "frente": "P8",
+   "fonte": "llm",
+   "hash": "6b10e33e6f07",
+   "em": "2026-08-08"
+  },
+  "269417": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "Nota cancelada fora do sistema continua aparecendo como autorizada",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "081c58be7631",
+   "em": "2026-08-08"
+  },
+  "269425": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Regime/alíquota de ISSQN inválidos (regEspTrib, E0175/E0178, tributação de serviço)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "33288b32db5f",
+   "em": "2026-08-08"
+  },
+  "269429": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "31608c5285e8",
+   "em": "2026-08-08"
+  },
+  "269431": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "3b81603bd361",
+   "em": "2026-08-08"
+  },
+  "269435": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "739d900d215f",
+   "em": "2026-08-08"
+  },
+  "269401": {
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)",
+   "subgrupo": "Mudança de regime tributário e regras da reforma não refletidas no cadastro",
+   "frente": "P10",
+   "fonte": "llm",
+   "hash": "52d2e756e1d0",
+   "em": "2026-08-08"
+  },
+  "269457": {
+   "tema": "Cancelamento/exclusão de nota",
+   "subgrupo": "Justificativa curta demais derruba o cancelamento com erro de JSON",
+   "frente": "P11",
+   "fonte": "llm",
+   "hash": "32e2ea764f63",
+   "em": "2026-08-08"
+  },
+  "269459": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "e20f6f6c14c0",
+   "em": "2026-08-08"
+  },
+  "269467": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Cadastro do destinatário/tomador incompleto ou inválido (IE, CEP, endereço, documento, razão social)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "dbca13c53db6",
+   "em": "2026-08-08"
+  },
+  "269469": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Códigos fiscais do item/serviço inexistentes ou faltantes (NCM, código de barras, cód. tributação municipal/nacional, UF de consumo)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "87eb19742295",
+   "em": "2026-08-08"
+  },
+  "269479": {
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)",
+   "subgrupo": "Instabilidade / webservice da prefeitura fora do ar",
+   "frente": "P6",
+   "fonte": "llm",
+   "hash": "4cab07e290b6",
+   "em": "2026-08-08"
+  },
+  "269487": {
+   "tema": "Nota de devolução/garantia/remessa/complemento",
+   "subgrupo": "Documento fiscal referenciado e chave de acesso",
+   "frente": "P7",
+   "fonte": "llm",
+   "hash": "a99c87bf4378",
+   "em": "2026-08-08"
+  },
+  "269491": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "Falha de schema XML na geração (caracteres/conteúdo inválido em tags, informações complementares, tags fora de ordem)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "07b707216c39",
+   "em": "2026-08-08"
+  },
+  "269495": {
+   "tema": "Conversa vazia / sem conteúdo útil",
+   "subgrupo": "",
+   "frente": null,
+   "fonte": "llm",
+   "hash": "88dd9b89d6f2",
+   "em": "2026-08-08"
+  },
+  "269499": {
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)",
+   "subgrupo": "CFOP/CST incompatíveis com a operação ou regime (devolução, idDest, grupos de imposto)",
+   "frente": "P1",
+   "fonte": "llm",
+   "hash": "5938a339415c",
+   "em": "2026-08-08"
   }
  },
  "taxonomia_versao": "2026-08-07",

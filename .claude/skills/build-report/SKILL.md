@@ -141,9 +141,27 @@ Diga, de forma direta:
 - **a deriva** (`python pipeline/classificar.py status --de <de> --ate <ate>`) e, se passar de
   10%, avise explicitamente que a taxonomia precisa de subgrupos novos — foi assim que
   descobrimos IPI, pendência no portal e devolução com IBS/CBS
-- onde ficaram os dois arquivos
+- os três números da auditoria do passo 4b, e o `ATENÇÃO` se houver
 
-Entregue os arquivos com SendUserFile.
+**O caminho dos arquivos, em absoluto e em bloco de código copiável.** O gerador já
+imprime assim; repasse igual, não encurte para caminho relativo. Quem lê o relatório
+nem sempre está no diretório do projeto.
+
+```
+C:\Dev\Qigger\Ultracar\bitrix-analisys\report\relatorio_executivo_<de>_<ate>.xlsx
+```
+
+Entregue os dois arquivos com **SendUserFile** — é o que faz o usuário conseguir abrir
+com um clique, sem procurar pasta.
+
+Ofereça abrir no Excel, mas **não abra por conta própria**:
+
+```
+python pipeline/gerar_relatorio.py --de <de> --ate <ate> --abrir
+```
+
+O motivo de não ser automático está nos Cuidados: arquivo aberto no Excel bloqueia a
+gravação da execução seguinte. Abrir sempre garante o erro na próxima vez.
 
 ## Cuidados
 

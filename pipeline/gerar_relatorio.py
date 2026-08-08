@@ -17,6 +17,7 @@ import argparse
 import collections
 import json
 import statistics
+import os
 import sys
 from datetime import date, datetime
 from pathlib import Path
@@ -303,6 +304,10 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--de", required=True)
     ap.add_argument("--ate", default=date.today().isoformat())
+    ap.add_argument("--abrir", action="store_true",
+                    help="abre o relatório executivo no aplicativo padrão. NÃO é o padrão "
+                         "de propósito: arquivo aberto no Excel trava a gravação da próxima "
+                         "execução com 'Permission denied'.")
     a = ap.parse_args()
     REPORT.mkdir(exist_ok=True)
 
@@ -322,8 +327,22 @@ def main() -> int:
     print(f"  {len(regs)} registros fiscais ({ch} chamados, {len(regs)-ch} conversas)")
     print(f"  {linhas} linhas de subgrupo no relatório")
     print(f"  {sem_sub} sem subgrupo atribuído ({sem_sub/len(regs)*100:.1f}%)")
-    print(f"\n  {f1.relative_to(RAIZ)}")
-    print(f"  {f2.relative_to(RAIZ)}")
+    # Caminho ABSOLUTO. O relativo economizava caracteres e fazia quem não estava no
+    # diretório do projeto ter de adivinhar onde o arquivo foi parar.
+    print(f"\n  {f1.resolve()}")
+    print(f"  {f2.resolve()}")
+
+    if a.abrir:
+        import subprocess
+        try:
+            if sys.platform == "win32":
+                os.startfile(str(f1.resolve()))            # noqa: S606
+            else:
+                subprocess.run(["xdg-open", str(f1.resolve())], check=False)
+            print("\n  Aberto no aplicativo padrão. Feche antes da próxima execução —")
+            print("  arquivo aberto no Excel bloqueia a gravação.")
+        except Exception as e:
+            print(f"\n  Não consegui abrir ({e.__class__.__name__}). O caminho está acima.")
     return 0
 
 
