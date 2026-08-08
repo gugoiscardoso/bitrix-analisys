@@ -620,5 +620,29 @@ sozinha ao executar 9.4.
 
 ## Pendências com o time
 
-- `output/problemas_2026-08-05.xlsx` não foi gerado pelo pipeline e ficou onde estava. Definir destino.
-- Nada foi commitado no git ainda, por decisão. Ao commitar, avaliar `.gitignore` para `data/raw/` (68 MB regeneráveis).
+Resolvidas em 07/08/2026:
+
+- ~~`output/problemas_2026-08-05.xlsx` sem destino definido~~ — a pasta `output/` não
+  existe mais; a saída oficial é `report/`.
+- ~~Nada commitado; avaliar `.gitignore` para `data/raw/`~~ — commitado, e `data/raw/`
+  ignorado junto com `base_historica.jsonl` e as áreas de trabalho de fila e auditoria.
+
+Em aberto, e nenhuma delas bloqueia uso:
+
+- **Subgrupo de P7 em chamado** (24 registros). Volume baixo, não move ranking.
+- **P13 tem 22 registros em "Outro"** concentrados em quatro assuntos que a taxonomia não
+  cobre: preço de custo/margem não atualizado pela compra, integração TEF/maquininha,
+  integração com o Cilia, e o vínculo NF ↔ OS. É candidato natural ao próximo bump —
+  foi o próprio classificador que apontou.
+- **Os 543 registros sem frente** (`Não fiscal` + `Conversa vazia`) nunca foram
+  reavaliados. São o custo declarado do filtro ampliado.
+
+## Como ler o resultado
+
+O relatório **não sustenta ranking exato**. O topo — P1 (1.580), P8 (1.136), P7 (1.042) —
+é empate estatístico: a diferença entre eles é menor que a barra de erro medida. Ele
+sustenta leitura **por bloco**: existe um bloco de ~1.000–1.600 no topo, outro de ~700–900,
+e o resto.
+
+Erro medido pela auditoria de amostra após a reclassificação: **13,6%** no total
+(0,0% em chamado, 17,4% em conversa; n=59, kappa 0,872).

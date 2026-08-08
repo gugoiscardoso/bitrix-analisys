@@ -1,5 +1,14 @@
 # Auditoria da classificação — fricção fiscal Ultracar
 
+> **Este é o diagnóstico, não o estado atual.** Os números abaixo mediram a base como ela
+> estava em 07/08/2026 de manhã. As correções que eles motivaram foram aplicadas no mesmo
+> dia (fases 9.x em [`planejamento_build_report.md`](planejamento_build_report.md)), e uma
+> nova auditoria de amostra sobre a base corrigida mede **13,6% de erro** (0,0% em chamado,
+> 17,4% em conversa; n=59, kappa 0,872) — contra os ~24% relatados aqui.
+>
+> O que **não** mudou: o topo do ranking continua sendo empate estatístico. A leitura por
+> bloco de frentes segue valendo; a leitura por posição exata, não.
+
 Período auditado: 01/05/2026 a 05/08/2026.
 Executada em 07/08/2026 sobre `data/store/classificacao.json` (522 chamados, 6.376 conversas).
 Artefatos reprodutíveis em `pipeline/_auditoria/` (semente `20260807`).
