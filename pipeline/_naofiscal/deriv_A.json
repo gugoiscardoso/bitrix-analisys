@@ -1,0 +1,64 @@
+{
+  "temas": [
+    {
+      "nome": "Fechamento e entrega de itens da OS travam por vínculo inconsistente",
+      "descricao": "O cliente é bloqueado ao abrir, autorizar, fechar ou reabrir uma OS, ao entregar materiais, ao vincular custo/compra a um item ou ao devolver insumo. A causa é o vínculo entre orçamento, estoque e compras ficar inconsistente: o sistema exige entrega de item já entregue, acusa peça sem estoque mesmo havendo estoque, ou trava com 'a quantidade não pode ser maior do que está no orçamento'. O cliente vê mensagem de erro, item preso em status indevido ('aguardando entrega' sem nada a entregar) e não consegue concluir a OS.",
+      "fronteira": "Confunde-se com 'Pedido de campo, filtro ou regra nova em orçamento, OS e gestão de pátio'. Critério: se o chamado relata uma ação que falha ou termina errada no fluxo que já existe ('erro ao fechar OS', 'não consegue entregar', 'status incorreto'), é defeito e fica aqui; se descreve comportamento que o sistema nunca teve ('gostaria que', 'permitir', 'incluir'), é pedido.",
+      "n_estimado": 40
+    },
+    {
+      "nome": "Peça, insumo ou veículo cadastrado não é encontrado nem grava",
+      "descricao": "Registro base do cadastro falha em duas pontas: não aparece depois de cadastrado (serviço sumido, item não achado pela metade do nome, fornecedor fora do filtro, veículo não localizado pela placa) ou não grava (placa recusada, fabricante que não salva, marca que não pode ser criada manualmente, quantidade duplicada, insumo inativado que se duplica). A causa é a gravação/indexação do cadastro de peças, insumos, estoque e veículos. O cliente vê o item como inexistente e fica impedido de montar o orçamento.",
+      "fronteira": "Confunde-se com 'Fechamento e entrega de itens da OS travam por vínculo inconsistente'. Critério: se o registro base não é encontrado ou não grava, é aqui; se o registro existe normalmente e o que falha é movimentá-lo dentro da OS (entregar, vincular, devolver, fechar), é o tema da OS.",
+      "n_estimado": 32
+    },
+    {
+      "nome": "Boleto e lançamento financeiro falham na emissão e no retorno bancário",
+      "descricao": "Emissão de boleto retorna erro ou rejeição do banco (422, 'nenhum registro foi encontrado', tag errada no JSON), status do boleto não atualiza depois de baixado no banco, parcelas de contas a receber/pagar não são geradas, lançamento aparece zerado no movimento de caixa e a importação de OFX para conciliação falha. A causa está na integração bancária e no motor de lançamentos divergirem do que foi registrado no sistema. O cliente vê erro na emissão, boleto pago constando em aberto ou caixa com saldo errado.",
+      "fronteira": "Confunde-se com 'Relatório e dashboard trazem valor divergente do que está na tela'. Critério: se o que falha é a operação financeira em si (gerar boleto, liquidar, lançar, conciliar), é aqui; se a operação foi concluída e o que discorda é apenas o número exibido em um relatório ou dashboard, é o tema de relatório.",
+      "n_estimado": 28
+    },
+    {
+      "nome": "Relatório e dashboard trazem valor divergente do que está na tela",
+      "descricao": "Relatórios (consolidado, DRE, balancete, movimento de caixa, comissões, estoque, prospecção, orçamentos) não geram, geram vazio, ignoram o filtro aplicado ou trazem quantidade e valor diferentes do cadastro e da OS de origem. A causa é a consulta do relatório usar base, período ou regra de exclusão diferente da tela que originou o dado. O cliente vê saída inexistente de peça, DRE misturando meses, estorno que pediu para excluir, veículos de outro ano ou mensagem de 'gerado com sucesso' sem relatório na tela.",
+      "fronteira": "Confunde-se com 'Pedido de coluna, filtro ou regra nova em relatório, financeiro, estoque e compras'. Critério: se o relatório já existe e o número ou a geração está errado, é defeito e fica aqui; se o cliente pede coluna, filtro, campo ou formato que o relatório ainda não oferece, é pedido.",
+      "n_estimado": 30
+    },
+    {
+      "nome": "Importação e integração externa (CILIA, FRAGA, planilha, API) falham",
+      "descricao": "Importação de orçamento do CILIA, cadastro de peça via FRAGA, importação de planilha ou arquivo de peças e uso da API/token de integração falham ou trazem dados errados. A causa é o contrato de dados com o sistema externo: identificadores trocados, layout do arquivo, tamanho máximo de campo, credencial ausente. O cliente vê 'erro importação', 'falha ao encontrar importação', identificações que não correspondem, ou simplesmente não tem o token para integrar.",
+      "fronteira": "Confunde-se com 'Boleto e lançamento financeiro falham na emissão e no retorno bancário'. Critério: quando o parceiro externo é banco e o objeto é boleto, OFX ou conciliação, vai para o tema financeiro; aqui ficam as demais integrações e importações, cujo erro é do próprio arquivo, layout ou credencial.",
+      "n_estimado": 18
+    },
+    {
+      "nome": "Criação de usuário e permissionamento não são respeitados",
+      "descricao": "Falha ao abrir novo usuário, senha de acesso que não pode ser criada, e-mail/número de recuperação que não chega, acesso ao sistema que some, e permissões configuradas que o sistema ignora (usuário sem permissão vê custo pela diferença de preço ou cria status por dentro da OS; permissão desabilitada e a ação continua possível). A causa é a regra de perfil aplicada de forma incompleta nas telas. O cliente vê erro ao criar o acesso ou informação exposta/bloqueada indevidamente.",
+      "fronteira": "Confunde-se com 'Pedido de campo, filtro ou regra nova em orçamento, OS e gestão de pátio'. Critério: aqui a permissão já existe e não é respeitada, ou a criação de usuário falha; se o cliente pede um nível de restrição que hoje não existe ('restringir setores do financeiro', 'bloquear valores de folha'), é pedido de melhoria.",
+      "n_estimado": 20
+    },
+    {
+      "nome": "Pedido de campo, filtro ou regra nova em orçamento, OS e gestão de pátio",
+      "descricao": "Solicitações de funcionalidade inexistente no fluxo comercial: mensagens fixas no orçamento, agendamento prévio antes de criar orçamento, status que atualize sozinho conforme a OS, número do orçamento e prisma no ticket da gestão de pátio, edição de registro pelo link do pátio, checklist para o mecânico, envio de OS por WhatsApp, termo de ciência, novos níveis de restrição de visualização de valores. Nada está quebrado: falta o recurso. O cliente descreve o comportamento que gostaria de ter.",
+      "fronteira": "Confunde-se com 'Fechamento e entrega de itens da OS travam por vínculo inconsistente'. Critério: o verbo do chamado — 'não consigo', 'dá erro', 'está incorreto' indicam defeito e vão para o tema da OS; 'gostaria', 'seria possível implementar', 'incluir', 'permitir' ficam aqui.",
+      "n_estimado": 34
+    },
+    {
+      "nome": "Pedido de coluna, filtro ou regra nova em relatório, financeiro, estoque e compras",
+      "descricao": "Solicitações de recurso novo fora do fluxo de OS: filtro por data de entrada no dashboard de orçamentos, filtro de orçamentos com comissão, média de valor de compra no consolidado, quantidade em vez de horas no relatório administrativo, múltipla precificação e preço distinto de varejo, etiquetas nas compras, autorização de compras em lote, agrupamento de compras de fornecedores diferentes, novo banco na conciliação, vencimento ajustado para o próximo dia útil. O cliente descreve o que quer ver ou automatizar.",
+      "fronteira": "Confunde-se com 'Pedido de campo, filtro ou regra nova em orçamento, OS e gestão de pátio'. Critério: decide o módulo alvo citado no texto — orçamento, OS, checklist e gestão de pátio vão para o tema anterior; relatório, dashboard, financeiro, estoque e compras vêm para cá.",
+      "n_estimado": 24
+    },
+    {
+      "nome": "Cliente não encontra a opção e pergunta como fazer",
+      "descricao": "Chamados de dúvida e orientação, sem erro e sem pedido de mudança: onde fica a aba de comissões, como criar condição de pagamento, onde informar saldo inicial da conta, como criar um orçamentista, onde alterar o e-mail da empresa nos orçamentos, se um produto desativado pode ser reativado, se o novo usuário precisa ser funcionário, dúvidas de treinamento de estoque. A causa é descoberta da interface e desconhecimento do caminho. O cliente pede que o suporte explique o passo a passo.",
+      "fronteira": "Confunde-se com 'Peça, insumo ou veículo cadastrado não é encontrado nem grava'. Critério: se o cliente não acha a OPÇÃO, o menu ou o campo e pede orientação, é dúvida e fica aqui; se ele chega à tela certa mas o REGISTRO já cadastrado não aparece, é defeito de cadastro.",
+      "n_estimado": 16
+    },
+    {
+      "nome": "Pedido de correção em massa da base executada pelo suporte",
+      "descricao": "O cliente pede que o suporte execute na base o que a tela não permite: inativar ou excluir todas as peças e itens de migração, reverter estoque, ajustar códigos internos, transferir estoque após troca de CNPJ, corrigir CNPJ de OS já autorizada, reverter porcentagem aplicada por engano ao custo, alterar valor de venda direta já autorizada, gerar backup, criar fabricante ou cadastrar veículo. Não há defeito relatado nem pedido de produto: é operação pontual sobre os dados daquele cliente.",
+      "fronteira": "Confunde-se com 'Pedido de coluna, filtro ou regra nova em relatório, financeiro, estoque e compras'. Critério: aqui o cliente quer que os dados dele sejam alterados agora, uma vez, sem mudança no sistema; lá pede alteração permanente no produto, que valeria para todos os clientes daí em diante.",
+      "n_estimado": 18
+    }
+  ]
+}

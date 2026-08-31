@@ -1,0 +1,64 @@
+{
+  "temas": [
+    {
+      "nome": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+      "descricao": "O sistema bloqueia uma ação no orçamento/OS alegando pendência que o usuário não consegue localizar: compra pendente para item que já está em produtividade, item marcado como 'aguardando entrega' em OS fechada, peça sem estoque mesmo havendo saldo, ou benefício já lançado impedindo nova peça. A causa é o estado dos vínculos entre orçamento, compra e movimentação de estoque ficar dessincronizado após alterações na OS. O cliente vê mensagens de erro de servidor, BAD_REQUEST ou 'impossibilidade de envio' e a OS trava sem poder ser fechada, entregue ou corrigida.",
+      "fronteira": "Confunde-se com 'Saldo de estoque diverge'. Decide-se pelo que o chamado pede: se descreve uma AÇÃO na OS que o sistema recusa ou erra (fechar, entregar, adicionar, remover, vincular custo), é este tema; se descreve apenas um NÚMERO de quantidade/saldo errado, sem ação bloqueada, é o tema de estoque.",
+      "n_estimado": 34
+    },
+    {
+      "nome": "Consulta e importação de dados externos (placa, Cilia, Fraga, OFX) falha ou traz dado divergente",
+      "descricao": "Fluxos que dependem de uma fonte externa param ou devolvem dado errado: consulta de placa não retorna o veículo (ou acusa placa já cadastrada que não existe na base), importação Cilia não encontra o orçamento, importa itens a mais, converte 'troca' em 'REM/INST' ou falha ao sincronizar alterações, cadastro por Fraga é recusado, arquivo OFX do banco é rejeitado por conta divergente. O cliente fica impedido de abrir o orçamento ou de trazer o documento de origem, e precisa redigitar tudo manualmente.",
+      "fronteira": "Confunde-se com 'OS não fecha ou não aceita item...'. Decide-se pela origem citada no texto: se o chamado nomeia uma fonte externa (placa/consulta de placa, Cilia, Fraga, OFX/arquivo do banco, agendamento Bosch/Porto), é este tema; se o erro acontece inteiramente dentro do fluxo interno da OS, sem fonte externa citada, é o tema da OS.",
+      "n_estimado": 30
+    },
+    {
+      "nome": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+      "descricao": "Emissão de boleto retorna erro do parceiro (status 422, 'nenhum registro encontrado', Include Boleto Async, tag ausente no JSON enviado à Tecnospeed) ou o boleto emitido não atualiza o status para liquidado mesmo já baixado no banco. Em paralelo, lançamentos de contas a pagar/receber aparecem zerados, recusam parcelamento por incompatibilidade de total, aplicam juros por dia em vez de por mês, ou não aceitam liquidação com data retroativa. O cliente não consegue cobrar nem enxergar a posição real do caixa.",
+      "fronteira": "Confunde-se com 'Relatório ignora filtro, vem vazio ou fecha valor diferente da tela'. Decide-se pelo momento do erro: se a falha ocorre ao EMITIR, baixar, parcelar ou liquidar o lançamento, é este tema; se o lançamento existe e está correto na tela e o problema só aparece ao GERAR o relatório/PDF/CSV, é o tema de relatório.",
+      "n_estimado": 24
+    },
+    {
+      "nome": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+      "descricao": "Relatórios e dashboards devolvem resultado que não corresponde ao que foi pedido: filtro de período ou de 'não contabilizar estorno' é ignorado, opção de ocultar valores não oculta, saída em CSV vem sem nenhuma informação, ou o total impresso diverge do saldo mostrado na tela. Ocorre em movimento de caixa, DRE, balancete, consolidado de estoque, orçamentos, prospecção e comissões. O cliente perde a confiança no número e passa a conferir manualmente antes de fechar o mês.",
+      "fronteira": "Confunde-se com 'Saldo de estoque diverge'. Decide-se pelo escopo do erro: se o dado está certo na tela operacional e só o relatório mostra outro valor ou ignora o filtro, é este tema; se a divergência existe no próprio saldo do item, com entrada ou saída concreta identificada, é o tema de estoque.",
+      "n_estimado": 30
+    },
+    {
+      "nome": "Saldo de estoque diverge: entrada duplicada, saída inexistente, item some da busca",
+      "descricao": "O saldo do item não bate com o físico porque o sistema registrou a entrada de uma compra em dobro, lançou saída para OS que não contém a peça, ou reativou insumos que haviam sido inativados. Também entra aqui a peça que existe cadastrada mas não é encontrada pela busca parcial do nome, pelo filtro de fabricante ou pelo filtro de fornecedor, e a lentidão de consulta após operação em massa no estoque. O cliente vê quantidade que não existe e não consegue confiar no consolidado.",
+      "fronteira": "Confunde-se com 'Pedido de intervenção manual do suporte na base do cliente'. Decide-se por quem errou: se o chamado relata comportamento indevido do sistema sobre o saldo, é este tema; se o chamado pede que o suporte execute uma operação (inativar, zerar, reverter, importar planilha), mesmo que o motivo seja um saldo errado, é o tema de intervenção manual.",
+      "n_estimado": 20
+    },
+    {
+      "nome": "Permissão configurada não é respeitada e acesso do usuário se perde",
+      "descricao": "O perfil de acesso não produz o efeito configurado: vendedor sem permissão de criar status consegue criar por dentro da OS, usuário sem acesso a custo enxerga o valor pela diferença de preço, restrição de margem é burlada alterando o item 'por fora', item de permissão aparece na configuração mas não existe no sistema. Inclui também acesso que some, erro ao abrir novo usuário e recuperação de senha que não chega. O cliente descobre que a trava contratada não protege o dado.",
+      "fronteira": "Confunde-se com 'Dúvida de uso: cliente não acha a opção'. Decide-se pelo que o texto afirma: se o chamado mostra a permissão configurada e o comportamento contrário (ou o acesso que existia e sumiu), é este tema; se o usuário apenas não localiza a tela, o menu ou o caminho, é dúvida de uso.",
+      "n_estimado": 13
+    },
+    {
+      "nome": "Gestão de Pátio não abre ou não reflete o que está na OS",
+      "descricao": "O módulo de pátio fica fora de sincronia com o orçamento que o alimenta: observação criada na OS não aparece no pátio e vice-versa, serviço excluído do orçamento continua no quadro, horário de chegada vem aleatório, cor do status não indica a situação, orçamento configurado para aparecer não é encontrado. Há ainda casos em que a tela simplesmente não abre pelo link ou estoura exceção ao fechar o diário. O cliente perde o controle visual do pátio e volta a acompanhar por planilha.",
+      "fronteira": "Confunde-se com 'OS não fecha ou não aceita item...'. Decide-se pela tela citada: se o chamado nomeia Gestão de Pátio, card, coluna, diário ou quadro, é este tema; se o erro acontece dentro do orçamento/OS e o pátio não é mencionado, é o tema da OS.",
+      "n_estimado": 9
+    },
+    {
+      "nome": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+      "descricao": "O cliente descreve um comportamento atual que funciona como projetado e pede que o produto passe a fazer diferente: incluir coluna ou campo em relatório e tela, criar filtro por data ou por comissão, permitir preço distinto por tipo de venda, tornar condição de pagamento obrigatória, restringir valores por grupo de usuário, automatizar status, integrar WhatsApp ou novo banco. Não há erro relatado, e sim ausência de funcionalidade. A resposta é backlog de produto, não correção.",
+      "fronteira": "Confunde-se com 'Pedido de intervenção manual do suporte na base do cliente'. Decide-se pelo alvo do pedido: se pede mudança no SISTEMA, valendo daqui para frente e para todos os usos futuros, é este tema; se pede que alguém do suporte execute uma operação pontual sobre os dados já existentes daquele cliente, é o tema de intervenção manual.",
+      "n_estimado": 55
+    },
+    {
+      "nome": "Pedido de intervenção manual do suporte na base do cliente",
+      "descricao": "Demandas operacionais que só a equipe consegue executar sobre dados já gravados: inativar ou zerar todo o estoque, excluir todo o cadastro de peças, reverter uma inativação feita por engano, transferir estoque entre CNPJs, renumerar códigos internos ou a numeração inicial de OS, criar login e senha de acesso, gerar token de API, extrair backup, alterar valor de venda direta já autorizada. O cliente não pede correção de bug nem funcionalidade nova, pede execução.",
+      "fronteira": "Confunde-se com 'Saldo de estoque diverge'. Decide-se pela causa apontada no texto: se o próprio cliente causou a situação (inativou tudo por engano, migrou errado, quer recomeçar do zero) e pede desfazer ou executar, é este tema; se o sistema movimentou sozinho o saldo sem ação equivalente do usuário, é o tema de estoque.",
+      "n_estimado": 26
+    },
+    {
+      "nome": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho",
+      "descricao": "Perguntas sobre como operar recurso que já existe: onde fica a aba de comissões, como definir saldo inicial da conta, como criar condição de pagamento, como cadastrar novo fabricante, se é possível reativar produto desativado, como atualizar preços em massa por planilha, se dá para ver custo na listagem de estoque, como reaproveitar OFX na conciliação. Nada está quebrado e nada precisa ser construído; falta descoberta ou treinamento. A resposta certa é orientação, não card de produto.",
+      "fronteira": "Confunde-se com 'Pedido de campo, filtro ou regra configurável que o sistema não oferece'. Decide-se pela forma da frase: se o texto pergunta se é possível, onde fica ou qual o caminho, pressupondo que o recurso exista, é dúvida; se afirma que o recurso não existe e solicita que passe a existir, é pedido de melhoria.",
+      "n_estimado": 19
+    }
+  ]
+}
