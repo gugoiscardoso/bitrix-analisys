@@ -101,6 +101,29 @@ Registros de frente de tema único (P9–P13) e os casos especiais (`Não fiscal
 python pipeline/gerar_relatorio.py --de <de> --ate <ate>
 ```
 
+**Escopo total (opcional).** Se o usuário pedir "todos os chamados", "não só o fiscal" ou
+quiser dimensionar o suporte inteiro:
+
+```
+python pipeline/gerar_relatorio.py --de <de> --ate <ate> --escopo tudo
+```
+
+Acrescenta um terceiro arquivo, `base_completa_<de>_<ate>.xlsx`, com TODOS os registros da
+janela — fiscais ou não, classificados ou não. As colunas `Frente`/`Tema`/`Subgrupo` ficam
+vazias no que não é fiscal; as de volume, tempo e status valem para todos, porque vêm da
+base histórica e não do classificador. A coluna `Categoria` traz a tag que o Bitrix já
+grava no título do chamado (`[Melhoria]`, `[Orçamento]`, `[Erro]`...), que cobre 99% dos
+chamados não-fiscais — agrupamento pronto, sem gastar um token.
+
+Os dois arquivos oficiais **não mudam**: o executivo continua fiscal, porque a estrutura
+dele é frente/subgrupo e quase metade da base sem frente viraria um balde maior que
+qualquer frente real.
+
+**Não classifique o não-fiscal sem taxonomia própria.** A taxonomia atual é toda fiscal;
+rodar o classificador sobre esses registros mandaria todos para `Não fiscal (falso
+positivo)` ou `Outro`, ao custo de ~2M tokens. Isso exige derivar temas novos primeiro —
+é projeto, não flag.
+
 ### 4b. Auditar a amostra — **não pule**
 
 ```

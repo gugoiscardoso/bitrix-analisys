@@ -14,6 +14,7 @@ data de execução, para que o mesmo período gere sempre o mesmo relatório.
 """
 from __future__ import annotations
 import argparse
+import re as _re
 import collections
 import json
 import statistics
@@ -72,7 +73,16 @@ def calor_de(ultima: str, ate: str) -> tuple[str, str]:
     return ("medio", "Atenção") if idade <= 60 else ("antigo", "Antiga")
 
 
-def carregar(de: str, ate: str):
+def carregar(de: str, ate: str, tudo: bool = False):
+    """tudo=True inclui o não-fiscal e o ainda-não-classificado.
+
+    A base unificada só usa três colunas do classificador (Frente/Tema/Subgrupo); datas,
+    status, canal, cliente e tempos vêm da base histórica e não dependem de IA. Então o
+    escopo total sai de graça — as três colunas ficam vazias onde não há classificação,
+    em vez de o registro sumir.
+
+    O relatório EXECUTIVO continua fiscal: a estrutura dele é frente/subgrupo, e 46% de
+    linhas sem frente viraria um balde maior que qualquer frente real.""" 
     cache = ler(STORE / "classificacao.json")
     tax = ler(STORE / "taxonomia.json")
     subs_por_frente = collections.defaultdict(set)
@@ -82,11 +92,18 @@ def carregar(de: str, ate: str):
     with (STORE / "base_historica.jsonl").open(encoding="utf-8") as fh:
         for linha in fh:
             r = json.loads(linha)
-            if not r["fiscal"] or not (de <= r["data"] <= ate):
+            if not (de <= r["data"] <= ate):
+                continue
+            if not tudo and not r["fiscal"]:
                 continue
             chave = "chamados" if r["tipo"] == "chamado" else "conversas"
             c = cache[chave].get(str(r["id"]))
             if not c:
+                if not tudo:
+                    continue
+                # sem classificação: entra com as colunas de taxonomia vazias
+                r |= {"tema": "", "subgrupo": "", "frente": None, "fonte_cls": ""}
+                registros.append(r)
                 continue
             sub = c.get("subgrupo", "")
             # Frentes de tema único: o subgrupo é o próprio tema. Derivado da taxonomia
@@ -244,11 +261,27 @@ def legenda(wb: Workbook, tax: dict, de: str, ate: str, regs: list[dict]):
 
 # ─────────────────────── base unificada ───────────────────────
 
+TAG_RE = _re.compile(r"\s*\[([^\]]{1,30})\]")
+
+
+def categoria_de(r: dict) -> str:
+    """Categoria que o Bitrix já grava entre colchetes no título do chamado.
+
+    639 dos 645 chamados não-fiscais da janela têm essa tag ([Melhoria], [Orçamento],
+    [Erro], [Cadastro]...). É agrupamento pronto e determinístico para o escopo total,
+    sem gastar um token. Conversa não tem título, então fica vazio."""
+    if r["tipo"] != "chamado":
+        return ""
+    m = TAG_RE.match(r.get("titulo") or "")
+    return m.group(1).strip() if m else ""
+
+
 def base_unificada(regs: list[dict], de: str, ate: str, saida: Path):
     wb = Workbook()
     ws = wb.active
     ws.title = "Dados"
-    COLS = ["Tipo", "Id", "Data", "Mes", "Canal", "Frente", "Tema", "Subgrupo",
+    COLS = ["Tipo", "Id", "Data", "Mes", "Canal", "Fiscal", "Categoria",
+            "Frente", "Tema", "Subgrupo",
             "Status", "TempoTotalDias", "TempoTechDias", "FechadoEm",
             "Cliente", "CNPJ", "DuracaoMin", "Mensagens", "Operador", "Texto"]
     SO_CH = {"Status", "TempoTotalDias", "TempoTechDias", "FechadoEm", "Cliente", "CNPJ"}
@@ -263,6 +296,7 @@ def base_unificada(regs: list[dict], de: str, ate: str, saida: Path):
         ch = r["tipo"] == "chamado"
         ws.append([
             "Chamado" if ch else "Conversa", r["id"], r["data"], r["data"][:7], r["canal"],
+            "Sim" if r.get("fiscal") else "Não", categoria_de(r),
             r["frente"] or "—", r["tema"], r["subgrupo"],
             r["status"] if ch else "",
             dias(r.get("criado_em"), r.get("fechado_em")) if ch else "",
@@ -274,7 +308,8 @@ def base_unificada(regs: list[dict], de: str, ate: str, saida: Path):
             r.get("operador", "") if not ch else "",
             (r.get("titulo") or r.get("texto", ""))[:900],
         ])
-    larg = {"Tipo": 10, "Id": 10, "Data": 11, "Mes": 9, "Canal": 15, "Frente": 10,
+    larg = {"Tipo": 10, "Id": 10, "Data": 11, "Mes": 9, "Canal": 15,
+            "Fiscal": 8, "Categoria": 16, "Frente": 10,
             "Tema": 46, "Subgrupo": 44, "Status": 14, "TempoTotalDias": 11,
             "TempoTechDias": 11, "FechadoEm": 11, "Cliente": 28, "CNPJ": 18,
             "DuracaoMin": 10, "Mensagens": 10, "Operador": 18, "Texto": 70}
@@ -304,6 +339,11 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--de", required=True)
     ap.add_argument("--ate", default=date.today().isoformat())
+    ap.add_argument("--escopo", choices=("fiscal", "tudo"), default="fiscal",
+                    help="fiscal (padrão): a saída oficial de sempre. tudo: acrescenta um "
+                         "terceiro arquivo com TODOS os registros da janela, fiscais ou "
+                         "não, para dimensionar o suporte inteiro. Não altera os dois "
+                         "arquivos oficiais — eles seguem comparáveis entre execuções.")
     ap.add_argument("--abrir", action="store_true",
                     help="abre o relatório executivo no aplicativo padrão. NÃO é o padrão "
                          "de propósito: arquivo aberto no Excel trava a gravação da próxima "
@@ -321,6 +361,18 @@ def main() -> int:
     linhas = executivo(regs, tax, a.de, a.ate, f1)
     base_unificada(regs, a.de, a.ate, f2)
 
+    f3 = None
+    if a.escopo == "tudo":
+        # Só a base. O executivo é estruturado por frente/subgrupo, e 46% de linhas sem
+        # frente viraria um balde maior que qualquer frente real — o mesmo defeito que
+        # P9 tinha, no dobro do tamanho.
+        todos, _ = carregar(a.de, a.ate, tudo=True)
+        f3 = REPORT / f"base_completa_{a.de}_{a.ate}.xlsx"
+        base_unificada(todos, a.de, a.ate, f3)
+        n_f = sum(1 for r in todos if r.get("fiscal"))
+        print(f"Escopo TUDO: {len(todos)} registros ({n_f} fiscais, "
+              f"{len(todos)-n_f} não-fiscais)")
+
     ch = sum(1 for r in regs if r["tipo"] == "chamado")
     sem_sub = sum(1 for r in regs if r["frente"] and not r["subgrupo"])
     print(f"Janela {a.de} a {a.ate}")
@@ -331,6 +383,8 @@ def main() -> int:
     # diretório do projeto ter de adivinhar onde o arquivo foi parar.
     print(f"\n  {f1.resolve()}")
     print(f"  {f2.resolve()}")
+    if f3:
+        print(f"  {f3.resolve()}")
 
     if a.abrir:
         import subprocess
