@@ -1,0 +1,68 @@
+{"temas": [
+  {
+    "nome": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)",
+    "descricao": "A transcrição inteira é protocolo: 'bom dia', a saudação do atendente, mensagens automáticas de horário/feriado, avisos de transferência entre agentes e o encerramento por inatividade ('Poxa! Vi que não tive o seu retorno'). Entram aqui também os casos em que o cliente só diz que já resolveu ('já resolvi no telefone', 'deu certo, obrigada') e os atendimentos que viram sessão de AnyDesk sem que ninguém escreva qual era o problema. O cliente nunca chega a nomear tela, função ou erro, então não há assunto a extrair.",
+    "fronteira": "Confunde-se com 'Cliente não sabe executar a rotina na OS, no orçamento ou no estoque', porque muitos desses também terminam em AnyDesk. Critério: se QUALQUER turno da transcrição nomeia uma tela, função, relatório, número de OS ou mensagem de erro, o item vai para o tema correspondente; só cai aqui quando não existe uma única frase descrevendo o que o cliente queria.",
+    "n_estimado": 88
+  },
+  {
+    "nome": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate",
+    "descricao": "O cliente sabe o que quer ver (fechamento de caixa, contas a pagar/receber, DRE, comissão, curva ABC, movimento diário, consolidado de estoque) mas não sabe o caminho, ou tira o relatório e o total não fecha com o que ele esperava. Quase sempre a causa é de uso: filtro errado, OS não fechada, comissão não aplicada no orçamento, compra lançada sem entrada de estoque, tipo de documento configurado para liquidar automático. O atendente responde com o caminho ('Financeiro > Movimento de caixa') ou explica a regra que produz o número, e o cliente aceita a explicação.",
+    "fronteira": "Confunde-se com 'Função específica dá erro e o atendente abre chamado para o desenvolvimento'. Critério: aqui o atendente EXPLICA por que o número é aquele e o caso encerra com orientação; lá o próprio atendente reconhece o comportamento como errado, pede AnyDesk/telefone e registra número de chamado.",
+    "n_estimado": 62
+  },
+  {
+    "nome": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário",
+    "descricao": "Dúvida operacional pura sobre o dia a dia da oficina: como lançar peça digitada, fechar OS, dar entrada/correção de estoque, fracionar um tonel de óleo, trocar o comissionado, alterar cliente do orçamento, mudar a logo da impressão, criar usuário e liberar permissão, achar o checklist. O cliente descreve em linguagem solta ('me deu um branco do caminho', 'esqueci onde fica') e o atendente responde com passo a passo, print ou AnyDesk, e a rotina funciona ao final. A causa é desconhecimento do fluxo, não falha do produto.",
+    "fronteira": "Confunde-se com 'Cliente pede função que o sistema não tem e recebe não é possível'. Critério: se o atendente entrega um caminho e o cliente consegue executar, é dúvida de uso; se a resposta final for 'não tem a possibilidade' / 'não é possível' / 'só com chamado de melhoria', o item pertence ao tema de melhoria.",
+    "n_estimado": 58
+  },
+  {
+    "nome": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento",
+    "descricao": "O cliente executa uma rotina que deveria funcionar e o sistema falha em um ponto localizado: peça em estoque que não aparece para entrega, financeiro duplicando ao regerar, importação do Cilia falhando, CSV que não baixa, agrupamento de notas com erro de proxy, valor de venda que não salva, gestão de pátio que não redireciona, veículo que acusa placa duplicada inexistente. O atendente reproduz por AnyDesk, coleta nome/telefone/CNPJ e informa um número de chamado. O cliente costuma perguntar prazo em seguida.",
+    "fronteira": "Confunde-se com 'Sistema inteiro fora do ar, lento ou oscilando'. Critério: aqui a falha é de UMA função, OS ou registro, com mensagem específica, e é tratada com chamado individual; lá o atendente responde que é instabilidade geral, já conhecida, sem chamado por cliente.",
+    "n_estimado": 52
+  },
+  {
+    "nome": "Cliente não consegue configurar ou emitir o boleto bancário dos seus clientes",
+    "descricao": "Tudo que gira em torno do boleto que a oficina emite: pedir a configuração da conta/carteira, obter token ou API do banco (Itaú, Sicoob, Inter, Bradesco, Santander, BB), erro ao gerar ou baixar o PDF, número de documento com mais de 10 caracteres, CNPJ da conta diferente do recebimento, juros e alteração de vencimento. O cliente costuma abrir com 'estou com problema no boleto' e o atendente ou corrige o dado, ou depende do técnico responsável, ou pede dados ao gerente do banco.",
+    "fronteira": "Confunde-se com 'Acesso bloqueado por mensalidade ou dúvida de plano/contrato'. Critério: se o boleto é o que a oficina cobra do cliente dela, é este tema; se o boleto é a mensalidade da própria Ultracar (segunda via, acordo, desbloqueio), é o tema comercial/financeiro.",
+    "n_estimado": 28
+  },
+  {
+    "nome": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria",
+    "descricao": "O cliente propõe comportamento novo: excluir movimentações estornadas do fluxo de caixa, anexar fotos e vídeos na própria OS, cadastrar despesas fixas de uma vez, duplicar boleto na mesma folha, rateio de insumo por centro de custo, pagamento com entrada flexível, juntar três OS num único faturamento, relatório de tempo por status no pátio, mudar a regra de cálculo da margem. Nada está quebrado: a função nunca existiu do jeito pedido. A resposta é 'não tem a possibilidade', 'somente com chamado de melhoria' ou uma negativa argumentada ('o sistema não é só você que utiliza'), e o cliente às vezes reage com frustração.",
+    "fronteira": "Confunde-se com 'Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento'. Critério: leia o que o cliente afirma sobre o passado — se ele diz que a função existe/funcionava e agora falha, é defeito; se ele pede algo que nunca existiu ('tem como vocês colocarem', 'seria interessante', 'conseguem levar para os desenvolvedores'), é melhoria.",
+    "n_estimado": 24
+  },
+  {
+    "nome": "Cliente cobra prazo ou retorno de chamado já aberto",
+    "descricao": "A conversa começa citando um número de chamado ('retorno do chamado 103469?', 'abri na terça e gostaria de saber se tem retorno') e não traz sintoma novo. O cliente pressiona por prazo, diz que o trabalho está parado ou que já foi cobrado pelo gestor dele; o atendente consulta e responde 'em andamento', 'alta prioridade' ou 'sem previsão'. O contato é sobre a espera, não sobre o problema.",
+    "fronteira": "Confunde-se com 'Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento'. Critério: se o número do chamado já existe no início e o cliente só pede status, é este tema; se o chamado é ABERTO durante a conversa a partir de um sintoma descrito ali, é defeito.",
+    "n_estimado": 20
+  },
+  {
+    "nome": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato",
+    "descricao": "O sistema não abre para ninguém da oficina e o atendente descobre pendência financeira, empresa desativada ou limite de empresas do plano; ou o cliente pergunta valor de upgrade, desconto para segundo CNPJ, migração de CNPJ, reativação, segunda via e cancelamento. O suporte não resolve nada disso e repassa para o WhatsApp do financeiro (31 9 9796-9838), comercial ou CS. O cliente costuma insistir porque precisa trabalhar e não recebe retorno desses times.",
+    "fronteira": "Confunde-se com 'Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário', que também trata de login e permissão. Critério: se o bloqueio atinge a empresa toda e o atendente checa CNPJ e aponta pendência/plano, é este tema; se é um usuário só, com senha errada ou permissão faltando dentro do sistema, é dúvida de uso.",
+    "n_estimado": 22
+  },
+  {
+    "nome": "Sistema inteiro fora do ar, lento ou oscilando",
+    "descricao": "O cliente relata degradação ampla: 'o sistema está oscilando', 'demora para carregar as abas', 'a parte de compras não está funcionando', 'servidor não está disponível', abas fechando sozinhas, módulo de orçamento em branco. O atendente confirma instabilidade já conhecida, pede para fechar e reabrir o navegador, ou diz que a equipe já está tratando com prioridade; em alguns casos devolve para a internet do cliente. Não há chamado individual nem passo a passo.",
+    "fronteira": "Confunde-se com 'Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento'. Critério: procure o escopo declarado na transcrição — 'é geral?', 'todos os computadores', 'estamos com instabilidade nesse processo' indicam este tema; uma OS, uma peça ou uma nota específica com mensagem de erro indica defeito.",
+    "n_estimado": 15
+  },
+  {
+    "nome": "Cliente pede treinamento, call ou consultoria para aprender a usar o módulo",
+    "descricao": "O pedido não é uma resposta pontual e sim capacitação: 'tem algum curso?', 'queria uma vídeo chamada para transmitir a tela', 'preciso de alguém aqui na oficina', 'quero o link das salas de reciclagem', pós-venda para quem comprou e não foi treinado, ou treinamento dedicado para funcionária com baixa visão. O atendente manda o link das salas de reciclagem/SharePoint ou repassa para CS (Gizele, Claudiana, Sarah). O cliente admite que está perdido no sistema como um todo, normalmente em comissão, financeiro ou gestão de pátio.",
+    "fronteira": "Confunde-se com 'Cliente não acha o lançamento ou o relatório financeiro que precisa'. Critério: se a pergunta é respondível em uma mensagem e o cliente aceita o caminho, é dúvida de uso; se ele pede pessoa, call, agenda, curso ou visita, é treinamento — mesmo que o assunto de fundo seja financeiro.",
+    "n_estimado": 15
+  },
+  {
+    "nome": "Veículo, marca ou modelo não existe na base e o cliente pede o cadastro",
+    "descricao": "O cliente não consegue cadastrar a placa ou o veículo porque a consulta da integradora não retorna, retorna dado divergente (cor, modelo) ou o modelo simplesmente não existe — muito comum em implementos, semirreboques e tratores sem placa. Ele manda marca, modelo, ano e chassi e pede 'cadastra para mim'. O atendente cadastra na hora, orienta cadastro manual/placa fictícia, ou registra chamado na integradora com prazo de 3 a 24h.",
+    "fronteira": "Confunde-se com 'Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento'. Critério: se a causa é ausência do dado na base externa e a solução é cadastrar o modelo/placa, é este tema; se o veículo já existe e o sistema devolve mensagem indevida (ex.: acusa placa duplicada que não existe), é defeito.",
+    "n_estimado": 16
+  }
+]}

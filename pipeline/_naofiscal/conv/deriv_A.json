@@ -1,0 +1,70 @@
+{
+  "temas": [
+    {
+      "nome": "Chat sem assunto: só saudação, abandono ou resolvido por outro canal",
+      "descricao": "A transcrição não chega a expor problema nenhum. Ou fica só em 'bom dia / como posso ajudar', ou o cliente some e entra a mensagem automática de 'não tive seu retorno', ou ele volta dizendo 'já resolvi', 'consegui pelo telefone', 'liguei sem querer'. Também entram aqui as conversas compostas só de ruído operacional do canal: transferências entre atendentes, avisos de horário do suporte, chamada perdida, mensagem de bot da própria oficina. É o maior bloco do lote e mede quanto do chat não gera informação de produto.",
+      "fronteira": "Confunde-se com 'Cliente não sabe o caminho para executar a operação no sistema', porque muitas dessas conversas começam com 'preciso de uma ajuda'. Critério: se em algum ponto da transcrição aparece QUAL tela, relatório, peça, OS ou operação está em jogo, é o outro tema; se o assunto nunca é nomeado, é este.",
+      "n_estimado": 92
+    },
+    {
+      "nome": "Cliente não sabe o caminho para executar a operação no sistema",
+      "descricao": "O sistema funciona, mas o cliente não encontra o caminho: como lançar serviço de terceiro na OS, como corrigir estoque, como inativar peça, como trocar o comissionado, como criar usuário e definir permissões, onde fica o plano de contas, como alterar a logo da impressão. O atendente responde com o caminho de menu, um passo a passo ou um print, e o caso encerra na mesma conversa. Aparecem também os 'não é possível' pontuais, em que a resposta é que o comportamento é padrão do sistema.",
+      "fronteira": "Confunde-se com 'Operação trava com erro e o atendente abre chamado'. Critério: aqui o cliente descreve desconhecimento ('onde fica', 'como faço', 'me dá o passo a passo') e o atendente resolve ensinando; lá o cliente descreve uma mensagem de erro ou um resultado errado e o atendente precisa acessar, investigar ou registrar chamado.",
+      "n_estimado": 68
+    },
+    {
+      "nome": "Cliente não acha o relatório certo ou os números do relatório não batem",
+      "descricao": "O cliente quer extrair informação — comissão por mecânico, movimento de caixa, curva ABC, consolidado de estoque, contas a pagar, DRE, faturamento do mês — e ou não sabe qual relatório serve, ou puxa e o valor diverge do que ele espera. Tipicamente a divergência tem causa de preenchimento: comissão não aplicada na OS, OS ainda aberta, compra lançada só como despesa, filtro ou período errado. O atendente explica a regra de cálculo e o cliente frequentemente descobre que estava usando o relatório errado.",
+      "fronteira": "Confunde-se com 'Operação trava com erro e o atendente abre chamado' quando o relatório vem vazio ou torto. Critério: se o atendente consegue explicar o número pela regra do sistema ou pelo preenchimento do cliente, é este tema; se o relatório não gera, gera em branco sem causa, ou o atendente conclui que é erro sistêmico e abre chamado, é o outro.",
+      "n_estimado": 42
+    },
+    {
+      "nome": "Operação trava com erro e o atendente abre chamado",
+      "descricao": "O cliente tenta fazer algo rotineiro e o sistema barra: OS que não fecha, peça que não sai para entrega, valor da peça que não bate com o cadastro, financeiro gerado em duplicidade, importação do Cilia que falha, CSV que não baixa, veículo que acusa placa já cadastrada sem existir, login que recusa senha correta. É um defeito de comportamento, não de desconhecimento: o atendente pede AnyDesk, reproduz e termina abrindo chamado ou dizendo que já existe um. O cliente costuma cobrar prazo na mesma hora.",
+      "fronteira": "Confunde-se com 'Sistema fora do ar, módulo indisponível ou lentidão generalizada'. Critério: aqui o defeito é do caso do cliente (uma OS, uma peça, uma nota, um usuário) e o atendente investiga individualmente; lá o próprio atendente responde que é geral, que já é conhecido, que a equipe está tratando, sem investigar o caso específico.",
+      "n_estimado": 56
+    },
+    {
+      "nome": "Sistema fora do ar, módulo indisponível ou lentidão generalizada",
+      "descricao": "O cliente relata que não consegue trabalhar: tela em branco no orçamento, 'servidor não está disponível', abas fechando sozinhas, lançamento de compras parado, gestão de pátio inacessível, sistema lento ou oscilando. O atendente confirma instabilidade já conhecida, pede para fechar e abrir o navegador ou informa que a equipe está tratando com prioridade. O cliente pressiona por previsão porque a oficina fica parada.",
+      "fronteira": "Confunde-se com 'Operação trava com erro e o atendente abre chamado'. Critério: se a resposta do atendente é 'é geral / é instabilidade / já estamos tratando' sem abrir chamado para aquele cliente, é este tema; se ele acessa a máquina e abre um chamado com número para aquele caso, é o outro.",
+      "n_estimado": 20
+    },
+    {
+      "nome": "Cliente pede função que o sistema não tem",
+      "descricao": "Não há erro nenhum: o cliente quer um comportamento que o produto não oferece e pede que seja criado. Aparecem pedidos de coluna de grupo/subgrupo no CSV, inventário retroativo, agrupar várias OS num só recebimento, anexar fotos e vídeos na OS para o cliente acompanhar, rateio de insumo por centro de custo, condição de pagamento com valor flexível, cadastro de despesa fixa em lote, relatório de tempo por status no pátio. A resposta é 'não tem a possibilidade', 'somente com um chamado de melhoria', ou uma discussão sobre a regra de cálculo atual valer para todos os clientes.",
+      "fronteira": "Confunde-se com 'Operação trava com erro e o atendente abre chamado', porque os dois podem gerar número de chamado. Critério: se o sistema está fazendo o que foi projetado para fazer e o cliente quer que passe a fazer diferente, é melhoria (este tema); se o sistema deixou de fazer o que ele mesmo promete, é defeito.",
+      "n_estimado": 24
+    },
+    {
+      "nome": "Cliente não consegue configurar a integração bancária para emitir boleto",
+      "descricao": "Todo o ciclo de habilitar boleto no sistema: descobrir que precisa de token, carteira registrada ou chave de API do banco (Itaú, Inter, Sicoob, Bradesco, Santander, Banco do Brasil), passar as credenciais ao suporte, aguardar o técnico responsável, testar a remessa. O cliente quase sempre não sabe o que pedir ao gerente e o suporte depende de um analista específico ou do portal do banco, o que arrasta o atendimento por dias. Inclui também dúvidas de configuração dependentes disso, como juros do boleto e CNPJ da conta divergente.",
+      "fronteira": "Confunde-se com 'Operação trava com erro e o atendente abre chamado' quando o boleto dá erro na geração. Critério: se a conta/banco ainda não está configurado, ou a conversa gira em torno de token, chave, portal do banco e agendamento com o técnico, é este tema; se a integração já funcionava e passou a falhar (PDF não baixa, boleto rejeitado), é defeito.",
+      "n_estimado": 22
+    },
+    {
+      "nome": "Acesso bloqueado por pendência financeira ou pedido comercial de plano",
+      "descricao": "O cliente não entra no sistema, ou entra e está limitado, e a causa é contratual: mensalidade em aberto, CNPJ desativado, limite de empresas do plano atingido, plano que não contempla boleto. Entram também os pedidos de upgrade, desconto, segunda via, mudança de CNPJ, reativação e cancelamento. O suporte não tem acesso a essas informações e roteia para o Financeiro, o Comercial ou o CS — o cliente costuma reclamar de não conseguir resposta lá.",
+      "fronteira": "Confunde-se com 'Sistema fora do ar' e com defeito de login, porque o sintoma inicial é idêntico ('não estou conseguindo acessar'). Critério: se o atendente consulta o CNPJ e responde que há bloqueio, pendência ou limitação de plano, é este tema; se ele testa o login, acessa por AnyDesk ou fala em instabilidade, não é.",
+      "n_estimado": 23
+    },
+    {
+      "nome": "Cliente cobra prazo de chamado já aberto",
+      "descricao": "A conversa nasce de um chamado anterior: o cliente traz o número e quer saber se saiu, ou cobra porque já passou dias e o trabalho está travado. O atendente consulta e devolve 'em andamento', 'sem previsão', 'alta prioridade', 'estamos cobrando a integradora'. É uma conversa de expectativa e não de diagnóstico — o problema técnico em si já foi descrito em outro atendimento.",
+      "fronteira": "Confunde-se com 'Operação trava com erro e o atendente abre chamado'. Critério: se o número do chamado já existe no início da conversa e o pedido é status/prazo, é este tema; se o chamado é aberto durante a conversa, o caso pertence ao tema de defeito, mesmo que o cliente pergunte a previsão no final.",
+      "n_estimado": 18
+    },
+    {
+      "nome": "Veículo, marca ou modelo não existe na base e o cliente pede o cadastro",
+      "descricao": "O cliente não consegue abrir a OS porque a placa não retorna dados, o modelo não está na lista (implementos, semirreboques, tratores, veículo 0km, placa Mercosul), ou os dados vêm errados da integradora de veículos. Ele passa marca, modelo e ano no chat e pede que o suporte cadastre. O suporte cadastra manualmente, orienta o cadastro manual do veículo, ou abre chamado com a integradora com prazo de horas.",
+      "fronteira": "Confunde-se com 'Operação trava com erro e o atendente abre chamado', pois o cliente também não consegue seguir. Critério: se a falta é de DADO na base de veículos e a solução é cadastrar/pedir à integradora, é este tema; se o sistema recusa um veículo que já existe ou exibe mensagem de erro sistêmico, é defeito.",
+      "n_estimado": 12
+    },
+    {
+      "nome": "Cliente pede treinamento, call ou acompanhamento para aprender o sistema",
+      "descricao": "O pedido não é sobre uma tela, é sobre competência: o cliente diz que está perdido, que comprou e não aprendeu, que a funcionária que sabia saiu, que precisa entender comissão ou DRE por inteiro, e pede sala de reciclagem, vídeo, curso inicial, videochamada ou visita presencial. O atendente encaminha o link das salas, o material gravado, ou escala para CS/gestor. Alguns são pós-venda insatisfeito, pedindo consultoria antes de pensar em cancelar.",
+      "fronteira": "Confunde-se com 'Cliente não sabe o caminho para executar a operação no sistema'. Critério: se existe uma dúvida pontual que o atendente responde no próprio chat, é o outro tema; se o cliente pede formato de aprendizado (treinamento, call, curso, visita) ou o atendente encaminha para sala/CS em vez de responder, é este.",
+      "n_estimado": 23
+    }
+  ]
+}

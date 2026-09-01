@@ -43,3 +43,11 @@ pipeline/_auditoria/reclass/
 pipeline/_auditoria/respostas/
 pipeline/_auditoria/respostas_v1_viciada/
 pipeline/_auditoria/prompts/
+
+# Lotes e respostas da classificação não-fiscal (regeráveis, ~30 MB)
+pipeline/_naofiscal/*/lote_*.json
+pipeline/_naofiscal/*/resp_*.json
+pipeline/_naofiscal/*/amostra.json
+pipeline/_naofiscal/lote_*.json
+pipeline/_naofiscal/resp_*.json
+pipeline/_naofiscal/amostra.json
