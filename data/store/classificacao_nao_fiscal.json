@@ -3223,5 +3223,565 @@
   "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
   "fonte": "llm",
   "em": "2026-08-08"
+ },
+ "105389": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105391": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105395": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105431": {
+  "tema": "Pedido de intervenção manual do suporte na base do cliente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105437": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105441": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105443": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105449": {
+  "tema": "Pedido de intervenção manual do suporte na base do cliente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105473": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105475": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105477": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105487": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105489": {
+  "tema": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105491": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105499": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105503": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105505": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105511": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105513": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105515": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105523": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105531": {
+  "tema": "Consulta e importação de dados externos (placa, Cilia, Fraga, OFX) falha ou traz dado divergente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105535": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105545": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105561": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105567": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105579": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105581": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105597": {
+  "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105601": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105603": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105607": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105613": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105617": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105621": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105629": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105631": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105633": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105635": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105637": {
+  "tema": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105641": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105651": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105657": {
+  "tema": "Pedido de intervenção manual do suporte na base do cliente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105661": {
+  "tema": "Pedido de intervenção manual do suporte na base do cliente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105663": {
+  "tema": "Pedido de intervenção manual do suporte na base do cliente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105673": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105675": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105679": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105681": {
+  "tema": "Permissão configurada não é respeitada e acesso do usuário se perde",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105687": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105693": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105697": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105703": {
+  "tema": "Gestão de Pátio não abre ou não reflete o que está na OS",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105713": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105715": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105721": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105727": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105743": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105751": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105753": {
+  "tema": "Consulta e importação de dados externos (placa, Cilia, Fraga, OFX) falha ou traz dado divergente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105755": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105759": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105761": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105763": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105765": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105775": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105797": {
+  "tema": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105819": {
+  "tema": "Permissão configurada não é respeitada e acesso do usuário se perde",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105831": {
+  "tema": "Permissão configurada não é respeitada e acesso do usuário se perde",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105837": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105845": {
+  "tema": "Consulta e importação de dados externos (placa, Cilia, Fraga, OFX) falha ou traz dado divergente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105851": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105853": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105857": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105861": {
+  "tema": "Saldo de estoque diverge: entrada duplicada, saída inexistente, item some da busca",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105863": {
+  "tema": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105865": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105871": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105879": {
+  "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105881": {
+  "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105887": {
+  "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105891": {
+  "tema": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105905": {
+  "tema": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105907": {
+  "tema": "Saldo de estoque diverge: entrada duplicada, saída inexistente, item some da busca",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105917": {
+  "tema": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105919": {
+  "tema": "Pedido de intervenção manual do suporte na base do cliente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105923": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105929": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105931": {
+  "tema": "Pedido de intervenção manual do suporte na base do cliente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105935": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105951": {
+  "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105959": {
+  "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105961": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105963": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105967": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105977": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105979": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105981": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105987": {
+  "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105989": {
+  "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "105991": {
+  "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106001": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106003": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106011": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106013": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106017": {
+  "tema": "Pedido de intervenção manual do suporte na base do cliente",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106023": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106025": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106027": {
+  "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106031": {
+  "tema": "Outro / não se encaixa",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106035": {
+  "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+  "fonte": "llm",
+  "em": "2026-08-31"
+ },
+ "106037": {
+  "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado",
+  "fonte": "llm",
+  "em": "2026-08-31"
  }
 }

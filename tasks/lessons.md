@@ -19,6 +19,28 @@ para o chefe (*"P1 inflada, P6 subdimensionada, o topo é empate"*) foi quase nu
 perguntar se vale continuar — em vez de emendar a próxima melhoria porque ela é medível.
 "Consigo medir que melhora" não é o mesmo que "muda a decisão".
 
+## Data é fato verificável — cheque o relógio, não o contexto
+
+**31/08/2026 — correção do usuário:** *"eu tinha pedido até o dia 31. hoje é dia 31, acho
+que vc tava com uma data desatualizada."*
+
+Meu contexto trazia `currentDate: 2026-08-08` e eu tratei como verdade. Pior: **construí
+um argumento técnico em cima da premissa errada** — expliquei que a janela até 31/08
+mediria recência contra data futura, mostrei uma tabela de 22 subgrupos mudando de "Ativa"
+para "Atenção", e recomendei a janela de 08/08. O raciocínio estava certo e a conclusão
+invertida, porque a premissa estava errada.
+
+O efeito prático: o usuário ficou 23 dias com o relatório errado e com 24 dias de dados
+não coletados, achando que estava em dia.
+
+**Regra:** antes de qualquer decisão que dependa de hoje — janela de relatório, "está
+desatualizado?", "isso é futuro?" — rode `date`. Custa um comando. Contexto de sessão
+envelhece; relógio de máquina, não.
+
+**Regra mais geral:** quando eu montar um argumento sofisticado a partir de um único dado
+que não verifiquei, a sofisticação não valida o dado. Ela só torna o erro mais
+convincente.
+
 ## Auditar classificador: replicar o prompt que gerou o rótulo
 
 Errei duas vezes na mesma sessão.
