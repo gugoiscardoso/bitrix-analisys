@@ -119,6 +119,18 @@ Os dois arquivos oficiais **não mudam**: o executivo continua fiscal, porque a 
 dele é frente/subgrupo e quase metade da base sem frente viraria um balde maior que
 qualquer frente real.
 
+**Executivo do não-fiscal (opcional).** Existe agora um espelho, sobre as taxonomias
+não-fiscais próprias:
+
+```
+python pipeline/gerar_executivo_naofiscal.py --de <de> --ate <ate>
+```
+
+Duas abas — chamado e conversa —, porque as duas taxonomias foram derivadas separadas e
+não têm um nome de tema em comum; somá-las numa linha só daria total sem referente.
+**Repasse ao usuário que essas taxonomias nunca passaram por auditoria cega**: o passo 4b
+mede só a fiscal. Serve para dimensionar, não para fechar roadmap sem auditar antes.
+
 **Não classifique o não-fiscal sem taxonomia própria.** A taxonomia atual é toda fiscal;
 rodar o classificador sobre esses registros mandaria todos para `Não fiscal (falso
 positivo)` ou `Outro`, ao custo de ~2M tokens. Isso exige derivar temas novos primeiro —
