@@ -30090,7 +30090,7 @@
   "em": "2026-08-08"
  },
  "267921": {
-  "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário",
+  "tema": "Cliente não acha o relatório certo ou os números do relatório não batem",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30165,7 +30165,7 @@
   "em": "2026-08-08"
  },
  "268011": {
-  "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário",
+  "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30200,7 +30200,7 @@
   "em": "2026-08-08"
  },
  "268043": {
-  "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate",
+  "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30305,7 +30305,7 @@
   "em": "2026-08-08"
  },
  "268111": {
-  "tema": "Cliente não acha o relatório certo ou os números do relatório não batem",
+  "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30320,7 +30320,7 @@
   "em": "2026-08-08"
  },
  "268127": {
-  "tema": "Cliente não acha o relatório certo ou os números do relatório não batem",
+  "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30360,7 +30360,7 @@
   "em": "2026-08-08"
  },
  "268165": {
-  "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário",
+  "tema": "Cliente não acha o relatório certo ou os números do relatório não batem",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30405,7 +30405,7 @@
   "em": "2026-08-08"
  },
  "268231": {
-  "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate",
+  "tema": "Cliente não acha o relatório certo ou os números do relatório não batem",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30415,7 +30415,7 @@
   "em": "2026-08-08"
  },
  "268253": {
-  "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento",
+  "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30610,7 +30610,7 @@
   "em": "2026-08-08"
  },
  "268425": {
-  "tema": "Cliente cobra prazo ou retorno de chamado já aberto",
+  "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30725,7 +30725,7 @@
   "em": "2026-08-08"
  },
  "268521": {
-  "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)",
+  "tema": "Cliente não acha o relatório certo ou os números do relatório não batem",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30805,7 +30805,7 @@
   "em": "2026-08-08"
  },
  "268577": {
-  "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)",
+  "tema": "Outro / não se encaixa",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -30965,7 +30965,7 @@
   "em": "2026-08-08"
  },
  "268711": {
-  "tema": "Cliente cobra prazo ou retorno de chamado já aberto",
+  "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -31015,7 +31015,7 @@
   "em": "2026-08-08"
  },
  "268757": {
-  "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento",
+  "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -31060,7 +31060,7 @@
   "em": "2026-08-08"
  },
  "268801": {
-  "tema": "Cliente cobra prazo ou retorno de chamado já aberto",
+  "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato",
   "fonte": "llm",
   "em": "2026-08-08"
  },
@@ -31165,7 +31165,7 @@
   "em": "2026-08-08"
  },
  "268873": {
-  "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário",
+  "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria",
   "fonte": "llm",
   "em": "2026-08-08"
  },
