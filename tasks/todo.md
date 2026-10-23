@@ -197,6 +197,40 @@ ao fluxo fiscal:
 - A taxonomia nasce congelada e versionada em `data/store/taxonomia_v3.json`, como as outras.
   Alterar exige bump de versão.
 
+### Onde a fase 3 está (atualizado automaticamente ao rodar este bloco)
+
+Coleta **completa**: 3.592 chamados e 42.755 conversas, janeiro a outubro, sem buraco.
+Chamados de abril fechados em 230, batendo com a API.
+
+Classificação, etapa 1 de 2 (assunto):
+
+- lotes: 68 | com resposta: 52 | sem resposta: 16
+- rótulos gravados em `_fila/`: 12828 de 16.580
+- faltando: conversa_47, conversa_50, conversa_51, conversa_52, conversa_53, conversa_54, conversa_55, conversa_56, conversa_57, conversa_58, conversa_59, conversa_60, conversa_61, conversa_62, conversa_63, conversa_64
+
+Nada disso está no cache ainda — `_fila/` guarda as respostas até alguém rodar `absorver`.
+Ao retomar, seguir a seção 3b do SKILL.md: **absorver antes de preparar**.
+
+Decisões de classificação tomadas durante a etapa 1, que valem para a auditoria depois:
+
+1. Erro explícito → "Rejeição/erro de validação", salvo quando o suporte atribui à
+   prefeitura → "Particularidade municipal de NFS-e". Quando o erro nomeia categoria mais
+   específica (certificado, numeração), vale a específica.
+2. "Não consigo emitir nota" sem erro, cidade ou diagnóstico, sem avanço → "Conversa vazia".
+3. SPED e SINTEGRA → "Cadastro/config fiscal". Os ~38 registros que citam SINTEGRA e foram
+   rotulados antes deste critério estão espalhados entre duas frentes — candidatos à
+   auditoria, não necessariamente erros (o grep acha menção, não assunto).
+4. Devolução/garantia COM erro citado → rejeição; sem erro citado → devolução.
+
+Achados que valem para a leitura do relatório, a confirmar quando a base fechar:
+
+- Onda da Reforma Tributária: E160/IBPT, NBS, IBS/CBS e prefeituras migrando para o
+  ambiente nacional dominam a virada de janeiro.
+- "Conversa vazia" acumulada em ~13,5%, com lotes isolados em 40%+ na janela de pico.
+  Cruzar vazia × mês antes de concluir qualquer coisa.
+- Um dia de instabilidade geral concentrou 68 conversas num lote só. Isolar a data e
+  reportar como evento, não diluído na frente.
+
 ### Entregáveis
 
 Hoje `report/` tem cinco arquivos porque a rodada não fiscal de 31/08 somou três ao
