@@ -21,6 +21,9 @@ from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sanitizar import mascarar_credenciais
+
 RAIZ = Path(__file__).resolve().parent.parent
 STORE = RAIZ / "data" / "store"
 REPORT = RAIZ / "report"
@@ -110,7 +113,7 @@ def main():
                    dias(r.get("inicio_dev"), r.get("alterado_em")),
                    (r.get("fechado_em") or "")[:10],
                    r.get("cliente", ""), r.get("cnpj", ""),
-                   (r.get("titulo") or "")[:300]])
+                   mascarar_credenciais(r.get("titulo") or "")[:300]])
         ws.cell(row=ws.max_row, column=4).fill = FIS if escopo == "Fiscal" else NAO
         ws.cell(row=ws.max_row, column=4).font = Font(color="FFFFFF", bold=True)
 

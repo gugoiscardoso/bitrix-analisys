@@ -28,6 +28,9 @@ from openpyxl.formatting.rule import DataBarRule
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sanitizar import mascarar_credenciais
+
 RAIZ = Path(__file__).resolve().parent.parent
 STORE = RAIZ / "data" / "store"
 REPORT = RAIZ / "report"
@@ -306,7 +309,7 @@ def base_unificada(regs: list[dict], de: str, ate: str, saida: Path):
             r.get("duracao_min", "") if not ch else "",
             r.get("mensagens", "") if not ch else "",
             r.get("operador", "") if not ch else "",
-            (r.get("titulo") or r.get("texto", ""))[:900],
+            mascarar_credenciais(r.get("titulo") or r.get("texto", ""))[:900],
         ])
     larg = {"Tipo": 10, "Id": 10, "Data": 11, "Mes": 9, "Canal": 15,
             "Fiscal": 8, "Categoria": 16, "Frente": 10,
