@@ -95,6 +95,34 @@ falhar, relance só ele e rode `absorver` de novo. O estado da rodada fica em `_
 Registros de frente de tema único (P9–P13) e os casos especiais (`Não fiscal`,
 `Conversa vazia`) **pulam a etapa 2** automaticamente — ali o subgrupo é o próprio tema.
 
+### 3b. Retomar numa sessão nova
+
+Uma janela grande não cabe numa sessão só. O que é durável e o que não é:
+
+| | Onde | Sobrevive à sessão? |
+|---|---|---|
+| Rótulos já absorvidos | `data/store/classificacao.json` | Sim — está no git |
+| Lotes e respostas em voo | `data/store/_fila/` | Só no disco local, e está no `.gitignore` |
+
+**A ordem na retomada importa.** Comece sempre por:
+
+```
+python pipeline/classificar.py status --de <de> --ate <ate>
+```
+
+Depois, **se houver `resp_lote_*.json` em `_fila/`, rode `absorver` antes de qualquer
+coisa.** `preparar` apaga a fila inteira, respostas incluídas. Desde 23/10/2026 ele se
+recusa a rodar nesse estado e manda absorver primeiro; `--forcar` existe para o caso de a
+fila ser lixo de uma execução abandonada, e aí o descarte é escolha explícita.
+
+**Absorva só com todos os lotes da etapa respondidos.** `absorver` limpa os `lote_*.json`
+sem olhar se cada um tinha resposta, e avança de etapa. Lote sem resposta não perde o
+registro — ele volta como pendência no próximo `preparar` —, mas custa um ciclo inteiro a
+mais. Se faltar lote, relance só ele antes de absorver.
+
+Nada disso exige recoletar: a coleta já está em `data/raw/`, e `consolidar_store.py`
+reconstrói a base a partir dela quantas vezes for preciso.
+
 ### 4. Gerar a saída
 
 ```

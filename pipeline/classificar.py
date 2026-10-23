@@ -234,7 +234,20 @@ def montar_prompt_subgrupo(tax: dict, frente: str) -> str:
 
 # ─────────────────────── preparar ───────────────────────
 
-def preparar(de: str, ate: str) -> int:
+def preparar(de: str, ate: str, forcar: bool = False) -> int:
+    # preparar APAGA a fila inteira logo abaixo. Se houver resposta ainda não absorvida,
+    # isso joga fora trabalho de classificação já feito — o caso mais provável quando se
+    # retoma numa sessão nova e se começa pelo comando errado. Absorver primeiro.
+    pendente = sorted(FILA.glob("resp_lote_*.json")) if FILA.exists() else []
+    if pendente and not forcar:
+        print(f"RECUSADO: {len(pendente)} resposta(s) em _fila/ ainda não absorvida(s).")
+        for f in pendente[:5]:
+            print("   ", f.name)
+        print()
+        print("Rode `absorver` antes - preparar apaga a fila inteira.")
+        print("Se essas respostas forem lixo de uma execução abandonada: preparar --forcar")
+        return 1
+
     tax = enriquecer_taxonomia()
     cache = ler(STORE / "classificacao.json")
     if cache.get("taxonomia_versao") != tax["versao"]:
@@ -467,12 +480,14 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("preparar"); p.add_argument("--de", required=True); p.add_argument("--ate")
+    p.add_argument("--forcar", action="store_true",
+                   help="apaga respostas não absorvidas em _fila/ em vez de recusar")
     sub.add_parser("absorver")
     s = sub.add_parser("status"); s.add_argument("--de"); s.add_argument("--ate")
     a = ap.parse_args()
     hoje = date.today().isoformat()
     if a.cmd == "preparar":
-        return preparar(a.de, a.ate or hoje)
+        return preparar(a.de, a.ate or hoje, a.forcar)
     if a.cmd == "absorver":
         return absorver()
     return status(a.de, a.ate)
