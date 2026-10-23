@@ -22,6 +22,14 @@ public class TaskData
 
     [JsonPropertyName("results")]
     public List<JsonElement> Results { get; set; } = [];
+
+    /// <summary>
+    /// Tags do chamado. É o que marca a V3 (<c>novaversao</c>), e o único endpoint que
+    /// devolve é o legado <c>task.item.getdata</c>: nem tasks.task.list nem tasks.task.get
+    /// expõem TAGS, mesmo pedindo no select.
+    /// </summary>
+    [JsonPropertyName("tags")]
+    public List<string> Tags { get; set; } = [];
 }
 
 public class ExportRoot

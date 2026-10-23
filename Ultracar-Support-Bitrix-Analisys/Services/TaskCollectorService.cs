@@ -7,7 +7,7 @@ public class TaskCollectorService
 {
     private readonly BitrixApiClient _apiClient;
     private readonly BitrixBatchService _batchService;
-    private const int TasksPerBatch = 8; // 8 * 6 endpoints = 48 commands (limit is 50)
+    private const int TasksPerBatch = 7; // 7 * 7 endpoints = 49 commands (limit is 50)
 
     public TaskCollectorService(BitrixApiClient apiClient, BitrixBatchService batchService)
     {
@@ -123,6 +123,8 @@ public class TaskCollectorService
             commands[$"checklist_{id}"] = $"task.checklistitem.getlist?TASKID={id}";
             commands[$"elapsed_{id}"] = $"task.elapseditem.getlist?TASKID={id}";
             commands[$"results_{id}"] = $"tasks.task.result.list?taskId={id}";
+            // Endpoint legado, e o único que devolve TAGS — é a marca da V3.
+            commands[$"legacy_{id}"] = $"task.item.getdata?TASKID={id}";
         }
 
         return commands;
@@ -168,7 +170,35 @@ public class TaskCollectorService
         if (results.TryGetValue($"results_{taskId}", out var taskResults))
             taskData.Results = ExtractArray(taskResults);
 
+        // Tags — só existem na resposta do endpoint legado
+        if (results.TryGetValue($"legacy_{taskId}", out var legacy))
+            taskData.Tags = ExtractTags(legacy);
+
         return taskData;
+    }
+
+    /// <summary>
+    /// TAGS vem como array de strings, mas o Bitrix às vezes devolve objeto indexado
+    /// ({"0":"tag"}) quando a lista é esparsa. Os dois casos caem aqui.
+    /// </summary>
+    private static List<string> ExtractTags(JsonElement legacy)
+    {
+        if (legacy.ValueKind != JsonValueKind.Object ||
+            !legacy.TryGetProperty("TAGS", out var tags))
+            return [];
+
+        return tags.ValueKind switch
+        {
+            JsonValueKind.Array => tags.EnumerateArray()
+                .Where(t => t.ValueKind == JsonValueKind.String)
+                .Select(t => t.GetString()!)
+                .ToList(),
+            JsonValueKind.Object => tags.EnumerateObject()
+                .Where(p => p.Value.ValueKind == JsonValueKind.String)
+                .Select(p => p.Value.GetString()!)
+                .ToList(),
+            _ => []
+        };
     }
 
     private static List<JsonElement> ExtractArray(JsonElement element)

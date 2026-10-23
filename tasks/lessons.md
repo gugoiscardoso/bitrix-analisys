@@ -41,6 +41,39 @@ envelhece; relógio de máquina, não.
 que não verifiquei, a sofisticação não valida o dado. Ela só torna o erro mais
 convincente.
 
+## Volume pequeno muda como classificar, não se classifica
+
+**23/10/2026 — correção do usuário:** *"ainda assim queremos classificar os chamados da V3.
+Pq 69 pra uma pessoa analisar já é muito."*
+
+Propus, para os registros da V3, "listar e agrupar à mão" em vez de rodar o classificador,
+porque eram poucos. Ele leu como "o entregável vem cru" — e a leitura estava certa, porque
+foi isso que eu escrevi. O que eu queria dizer era que a *taxonomia* sairia da leitura em
+vez de vir da fiscal, e que não precisaria da fila de lotes. Duas coisas diferentes
+embrulhadas numa frase só.
+
+Pior: "poucos registros" é a minha régua, não a dele. 54 linhas é pouco para quem vai
+processá-las com script e é muito para quem vai abrir a planilha e tentar enxergar padrão.
+O número que importa é o do leitor.
+
+**Regra:** o entregável chega sempre classificado e agrupado. O volume decide de onde vem a
+taxonomia e por qual máquina ela roda — nunca se existe rótulo. E ao propor "mais simples",
+dizer o que *sai*, não só o que entra.
+
+## Número que mudou de regra tem de ser recontado
+
+**23/10/2026, na mesma conversa:** disse "~44 conversas V3" por três mensagens seguidas.
+Esse número era 20 da linha 17 + 24 com vínculo de chat — mas eu já tinha decidido, com
+argumento e tudo, **descartar** o vínculo de chat por reetiquetar conversa antiga. Pela regra
+que eu mesmo fechei são 20 + 9 transferidas = **29**. Carreguei o número velho para dentro do
+plano e do arquivo de entregáveis.
+
+É o mesmo defeito do "número derivado, nunca cravado à mão", numa variante mais traiçoeira:
+o número não estava cravado no código, estava cravado **na minha própria mensagem anterior**.
+
+**Regra:** quando a regra de contagem muda, recontar na hora e corrigir onde o número velho
+já foi escrito. Repetir um número de uma mensagem anterior é cravá-lo à mão.
+
 ## Auditar classificador: replicar o prompt que gerou o rótulo
 
 Errei duas vezes na mesma sessão.

@@ -233,6 +233,72 @@ def montar_digests(msgs: pd.DataFrame) -> dict[int, str]:
     return out
 
 
+# ─────────────────────────── versão do sistema (V2 / V3) ───────────────────────────
+#
+# Levantado em 23/10/2026 contra a API. Chamado e conversa têm marcas diferentes:
+#
+#   chamado  — tag `novaversao` (só o endpoint legado task.item.getdata devolve TAGS),
+#              as três colunas de rollout criadas em set/out, o prefixo de título e a
+#              URL do sistema3. A coluna 3357 "Nova Versão" NÃO entra: existe desde
+#              fevereiro e guarda melhoria de V2 destinada à próxima release.
+#   conversa — a linha do canal aberto. 17 é "Atendimento V3 Ultracar", o /online/suportev3.
+#
+# `V3-backlog` é o chamado que só tem a tag: melhoria pedida por cliente de V2 que será
+# entregue na nova versão. Conta como V2 nos números, mas mantém marca própria.
+
+TAG_V3 = "novaversao"
+STAGES_ROLLOUT_V3 = {"3441", "3443", "3483"}
+TITULO_V3_RE = re.compile(r"\[\s*nova\s+vers[ãa]o[^\]]*\]|\bv3\b|\[\s*v\s*\.?\s*3\s*\]", re.I)
+URL_V3_RE = re.compile(r"sistema3\.ultracar", re.I)
+
+LINHA_V3 = "17"
+NOME_LINHA_V3 = "atendimento v3 ultracar"
+# O Bitrix escreve o redirecionamento no idioma do operador, daí as duas formas.
+REDIRECT_RE = re.compile(r'(?:para a fila|to queue)\s*"([^"]{3,80})"', re.I)
+
+
+def versao_chamado(titulo: str, desc: str, tags, stage) -> str:
+    explicito = (str(stage) in STAGES_ROLLOUT_V3
+                 or bool(TITULO_V3_RE.search(titulo))
+                 or bool(URL_V3_RE.search(desc)))
+    if explicito:
+        return "V3"
+    tem_tag = any(str(t).strip().lstrip("#").lower() == TAG_V3 for t in (tags or []))
+    return "V3-backlog" if tem_tag else "V2"
+
+
+def versao_conversa(linha, redirecionamentos) -> str:
+    """A linha de entrada decide, salvo redirecionamento — e aí vale o último.
+
+    Existe um terceiro sinal, `entity_data_1[7]`, que é a linha a que o CHAT do cliente
+    está vinculado hoje. Fica de fora de propósito: ele reetiqueta sessão antiga quando
+    o cliente migra, e isso quebraria a série temporal.
+    """
+    if redirecionamentos:
+        return "V3" if redirecionamentos[-1].strip().lower() == NOME_LINHA_V3 else "V2"
+    return "V3" if str(linha).strip() == LINHA_V3 else "V2"
+
+
+def montar_redirecionamentos(msgs: pd.DataFrame) -> dict[int, list[str]]:
+    """Fila de destino de cada redirecionamento, em ordem, por sessão.
+
+    Lê as mensagens cruas, não o digest: o digest corta boilerplate e para em 25 linhas,
+    e a mensagem de sistema do redirecionamento cai justamente nesses dois filtros.
+    """
+    out: dict[int, list[str]] = {}
+    texto = msgs["TextContent"].astype(str)
+    candidatas = msgs[texto.str.contains("para a fila|to queue", case=False, na=False)]
+    for sid, g in candidatas.groupby("SessionId"):
+        destinos = []
+        for t in g.sort_values("Timestamp")["TextContent"]:
+            m = REDIRECT_RE.search(limpar(t))
+            if m:
+                destinos.append(m.group(1))
+        if destinos:
+            out[int(sid)] = destinos
+    return out
+
+
 # ─────────────────────────── base + cache ───────────────────────────
 
 CNPJ_RE = re.compile(r"\b(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})\b")
@@ -309,8 +375,9 @@ def main() -> int:
     por_id = {}
     fontes = arquivos("bitrix_export_*.json")
     for arq in fontes:                       # ordem cronológica: o mais novo sobrescreve
-        for t in ler_json(arq)["tasks"]:
-            por_id[t["task"]["id"]] = t["task"]
+        for td in ler_json(arq)["tasks"]:
+            # guarda o envelope inteiro, não só td["task"]: as tags vêm ao lado dele
+            por_id[td["task"]["id"]] = td
     tarefas = list(por_id.values())
     print(f"chamados            {len(tarefas)} mesclados de {len(fontes)} export(s): "
           + ", ".join(a.name.replace('bitrix_export_139_', '') for a in fontes))
@@ -318,8 +385,12 @@ def main() -> int:
     registros = []
     cache = {"chamados": dict(cache_existente.get("chamados", {})),
              "conversas": dict(cache_existente.get("conversas", {}))}
-    for t in tarefas:
+    for td in tarefas:
+        t = td["task"]
         tid = t["id"]
+        # Export anterior a 23/10/2026 não tem tags — e não precisa: todo chamado
+        # anterior a setembro é V2 de qualquer jeito.
+        tags_t = td.get("tags") or []
         titulo = t.get("title") or ""
         desc = re.sub(r"\[/?[A-Za-z][^\]]*\]", "", t.get("description") or "").strip()
         # O filtro de chamado era CIRCULAR: `tid in tema_chamado` significa apenas
@@ -337,6 +408,9 @@ def main() -> int:
             "canal": "Matrix (bot)" if re.search(r"\[matrix", titulo, re.I) else "Analista",
             "cliente": extrair_cliente(titulo), "cnpj": extrair_cnpj(titulo),
             "fiscal": fiscal,
+            "versao": versao_chamado(titulo, desc, tags_t, t.get("stageId")),
+            "tags": tags_t,
+            "stage": t.get("stageId"),
             "titulo": re.sub(r"\s+", " ", titulo)[:500],
             "texto": desc[:4000],
         })
@@ -368,6 +442,7 @@ def main() -> int:
     msgs = pd.concat(partes_msg, ignore_index=True).drop_duplicates()
     print(f"conversas           {len(conv)} mescladas de {len(fontes_conv)} export(s)")
     digests = montar_digests(msgs)
+    redirects = montar_redirecionamentos(msgs)
 
     n_fiscal = 0
     for _, r in conv.iterrows():
@@ -383,6 +458,8 @@ def main() -> int:
             "status": "", "canal": r.get("Channel") or "",
             "cliente": r.get("CustomerName") or "", "cnpj": "",
             "fiscal": fiscal,
+            "versao": versao_conversa(r.get("LineId"), redirects.get(sid)),
+            "linha": str(r.get("LineId") or ""),
             "duracao_min": int(r.get("DurationMinutes") or 0),
             "mensagens": int(r.get("TotalMessages") or 0),
             "operador": r.get("OperatorName") or "",
