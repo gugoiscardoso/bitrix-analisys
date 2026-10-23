@@ -231,6 +231,31 @@ Achados que valem para a leitura do relatório, a confirmar quando a base fechar
 - Um dia de instabilidade geral concentrou 68 conversas num lote só. Isolar a data e
   reportar como evento, não diluído na frente.
 
+### Etapa 2 (subgrupo) — onde parou
+
+- lotes: 59 | com resposta: 38 | sem resposta: 21
+- rótulos de subgrupo em `_fila/`: 9109
+- faltando: P10_1, P10_2, P10_3, P10_4, P11_1, P11_2, P12_1, P12_2, P13_1, P13_2, P2_1, P2_2, P2_3, P2_4, P2_5, P3_1, P3_2, P4_1, P4_2, P5_1, P7_5
+
+Etapa 1 já está absorvida e commitada (aa520ce): 26.224 registros com tema.
+A etapa 2 ainda NÃO foi absorvida — as respostas estão em `_fila/`, que é local e
+gitignored. Ao retomar: seção 3b do SKILL.md, **absorver antes de preparar**.
+
+Achados da etapa 2 estão em pendencias_auditoria.md (scratchpad da sessão). Os
+principais, para não se perderem:
+1. Certificado digital espalhado em 4 subgrupos de P6 com a mesma causa raiz — precisa
+   ser selecionado em DOIS lugares, e a mensagem de erro não distingue isso de
+   vencimento. Dois subagentes independentes acharam. É correção de produto pontual.
+2. São três instabilidades distintas (plataforma Ultracar, webservice municipal, SEFIN
+   Nacional) e só a municipal tem subgrupo. As outras duas estão sendo contadas como
+   municipal ou como "falta de visibilidade".
+3. Fronteira faltando entre P8 e P6: registro de migração para o Portal Nacional que
+   chega por P8 fica preso em "Configuração fiscal inicial".
+4. ~50 registros de municípios NUNCA homologados, com lista de cidades — vira backlog
+   de homologação nominal.
+5. Cluster "Data de Saída menor que a Data de Emissão" em P1 e P7, sem subgrupo, com
+   workaround que só o suporte conhece.
+
 ### Entregáveis
 
 Hoje `report/` tem cinco arquivos porque a rodada não fiscal de 31/08 somou três ao
