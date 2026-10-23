@@ -1,0 +1,94 @@
+{
+  "versao": "2026-10-23b",
+  "escopo": "Registros marcados versao=V3 na base_historica (chamados e conversas).",
+  "origem": "Derivada da leitura dos 29 chamados e 31 conversas V3 existentes em 23/10/2026. Não reaproveita a taxonomia fiscal porque o relatório V3 é sem filtro por módulo.",
+  "eixos": [
+    {
+      "nome": "frente",
+      "descricao": "A natureza da fricção. É o eixo de leitura do executivo.",
+      "valores": [
+        {
+          "codigo": "R1",
+          "nome": "Acesso e migração",
+          "definicao": "Não consegue entrar na V3, ou quer saber em que onda está e quando será migrado. Inclui 'acesso não autorizado', usuário sem permissão no sistema novo e dúvida sobre a data da própria migração.",
+          "evidencia": "106419, 291413, 292011, 292091, 292141, 292151, 292219, 292227",
+          "n": 8
+        },
+        {
+          "codigo": "R2",
+          "nome": "Reorientação na nova interface",
+          "definicao": "A funcionalidade existe e funciona na V3, mas o usuário não acha ou não sabe o novo caminho. É custo de mudança de layout, não defeito.",
+          "evidencia": "291997, 292057, 292083, 292103, 292117, 292235, 292265, 292303, 292311, 292591",
+          "n": 10
+        },
+        {
+          "codigo": "R3",
+          "nome": "Lacuna de paridade com a V2",
+          "definicao": "Existe na versão anterior e falta, está incompleto ou mudou de comportamento na V3. O registro cita a versão antiga como referência do esperado.",
+          "evidencia": "106903, 106905, 106909, 107215, 107243, 107345, 107347, 107359, 107361, 107367, 107369, 292537, 292635",
+          "n": 13
+        },
+        {
+          "codigo": "R4",
+          "nome": "Erro funcional da V3",
+          "definicao": "Comportamento quebrado na V3, sem relação com paridade: valida errado, não grava, não fecha, não importa.",
+          "evidencia": "106211, 106899, 106901, 106911, 107129, 107239, 107329, 292267, 292359, 292515, 292645",
+          "n": 11
+        },
+        {
+          "codigo": "R5",
+          "nome": "Melhoria nova",
+          "definicao": "Pedido de funcionalidade que não existe nem na V2. Não é dívida de rollout, é evolução de produto pedida por cliente já na V3.",
+          "evidencia": "106453, 106455, 106549, 106667, 106915, 107203, 107357",
+          "n": 7
+        },
+        {
+          "codigo": "R6",
+          "nome": "Fiscal dentro da V3",
+          "definicao": "NF-e, NFS-e, SPED e afins operados pela V3. Separado por ser a frente que o relatório fiscal já acompanha na V2 e que precisa ser comparável.",
+          "evidencia": "107139, 107349, 107353, 291769, 291965, 292467",
+          "n": 6
+        }
+      ]
+    },
+    {
+      "nome": "modulo",
+      "descricao": "Onde no produto. Nos chamados costuma vir no colchete do título; na conversa sai da leitura.",
+      "valores": [
+        "Ordem de Serviço",
+        "Orçamentos & Serviços",
+        "Financeiro",
+        "Fiscal",
+        "Cadastros",
+        "Peças & Estoque",
+        "Gestão de Pátio",
+        "Checklist & Diagnóstico",
+        "Visão Geral",
+        "Auto-guias",
+        "Relatórios",
+        "Acesso e login",
+        "Transversal"
+      ]
+    }
+  ],
+  "rotulos_de_servico": [
+    {
+      "nome": "Teste interno",
+      "definicao": "Conversa aberta pelo próprio time da Ultracar para testar o canal. Fica fora de toda contagem.",
+      "evidencia": "290687, 290705",
+      "n": 2
+    },
+    {
+      "nome": "Sem conteúdo útil",
+      "definicao": "Só saudação ou mensagem de sistema, sem assunto identificável. Entra na contagem de volume, fica fora da leitura por frente.",
+      "evidencia": "291993, 292365, 292589",
+      "n": 3
+    },
+    {
+      "nome": "Outro / não se encaixa",
+      "definicao": "O rótulo honesto para o que não couber. Nunca inventar frente nova sem bump de versão deste arquivo."
+    }
+  ],
+  "nota_codigo": "Os códigos são R de rollout. Não usar V1..V6: colide com V2 e V3, que neste relatório são as versões do sistema.",
+  "nota_evidencia": "Campo evidencia e n são DERIVADOS de classificacao_v3.json, nunca escritos à mão. Regerar sempre que a classificação mudar."
+}

@@ -150,14 +150,21 @@ o último dia de cada mês.
 
 ### Fase 2 — relatório V3 (barato, sai primeiro)
 
-- [ ] Coletar set e out: ~7.950 conversas e 491 chamados
-- [ ] Consolidar e conferir contra o que medi hoje: 25 chamados V3 e 29 conversas V3
+- [x] Coletar set e out: saiu 496 chamados e 7.961 conversas
+- [x] Consolidar e conferir: 29 chamados V3 e 31 conversas V3 (os 4 e 2 a mais são
+      registros criados depois da análise, não reclassificação)
       (20 que entraram pela linha 17 + 9 transferidas para a fila V3)
-- [ ] Classificar o V3 (1 ou 2 lotes) e gerar o relatório
+- [x] Classificar os 60 e gerar o relatório
+
+**Fase 2 fechada em 23/10.** `report/relatorio_v3_2026-09-01_2026-10-23.xlsx`, quatro abas.
+A maior frente é lacuna de paridade com a V2 (13 de 55, 23,6%), e Ordem de Serviço concentra
+18 dos 55 registros. Os códigos das frentes são R1..R6 — V1..V6 colidia com V2/V3, que no
+relatório são as versões do sistema.
 
 ### Fase 3 — relatório V2 fiscal desde janeiro (é o grosso)
 
-- [ ] Coletar jan, fev, mar e abr **um mês por vez**: 18.125 conversas + 188 chamados de abril
+- [x] Chamados de jan a ago recoletados com tags (2.487) — abril fechou em 230, como a API
+- [ ] Conversas de jan a abr, **um mês por vez**: 18.125 sessões
 - [ ] Consolidar
 - [ ] Classificar: ~14.000 registros novos (53,5% das conversas passam no filtro fiscal),
       o que dá ~58 lotes na etapa 1 mais ~58 na etapa 2
