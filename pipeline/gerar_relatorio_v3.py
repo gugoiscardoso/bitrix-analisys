@@ -28,6 +28,9 @@ from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sanitizar import mascarar_credenciais
+
 RAIZ = Path(__file__).resolve().parent.parent
 STORE = RAIZ / "data" / "store"
 REPORT = RAIZ / "report"
@@ -174,7 +177,7 @@ def aba_chamados(wb, v3, cls, de, ate):
                    r.get("cliente", ""), r.get("cnpj", ""),
                    "Sim" if r.get("fiscal") else "", abertos,
                    ", ".join(r.get("tags") or []),
-                   re.sub(r"\s+", " ", r.get("titulo", ""))[:300]])
+                   mascarar_credenciais(re.sub(r"\s+", " ", r.get("titulo", "")))[:300]])
         cel = ws.cell(row=ws.max_row, column=2)
         cel.hyperlink = BITRIX.format(r["id"])
         cel.font = Font(color="0563C1", underline="single")
@@ -194,7 +197,7 @@ def aba_conversas(wb, v3, cls):
                    c.get("modulo", ""), r.get("canal", ""), entrada,
                    r.get("duracao_min"), r.get("mensagens"), r.get("operador", ""),
                    r.get("cliente", ""), "Sim" if r.get("fiscal") else "",
-                   re.sub(r"\s+", " ", r.get("texto", ""))[:600]])
+                   mascarar_credenciais(re.sub(r"\s+", " ", r.get("texto", "")))[:600]])
     finalizar(ws, len(cols))
 
 
@@ -216,7 +219,7 @@ def aba_backlog(wb, backlog, ate):
         ws.append([r["id"], "abrir", r["data"], r.get("status", ""),
                    COLUNAS.get(str(r.get("stage")), str(r.get("stage") or "")),
                    r.get("cliente", ""),
-                   re.sub(r"\s+", " ", r.get("titulo", ""))[:300]])
+                   mascarar_credenciais(re.sub(r"\s+", " ", r.get("titulo", "")))[:300]])
         cel = ws.cell(row=ws.max_row, column=2)
         cel.hyperlink = BITRIX.format(r["id"])
         cel.font = Font(color="0563C1", underline="single")
