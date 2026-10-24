@@ -99,6 +99,10 @@ def carregar(de: str, ate: str, tudo: bool = False):
                 continue
             if not tudo and not r["fiscal"]:
                 continue
+            # A V3 tem relatório próprio (gerar_relatorio_v3.py). Aqui fica o V2 e o
+            # V3-backlog, que é melhoria pedida por cliente de V2 e conta como V2.
+            if r.get("versao") == "V3":
+                continue
             chave = "chamados" if r["tipo"] == "chamado" else "conversas"
             c = cache[chave].get(str(r["id"]))
             if not c:
@@ -283,7 +287,7 @@ def base_unificada(regs: list[dict], de: str, ate: str, saida: Path):
     wb = Workbook()
     ws = wb.active
     ws.title = "Dados"
-    COLS = ["Tipo", "Id", "Data", "Mes", "Canal", "Fiscal", "Categoria",
+    COLS = ["Tipo", "Id", "Data", "Mes", "Canal", "Fiscal", "Versao", "Categoria",
             "Frente", "Tema", "Subgrupo",
             "Status", "TempoTotalDias", "TempoTechDias", "FechadoEm",
             "Cliente", "CNPJ", "DuracaoMin", "Mensagens", "Operador", "Texto"]
@@ -299,7 +303,7 @@ def base_unificada(regs: list[dict], de: str, ate: str, saida: Path):
         ch = r["tipo"] == "chamado"
         ws.append([
             "Chamado" if ch else "Conversa", r["id"], r["data"], r["data"][:7], r["canal"],
-            "Sim" if r.get("fiscal") else "Não", categoria_de(r),
+            "Sim" if r.get("fiscal") else "Não", r.get("versao", "V2"), categoria_de(r),
             r["frente"] or "—", r["tema"], r["subgrupo"],
             r["status"] if ch else "",
             dias(r.get("criado_em"), r.get("fechado_em")) if ch else "",
@@ -312,7 +316,7 @@ def base_unificada(regs: list[dict], de: str, ate: str, saida: Path):
             mascarar_credenciais(r.get("titulo") or r.get("texto", ""))[:900],
         ])
     larg = {"Tipo": 10, "Id": 10, "Data": 11, "Mes": 9, "Canal": 15,
-            "Fiscal": 8, "Categoria": 16, "Frente": 10,
+            "Fiscal": 8, "Versao": 11, "Categoria": 16, "Frente": 10,
             "Tema": 46, "Subgrupo": 44, "Status": 14, "TempoTotalDias": 11,
             "TempoTechDias": 11, "FechadoEm": 11, "Cliente": 28, "CNPJ": 18,
             "DuracaoMin": 10, "Mensagens": 10, "Operador": 18, "Texto": 70}
