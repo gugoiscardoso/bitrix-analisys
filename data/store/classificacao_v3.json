@@ -349,7 +349,7 @@
    "frente_nome": "Acesso e migração",
    "modulo": "Acesso e login",
    "fonte": "leitura",
-   "hash": "58e235bdabe3",
+   "hash": "b3ea598e616a",
    "em": "2026-10-29"
   },
   "107513": {
@@ -430,6 +430,166 @@
    "modulo": "Orçamentos & Serviços",
    "fonte": "leitura",
    "hash": "f415fd594fc6",
+   "em": "2026-10-29"
+  },
+  "107551": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "bdd7c72558d6",
+   "em": "2026-10-29"
+  },
+  "107565": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "6b2c92981704",
+   "em": "2026-10-29"
+  },
+  "107573": {
+   "frente": "R5",
+   "frente_nome": "Melhoria nova",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "4213c273bde7",
+   "em": "2026-10-29"
+  },
+  "107595": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "0c74e7fd327e",
+   "em": "2026-10-29"
+  },
+  "107605": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "895c619010a5",
+   "em": "2026-10-29"
+  },
+  "107541": {
+   "frente": "R3",
+   "frente_nome": "Lacuna de paridade com a V2",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "e36c3293920c",
+   "em": "2026-10-29"
+  },
+  "107553": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "33e046dc5598",
+   "em": "2026-10-29"
+  },
+  "107567": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "d8af912c59fd",
+   "em": "2026-10-29"
+  },
+  "107575": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b72be176abfa",
+   "em": "2026-10-29"
+  },
+  "107597": {
+   "frente": "R5",
+   "frente_nome": "Melhoria nova",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "2218a64fc2f3",
+   "em": "2026-10-29"
+  },
+  "107543": {
+   "frente": "R3",
+   "frente_nome": "Lacuna de paridade com a V2",
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "d899c072fcc8",
+   "em": "2026-10-29"
+  },
+  "107561": {
+   "frente": "R3",
+   "frente_nome": "Lacuna de paridade com a V2",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "1a9081906e2f",
+   "em": "2026-10-29"
+  },
+  "107569": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "7a1d68554c24",
+   "em": "2026-10-29"
+  },
+  "107579": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "c29d7b5aed32",
+   "em": "2026-10-29"
+  },
+  "107601": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "e5a5b21ea651",
+   "em": "2026-10-29"
+  },
+  "107547": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f1e7e87589dc",
+   "em": "2026-10-29"
+  },
+  "107563": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "8542430d5cfd",
+   "em": "2026-10-29"
+  },
+  "107571": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "144a8ec009d8",
+   "em": "2026-10-29"
+  },
+  "107587": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "291224c82b3e",
+   "em": "2026-10-29"
+  },
+  "107603": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f17d8dad7f59",
    "em": "2026-10-29"
   }
  },
@@ -983,7 +1143,7 @@
    "frente_nome": "Reorientação na nova interface",
    "modulo": "Gestão de Pátio",
    "fonte": "leitura",
-   "hash": "0a5cf4d8b3de",
+   "hash": "800850f4832f",
    "em": "2026-10-29"
   },
   "294483": {
@@ -1023,7 +1183,7 @@
    "frente_nome": "Reorientação na nova interface",
    "modulo": "Cadastros",
    "fonte": "leitura",
-   "hash": "49e03697d407",
+   "hash": "8a634d1064c3",
    "em": "2026-10-29"
   },
   "294515": {
@@ -1055,7 +1215,7 @@
    "frente_nome": "Acesso e migração",
    "modulo": "Acesso e login",
    "fonte": "leitura",
-   "hash": "75d7d1a86caa",
+   "hash": "749d193eee86",
    "em": "2026-10-29"
   },
   "294543": {
@@ -1107,19 +1267,19 @@
    "em": "2026-10-29"
   },
   "294593": {
-   "frente": "Sem conteúdo útil",
-   "frente_nome": "Sem conteúdo útil",
-   "modulo": "Transversal",
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Peças & Estoque",
    "fonte": "leitura",
-   "hash": "f56cbaf9d3c9",
+   "hash": "4586cefeffdb",
    "em": "2026-10-29"
   },
   "294599": {
-   "frente": "R2",
-   "frente_nome": "Reorientação na nova interface",
-   "modulo": "Orçamentos & Serviços",
+   "frente": "R5",
+   "frente_nome": "Melhoria nova",
+   "modulo": "Relatórios",
    "fonte": "leitura",
-   "hash": "671b4410d0f8",
+   "hash": "94387fe3b0ea",
    "em": "2026-10-29"
   },
   "294611": {
@@ -1127,7 +1287,7 @@
    "frente_nome": "Fiscal dentro da V3",
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "c4019260f30c",
+   "hash": "2f3ab719d9e9",
    "em": "2026-10-29"
   },
   "294615": {
@@ -1135,7 +1295,7 @@
    "frente_nome": "Erro funcional da V3",
    "modulo": "Orçamentos & Serviços",
    "fonte": "leitura",
-   "hash": "53e6ae870dfe",
+   "hash": "3c2ff2e062e9",
    "em": "2026-10-29"
   },
   "294617": {
@@ -1191,7 +1351,7 @@
    "frente_nome": "Erro funcional da V3",
    "modulo": "Orçamentos & Serviços",
    "fonte": "leitura",
-   "hash": "26c6b802ad58",
+   "hash": "e394eeb512a4",
    "em": "2026-10-29"
   },
   "294663": {
@@ -1207,15 +1367,15 @@
    "frente_nome": "Fiscal dentro da V3",
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "86d90e8a98ca",
+   "hash": "ea5dd052be18",
    "em": "2026-10-29"
   },
   "294675": {
    "frente": "R2",
    "frente_nome": "Reorientação na nova interface",
-   "modulo": "Peças & Estoque",
+   "modulo": "Orçamentos & Serviços",
    "fonte": "leitura",
-   "hash": "5125527b6076",
+   "hash": "8b9cbb5346f9",
    "em": "2026-10-29"
   },
   "294681": {
@@ -1227,11 +1387,11 @@
    "em": "2026-10-29"
   },
   "294695": {
-   "frente": "R3",
-   "frente_nome": "Lacuna de paridade com a V2",
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
    "modulo": "Ordem de Serviço",
    "fonte": "leitura",
-   "hash": "4821873b06fc",
+   "hash": "95c452e2b4a9",
    "em": "2026-10-29"
   },
   "294699": {
@@ -1239,7 +1399,7 @@
    "frente_nome": "Reorientação na nova interface",
    "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "c308c8af7ba4",
+   "hash": "b7d797439e36",
    "em": "2026-10-29"
   },
   "294701": {
@@ -1247,15 +1407,15 @@
    "frente_nome": "Sem conteúdo útil",
    "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "bf9fb2eb240d",
+   "hash": "a3ce157fffd8",
    "em": "2026-10-29"
   },
   "294703": {
-   "frente": "Sem conteúdo útil",
-   "frente_nome": "Sem conteúdo útil",
-   "modulo": "Transversal",
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "c509a464c4ec",
+   "hash": "31c1817d6825",
    "em": "2026-10-29"
   },
   "294705": {
@@ -1263,23 +1423,23 @@
    "frente_nome": "Reorientação na nova interface",
    "modulo": "Financeiro",
    "fonte": "leitura",
-   "hash": "4cc4adbd0c3f",
+   "hash": "6d3603e416a8",
    "em": "2026-10-29"
   },
   "294711": {
-   "frente": "R2",
-   "frente_nome": "Reorientação na nova interface",
+   "frente": "R3",
+   "frente_nome": "Lacuna de paridade com a V2",
    "modulo": "Orçamentos & Serviços",
    "fonte": "leitura",
-   "hash": "2eb93afb19bf",
+   "hash": "3cc955ae41d1",
    "em": "2026-10-29"
   },
   "294725": {
-   "frente": "R2",
-   "frente_nome": "Reorientação na nova interface",
-   "modulo": "Cadastros",
+   "frente": "R3",
+   "frente_nome": "Lacuna de paridade com a V2",
+   "modulo": "Peças & Estoque",
    "fonte": "leitura",
-   "hash": "9a59cdbff481",
+   "hash": "dff3bbca707e",
    "em": "2026-10-29"
   },
   "294729": {
@@ -1287,7 +1447,7 @@
    "frente_nome": "Reorientação na nova interface",
    "modulo": "Ordem de Serviço",
    "fonte": "leitura",
-   "hash": "79aa6f5c68df",
+   "hash": "677570c482b7",
    "em": "2026-10-29"
   },
   "294739": {
@@ -1297,7 +1457,583 @@
    "fonte": "leitura",
    "hash": "148cb66bab8b",
    "em": "2026-10-29"
+  },
+  "294745": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "33dcffe9b7e5",
+   "em": "2026-10-29"
+  },
+  "294765": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "f8f1ce36d56d",
+   "em": "2026-10-29"
+  },
+  "294797": {
+   "frente": "Sem conteúdo útil",
+   "frente_nome": "Sem conteúdo útil",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "dd8c47ff7b45",
+   "em": "2026-10-29"
+  },
+  "294825": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "715dd1016517",
+   "em": "2026-10-29"
+  },
+  "294851": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "2e0cc8988fff",
+   "em": "2026-10-29"
+  },
+  "294895": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6e588dbeab0f",
+   "em": "2026-10-29"
+  },
+  "294915": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "f07d0ef8781c",
+   "em": "2026-10-29"
+  },
+  "294923": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a90078deae60",
+   "em": "2026-10-29"
+  },
+  "294943": {
+   "frente": "Outro / não se encaixa",
+   "frente_nome": "Outro / não se encaixa",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "8678e0668e79",
+   "em": "2026-10-29"
+  },
+  "294985": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "897ea3a7def2",
+   "em": "2026-10-29"
+  },
+  "295027": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "dd17ab5c1828",
+   "em": "2026-10-29"
+  },
+  "295055": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "ce9e3b64fa13",
+   "em": "2026-10-29"
+  },
+  "295069": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d127bc1dfda3",
+   "em": "2026-10-29"
+  },
+  "295103": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "35a61c1aabdf",
+   "em": "2026-10-29"
+  },
+  "295131": {
+   "frente": "R5",
+   "frente_nome": "Melhoria nova",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "687d02eb32fe",
+   "em": "2026-10-29"
+  },
+  "295145": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "322054893d6b",
+   "em": "2026-10-29"
+  },
+  "295173": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "7346cb3810ad",
+   "em": "2026-10-29"
+  },
+  "295215": {
+   "frente": "R1",
+   "frente_nome": "Acesso e migração",
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "5bff35c97e61",
+   "em": "2026-10-29"
+  },
+  "294723": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "67349cf49595",
+   "em": "2026-10-29"
+  },
+  "294751": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "5c043a28d7eb",
+   "em": "2026-10-29"
+  },
+  "294777": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "69681160d7d2",
+   "em": "2026-10-29"
+  },
+  "294803": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "5cbfd1775808",
+   "em": "2026-10-29"
+  },
+  "294833": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "3f85530a9787",
+   "em": "2026-10-29"
+  },
+  "294867": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "21c27b081b75",
+   "em": "2026-10-29"
+  },
+  "294899": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0832b02f4ea8",
+   "em": "2026-10-29"
+  },
+  "294917": {
+   "frente": "R3",
+   "frente_nome": "Lacuna de paridade com a V2",
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "49c424a97452",
+   "em": "2026-10-29"
+  },
+  "294931": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "1cbd7046cf0e",
+   "em": "2026-10-29"
+  },
+  "294963": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "074e38ac8ee8",
+   "em": "2026-10-29"
+  },
+  "294997": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "55912a2d4ee0",
+   "em": "2026-10-29"
+  },
+  "295035": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "1ed72179ebb6",
+   "em": "2026-10-29"
+  },
+  "295057": {
+   "frente": "Outro / não se encaixa",
+   "frente_nome": "Outro / não se encaixa",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "87bac0ee3291",
+   "em": "2026-10-29"
+  },
+  "295085": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8396bf19ec72",
+   "em": "2026-10-29"
+  },
+  "295117": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "29e9288e7532",
+   "em": "2026-10-29"
+  },
+  "295133": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "9dbfa01b941f",
+   "em": "2026-10-29"
+  },
+  "295151": {
+   "frente": "Outro / não se encaixa",
+   "frente_nome": "Outro / não se encaixa",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "8e8bef36c1c5",
+   "em": "2026-10-29"
+  },
+  "295179": {
+   "frente": "Sem conteúdo útil",
+   "frente_nome": "Sem conteúdo útil",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "f9612af7e47f",
+   "em": "2026-10-29"
+  },
+  "295217": {
+   "frente": "R1",
+   "frente_nome": "Acesso e migração",
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "8d97f9055308",
+   "em": "2026-10-29"
+  },
+  "294759": {
+   "frente": "R1",
+   "frente_nome": "Acesso e migração",
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "e1a26e154712",
+   "em": "2026-10-29"
+  },
+  "294787": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "fa2f0ced1c80",
+   "em": "2026-10-29"
+  },
+  "294805": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "a819a305abd8",
+   "em": "2026-10-29"
+  },
+  "294835": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "4b4a2b499f4a",
+   "em": "2026-10-29"
+  },
+  "294875": {
+   "frente": "Sem conteúdo útil",
+   "frente_nome": "Sem conteúdo útil",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "e3c012a8c2b8",
+   "em": "2026-10-29"
+  },
+  "294903": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d98e16008d00",
+   "em": "2026-10-29"
+  },
+  "294919": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "4853e21b3779",
+   "em": "2026-10-29"
+  },
+  "294937": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "86cda3d352cd",
+   "em": "2026-10-29"
+  },
+  "294973": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "f6a909802b28",
+   "em": "2026-10-29"
+  },
+  "295011": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "01d5108edd05",
+   "em": "2026-10-29"
+  },
+  "295039": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "1e2f05e22ab1",
+   "em": "2026-10-29"
+  },
+  "295063": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "61b85ad3323b",
+   "em": "2026-10-29"
+  },
+  "295091": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "02c3a4ed7b06",
+   "em": "2026-10-29"
+  },
+  "295125": {
+   "frente": "Sem conteúdo útil",
+   "frente_nome": "Sem conteúdo útil",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "8920bdee76b9",
+   "em": "2026-10-29"
+  },
+  "295137": {
+   "frente": "Outro / não se encaixa",
+   "frente_nome": "Outro / não se encaixa",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "1380116d3bc3",
+   "em": "2026-10-29"
+  },
+  "295153": {
+   "frente": "Sem conteúdo útil",
+   "frente_nome": "Sem conteúdo útil",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "4dd05a69c84e",
+   "em": "2026-10-29"
+  },
+  "295187": {
+   "frente": "Sem conteúdo útil",
+   "frente_nome": "Sem conteúdo útil",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "64309800df07",
+   "em": "2026-10-29"
+  },
+  "295227": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "be5f17b5a6c0",
+   "em": "2026-10-29"
+  },
+  "294763": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "15fec7fc8ad9",
+   "em": "2026-10-29"
+  },
+  "294795": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "276788325ff9",
+   "em": "2026-10-29"
+  },
+  "294815": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "9bb725e0840a",
+   "em": "2026-10-29"
+  },
+  "294839": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a35fb6210d0b",
+   "em": "2026-10-29"
+  },
+  "294883": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "85b2cb015a32",
+   "em": "2026-10-29"
+  },
+  "294907": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "c524cc236aee",
+   "em": "2026-10-29"
+  },
+  "294921": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "72c885324e72",
+   "em": "2026-10-29"
+  },
+  "294941": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "763c010ca19d",
+   "em": "2026-10-29"
+  },
+  "294979": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0fee55b9f5b2",
+   "em": "2026-10-29"
+  },
+  "295017": {
+   "frente": "R6",
+   "frente_nome": "Fiscal dentro da V3",
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "2084590d3e33",
+   "em": "2026-10-29"
+  },
+  "295043": {
+   "frente": "Sem conteúdo útil",
+   "frente_nome": "Sem conteúdo útil",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "bb72bbf4d184",
+   "em": "2026-10-29"
+  },
+  "295065": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "8d8f5bb56ce6",
+   "em": "2026-10-29"
+  },
+  "295097": {
+   "frente": "R4",
+   "frente_nome": "Erro funcional da V3",
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "4f0b88842577",
+   "em": "2026-10-29"
+  },
+  "295127": {
+   "frente": "R2",
+   "frente_nome": "Reorientação na nova interface",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "41d9c01b035b",
+   "em": "2026-10-29"
+  },
+  "295141": {
+   "frente": "Sem conteúdo útil",
+   "frente_nome": "Sem conteúdo útil",
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "fe507d8ad1f3",
+   "em": "2026-10-29"
+  },
+  "295155": {
+   "frente": "R3",
+   "frente_nome": "Lacuna de paridade com a V2",
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "8c11fb40d0e7",
+   "em": "2026-10-29"
+  },
+  "295207": {
+   "frente": "R1",
+   "frente_nome": "Acesso e migração",
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "ff751595f90d",
+   "em": "2026-10-29"
   }
  },
- "taxonomia_versao": "2026-10-23b"
+ "taxonomia_versao": "2026-10-29"
 }

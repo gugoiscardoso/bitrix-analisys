@@ -1,110 +1,110 @@
 {
-  "gerado_em": "2026-10-29 12:09",
+  "gerado_em": "2026-10-29 18:15",
   "o_que_e": "Conversa que a regra automatica marcou V2 e cujo atendimento e da V3. A regra marca V3 pela linha de entrada 17 ou pela transferencia explicita para a fila da V3; o WhatsApp entra todo pela linha 7, entao zap de oficina recem-migrada so conta se o atendente transferiu.",
   "como_usar": "O gerador lista estes registros numa aba própria e NÃO os soma em nenhum número. `situacao` separa o provado (confirmada) do inconclusivo (nao_confirmada). Promover qualquer um a número é decisão de quem lê o relatório, não do pipeline.",
-  "janela_varrida": "2026-10-29T08:00 a agora (hora de Brasília)",
+  "janela_varrida": "2026-10-29T08:00 a 2026-10-29T18:00 (hora de Brasília)",
   "conversas": {
     "294393": {
       "situacao": "confirmada",
-      "base": "texto",
+      "base": "chamado",
       "confianca": "alta",
-      "evidencia": "cola o link https://sistema3.ultracar.com.br/app/overview e diz \"voltou para o sistema antigo\""
+      "evidencia": "Cita o chamado 107503 (travamento da V3) e a conversa traz o link sistema3.ultracar.com.br."
     },
     "294399": {
       "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"com a atualização do sistema, não consigo realizar qualquer operação\"; o atendente manda o vídeo \"como utilizar a nova versão\""
+      "evidencia": "Cliente: \"Com a atualização do sistema, não consigo realizar qualquer operação\"; atendente envia o vídeo da nova versão."
     },
     "294409": {
       "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cola o e-mail \"seu novo sistema Ultracar foi desbloqueado. A partir de hoje, 29/10/2026\" e não consegue entrar"
+      "evidencia": "Cliente cola o e-mail de migração: \"seu novo sistema Ultracar foi desbloqueado\" a partir de 29/10."
     },
     "294411": {
       "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"preciso colocar a nf de compra no sistema, agora q está novo não estou conseguindo mexer\""
+      "evidencia": "Cliente: \"agora que está novo não estou conseguindo mexer\" para lançar NF de compra; chamado 107505."
     },
     "294431": {
       "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"está totalmente diferente e simplesmente nada funciona\"; o atendente confirma o aviso sobre a atualização"
+      "evidencia": "Cliente: \"Está totalmente diferente e simplesmente nada funciona\"; atendente cita a atualização."
     },
     "294445": {
       "situacao": "confirmada",
       "base": "texto",
-      "confianca": "media",
-      "evidencia": "cliente: \"ele atualizou e está bem ruim, não está funcionando\""
+      "confianca": "alta",
+      "evidencia": "Cliente: \"ele atualizou e está bem ruim, não está funcionando\"."
     },
     "294451": {
       "situacao": "confirmada",
       "base": "texto",
-      "confianca": "media",
-      "evidencia": "cliente: \"o sistema atualizou e não estou conseguindo ficar conectada nele\""
+      "confianca": "alta",
+      "evidencia": "Cliente: \"O sistema atualizou e não estou conseguindo ficar conectada\"; permissão de financeiro que \"antes sim\" funcionava."
     },
     "294457": {
       "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"não estamos conseguindo utilizar a versão atualizada conforme utilizada antes\"; o atendente manda o vídeo da atualização"
+      "evidencia": "Cliente: \"não estamos conseguindo utilizar a versão atualizada conforme utilizada antes\"."
     },
     "294485": {
       "situacao": "confirmada",
       "base": "texto",
-      "confianca": "media",
-      "evidencia": "cliente: \"com a atualização, nossas telas estão todas travadas / sistema não carrega\""
+      "confianca": "alta",
+      "evidencia": "Cliente: \"Com a atualização, nossas telas estão todas travadas\"."
     },
     "294499": {
       "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"são 4 computadores na oficina e 2 deles não está abrindo o novo sistema de vocês\""
+      "evidencia": "Cliente: \"2 deles não estão abrindo o novo sistema de vocês\"."
     },
     "294541": {
       "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"atualizou o sistema, n fomos avisados nd... consegue deixar no modelo antigo?\"; o atendente fala do problema na nova versão corrigido por volta das 08:40"
+      "evidencia": "Cliente: \"Atualizou o sistema, não fomos avisados\" e pede para voltar ao modelo antigo; atendente cita a nova versão."
     },
     "294419": {
       "situacao": "confirmada",
       "base": "chamado",
-      "confianca": "media",
-      "evidencia": "cita o chamado 107505, que a regra de versão marcou V3; o texto da conversa não nomeia a versão"
+      "confianca": "alta",
+      "evidencia": "Cliente vinculada ao chamado 107505, marcado V3."
     },
     "294443": {
       "situacao": "confirmada",
       "base": "chamado",
-      "confianca": "media",
-      "evidencia": "cita o chamado 107503, que a regra de versão marcou V3; o texto da conversa não nomeia a versão"
+      "confianca": "alta",
+      "evidencia": "Não consegue acessar; caso adicionado ao chamado 107503, marcado V3."
     },
     "294501": {
       "situacao": "confirmada",
       "base": "chamado",
-      "confianca": "media",
-      "evidencia": "cita o chamado 107503, que a regra de versão marcou V3; o texto da conversa não nomeia a versão"
+      "confianca": "alta",
+      "evidencia": "Link do Ultracar não abre; atendente vincula ao chamado 107503, marcado V3."
     },
     "294733": {
       "situacao": "confirmada",
       "base": "texto",
-      "confianca": "media",
-      "evidencia": "diz \"Antes colocava sem pagamento e no valor era 0,00, agora nao aceita\" — a mesma mudanca de comportamento que o chamado 107537 descreve, e esse chamado esta marcado V3"
+      "confianca": "alta",
+      "evidencia": "Cliente: \"Antes colocava 'sem pagamento' e o valor era 0,00. Agora não aceita\"; chamado 107547."
     },
     "294421": {
       "situacao": "confirmada",
       "base": "chamado",
       "confianca": "alta",
-      "evidencia": "cita o chamado 107515, que a regra marcou V3 (\"[v3] [Orçamento]\", coluna Rollout - Nova Versão), e o cliente bate: \"Rafael Auto center\" na conversa, \"RAFAEL R DA COSTA AUTO CENTER\" no chamado"
+      "evidencia": "Sistema travando e financeiro da OS não gera; atendente abre o chamado 107515, marcado V3."
     },
     "294473": {
-      "situacao": "nao_confirmada",
-      "base": "sem prova",
-      "confianca": "-",
-      "evidencia": "pede para falar com o atendente de um chamado ja aberto 'sobre nota fiscal de devolucao' — o mesmo defeito de devolucao que aparece em registros V3 confirmados, mas nao diz o numero do chamado nem a versao"
+      "situacao": "confirmada",
+      "base": "chamado",
+      "confianca": "alta",
+      "evidencia": "Acompanha o chamado 107471 (NF de devolução), marcado V3."
     },
     "294597": {
       "situacao": "nao_confirmada",
@@ -164,7 +164,7 @@
       "situacao": "nao_confirmada",
       "base": "sem prova de versão",
       "confianca": "-",
-      "evidencia": "diz \"antes tinha como tirar analitico ou sintetico, agora nao tem mais essa opcao\" sobre relatorio que gerou no mes passado — antes/depois real, mas nao liga a mudanca de versao e o atendente trata como comportamento normal"
+      "evidencia": "Cliente diz que \"antes tinha como tirar analítico ou sintético, agora não tem mais\" num relatório do mês passado, mas não liga a mudança à versão e o atendente trata como comportamento normal."
     },
     "294721": {
       "situacao": "nao_confirmada",
@@ -213,7 +213,289 @@
       "base": "sem prova de versão",
       "confianca": "-",
       "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294407": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "Importação de XML e cliente diz que a tela \"está diferente do vídeo\", mas não fica claro se é o sistema novo."
+    },
+    "294735": {
+      "situacao": "confirmada",
+      "base": "texto",
+      "confianca": "media",
+      "evidencia": "Cliente: \"com essa atualização estava meio complicado de se encontrar no sistema\"."
+    },
+    "294761": {
+      "situacao": "confirmada",
+      "base": "texto",
+      "confianca": "alta",
+      "evidencia": "Não acha onde imprimir o orçamento; perguntado se está no sistema novo, o cliente responde \"Sim\"."
+    },
+    "294779": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "Pergunta quando será a migração; atendente pergunta se é a V3 ou o emissor nacional e não há resposta."
+    },
+    "294783": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "Bug no cálculo de taxa; a orientação de achar o ID pelo avatar sugere o sistema novo, mas o cliente não confirma."
+    },
+    "294869": {
+      "situacao": "confirmada",
+      "base": "texto",
+      "confianca": "media",
+      "evidencia": "Cliente: \"erro na nota fiscal de peças após atualização do sistema\"."
+    },
+    "294981": {
+      "situacao": "confirmada",
+      "base": "chamado",
+      "confianca": "alta",
+      "evidencia": "Mesmo cliente da 294411, cobrando o chamado 107505, marcado V3."
+    },
+    "294991": {
+      "situacao": "confirmada",
+      "base": "texto",
+      "confianca": "alta",
+      "evidencia": "Cliente: \"o sistema da Ultracar mudou\" e manda o antes e o depois do orçamento sem a logo."
+    },
+    "295003": {
+      "situacao": "confirmada",
+      "base": "texto",
+      "confianca": "alta",
+      "evidencia": "Cliente: \"não consigo usar esse novo sistema\", \"mudou o sistema de um dia para o outro\"."
+    },
+    "295081": {
+      "situacao": "confirmada",
+      "base": "texto",
+      "confianca": "media",
+      "evidencia": "Cliente: \"não tem mais aquele quadradinho do lado que a gente ajeitava\" no estoque."
+    },
+    "295149": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "Pergunta onde ver as aulas do novo sistema, sem dizer se já está nele."
+    },
+    "295221": {
+      "situacao": "confirmada",
+      "base": "texto",
+      "confianca": "alta",
+      "evidencia": "Cliente pede para voltar à versão anterior do sistema."
+    },
+    "294749": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294755": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294769": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294775": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294809": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294819": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294821": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294849": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294859": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294891": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294945": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294977": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294987": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294993": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295009": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295047": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295073": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295075": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295099": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295121": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295139": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295143": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295147": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295161": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295163": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295175": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295181": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295183": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295191": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295193": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295199": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295203": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295205": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295209": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "295219": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
     }
   },
-  "cobertura": "Das 118 conversas V2 da janela, 26 foram julgadas uma a uma e 15 entraram como não confirmada por não terem conteúdo. O resto tem assunto próprio e nenhum sinal de versão. O filtro pega 16 de 16 das conversas já provadas como V3, e isso é reconferido a cada execução."
+  "cobertura": "Das 285 conversas V2 da janela, 53 foram julgadas uma a uma e 36 entraram como não confirmada por não terem conteúdo. O resto tem assunto próprio e nenhum sinal de versão. O filtro pega 16 de 16 das conversas já provadas como V3, e isso é reconferido a cada execução."
 }
