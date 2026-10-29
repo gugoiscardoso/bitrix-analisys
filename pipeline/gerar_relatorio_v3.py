@@ -178,7 +178,7 @@ def finalizar(ws, n_cols):
     ws.auto_filter.ref = f"A1:{get_column_letter(n_cols)}{ws.max_row}"
 
 
-def aba_resumo(wb, v3, cls, tax, janela, servico, extracao, suspeitas):
+def aba_resumo(wb, v3, cls, tax, janela, servico, extracao, suspeitas, por_conteudo):
     ws = wb.active
     ws.title = "Resumo"
     frentes = {v["codigo"]: v for v in
@@ -220,18 +220,23 @@ def aba_resumo(wb, v3, cls, tax, janela, servico, extracao, suspeitas):
         ws.row_dimensions[ws.max_row].height = 46
 
     if suspeitas:
+        marcados = por_conteudo.get("conversas", {})
+        confirmadas = [r for r in suspeitas
+                       if marcados.get(str(r["id"]), {}).get("situacao", "confirmada")
+                       == "confirmada"]
+        canais = collections.Counter(canal_de(r) for r in confirmadas)
         ws.append([])
-        canais = collections.Counter(canal_de(r) for r in suspeitas)
-        ws.append([f"Ponto cego: outras {len(suspeitas)} conversas da janela são da V3 pelo "
-                   "conteúdo, mas não passaram pela fila da V3, então a regra automática não "
-                   "as enxerga e elas NÃO estão nos números acima "
+        ws.append([f"Ponto cego: outras {len(confirmadas)} conversas da janela são da V3 "
+                   "pelo conteúdo, mas não passaram pela fila da V3, então a regra "
+                   "automática não as enxerga e elas NÃO estão nos números acima "
                    f"({'; '.join(f'{k}: {v}' for k, v in canais.most_common())}). "
-                   "Estão listadas uma por uma, com a evidência, na aba "
-                   "'Possível V3 fora da regra'."])
+                   f"Mais {len(suspeitas) - len(confirmadas)} conversas de WhatsApp ficaram "
+                   "inconclusivas e também estão listadas, marcadas como não confirmadas. "
+                   "Tudo isso na aba 'Possível V3 fora da regra', uma por uma, com o motivo."])
         cel = ws[f"A{ws.max_row}"]
         cel.font = Font(italic=True)
         cel.alignment = Alignment(wrap_text=True, vertical="top")
-        ws.row_dimensions[ws.max_row].height = 46
+        ws.row_dimensions[ws.max_row].height = 60
 
     ws.append([])
     linha = ws.max_row + 1
@@ -341,33 +346,59 @@ def aba_suspeitas(wb, suspeitas, por_conteudo):
     cada caso, em vez de o número chegar baixo sem explicação.
     """
     ws = wb.create_sheet("Possível V3 fora da regra")
-    ws.append(["Conversa que a regra automática marcou como V2, mas cujo conteúdo é da V3: "
-               "o cliente está usando o sistema novo e o atendimento não passou pela fila da "
-               "V3, então a regra não enxerga. NÃO entra em nenhum número deste relatório — "
-               "está aqui para dimensionar o ponto cego. O canal onde isso acontece é "
-               "principalmente o WhatsApp, que entra todo pela linha da V2."])
+    marcados = por_conteudo.get("conversas", {})
+
+    def situacao(r):
+        return marcados.get(str(r["id"]), {}).get("situacao", "confirmada")
+
+    n_conf = sum(1 for r in suspeitas if situacao(r) == "confirmada")
+    n_nao = len(suspeitas) - n_conf
+    nota = ("Conversa que a regra automática marcou como V2 e que pode ser atendimento da "
+            "V3: o cliente não passou pela fila da V3, então a regra não enxerga. O canal "
+            "onde isso acontece é principalmente o WhatsApp, que entra todo pela linha da "
+            "V2. NENHUMA delas entra em número algum deste relatório.\n"
+            f"A coluna Situação separa as duas metades. «V3 confirmada» ({n_conf}): o "
+            "próprio cliente diz que o sistema é novo, cola o link sistema3, ou a conversa "
+            "cita um chamado que a regra marcou V3. «Não confirmada» "
+            f"({n_nao}): conversa de WhatsApp em que não deu para decidir — quase toda só "
+            "cumprimento. Está aqui porque, no canal onde a V3 é invisível, não saber é "
+            "informação; não porque haja indício de que seja V3.")
+    ws.append([nota])
     ws["A1"].font = Font(italic=True)
     ws["A1"].alignment = Alignment(wrap_text=True, vertical="top")
-    ws.row_dimensions[1].height = 60
+    ws.row_dimensions[1].height = 118
     ws.append([])
     linha = ws.max_row + 1
-    cols = ["Id", "Canal", "Início", "Em andamento", "Cliente", "Base da evidência",
-            "Confiança", "Por que parece V3", "Resumo da conversa"]
+    cols = ["Id", "Situação", "Canal", "Início", "Em andamento", "Cliente",
+            "Base da evidência", "Confiança", "Por que está nesta aba",
+            "Resumo da conversa"]
     ws.append(cols)
     for c in ws[linha]:
         c.fill, c.font = HDR, HF
-    base = {"texto": "O cliente disse", "chamado": "Cita chamado V3"}
-    marcados = por_conteudo.get("conversas", {})
-    for r in sorted(suspeitas, key=momento_br):
+        c.alignment = Alignment(vertical="center", wrap_text=True)
+    base = {"texto": "O cliente disse", "chamado": "Cita chamado V3",
+            "sem prova": "Sem prova de versão"}
+    rotulo_sit = {"confirmada": "V3 confirmada", "nao_confirmada": "Não confirmada"}
+    cinza = Font(color="808080")
+    # Confirmada primeiro: quem abre a aba tem de ver o que foi provado antes do que ficou
+    # em aberto, senão as duas metades viram uma lista só.
+    for r in sorted(suspeitas, key=lambda x: (situacao(x) != "confirmada", momento_br(x))):
         m = marcados.get(str(r["id"]), {})
-        ws.append([r["id"], canal_de(r), momento_br(r).strftime("%d/%m %H:%M"),
+        sit = situacao(r)
+        ws.append([r["id"], rotulo_sit.get(sit, sit), canal_de(r),
+                   momento_br(r).strftime("%d/%m %H:%M"),
                    "Sim" if em_andamento(r) else "", r.get("cliente", ""),
                    base.get(m.get("base"), m.get("base", "")), m.get("confianca", ""),
                    m.get("evidencia", ""),
                    mascarar_credenciais(re.sub(r"\s+", " ", r.get("texto", "")))[:600]])
-    for col, w in zip("ABCDEFGHI", (10, 17, 17, 14, 32, 18, 11, 60, 110)):
+        if sit != "confirmada":
+            for c in ws[ws.max_row]:
+                c.font = cinza
+    for col, w in zip("ABCDEFGHIJ", (10, 15, 17, 17, 14, 32, 18, 11, 60, 110)):
         ws.column_dimensions[col].width = w
     ws.freeze_panes = "A4"
+    # O cabeçalho desta aba está na linha 3, não na 1: o filtro não pode usar finalizar().
+    ws.auto_filter.ref = f"A3:{get_column_letter(len(cols))}{ws.max_row}"
 
 
 def aba_backlog(wb, backlog, intradia: bool):
@@ -436,11 +467,16 @@ def main() -> int:
     por_canal = collections.Counter(canal_de(r) for r in v3)
     print(f"  por canal: {dict(por_canal)}")
     print(f"  {sum(1 for r in v3 if em_andamento(r))} conversas ainda em andamento")
-    print(f"  {len(suspeitas)} possíveis V3 fora da regra (não contadas)")
+    marcados = por_conteudo.get("conversas", {})
+    n_conf = sum(1 for r in suspeitas
+                 if marcados.get(str(r["id"]), {}).get("situacao", "confirmada")
+                 == "confirmada")
+    print(f"  fora da regra, nenhuma contada: {n_conf} V3 confirmada pelo conteúdo, "
+          f"{len(suspeitas) - n_conf} não confirmada")
     print(f"  {len(backlog)} melhorias V2 endereçadas para a V3")
 
     wb = Workbook()
-    aba_resumo(wb, v3, cls, tax, janela, servico, extracao, suspeitas)
+    aba_resumo(wb, v3, cls, tax, janela, servico, extracao, suspeitas, por_conteudo)
     aba_chamados(wb, v3, cls, fim)
     aba_conversas(wb, v3, cls)
     if suspeitas:

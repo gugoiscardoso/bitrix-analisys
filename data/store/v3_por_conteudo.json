@@ -1,83 +1,164 @@
 {
   "gerado_em": "2026-10-29",
   "o_que_e": "Conversa que a regra automatica marcou V2 e cujo atendimento e da V3. A regra marca V3 pela linha de entrada 17 ou pela transferencia explicita para a fila da V3; o WhatsApp entra todo pela linha 7, entao zap de oficina recem-migrada so conta se o atendente transferiu.",
-  "como_usar": "O gerador lista estes registros numa aba propria e NAO os soma em nenhum numero. Mudar isso e decisao de quem le o relatorio, nao do pipeline.",
+  "como_usar": "O gerador lista estes registros numa aba propria e NAO os soma em nenhum numero. `situacao` separa o que foi provado (confirmada) do que subiu por pedido do usuario sem prova de versao (nao_confirmada): o WhatsApp e o canal onde a regra nao enxerga nada, entao conversa inconclusiva ali e informacao, nao ruido. Promover qualquer uma a numero e decisao de quem le o relatorio, nao do pipeline.",
   "janela_varrida": "2026-10-29 08:00 a 11:24 (hora de Brasilia)",
   "conversas": {
     "294393": {
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente relata O.S. travando e cola o link 'https://sistema3.ultracar.com.br/app/overview', dizendo que 'Voltou para o sistema antigo'"
+      "evidencia": "cola o link https://sistema3.ultracar.com.br/app/overview e diz \"voltou para o sistema antigo\"",
+      "situacao": "confirmada"
     },
     "294399": {
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: 'Com a atualizacao do sistema, nao consigo realizar qualquer operacao'; atendente responde com o video 'como utilizar a nova versao'"
+      "evidencia": "cliente: \"com a atualização do sistema, não consigo realizar qualquer operação\"; o atendente manda o vídeo \"como utilizar a nova versão\"",
+      "situacao": "confirmada"
     },
     "294409": {
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente cola o e-mail 'seu novo sistema Ultracar foi desbloqueado. A partir de hoje, 29/10/2026' e diz que recebeu acesso ao Novo Sistema Ultracar mas nao conseguiu entrar"
+      "evidencia": "cola o e-mail \"seu novo sistema Ultracar foi desbloqueado. A partir de hoje, 29/10/2026\" e não consegue entrar",
+      "situacao": "confirmada"
     },
     "294411": {
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: 'preciso colocar a nf de compra no sistema, agora q esta novo nao estou conseguindo mexer... so da uma opcao'"
+      "evidencia": "cliente: \"preciso colocar a nf de compra no sistema, agora q está novo não estou conseguindo mexer\"",
+      "situacao": "confirmada"
     },
     "294431": {
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: 'O que houve com a plataforma? Esta totalmente diferente e simplesmente nada funciona'; atendente confirma que foi avisado 'sobre a atualizacao'"
+      "evidencia": "cliente: \"está totalmente diferente e simplesmente nada funciona\"; o atendente confirma o aviso sobre a atualização",
+      "situacao": "confirmada"
     },
     "294445": {
       "base": "texto",
       "confianca": "media",
-      "evidencia": "cliente: 'Estou com um problema no sistema da Ultracar, ele atualizou e esta bem ruim nao esta funcionando'"
+      "evidencia": "cliente: \"ele atualizou e está bem ruim, não está funcionando\"",
+      "situacao": "confirmada"
     },
     "294451": {
       "base": "texto",
       "confianca": "media",
-      "evidencia": "cliente: 'O sistema atualizou E nao estou conseguindo ficar conectada nele / Fica so caindo'"
+      "evidencia": "cliente: \"o sistema atualizou e não estou conseguindo ficar conectada nele\"",
+      "situacao": "confirmada"
     },
     "294457": {
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: 'NAO ESTAMS CONSEGUINDO UTILIZAR A VERSAO ATUALIZADA CONFORME UTILIZADA ANTES COM OS RELATORIOS'; atendente manda o video da atualizacao"
+      "evidencia": "cliente: \"não estamos conseguindo utilizar a versão atualizada conforme utilizada antes\"; o atendente manda o vídeo da atualização",
+      "situacao": "confirmada"
     },
     "294485": {
       "base": "texto",
       "confianca": "media",
-      "evidencia": "cliente: 'Com a atualizacao, nossas telas estao todas travadas / Sistema nao carrega'"
+      "evidencia": "cliente: \"com a atualização, nossas telas estão todas travadas / sistema não carrega\"",
+      "situacao": "confirmada"
     },
     "294499": {
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: 'sao 4 computadores e 2 dele nao esta abrindo o novo sistema de voces... A tela simplesmente trava'"
+      "evidencia": "cliente: \"são 4 computadores na oficina e 2 deles não está abrindo o novo sistema de vocês\"",
+      "situacao": "confirmada"
     },
     "294541": {
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: 'Atualizou o sistema n fomos avisados nd / Esta horrivel pra mecher / Consegue deixa no modelo antigo?'; atendente fala do 'problema na nova versao' corrigido as 08:40"
+      "evidencia": "cliente: \"atualizou o sistema, n fomos avisados nd... consegue deixar no modelo antigo?\"; o atendente fala do problema na nova versão corrigido por volta das 08:40",
+      "situacao": "confirmada"
     },
     "294419": {
       "base": "chamado",
       "confianca": "media",
-      "evidencia": "cita o chamado 107505, que a regra de versao marcou V3; o texto da conversa nao nomeia a versao"
+      "evidencia": "cita o chamado 107505, que a regra de versão marcou V3; o texto da conversa não nomeia a versão",
+      "situacao": "confirmada"
     },
     "294443": {
       "base": "chamado",
       "confianca": "media",
-      "evidencia": "cita o chamado 107503, que a regra de versao marcou V3; o texto da conversa nao nomeia a versao"
+      "evidencia": "cita o chamado 107503, que a regra de versão marcou V3; o texto da conversa não nomeia a versão",
+      "situacao": "confirmada"
     },
     "294501": {
       "base": "chamado",
       "confianca": "media",
-      "evidencia": "cita o chamado 107503, que a regra de versao marcou V3; o texto da conversa nao nomeia a versao"
+      "evidencia": "cita o chamado 107503, que a regra de versão marcou V3; o texto da conversa não nomeia a versão",
+      "situacao": "confirmada"
     },
     "294733": {
       "base": "texto",
       "confianca": "media",
-      "evidencia": "diz \"Antes colocava sem pagamento e no valor era 0,00, agora nao aceita\" — a mesma mudanca de comportamento que o chamado 107537 descreve, e esse chamado esta marcado V3"
+      "evidencia": "diz \"Antes colocava sem pagamento e no valor era 0,00, agora nao aceita\" — a mesma mudanca de comportamento que o chamado 107537 descreve, e esse chamado esta marcado V3",
+      "situacao": "confirmada"
+    },
+    "294421": {
+      "situacao": "confirmada",
+      "base": "chamado",
+      "confianca": "alta",
+      "evidencia": "cita o chamado 107515, que a regra marcou V3 (\"[v3] [Orçamento]\", coluna Rollout - Nova Versão), e o cliente bate: \"Rafael Auto center\" na conversa, \"RAFAEL R DA COSTA AUTO CENTER\" no chamado"
+    },
+    "294473": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "pede para falar com o atendente de um chamado ja aberto 'sobre nota fiscal de devolucao' — o mesmo defeito de devolucao que aparece em registros V3 confirmados, mas nao diz o numero do chamado nem a versao"
+    },
+    "294597": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "pede ajuda para emitir nota de devolucao e diz 'nunca fizemos pelo sistema de vcs' — tema do defeito de devolucao da V3, mas le-se como duvida de primeira vez, nao como mudanca de comportamento"
+    },
+    "294465": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "so cumprimento do cliente e a pergunta do atendente"
+    },
+    "294631": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "so cumprimento"
+    },
+    "294647": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "'consegue me ajudar' sem dizer o assunto"
+    },
+    "294685": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "so cumprimento"
+    },
+    "294697": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "so cumprimento"
+    },
+    "294719": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "so cumprimento e mensagens de fila"
+    },
+    "294723": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "so 'OI' e mensagem de fila"
+    },
+    "294737": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova",
+      "confianca": "-",
+      "evidencia": "so cumprimento"
     }
   }
 }
