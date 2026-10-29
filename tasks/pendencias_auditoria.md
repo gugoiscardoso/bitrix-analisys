@@ -641,3 +641,29 @@ retorno) para R2. Ambas defensáveis como "Sem conteúdo útil". Numa janela de 
 pesa muito mais que numa de meses, porque a proporção de conversa curta é maior. Candidato
 a critério explícito: abaixo de N mensagens do cliente, sem assunto nomeado, é "Sem
 conteúdo útil" — hoje a decisão é por leitura.
+
+## Formato do link "Abrir no Bitrix" segue não verificado (tentado em 29/10/2026)
+A coluna "Abrir no Bitrix" das abas Chamados e Melhorias usa
+`https://ultracar.bitrix24.com/workgroups/group/139/tasks/task/view/<id>/`. Esse formato
+nunca foi confirmado por um clique. O usuário não tem acesso ao Bitrix, então tentei
+verificar pela API — e as duas tentativas falharam:
+
+1. `tasks.task.get` não devolve nenhum campo de URL da tarefa. O único valor com "http" é
+   um link de Vimeo dentro da própria descrição.
+2. Comparar o código HTTP dos formatos candidatos não distingue nada. O portal responde
+   302 para `https://www.bitrix24.net/oauth/authorize/` em **todos** os caminhos,
+   inclusive num caminho inventado de propósito como controle. O redirecionamento para
+   autenticação acontece antes do roteamento, então o status não carrega informação.
+
+**Não repetir essas duas sondas.** O controle já provou que a segunda é inútil.
+
+O que ficou confirmado: `groupId` da tarefa 107503 é 139, igual ao que o link monta. O que
+falta é a forma do caminho.
+
+Mitigação que já existe: a primeira coluna das duas abas é o **Id** do chamado em texto.
+Se o link estiver errado, quem lê procura o número no Bitrix e o custo é um clique a mais —
+nenhum dado se perde. Validar de fato custa um clique de quem tem acesso (Gustavo, Paty),
+e a resposta vale para todos os relatórios futuros.
+
+Alternativa conhecida, se o formato de grupo estiver errado:
+`https://ultracar.bitrix24.com/company/personal/user/<uid>/tasks/task/view/<id>/`.
