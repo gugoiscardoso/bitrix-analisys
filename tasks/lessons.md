@@ -124,3 +124,42 @@ registros sumiram assim). Os dois envelheceram no primeiro bump de taxonomia.
 
 **Regra:** contagem e enumeração saem da taxonomia em tempo de execução. Se precisar de
 lista curada, ela recebe no fim o que não estiver nela — nunca descarta.
+
+## Campo que nunca vem vazio não está medindo o que você acha
+
+Precisava marcar "conversa ainda em andamento" e usei `fechado_em`: parecia óbvio, o nome
+diz. Escrevi a coluna, escrevi o aviso no Resumo, escrevi a frase explicando ao usuário
+por que o número ia aparecer alto. Só então medi: 53 conversas V3 do dia, **zero** em
+andamento. O coletor preenche `EndedAt` com o timestamp da última mensagem, com o
+`END_TIME` da activity só como reserva — e toda sessão tem mensagem, então o campo nunca
+vem vazio. A coluna ia responder "não" para sempre, no relatório inteiro, sem errar
+visivelmente nada. O sinal verdadeiro era outro campo que o coletor nem buscava.
+
+**Regra:** antes de usar um campo como sinal de ausência, olhe o código que o preenche.
+E rode a contagem dos dois lados: um sinal binário que dá 100%/0% numa amostra onde você
+esperava mistura é defeito do sinal, não descoberta sobre o mundo.
+
+## Fuso se prova por registro, não se assume por sistema
+
+A base guarda conversa em UTC e chamado em hora de Brasília — três horas de diferença,
+dentro do mesmo arquivo, sem nada no código avisando. Em janela de meses ninguém vê. O
+pedido era "hoje a partir das 8h", e o filtro ingênuo teria pegado conversa desde as 5h da
+manhã e chamado desde as 8h: duas janelas diferentes somadas no mesmo número.
+
+Suspeitei pelo histograma de criação (chamado pica 08h-18h, conversa 11h-21h), mas
+histograma é indício. A prova foi pedir a mesma sessão à API e comparar: export
+`10:16:46`, API `13:16:47+03:00`.
+
+**Regra:** janela com hora exige confirmar o fuso de **cada fonte** contra a origem, um
+registro concreto de cada lado. E o Bitrix não é coerente consigo mesmo: `crm.activity`
+devolve `+03:00`, `tasks.task` devolve `-03:00`.
+
+## Coluna nova em fonte mesclada: o NaN antigo mente
+
+Acrescentei `SessionClosed` ao coletor e li com `bool(r.get("SessionClosed"))`. O
+consolidador concatena dez exports: a coluna passa a existir para todos, com `NaN` nas
+43 mil linhas antigas — e `bool(nan)` é `True`. Toda conversa histórica seria marcada como
+encerrada, calado.
+
+**Regra:** ao ler coluna que só existe nos arquivos novos, teste o valor (`pd.isna`), não
+a existência da coluna. E distinga os três estados: sim, não, e não sei.

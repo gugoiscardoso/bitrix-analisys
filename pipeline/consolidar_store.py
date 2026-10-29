@@ -323,6 +323,23 @@ def extrair_cliente(titulo: str) -> str:
     return ""
 
 
+def encerrada_de(r) -> bool | None:
+    """A sessão foi encerrada? None quando o export não sabe dizer.
+
+    SessionClosed vem do COMPLETED da activity e só existe em export a partir de
+    29/10/2026. Concatenar exports antigos e novos deixa a coluna presente com NaN nas
+    linhas antigas, e `bool(nan)` é True — era assim que toda conversa histórica ia ser
+    marcada como encerrada. Então o teste é do valor, não da existência da coluna, e
+    ausência vira None: "não sei" não é "não fechou".
+    """
+    v = r.get("SessionClosed")
+    if v is None or pd.isna(v):
+        return None
+    if isinstance(v, str):
+        return v.strip().lower() in ("true", "1", "sim", "y", "yes")
+    return bool(v)
+
+
 def main() -> int:
     STORE.mkdir(parents=True, exist_ok=True)
 
@@ -455,6 +472,7 @@ def main() -> int:
             "data": str(r["StartedAt"])[:10],
             "criado_em": str(r["StartedAt"]), "fechado_em": str(r.get("EndedAt") or "")[:19] or None,
             "inicio_dev": None, "alterado_em": None,
+            "encerrada": encerrada_de(r),
             "status": "", "canal": r.get("Channel") or "",
             "cliente": r.get("CustomerName") or "", "cnpj": "",
             "fiscal": fiscal,

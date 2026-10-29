@@ -80,7 +80,10 @@ public class ConversationAssembler
             SystemMessages = counts.system,
             LinkedEntitiesCsv = BuildLinkedEntitiesCsv(raw.DialogInfo),
             HasFiles = files.Count > 0,
-            HasVoiceNote = files.Any(f => f.IsVoiceNote)
+            HasVoiceNote = files.Any(f => f.IsVoiceNote),
+            SessionClosed = string.Equals(
+                GetStringOrNull(raw.Activity, "COMPLETED", "completed"), "Y",
+                StringComparison.OrdinalIgnoreCase)
         };
     }
 

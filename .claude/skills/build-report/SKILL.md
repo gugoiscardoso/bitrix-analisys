@@ -226,6 +226,47 @@ python pipeline/gerar_relatorio.py --de <de> --ate <ate> --abrir
 O motivo de não ser automático está nos Cuidados: arquivo aberto no Excel bloqueia a
 gravação da execução seguinte. Abrir sempre garante o erro na próxima vez.
 
+### 6. Relatório da V3 — pipeline paralelo
+
+A V3 tem máquina própria e **não** passa pelos passos 3 e 4 acima. O relatório fiscal
+exclui `versao == "V3"` de propósito.
+
+```bash
+python pipeline/classificar_v3.py status            # o que falta rotular
+python pipeline/classificar_v3.py preparar          # esqueleto em _fila/
+python pipeline/classificar_v3.py absorver <arq>    # {"chamados": {id: [frente, modulo]}}
+python pipeline/classificar_v3.py derivar           # regrava evidencia/n da taxonomia
+python pipeline/gerar_relatorio_v3.py --de 2026-09-01 --ate 2026-10-23
+```
+
+São dezenas de registros, então cabe num subagente só — sem lotes, sem as duas etapas.
+A taxonomia é `taxonomia_v3.json`, frentes R1..R6; `derivar` existe porque o arquivo
+manda `evidencia` e `n` serem derivados do cache e isso não acontece sozinho. Rode-o
+sempre depois de `absorver`.
+
+**Janela com hora.** `--de 2026-10-29T08:00 --ate agora` para retrato intradiário. Isso
+é pedido recorrente ("como está hoje desde as 8h"). Duas coisas só aparecem aí:
+
+- **Fuso.** Conversa está gravada em UTC na base, chamado em hora de Brasília — três
+  horas de diferença. `momento_br()` normaliza. Nunca compare `criado_em` cru entre os
+  dois tipos, e nunca filtre por hora usando o campo `data`.
+- **Conversa aberta.** `encerrada is False` é o sinal, vindo do `COMPLETED` da activity.
+  Não use `fechado_em`: ele é o timestamp da última mensagem e nunca vem vazio. Em
+  janela curta a maioria das conversas está aberta, com duração e assunto parciais — o
+  Resumo e a coluna "Em andamento" avisam, e isso tem de continuar aparecendo.
+
+**Ponto cego do WhatsApp.** A regra marca conversa como V3 pela linha de entrada (17) ou
+pela transferência explícita para a fila da V3. O WhatsApp entra todo pela linha 7, então
+zap de oficina recém-migrada só conta se o atendente transferiu. Medido em 29/10/2026, dia
+da onda de 200 oficinas: a regra deu 1 conversa V3 no WhatsApp e a leitura das conversas
+marcadas V2 achou outras 14 (11 pelo texto, 3 por citarem chamado V3). Ou seja, em dia de
+rollout a regra pode errar por ordem de grandeza **no canal onde o cliente mais fala**.
+
+Isso vive em `data/store/v3_por_conteudo.json` e sai numa aba própria, **fora de todos os
+números**. Em janela de rollout, varra as conversas V2 da janela antes de entregar; não
+mexa na regra de `consolidar_store.py` sem decisão do usuário, porque ela define a série
+histórica inteira.
+
 ## Cuidados
 
 **Taxonomia.** Se o usuário pedir subgrupo novo, edite `data/store/taxonomia.json` e **suba a

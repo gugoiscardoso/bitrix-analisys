@@ -285,3 +285,64 @@ do grupo 139 na hora de montar). Conversa não tem URL estável, então fica só
   conversas hoje). Não cabe numa sessão.
 - Taxonomia V3: **os 54 registros vão ser classificados**, como todo o resto. O que muda
   em relação ao fluxo fiscal é de onde vem a taxonomia e como ela roda, não se há rótulo.
+
+---
+
+# Retrato da V3 no dia da onda — 29/10/2026
+
+Pedido vindo da Paty via Gustavo: o mesmo relatório da V3, recortado em **hoje a partir
+das 8h**, cobrindo **todos os canais (zap, bitrix, chat)**, **só V3**. Motivo: mais 200
+oficinas entraram na V3 hoje e ela quer ver como está rodando.
+
+Validado com o usuário antes de executar: 8h é horário de Brasília; a janela vai até
+agora, o mais recente possível; os canais entram todos juntos, com uma coluna
+identificando qual é; e a conversa ainda em andamento ganha coluna própria.
+
+## Plano
+
+- [x] Conferir se tenho acesso aos três canais que ela citou
+- [x] Coletar chamados e conversas de 24/10 até agora
+- [x] Consolidar a base
+- [x] Classificar os registros V3 novos
+- [x] Gerar o relatório da janela
+- [x] Conferir o arquivo e entregar
+
+## O que mudou no pipeline
+
+**Fuso (bug real, achado aqui).** A base guarda conversa em UTC e chamado em hora de
+Brasília. Em janela de meses isso só desloca a virada da meia-noite; numa janela "a partir
+das 8h" erraria a janela inteira, pegando conversa desde as 5h. `momento_br()` normaliza
+os dois antes de comparar. Provado contra a API, não inferido: sessão 294367 sai
+`10:16:46` no export e `13:16:47+03:00` na API.
+
+**`fechado_em` não é fechamento (bug real, achado aqui).** O coletor preenchia `EndedAt`
+com o timestamp da última mensagem, então o campo nunca vinha vazio e a primeira versão da
+coluna "Em andamento" respondia sempre "não" — 53 conversas V3 supostamente todas
+encerradas, quando 113 das 909 sessões coletadas estavam abertas. O sinal certo é
+`COMPLETED` na activity; agora é coletado e vira `encerrada` no registro. Export antigo
+tem `None`, porque "não sei" não é "não fechou".
+
+**`derivar` na taxonomia V3.** `taxonomia_v3.json` sempre mandou `evidencia` e `n` serem
+derivados do cache, e isso era feito à mão — tinha divergido na primeira versão. Agora é
+comando.
+
+## O achado que importa mais que o relatório
+
+A regra de versão marca conversa como V3 pela linha de entrada (17) ou pela transferência
+explícita para a fila da V3. **O WhatsApp entra todo pela linha 7.** Então zap de oficina
+recém-migrada só é contado como V3 se o atendente transferiu — e na prática poucos
+transferem.
+
+Medido na janela de hoje: a regra achou **1** conversa V3 no WhatsApp. A leitura das 109
+conversas marcadas V2 achou **outras 14** (11 pelo texto do próprio cliente, 3 por citarem
+chamado marcado V3 — essas três conferidas uma por uma: 294419→107505, 294443→107503,
+294501→107503, e os dois chamados estão V3 na base).
+
+Ou seja: no dia do rollout, no canal onde o cliente mais fala, a regra erra por ordem de
+grandeza. Elas estão no relatório numa aba própria, **fora de todos os números**, com a
+evidência de cada uma. Mudar a contagem é decisão do usuário, não do pipeline: a regra
+define a série histórica inteira.
+
+Vale como leitura: as 14 estão concentradas entre 08:04 e 09:38, em cima do incidente da
+manhã que o próprio atendente descreve como "problema na nova versão, corrigido por volta
+das 08:40".

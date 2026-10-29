@@ -582,3 +582,62 @@ Faz sentido e vale para o relatório: chamado tem template, campos e título est
 conversa é texto livre com transferência de fila no meio. A fronteira da taxonomia é
 mais difícil de aplicar onde o registro é mais pobre. É a mesma causa do "atendimento
 opaco" — o limite não é a taxonomia, é o que o canal registra.
+
+## Fuso: conversa em UTC, chamado em hora de Brasília (medido 29/10/2026)
+O store grava os dois tipos em fusos diferentes e nada no código dizia isso.
+- Chamado: `criado_em` mantém o offset que o Bitrix devolve, `-03:00`.
+- Conversa: `JsonReadHelpers.GetDateTimeOrNull` usa `DateTimeStyles.AdjustToUniversal`,
+  e `crm.activity.list` devolve `+03:00`. Resultado: gravado em **UTC**, três horas à
+  frente de Brasília.
+
+Provado contra a API, não inferido: sessão 294367 sai `2026-10-29 10:16:46` no export e
+`2026-10-29T13:16:47+03:00` na API. O histograma de criação da base concorda — chamado
+pica 08h-18h, conversa 11h-21h.
+
+Consequência medida: o campo `data` da conversa é a data do instante UTC, então conversa
+aberta entre 21h e 23h59 de Brasília está datada no dia seguinte. São ~540 de 43.652
+conversas (1,3%). Nenhum relatório entregue foi refeito: em janela de meses isso move
+registro de um dia para o vizinho e não muda conclusão nenhuma. Mas **toda janela com
+hora tem de normalizar antes de comparar** — `gerar_relatorio_v3.py:momento_br` faz isso.
+
+Pendência: decidir se `consolidar_store.py` passa a gravar conversa em hora de Brasília.
+Se passar, os números diários de todos os relatórios mudam na margem e a base precisa ser
+reconstruída inteira.
+
+## `fechado_em` da conversa não é fechamento (corrigido em 29/10/2026)
+`ConversationAssembler` preenchia `EndedAt` com o timestamp da **última mensagem**, com
+`END_TIME` da activity só como reserva. Como toda sessão tem pelo menos uma mensagem,
+`fechado_em` nunca vinha vazio — e qualquer teste de "ainda está aberta" respondia sempre
+"não". Foi o que aconteceu na primeira tentativa de marcar atendimento em andamento: 53
+conversas V3 de hoje, todas supostamente encerradas, sendo que 108 das 179 sessões do dia
+estavam abertas.
+
+O sinal certo é `COMPLETED` na activity (`Y` encerrada / `N` aberta, com `STATUS` 2 e 1).
+Agora é coletado e vira `encerrada` no registro. Export anterior a 29/10/2026 não tem o
+campo, e ali `encerrada` é `None`: "não sei" não é "não fechou".
+
+`EndedAt` e `DurationMinutes` continuam saindo da última mensagem. Em sessão aberta isso
+é duração parcial, não final — por isso a coluna "Em andamento" existe no relatório.
+
+## Taxonomia V3: precedência entre R6 (fiscal) e R3 (paridade) não está escrita
+Registro que é fiscal **e** lacuna de migração ao mesmo tempo — configuração de NFS-e que
+não acompanhou a virada — cabe nas duas frentes, e taxonomia_v3.json não diz qual ganha.
+Na classificação de 29/10 valeu "fiscal operado pela V3 -> R6", aplicada de forma
+consistente nos ids 294653, 107531, 293435, 294367 e 294619. Se a convenção certa for dar
+precedência à paridade, esses cinco viram R3 e o peso de R6 cai.
+
+Escrever a cláusula FRONTEIRA no arquivo num bump de versão, em qualquer direção. Hoje a
+regra existe só no briefing de uma execução, e é assim que duas execuções divergem.
+
+## Taxonomia V3: fronteira R2/R3 depende de informação que o registro não tem
+Casos em que o cliente diz que algo "não aparece" sem dizer se existia na V2: 294381 e
+294543 (lista de serviços própria não aparece na OS) foram para R3 presumindo que o
+catálogo da V3 substituiu a base do cliente; se for só caminho novo, são R2. Mesma dúvida
+em 293003. Não é erro de execução, é limite do dado — o registro não diz.
+
+## Conversa de uma linha vira frente inteira
+294455 ("MEUS DADOS SUMIRAM" e nada mais) foi para R4; 294375 ("está tudo bagunçado", sem
+retorno) para R2. Ambas defensáveis como "Sem conteúdo útil". Numa janela de horas isso
+pesa muito mais que numa de meses, porque a proporção de conversa curta é maior. Candidato
+a critério explícito: abaixo de N mensagens do cliente, sem assunto nomeado, é "Sem
+conteúdo útil" — hoje a decisão é por leitura.

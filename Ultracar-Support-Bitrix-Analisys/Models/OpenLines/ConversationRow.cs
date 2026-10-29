@@ -23,4 +23,11 @@ public class ConversationRow
     public string LinkedEntitiesCsv { get; set; } = string.Empty;
     public bool HasFiles { get; set; }
     public bool HasVoiceNote { get; set; }
+
+    /// <summary>
+    /// Sessão encerrada (COMPLETED=Y na activity). Falso significa atendimento ainda
+    /// aberto na hora da coleta — e aí EndedAt, DurationMinutes e as contagens de
+    /// mensagem são parciais, não o retrato final da conversa.
+    /// </summary>
+    public bool SessionClosed { get; set; }
 }

@@ -169,6 +169,52 @@ def cmd_status(_):
     return 0
 
 
+def cmd_derivar(_):
+    """Regrava evidencia e n da taxonomia a partir do cache.
+
+    O próprio taxonomia_v3.json manda: 'Campo evidencia e n são DERIVADOS de
+    classificacao_v3.json, nunca escritos à mão. Regerar sempre que a classificação
+    mudar.' Sem este comando a regra era boa intenção — a primeira versão do arquivo já
+    tinha divergido, com o 107367 listado em duas frentes ao mesmo tempo.
+
+    Para não encher o arquivo, a evidência fica nos 12 ids mais antigos de cada rótulo:
+    são os casos fundadores, os que a definição foi escrita para cobrir. O n é a
+    contagem cheia.
+    """
+    tax = ler(TAXONOMIA)
+    cache = carregar_cache()
+    por_rotulo = {}
+    for r in registros_v3():
+        c = cache["chamados" if r["tipo"] == "chamado" else "conversas"].get(str(r["id"]))
+        if not c:
+            continue
+        por_rotulo.setdefault(c.get("frente"), []).append((r["data"], str(r["id"])))
+
+    def aplicar(no, chave):
+        ids = sorted(por_rotulo.get(chave, []))
+        no["evidencia"] = ", ".join(i for _, i in ids[:12])
+        no["n"] = len(ids)
+        return len(ids)
+
+    total = 0
+    for eixo in tax["eixos"]:
+        if eixo["nome"] != "frente":
+            continue
+        for v in eixo["valores"]:
+            n = aplicar(v, v["codigo"])
+            total += n
+            print(f"  {v['codigo']:<4} {v['nome']:<34} n={n}")
+    for rot in tax["rotulos_de_servico"]:
+        n = aplicar(rot, rot["nome"])
+        total += n
+        print(f"  {'':<4} {rot['nome']:<34} n={n}")
+
+    tax["versao"] = date.today().isoformat()
+    TAXONOMIA.write_text(json.dumps(tax, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"\n{total} registros derivados; taxonomia agora na versão {tax['versao']}")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -176,8 +222,10 @@ def main():
     pa = sub.add_parser("absorver")
     pa.add_argument("arquivo")
     sub.add_parser("status")
+    sub.add_parser("derivar")
     a = ap.parse_args()
-    return {"preparar": cmd_preparar, "absorver": cmd_absorver, "status": cmd_status}[a.cmd](a)
+    return {"preparar": cmd_preparar, "absorver": cmd_absorver, "status": cmd_status,
+            "derivar": cmd_derivar}[a.cmd](a)
 
 
 if __name__ == "__main__":

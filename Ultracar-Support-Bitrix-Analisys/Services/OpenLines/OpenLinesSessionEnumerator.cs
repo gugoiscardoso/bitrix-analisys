@@ -35,7 +35,11 @@ public class OpenLinesSessionEnumerator
             {
                 "ID", "PROVIDER_ID", "PROVIDER_TYPE_ID", "ASSOCIATED_ENTITY_ID",
                 "OWNER_ID", "OWNER_TYPE_ID", "RESPONSIBLE_ID",
-                "CREATED", "START_TIME", "END_TIME", "SUBJECT"
+                "CREATED", "START_TIME", "END_TIME", "SUBJECT",
+                // COMPLETED é o único campo que diz se a sessão foi encerrada. END_TIME
+                // não serve: vem igual a CREATED na sessão aberta, e o assembler o
+                // sobrescreve com o timestamp da última mensagem.
+                "COMPLETED", "STATUS"
             }
         };
 
