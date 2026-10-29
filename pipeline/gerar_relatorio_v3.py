@@ -225,13 +225,17 @@ def aba_resumo(wb, v3, cls, tax, janela, servico, extracao, suspeitas, por_conte
                        if marcados.get(str(r["id"]), {}).get("situacao", "confirmada")
                        == "confirmada"]
         canais = collections.Counter(canal_de(r) for r in confirmadas)
+        ids_conf = {str(r["id"]) for r in confirmadas}
+        canais_nc = collections.Counter(canal_de(r) for r in suspeitas
+                                        if str(r["id"]) not in ids_conf)
         ws.append([])
         ws.append([f"Ponto cego: outras {len(confirmadas)} conversas da janela são da V3 "
                    "pelo conteúdo, mas não passaram pela fila da V3, então a regra "
                    "automática não as enxerga e elas NÃO estão nos números acima "
                    f"({'; '.join(f'{k}: {v}' for k, v in canais.most_common())}). "
-                   f"Mais {len(suspeitas) - len(confirmadas)} conversas de WhatsApp ficaram "
-                   "inconclusivas e também estão listadas, marcadas como não confirmadas. "
+                   f"Mais {len(suspeitas) - len(confirmadas)} conversas ficaram inconclusivas "
+                   f"({'; '.join(f'{k}: {v}' for k, v in canais_nc.most_common())}) "
+                   "e também estão listadas, marcadas como não confirmadas. "
                    "Tudo isso na aba 'Possível V3 fora da regra', uma por uma, com o motivo."])
         cel = ws[f"A{ws.max_row}"]
         cel.font = Font(italic=True)
