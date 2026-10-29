@@ -287,3 +287,34 @@ skill não o toca.
 Cada execução classifica só o que é novo — cerca de 170 chamados e 2.000 conversas fiscais por
 mês, algo em torno de 850 mil tokens numa execução mensal. Se o usuário estiver perto do limite
 de cota, avise antes de disparar os subagentes e ofereça reduzir a janela.
+
+### 7. Varredura do ponto cego — `varrer_ponto_cego.py`
+
+A seção 6 explica por que ele existe. A mecânica:
+
+```bash
+python pipeline/varrer_ponto_cego.py preparar --de 2026-10-29T08:00 --ate 2026-10-29T18:00
+# julgue data/store/_fila/ponto_cego_candidatos.md
+python pipeline/varrer_ponto_cego.py absorver <vereditos.json> --de ... --ate ...
+```
+
+`preparar` divide as conversas V2 da janela em três: **candidatos** (têm sinal de versão
+no texto ou citam chamado marcado V3) vão para leitura; **vazias** (WhatsApp sem conteúdo
+útil depois de descontar mensagem de sistema) entram direto como não confirmada; o
+**resto** fica fora.
+
+O filtro foi calibrado contra as 16 conversas provadas de 29/10 e pega 16/16 lendo 22% das
+conversas. Um regex mais estreito — "nova versão|v3|sistema novo|sistema3" — pegava 5 de
+12: **o cliente quase nunca diz "V3"**, diz "atualizou", "está diferente", "antes dava e
+agora não". A precisão é ~62%: "diferente" e "atualizado" aparecem em mensagem de erro,
+certificado digital e Reforma Tributária. Largo de propósito — falso positivo custa
+leitura, falso negativo custa a verdade.
+
+`preparar` **reconfere o recall a cada execução**: toda conversa já gravada como
+`confirmada` tem de continuar sendo pega pelo filtro, senão ele aborta. Sem isso, afrouxar
+o regex degradaria a varredura em silêncio e o sintoma seria um número baixo que ninguém
+questiona.
+
+`absorver` só acrescenta — nunca sobrescreve curadoria anterior — e recusa arquivo com
+candidato sem veredito, id que não é candidato da janela, ou veredito fora de
+V3/V2/indefinido.

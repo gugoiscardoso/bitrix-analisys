@@ -1,98 +1,98 @@
 {
-  "gerado_em": "2026-10-29",
+  "gerado_em": "2026-10-29 12:09",
   "o_que_e": "Conversa que a regra automatica marcou V2 e cujo atendimento e da V3. A regra marca V3 pela linha de entrada 17 ou pela transferencia explicita para a fila da V3; o WhatsApp entra todo pela linha 7, entao zap de oficina recem-migrada so conta se o atendente transferiu.",
-  "como_usar": "O gerador lista estes registros numa aba propria e NAO os soma em nenhum numero. `situacao` separa o que foi provado (confirmada) do que subiu por pedido do usuario sem prova de versao (nao_confirmada): o WhatsApp e o canal onde a regra nao enxerga nada, entao conversa inconclusiva ali e informacao, nao ruido. Promover qualquer uma a numero e decisao de quem le o relatorio, nao do pipeline.",
-  "janela_varrida": "2026-10-29 08:00 a 11:24 (hora de Brasilia)",
+  "como_usar": "O gerador lista estes registros numa aba própria e NÃO os soma em nenhum número. `situacao` separa o provado (confirmada) do inconclusivo (nao_confirmada). Promover qualquer um a número é decisão de quem lê o relatório, não do pipeline.",
+  "janela_varrida": "2026-10-29T08:00 a agora (hora de Brasília)",
   "conversas": {
     "294393": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cola o link https://sistema3.ultracar.com.br/app/overview e diz \"voltou para o sistema antigo\"",
-      "situacao": "confirmada"
+      "evidencia": "cola o link https://sistema3.ultracar.com.br/app/overview e diz \"voltou para o sistema antigo\""
     },
     "294399": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"com a atualização do sistema, não consigo realizar qualquer operação\"; o atendente manda o vídeo \"como utilizar a nova versão\"",
-      "situacao": "confirmada"
+      "evidencia": "cliente: \"com a atualização do sistema, não consigo realizar qualquer operação\"; o atendente manda o vídeo \"como utilizar a nova versão\""
     },
     "294409": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cola o e-mail \"seu novo sistema Ultracar foi desbloqueado. A partir de hoje, 29/10/2026\" e não consegue entrar",
-      "situacao": "confirmada"
+      "evidencia": "cola o e-mail \"seu novo sistema Ultracar foi desbloqueado. A partir de hoje, 29/10/2026\" e não consegue entrar"
     },
     "294411": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"preciso colocar a nf de compra no sistema, agora q está novo não estou conseguindo mexer\"",
-      "situacao": "confirmada"
+      "evidencia": "cliente: \"preciso colocar a nf de compra no sistema, agora q está novo não estou conseguindo mexer\""
     },
     "294431": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"está totalmente diferente e simplesmente nada funciona\"; o atendente confirma o aviso sobre a atualização",
-      "situacao": "confirmada"
+      "evidencia": "cliente: \"está totalmente diferente e simplesmente nada funciona\"; o atendente confirma o aviso sobre a atualização"
     },
     "294445": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "media",
-      "evidencia": "cliente: \"ele atualizou e está bem ruim, não está funcionando\"",
-      "situacao": "confirmada"
+      "evidencia": "cliente: \"ele atualizou e está bem ruim, não está funcionando\""
     },
     "294451": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "media",
-      "evidencia": "cliente: \"o sistema atualizou e não estou conseguindo ficar conectada nele\"",
-      "situacao": "confirmada"
+      "evidencia": "cliente: \"o sistema atualizou e não estou conseguindo ficar conectada nele\""
     },
     "294457": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"não estamos conseguindo utilizar a versão atualizada conforme utilizada antes\"; o atendente manda o vídeo da atualização",
-      "situacao": "confirmada"
+      "evidencia": "cliente: \"não estamos conseguindo utilizar a versão atualizada conforme utilizada antes\"; o atendente manda o vídeo da atualização"
     },
     "294485": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "media",
-      "evidencia": "cliente: \"com a atualização, nossas telas estão todas travadas / sistema não carrega\"",
-      "situacao": "confirmada"
+      "evidencia": "cliente: \"com a atualização, nossas telas estão todas travadas / sistema não carrega\""
     },
     "294499": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"são 4 computadores na oficina e 2 deles não está abrindo o novo sistema de vocês\"",
-      "situacao": "confirmada"
+      "evidencia": "cliente: \"são 4 computadores na oficina e 2 deles não está abrindo o novo sistema de vocês\""
     },
     "294541": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "alta",
-      "evidencia": "cliente: \"atualizou o sistema, n fomos avisados nd... consegue deixar no modelo antigo?\"; o atendente fala do problema na nova versão corrigido por volta das 08:40",
-      "situacao": "confirmada"
+      "evidencia": "cliente: \"atualizou o sistema, n fomos avisados nd... consegue deixar no modelo antigo?\"; o atendente fala do problema na nova versão corrigido por volta das 08:40"
     },
     "294419": {
+      "situacao": "confirmada",
       "base": "chamado",
       "confianca": "media",
-      "evidencia": "cita o chamado 107505, que a regra de versão marcou V3; o texto da conversa não nomeia a versão",
-      "situacao": "confirmada"
+      "evidencia": "cita o chamado 107505, que a regra de versão marcou V3; o texto da conversa não nomeia a versão"
     },
     "294443": {
+      "situacao": "confirmada",
       "base": "chamado",
       "confianca": "media",
-      "evidencia": "cita o chamado 107503, que a regra de versão marcou V3; o texto da conversa não nomeia a versão",
-      "situacao": "confirmada"
+      "evidencia": "cita o chamado 107503, que a regra de versão marcou V3; o texto da conversa não nomeia a versão"
     },
     "294501": {
+      "situacao": "confirmada",
       "base": "chamado",
       "confianca": "media",
-      "evidencia": "cita o chamado 107503, que a regra de versão marcou V3; o texto da conversa não nomeia a versão",
-      "situacao": "confirmada"
+      "evidencia": "cita o chamado 107503, que a regra de versão marcou V3; o texto da conversa não nomeia a versão"
     },
     "294733": {
+      "situacao": "confirmada",
       "base": "texto",
       "confianca": "media",
-      "evidencia": "diz \"Antes colocava sem pagamento e no valor era 0,00, agora nao aceita\" — a mesma mudanca de comportamento que o chamado 107537 descreve, e esse chamado esta marcado V3",
-      "situacao": "confirmada"
+      "evidencia": "diz \"Antes colocava sem pagamento e no valor era 0,00, agora nao aceita\" — a mesma mudanca de comportamento que o chamado 107537 descreve, e esse chamado esta marcado V3"
     },
     "294421": {
       "situacao": "confirmada",
@@ -159,6 +159,61 @@
       "base": "sem prova",
       "confianca": "-",
       "evidencia": "so cumprimento"
+    },
+    "294527": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "diz \"antes tinha como tirar analitico ou sintetico, agora nao tem mais essa opcao\" sobre relatorio que gerou no mes passado — antes/depois real, mas nao liga a mudanca de versao e o atendente trata como comportamento normal"
+    },
+    "294721": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "\"sobre essas mudancas como proceder\" no dia da onda — plausivel que seja a migracao, mas a conversa nao diz nada mais"
+    },
+    "294489": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294589": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294605": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294659": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294661": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294665": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
+    },
+    "294687": {
+      "situacao": "nao_confirmada",
+      "base": "sem prova de versão",
+      "confianca": "-",
+      "evidencia": "conversa de WhatsApp sem conteúdo útil — só cumprimento ou mensagem de sistema"
     }
-  }
+  },
+  "cobertura": "Das 118 conversas V2 da janela, 26 foram julgadas uma a uma e 15 entraram como não confirmada por não terem conteúdo. O resto tem assunto próprio e nenhum sinal de versão. O filtro pega 16 de 16 das conversas já provadas como V3, e isso é reconferido a cada execução."
 }
