@@ -152,7 +152,9 @@ Orientação de módulo:
 - Transversal é para o que não é de módulo nenhum: cobrança de prazo, sistema fora do
   ar, pedido de treinamento.
 - Fiscal é nota, imposto, SPED, prefeitura, certificado digital.
-- Se a conversa não tem assunto identificável, o módulo é Transversal.
+- Conversa sem assunto identificável: escolha o tema próprio dela e, no módulo,
+  responda o que lhe parecer mais próximo — o módulo dessas é corrigido depois, por
+  regra, e não depende da sua escolha.
 
 REGISTROS:
 """
@@ -250,6 +252,13 @@ def cmd_absorver(a) -> int:
     validos_tema = {g: set(voc[LISTA_TEMA[g]]) for g in ("A", "B", "C")}
     feito = ler(SAIDA, {"chamados": {}, "conversas": {}})
     hoje = date.today().isoformat()
+    # Conversa vazia recebe "(sem assunto)", nunca um módulo de produto. A regra já
+    # vale no caminho derivado (modulo_por_rotulo.json) e precisa valer aqui, senão o
+    # mesmo tipo de registro cai em baldes diferentes conforme tenha sido derivado ou
+    # lido. Aplicada em código e não no prompt: é determinística, e pedir ao leitor que
+    # a respeite seria confiar numa instrução quando existe uma regra.
+    vazios = {x for x in ler(STORE / "modulo_por_rotulo.json")["tema_sem_assunto"]}
+    n_forcado = 0
 
     respostas = sorted(FILA.glob("resp_*.json"))
     if not respostas:
@@ -291,6 +300,9 @@ def cmd_absorver(a) -> int:
                     n_erro += 1
                     continue
                 reg["tema"] = tema
+                if tema in vazios:
+                    reg["modulo"] = "(sem assunto)"
+                    n_forcado += 1
             chv = "chamados" if item["tipo"] == "chamado" else "conversas"
             feito[chv][str(rid)] = reg
             n_ok += 1
@@ -311,6 +323,9 @@ def cmd_absorver(a) -> int:
         arq.unlink()
         lote = FILA / f"lote_{arq.stem.split('_')[1]}_{arq.stem.split('_')[2]}.json"
         lote.unlink(missing_ok=True)
+    if n_forcado:
+        print(f"{n_forcado} conversa(s) sem assunto tiveram o módulo trocado para "
+              "'(sem assunto)', como manda a regra.")
     print(f"Absorvidos {n_ok} registros ({n_erro} recusados). "
           f"Total em {SAIDA.name}: "
           f"{len(feito['chamados']) + len(feito['conversas'])}")
