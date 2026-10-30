@@ -424,12 +424,11 @@ def aba_resumo(wb, regs, tax, de, ate, extracao, amostra):
 
 # ─────────────────────── abas de detalhe ───────────────────────
 
-COLS_CH = ["Id", "Versão", "Natureza", "Módulo", "Origem do módulo", "Tema",
-           "Subgrupo", "Data", "Mês", "Canal", "Status", "Cliente", "Origem do nome",
-           "CNPJ (filial)", "Matriz (id)", "Título", "Descrição"]
-COLS_CV = ["Id", "Versão", "Natureza", "Módulo", "Origem do módulo", "Tema",
-           "Subgrupo", "Data", "Mês", "Canal", "Duração (min)", "Mensagens",
-           "Operador", "Cliente", "Conversa"]
+COLS_CH = ["Id", "Versão", "Natureza", "Módulo", "Tema", "Subgrupo", "Data", "Mês",
+           "Canal", "Status", "Cliente", "CNPJ (filial)", "Matriz (id)", "Título",
+           "Descrição"]
+COLS_CV = ["Id", "Versão", "Natureza", "Módulo", "Tema", "Subgrupo", "Data", "Mês",
+           "Canal", "Duração (min)", "Mensagens", "Operador", "Cliente", "Conversa"]
 
 
 def amostrar(sel: list[dict], n: int) -> list[dict]:
@@ -463,13 +462,11 @@ def aba_detalhe(wb, regs, tipo, amostra):
 
     for r in sel:
         comum = [r["id"], rotulo_versao(r.get("versao", "V2")), r["natureza"],
-                 r["modulo"] or SEM_MODULO, r["modulo_fonte"] or "—",
-                 r["tema"], r["subgrupo"],
+                 r["modulo"] or SEM_MODULO, r["tema"], r["subgrupo"],
                  r["data"], r["data"][:7], r.get("canal", "")]
         if tipo == "chamado":
             ws.append(comum + [r.get("status", ""), r.get("cliente", ""),
-                               r.get("cliente_fonte", ""), r.get("cnpj", ""),
-                               r.get("matriz", ""),
+                               r.get("cnpj", ""), r.get("matriz", ""),
                                mascarar_credenciais(r.get("titulo") or "")[:900],
                                mascarar_credenciais(r.get("texto") or "")[:4000]])
         else:

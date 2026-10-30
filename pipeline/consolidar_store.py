@@ -256,7 +256,8 @@ RUIDO_TRANSCRICAO = re.compile(
     r"|Acesse o formul[aá]rio e aproveite|Percebemos o chat sem resposta)", re.I)
 
 
-def montar_transcricoes(msgs: pd.DataFrame) -> dict[int, str]:
+def montar_transcricoes(msgs: pd.DataFrame,
+                        remetentes: dict | None = None) -> dict[int, str]:
     """Conversa legível: uma mensagem por linha, com hora.
 
     Vai num ARQUIVO À PARTE, nunca no campo `texto`. O `texto` é o digest que alimenta
@@ -274,14 +275,20 @@ def montar_transcricoes(msgs: pd.DataFrame) -> dict[int, str]:
     # horas fora das demais colunas do relatório.
     quando = pd.to_datetime(msgs["Timestamp"], errors="coerce") - pd.Timedelta(hours=3)
     msgs = msgs.assign(_br=quando)
+    remetentes = remetentes or {}
     for sid, g in msgs.groupby("SessionId"):
+        papeis = remetentes.get(str(int(sid)), {})
         linhas, tam, cortou = [], 0, False
         for _, m in g.sort_values("_br").iterrows():
             t = limpar(m["TextContent"])
             if not t or t.lower() == "nan" or RUIDO_TRANSCRICAO.match(t):
                 continue
             hora = "" if pd.isna(m["_br"]) else m["_br"].strftime("%H:%M")
-            linha = f"[{hora}] {t}" if hora else t
+            # Sem mapa de remetentes a linha sai sem rótulo, em vez de sair com um
+            # rótulo inventado. Quem não está no mapa é a plataforma falando.
+            quem = papeis.get(str(m["MessageId"]), "" if not papeis else "(sistema)")
+            cabeca = f"[{hora}] " if hora else ""
+            linha = f"{cabeca}{quem}: {t}" if quem else f"{cabeca}{t}"
             if tam + len(linha) > LIMITE_TRANSCRICAO:
                 cortou = True
                 break
@@ -601,14 +608,25 @@ def main() -> int:
     partes_conv, partes_msg = [], []
     for arq in fontes_conv:
         partes_conv.append(pd.read_excel(arq, sheet_name="Conversations"))
-        partes_msg.append(pd.read_excel(arq, sheet_name="Messages",
-                                        usecols=["SessionId", "Timestamp", "TextContent"]))
+        # MessageId entra por causa da transcrição: é a chave que liga a mensagem ao
+        # papel do remetente em remetentes.json. AuthorName/AuthorType não servem —
+        # o exportador grava "System" em todas.
+        partes_msg.append(pd.read_excel(
+            arq, sheet_name="Messages",
+            usecols=["SessionId", "MessageId", "Timestamp", "TextContent"]))
     conv = (pd.concat(partes_conv, ignore_index=True)
               .drop_duplicates(subset="SessionId", keep="last"))
     msgs = pd.concat(partes_msg, ignore_index=True).drop_duplicates()
     print(f"conversas           {len(conv)} mescladas de {len(fontes_conv)} export(s)")
     digests = montar_digests(msgs)
-    transcricoes = montar_transcricoes(msgs)
+    arq_rem = STORE / "remetentes.json"
+    remetentes = json.loads(arq_rem.read_text(encoding="utf-8")) if arq_rem.exists() else {}
+    if remetentes:
+        print(f"remetentes.json     {len(remetentes)} sessões com autor identificado")
+    else:
+        print("remetentes.json     ausente — transcrição sairá sem autor "
+              "(rode pipeline/enriquecer_autores.py)")
+    transcricoes = montar_transcricoes(msgs, remetentes)
     redirects = montar_redirecionamentos(msgs)
     (STORE / "transcricoes.json").write_text(
         json.dumps({str(k): v for k, v in transcricoes.items()}, ensure_ascii=False),
