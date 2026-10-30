@@ -233,6 +233,66 @@ def montar_digests(msgs: pd.DataFrame) -> dict[int, str]:
     return out
 
 
+LIMITE_TRANSCRICAO = 3000
+
+# Ruído de plataforma na transcrição. É DIFERENTE do BOILER usado no digest: aquele
+# serve ao classificador e corta coisas como "obrigad", que numa leitura humana é fala
+# legítima do cliente. Aqui só sai o que nenhuma pessoa escreveu. Medido em 6.000
+# conversas — as linhas abaixo aparecem de 1.200 a 8.300 vezes cada.
+# As transferências de fila FICAM: mostram o caminho do atendimento, e é delas que sai
+# o sinal de entrada na V3.
+RUIDO_TRANSCRICAO = re.compile(
+    r"^(?:-{2,}|Suporte Ultracar|Data received:|New deal created|Novo neg[oó]cio criado"
+    r"|Deal attached to conversation|Contact information saved"
+    r"|Conversation #\d+ started|Conversation closed\.?|Conversa fechada\.?"
+    r"|Enquiry assigned to all agents|Consulta atribu[ií]da a todos os agentes"
+    r"|Diga-nos como nos sa[ií]mos|Basta enviar 1"
+    r"|Bem-?vindo ao Canal de Suporte|Pedimos desculpas pelo transtorno"
+    r"|A Ultracar agradece o seu contato|Nos ajude a melhorar o nosso atendimento"
+    r"|Lembre-se: constru[ií]mos a melhoria"
+    r"|Devido a alta demanda gerada pela Reforma"
+    r"|Com as mudan[cç]as da Reforma Tribut[aá]ria"
+    r"|No momento,? estamos com uma fila|Aproveite nosso PROGRAMA DE INDICA"
+    r"|Acesse o formul[aá]rio e aproveite|Percebemos o chat sem resposta)", re.I)
+
+
+def montar_transcricoes(msgs: pd.DataFrame) -> dict[int, str]:
+    """Conversa legível: uma mensagem por linha, com hora.
+
+    Vai num ARQUIVO À PARTE, nunca no campo `texto`. O `texto` é o digest que alimenta
+    `hash_texto`, e mudar um caractere dele marcaria os 35 mil registros já
+    classificados como pendentes de releitura.
+
+    O autor NÃO entra. O exportador grava AuthorType=System em 100% das 296 mil
+    mensagens de todos os exports, porque lê `author_id`/`AUTHOR_ID`/`id_user` e o
+    campo que a API devolve chama-se `senderid`. Enquanto isso não for corrigido e as
+    conversas recoletadas, rotular autor seria inventar.
+    """
+    out = {}
+    # O export grava a mensagem em UTC, como todo campo de conversa nesta base. Sem o
+    # deslocamento a transcrição mostraria 20:57 para uma conversa das 17:57, três
+    # horas fora das demais colunas do relatório.
+    quando = pd.to_datetime(msgs["Timestamp"], errors="coerce") - pd.Timedelta(hours=3)
+    msgs = msgs.assign(_br=quando)
+    for sid, g in msgs.groupby("SessionId"):
+        linhas, tam, cortou = [], 0, False
+        for _, m in g.sort_values("_br").iterrows():
+            t = limpar(m["TextContent"])
+            if not t or t.lower() == "nan" or RUIDO_TRANSCRICAO.match(t):
+                continue
+            hora = "" if pd.isna(m["_br"]) else m["_br"].strftime("%H:%M")
+            linha = f"[{hora}] {t}" if hora else t
+            if tam + len(linha) > LIMITE_TRANSCRICAO:
+                cortou = True
+                break
+            linhas.append(linha)
+            tam += len(linha) + 1
+        if cortou:
+            linhas.append("[...] restante da conversa não cabe nesta célula")
+        out[int(sid)] = "\n".join(linhas)
+    return out
+
+
 # ─────────────────────────── versão do sistema (V2 / V3) ───────────────────────────
 #
 # Levantado em 23/10/2026 contra a API. Chamado e conversa têm marcas diferentes:
@@ -314,13 +374,97 @@ def extrair_cnpj(titulo: str) -> str:
     return m.group(1) if m else ""
 
 
+MATRIZ_RE = re.compile(r"\[\s*matrix\s*:\s*(\d{1,12})\s*\]", re.IGNORECASE)
+
+
+def extrair_matriz(titulo: str) -> str:
+    """Id da matriz — a CONTA da oficina no ERP, não um canal nem um bot.
+
+    `tb_company.matrix_id -> tb_matrix.id`: uma matriz tem N filiais, cada filial com
+    CNPJ próprio. Guardar isto permite contar oficinas distintas; por CNPJ, uma rede de
+    cinco lojas vira cinco clientes.
+
+    Quem escrevia esse prefixo era o robô de IA do suporte N1, que montava o título
+    como "[Matrix: {MatrixId}] [Filial: {cnpj}] - {assunto}".
+    """
+    m = MATRIZ_RE.search(titulo or "")
+    return m.group(1) if m else ""
+
+
+def limpar_nome(bruto: str) -> str:
+    """Tira o rabo que o título costuma deixar colado no nome.
+
+    Medido nos próprios dados: o mesmo CNPJ aparece como "AUTO BRILHO LTDA." e como
+    "AUTO BRILHO LTDA.   ID: 3729". Sem isto, as duas grafias contam como clientes
+    diferentes e o mapa de CNPJ fica com lixo competindo com o nome bom.
+    """
+    c = re.sub(r"\s*[-–|]?\s*ID\s*:?\s*\d+\s*$", "", (bruto or "").strip(), flags=re.I)
+    return re.sub(r"\s{2,}", " ", c).strip(" -–:|")
+
+
 def extrair_cliente(titulo: str) -> str:
+    """Nome do cliente a partir do título do chamado.
+
+    Duas convenções convivem. O analista escreve "Cliente: RAZÃO SOCIAL"; os chamados
+    abertos pelo Matrix escrevem "[Filial: X]", e X ora é razão social, ora é CNPJ.
+    Procurar só por "Cliente" deixava 693 dos 845 vazios — o nome estava no título o
+    tempo todo, sob outro rótulo.
+    """
     m = re.search(r"cliente\s*:?\s*(.+?)(?:\s*[-–]\s*(?:id|cnpj)|\s*cnpj|$)", titulo, re.IGNORECASE)
     if m:
-        c = m.group(1).strip(" -–:|")
+        c = limpar_nome(m.group(1))
         if 2 < len(c) < 90 and not CNPJ_RE.match(c):
             return c
+    # Filial vem entre colchetes e fecha no ']', então o recorte é exato.
+    m = re.search(r"\[\s*filial\s*:\s*([^\]]{2,90})\]", titulo, re.IGNORECASE)
+    if m:
+        c = limpar_nome(m.group(1))
+        # CNPJ puro não é nome: deixa vazio para o campo cnpj carregá-lo, em vez de
+        # fingir que a coluna Cliente foi preenchida.
+        if c and not CNPJ_RE.match(c) and not re.fullmatch(r"[\d./-]{11,20}", c):
+            return c
     return ""
+
+
+def completar_cliente_por_cnpj(registros: list[dict]) -> int:
+    """Chamado sem nome de cliente herda o nome que o mesmo CNPJ tem em outro chamado.
+
+    Os chamados abertos pelo Matrix identificam o cliente só pelo CNPJ — a coluna
+    Cliente ficava vazia em 845 dos 3.078 da janela, embora a empresa esteja
+    identificada. O nome existe: o mesmo CNPJ aparece nomeado em chamados abertos por
+    analista.
+
+    Vence a grafia MAIS FREQUENTE, não a primeira. 249 dos 1.002 CNPJs têm mais de uma
+    grafia, quase sempre variação de sufixo ou sobra de parser ("ID: 9663" sozinho);
+    pela frequência o nome bom ganha do lixo, que aparece uma vez só.
+
+    Marca `cliente_fonte` para a planilha poder distinguir o que veio do próprio
+    título do que foi herdado.
+    """
+    so_digitos = lambda s: re.sub(r"\D", "", s or "")  # noqa: E731
+    grafias: dict[str, collections.Counter] = collections.defaultdict(collections.Counter)
+    for r in registros:
+        if r["tipo"] != "chamado":
+            continue
+        cnpj, nome = so_digitos(r.get("cnpj")), (r.get("cliente") or "").strip()
+        if len(cnpj) == 14 and nome:
+            grafias[cnpj][nome] += 1
+
+    n = 0
+    for r in registros:
+        if r["tipo"] != "chamado":
+            continue
+        if (r.get("cliente") or "").strip():
+            r["cliente_fonte"] = "título"
+            continue
+        cnpj = so_digitos(r.get("cnpj"))
+        if len(cnpj) == 14 and grafias.get(cnpj):
+            r["cliente"] = grafias[cnpj].most_common(1)[0][0]
+            r["cliente_fonte"] = "CNPJ"
+            n += 1
+        else:
+            r["cliente_fonte"] = ""
+    return n
 
 
 def encerrada_de(r) -> bool | None:
@@ -422,8 +566,13 @@ def main() -> int:
             "criado_em": t.get("createdDate"), "fechado_em": t.get("closedDate"),
             "inicio_dev": t.get("dateStart"), "alterado_em": t.get("changedDate"),
             "status": STATUS.get(str(t.get("status")), str(t.get("status"))),
-            "canal": "Matrix (bot)" if re.search(r"\[matrix", titulo, re.I) else "Analista",
+            # Quem abria estes chamados era o robô de IA do suporte N1, não um canal
+            # chamado "Matrix": esse prefixo é o id da CONTA do cliente, que o robô
+            # punha no título. A integração dele com o Bitrix caiu em 30/09/2026 —
+            # daí o volume despencar de 92 em setembro para 9 em outubro.
+            "canal": "Robô N1 (IA)" if re.search(r"\[matrix", titulo, re.I) else "Analista",
             "cliente": extrair_cliente(titulo), "cnpj": extrair_cnpj(titulo),
+            "matriz": extrair_matriz(titulo),
             "fiscal": fiscal,
             "versao": versao_chamado(titulo, desc, tags_t, t.get("stageId")),
             "tags": tags_t,
@@ -459,7 +608,12 @@ def main() -> int:
     msgs = pd.concat(partes_msg, ignore_index=True).drop_duplicates()
     print(f"conversas           {len(conv)} mescladas de {len(fontes_conv)} export(s)")
     digests = montar_digests(msgs)
+    transcricoes = montar_transcricoes(msgs)
     redirects = montar_redirecionamentos(msgs)
+    (STORE / "transcricoes.json").write_text(
+        json.dumps({str(k): v for k, v in transcricoes.items()}, ensure_ascii=False),
+        encoding="utf-8")
+    print(f"transcricoes.json   {len(transcricoes)} conversas legíveis")
 
     n_fiscal = 0
     for _, r in conv.iterrows():
@@ -494,6 +648,9 @@ def main() -> int:
                 "hash": hash_classificado("", re.sub(r"\s+", " ", dig)[:4000]),
                 "em": "2026-08-05",
             }
+
+    n_herdado = completar_cliente_por_cnpj(registros)
+    print(f"\nCliente preenchido pelo CNPJ de outro chamado: {n_herdado}")
 
     # ---------- grava ----------
     with (STORE / "base_historica.jsonl").open("w", encoding="utf-8") as fh:

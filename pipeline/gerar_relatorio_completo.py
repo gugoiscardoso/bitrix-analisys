@@ -65,6 +65,16 @@ sys.stdout.reconfigure(encoding="utf-8")
 TAG_TITULO = re.compile(r"\s*\[([^\]]{1,40})\]")
 SEM_MODULO = "(a determinar na leitura)"
 
+# Nome de exibição. A base guarda `V3-backlog` e seis scripts casam com essa string;
+# renomear o valor gravado espalharia a mudança por todos eles sem ganho nenhum. O que
+# o leitor vê é o relatório, e aqui "V2 — Promessa V3" descreve o que o registro é:
+# cliente que está na V2 e teve o pedido marcado para sair na versão nova.
+ROTULO_VERSAO = {"V3-backlog": "V2 — Promessa V3"}
+
+
+def rotulo_versao(v: str) -> str:
+    return ROTULO_VERSAO.get(v, v)
+
 
 def ler(p: Path):
     return json.loads(p.read_text(encoding="utf-8-sig"))
@@ -148,6 +158,13 @@ def carregar(de: str, ate: str):
     tax = ler(STORE / "taxonomia.json")
     tax_v3 = ler(STORE / "taxonomia_v3.json")
     mods = Modulos()
+    # Fica fora da base_historica de propósito: são ~50 MB que só este relatório lê, e
+    # seis scripts percorrem aquele arquivo linha a linha.
+    try:
+        transcricoes = ler(STORE / "transcricoes.json")
+    except FileNotFoundError:
+        transcricoes = {}
+        print("AVISO: transcricoes.json não existe — rode consolidar_store.py.")
 
     subs_por_frente = collections.defaultdict(set)
     for s in tax["subgrupos"]:
@@ -166,7 +183,8 @@ def carregar(de: str, ate: str):
             r["natureza"] = "Fiscal" if r.get("fiscal") else "Não-fiscal"
             r |= {"vocab": VOC_NADA, "categoria": "", "categoria_nome": "",
                   "tema": "", "subgrupo": "", "modulo": "", "modulo_fonte": "",
-                  "divergente": False}
+                  "divergente": False,
+                  "transcricao": transcricoes.get(idt, "") if r["tipo"] == "conversa" else ""}
 
             c = v3[chv].get(idt) if r.get("versao") == "V3" else None
             if c:
@@ -299,7 +317,7 @@ def aba_resumo(wb, regs, tax, de, ate, extracao, amostra):
         if not sel:
             continue
         ch, cv = conta(sel)
-        ws.append([v, ch, cv, len(sel), pct(len(sel), len(regs))])
+        ws.append([rotulo_versao(v), ch, cv, len(sel), pct(len(sel), len(regs))])
     ch, cv = conta(regs)
     ws.append(["TOTAL", ch, cv, len(regs), "100,0%"])
     for c in ws[ws.max_row]:
@@ -317,8 +335,8 @@ def aba_resumo(wb, regs, tax, de, ate, extracao, amostra):
                 continue
             ch, cv = conta(sel)
             ws.append([g, nat, ch, cv, len(sel), pct(len(sel), len(base))])
-    ws.append(["", "V3-backlog está somado em V2: é melhoria pedida por cliente que "
-                   "ainda está na V2.", "", "", "", ""])
+    ws.append(["", "'V2 — Promessa V3' está somado em V2: é cliente da V2 cujo pedido "
+                   "foi marcado para sair na versão nova.", "", "", "", ""])
     ws[f"B{ws.max_row}"].font = Font(italic=True, size=9, color="606060")
 
     # ── camada 3: módulo, a única tabela que atravessa V2 e V3 ──
@@ -406,12 +424,12 @@ def aba_resumo(wb, regs, tax, de, ate, extracao, amostra):
 
 # ─────────────────────── abas de detalhe ───────────────────────
 
-COLS_CH = ["Id", "Versão", "Natureza", "Módulo", "Origem do módulo", "Vocabulário",
-           "Categoria", "Tema", "Subgrupo", "Data", "Mês", "Canal", "Status",
-           "Cliente", "CNPJ", "Título"]
-COLS_CV = ["Id", "Versão", "Natureza", "Módulo", "Origem do módulo", "Vocabulário",
-           "Categoria", "Tema", "Subgrupo", "Data", "Mês", "Canal", "Duração (min)",
-           "Mensagens", "Operador", "Cliente", "Texto"]
+COLS_CH = ["Id", "Versão", "Natureza", "Módulo", "Origem do módulo", "Tema",
+           "Subgrupo", "Data", "Mês", "Canal", "Status", "Cliente", "Origem do nome",
+           "CNPJ (filial)", "Matriz (id)", "Título", "Descrição"]
+COLS_CV = ["Id", "Versão", "Natureza", "Módulo", "Origem do módulo", "Tema",
+           "Subgrupo", "Data", "Mês", "Canal", "Duração (min)", "Mensagens",
+           "Operador", "Cliente", "Conversa"]
 
 
 def amostrar(sel: list[dict], n: int) -> list[dict]:
@@ -440,33 +458,45 @@ def aba_detalhe(wb, regs, tipo, amostra):
         cel = ws.cell(row=1, column=i)
         cel.font = HF
         cel.fill = CHAM if tipo == "chamado" else CONV
-        if c in ("Versão", "Natureza", "Módulo", "Origem do módulo", "Vocabulário",
-                 "Categoria"):
+        if c in ("Versão", "Natureza", "Módulo", "Origem do módulo"):
             cel.fill = HDR
 
     for r in sel:
-        comum = [r["id"], r.get("versao", "V2"), r["natureza"],
-                 r["modulo"] or SEM_MODULO, r["modulo_fonte"] or "—", r["vocab"],
-                 r["categoria"] or "—", r["tema"], r["subgrupo"],
+        comum = [r["id"], rotulo_versao(r.get("versao", "V2")), r["natureza"],
+                 r["modulo"] or SEM_MODULO, r["modulo_fonte"] or "—",
+                 r["tema"], r["subgrupo"],
                  r["data"], r["data"][:7], r.get("canal", "")]
         if tipo == "chamado":
             ws.append(comum + [r.get("status", ""), r.get("cliente", ""),
-                               r.get("cnpj", ""),
-                               mascarar_credenciais(r.get("titulo") or "")[:900]])
+                               r.get("cliente_fonte", ""), r.get("cnpj", ""),
+                               r.get("matriz", ""),
+                               mascarar_credenciais(r.get("titulo") or "")[:900],
+                               mascarar_credenciais(r.get("texto") or "")[:4000]])
         else:
+            # A transcrição é o texto legível, uma mensagem por linha. O campo `texto`
+            # da base é o digest que alimenta o hash do classificador e não serve para
+            # leitura humana.
             ws.append(comum + [r.get("duracao_min", ""), r.get("mensagens", ""),
                                r.get("operador", ""), r.get("cliente", ""),
-                               mascarar_credenciais(r.get("texto") or "")[:900]])
+                               mascarar_credenciais(r.get("transcricao")
+                                                    or r.get("texto") or "")])
 
-    larg = {"Id": 10, "Versão": 12, "Natureza": 12, "Vocabulário": 20, "Categoria": 13,
+    larg = {"Id": 10, "Versão": 17, "Natureza": 12,
             "Tema": 48, "Subgrupo": 44, "Módulo": 24, "Origem do módulo": 17,
-            "Data": 11, "Mês": 9, "Canal": 14,
-            "Status": 13, "Cliente": 28, "CNPJ": 18, "Título": 70,
-            "Duração (min)": 12, "Mensagens": 11, "Operador": 18, "Texto": 70}
+            "Data": 11, "Mês": 9, "Canal": 15,
+            "Status": 13, "Cliente": 30, "Origem do nome": 14,
+            "CNPJ (filial)": 18, "Matriz (id)": 12, "Título": 60, "Descrição": 70,
+            "Duração (min)": 12, "Mensagens": 11, "Operador": 18, "Conversa": 80}
     for i, c in enumerate(cols, 1):
         ws.column_dimensions[get_column_letter(i)].width = larg[c]
     ws.freeze_panes = "B2"
     ws.auto_filter.ref = f"A1:{get_column_letter(len(cols))}{ws.max_row}"
+    # A transcrição tem quebra de linha de verdade; sem wrap o Excel mostra tudo numa
+    # régua só. Altura fica no automático do Excel, que respeita o wrap.
+    if tipo == "conversa":
+        col = get_column_letter(cols.index("Conversa") + 1)
+        for linha in range(2, ws.max_row + 1):
+            ws[f"{col}{linha}"].alignment = Alignment(wrap_text=True, vertical="top")
     return len(sel), total
 
 
@@ -576,8 +606,34 @@ def aba_legenda(wb, tax, tax_v3, de, ate, regs):
          "ficção. As camadas 1 e 2 são comparáveis entre V2 e V3; a camada 3 só é "
          "comparável dentro do próprio bloco."),
         ("Versão", "Vem do coletor. V2 e V3 são as versões do sistema Ultracar. "
-                   "V3-backlog é melhoria pedida por cliente que ainda está na V2: "
-                   "aparece separada na camada 1 e soma em V2 nas demais."),
+                   "'V2 — Promessa V3' é cliente que está na V2 e teve o pedido "
+                   "marcado (tag novaversao no Bitrix) para sair na versão nova: "
+                   "aparece separado na camada 1 e soma em V2 nas demais."),
+        ("Cobertura da classificação",
+         f"{sum(1 for r in regs if r['vocab'] != VOC_NADA)} dos {len(regs)} registros "
+         f"({pct(sum(1 for r in regs if r['vocab'] != VOC_NADA), len(regs))}) estão "
+         f"classificados; {sum(1 for r in regs if r['modulo'])} "
+         f"({pct(sum(1 for r in regs if r['modulo']), len(regs))}) têm módulo. "
+         "Percentual de categoria é sempre sobre o que foi lido naquele bloco, nunca "
+         "sobre o bloco inteiro."),
+        ("Canal", "Nos chamados: 'Analista' quando foi aberto pelo time; 'Robô N1 "
+                  "(IA)' quando foi aberto pelo robô de atendimento do site. A "
+                  "integração do robô com o Bitrix foi removida em 30/09/2026, então "
+                  "esse canal some a partir de outubro. Nas conversas: o canal de "
+                  "entrada, WhatsApp ou chat do site."),
+        ("Cliente / CNPJ (filial) / Matriz (id)",
+         "No ERP, a MATRIZ é a conta da oficina e as FILIAIS são as unidades, cada uma "
+         "com CNPJ próprio (tb_company.matrix_id -> tb_matrix.id). Para contar quantas "
+         "oficinas distintas foram afetadas, use Matriz; por CNPJ, uma rede de cinco "
+         "lojas vira cinco clientes. 'Origem do nome' diz se o nome veio do título do "
+         "chamado ou foi herdado do mesmo CNPJ em outro chamado. Em conversa o Cliente "
+         "é o que a pessoa digitou no chat — primeiro nome, às vezes 'Guest', nunca a "
+         "empresa."),
+        ("Conversa (aba Conversas)",
+         "Transcrição legível, uma mensagem por linha com a hora, cortada em 3.000 "
+         "caracteres. O autor de cada mensagem NÃO aparece: o exportador grava todas "
+         "como 'System' porque lê um campo que a API do Bitrix não devolve com esse "
+         "nome. Corrigir exige recoletar as conversas."),
         ("Natureza", "Fiscal x Não-fiscal, do campo fiscal da base. Não depende de "
                      "leitura por IA."),
         ("Natureza 'Fiscal' x frente R6",
@@ -663,7 +719,12 @@ def main() -> int:
     aba_resumo(wb, regs, tax, a.de, a.ate, extracao, a.amostra)
     n_ch, t_ch = aba_detalhe(wb, regs, "chamado", a.amostra)
     n_cv, t_cv = aba_detalhe(wb, regs, "conversa", a.amostra)
-    aba_cobertura(wb, regs, mods.desacordo)
+    # A Cobertura existe para avisar que um percentual é sobre parte do bloco. Com tudo
+    # lido ela vira uma coluna de "100%" repetida, então sai — e a Legenda passa a
+    # carregar a linha de cobertura, que é o que sobra de informativo.
+    falta = sum(1 for r in regs if r["vocab"] == VOC_NADA or not r["modulo"])
+    if falta:
+        aba_cobertura(wb, regs, mods.desacordo)
     aba_legenda(wb, tax, tax_v3, a.de, a.ate, regs)
 
     sufixo = "_PREVIA" if a.amostra else ""

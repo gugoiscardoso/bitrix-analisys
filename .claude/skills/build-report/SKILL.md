@@ -399,3 +399,44 @@ Três armadilhas que o mapa resolve e que voltam se alguém simplificar:
 Custo: o que ainda não foi lido recebe módulo junto com a leitura, sem passo extra.
 O custo **novo** é só releitura de registro já classificado cujo tema abrange vários
 módulos por definição — 4.566 registros em 30/10. A aba Cobertura separa os dois.
+
+#### O que o chamado identifica, e quem o abriu
+
+**Matriz x filial.** No ERP, `tb_company.matrix_id -> tb_matrix.id`: a MATRIZ é a conta
+da oficina, a FILIAL é a unidade, com CNPJ único. Para contar oficinas distintas use a
+matriz — por CNPJ, uma rede de cinco lojas vira cinco clientes.
+
+**O canal "Robô N1 (IA)"** (antes rotulado "Matrix (bot)", errado) são os chamados
+abertos pelo robô de atendimento do site, que montava o título como
+`[Matrix: {MatrixId}] [Filial: {cnpj}] - {assunto}`. "Matrix" ali é o id da conta do
+cliente, não o nome de uma ferramenta. A integração do robô com o Bitrix caiu em
+30/09/2026 — o volume vai de 92 chamados em setembro para 9 em outubro, o que confirma
+a data sem depender de documentação.
+
+**Cliente vazio.** Era 845 de 3.078. O robô identifica o cliente só por CNPJ, então a
+coluna ficava vazia embora a empresa estivesse identificada. `completar_cliente_por_cnpj`
+herda o nome que o mesmo CNPJ tem em outro chamado, pela grafia MAIS FREQUENTE — 249 dos
+1.002 CNPJs têm mais de uma grafia, quase sempre variação de sufixo ou sobra de parser
+("ID: 9663" sozinho), e a frequência faz o nome bom ganhar do lixo. Caiu para 488, que
+são os chamados sem CNPJ nenhum. `cliente_fonte` diz se veio do título ou do CNPJ.
+
+#### Transcrição legível — `transcricoes.json`
+
+Uma mensagem por linha, com hora, para a aba Conversas. Três coisas que não são óbvias:
+
+- **Não vai no campo `texto`.** Aquele é o digest que alimenta `hash_texto`; mudar um
+  caractere marcaria os 35 mil registros já classificados como pendentes. Por isso é
+  arquivo separado, que só `gerar_relatorio_completo.py` lê — `base_historica.jsonl` é
+  percorrida linha a linha por seis scripts e não deve engordar 50 MB.
+- **A hora é deslocada em -3h.** O export grava a mensagem em UTC. Sem isso a
+  transcrição mostra 20:57 para uma conversa das 17:57. A conferência é o histograma:
+  com o ajuste o pico fica em 08h–18h, que é o horário de atendimento.
+- **`RUIDO_TRANSCRICAO` é diferente do `BOILER`.** O BOILER serve ao classificador e
+  corta "obrigad", que numa leitura humana é fala legítima do cliente. O filtro da
+  transcrição só tira o que nenhuma pessoa escreveu. As transferências de fila FICAM.
+
+**O autor da mensagem não existe nos dados.** O exportador grava `AuthorType=System` em
+100% das 296 mil mensagens de todos os exports, porque lê `author_id`/`AUTHOR_ID`/
+`id_user` e o campo que `imopenlines.session.history.get` devolve chama-se **`senderid`**
+(`ConversationMessages.cs:40`). A correção é de uma linha, mas exige recoletar as
+conversas para o dado entrar nos exports.
