@@ -318,3 +318,46 @@ questiona.
 `absorver` só acrescenta — nunca sobrescreve curadoria anterior — e recusa arquivo com
 candidato sem veredito, id que não é candidato da janela, ou veredito fora de
 V3/V2/indefinido.
+
+### 8. Relatório único V2 + V3 — `gerar_relatorio_completo.py`
+
+```
+python pipeline/gerar_relatorio_completo.py --de 2026-01-01 --ate 2026-10-30
+python pipeline/gerar_relatorio_completo.py --de ... --ate ... --amostra 1500
+```
+
+Pedido da gestão em 29/10: um arquivo só, com chamados, chat e WhatsApp, V2 e V3,
+com coluna que diferencia a versão, e percentual de fiscal **e** dos demais assuntos.
+
+O que torna este gerador diferente dos outros é uma restrição da base: existem
+**quatro vocabulários** de classificação e eles não se cruzam — fiscal V2 (P1–P13,
+três níveis), não-fiscal de chamado (11 temas planos), não-fiscal de conversa (12
+temas, lista diferente da de chamado) e V3 (R1–R6 + módulo). Uma tabela única
+exigiria inventar um mapeamento entre categorias derivadas separadamente. Por isso o
+Resumo é em camadas:
+
+1. **Versão** — V2 / V3-backlog / V3
+2. **Natureza** dentro da versão — Fiscal / Não-fiscal
+3. **Categoria** — um bloco por vocabulário, percentual só dentro do bloco
+
+As camadas 1 e 2 saem de campos do coletor, então **já são finais mesmo com a leitura
+incompleta**; só a 3 depende de classificação. É o que permite validar formato e
+ordem de grandeza antes de pagar a leitura. A aba **Cobertura** diz quanto de cada
+bloco foi lido — sem ela, percentual sobre 42% do bloco parece tão firme quanto sobre
+100%.
+
+`--amostra N` limita as abas de detalhe a N linhas espalhadas pelo período (não as N
+mais recentes, que esconderiam a variação ao longo do ano) e acrescenta `_PREVIA` ao
+nome do arquivo. Serve para validar formato sem gerar dezenas de MB.
+
+Cuidados que já custaram correção:
+
+- **Rótulo de serviço da V3** tem código igual ao nome; concatenar os dois dá
+  "Sem conteúdo útil — Sem conteúdo útil".
+- **"Teste interno" sai do denominador**, não só das linhas. Deixá-lo no denominador
+  faz o bloco relatar "99,2% lido" quando está 100% — e sugere trabalho que não existe.
+- **Fiscal sem frente não é "sem categoria"**: tem tema, e o tema informa. São 3.9 mil
+  registros, a maior fatia sendo conversa vazia e 1.4 mil marcados pelo classificador
+  como falso positivo do campo fiscal. Num balde anônimo isso sumiria.
+- **Natureza "Fiscal" e frente R6 não batem de propósito** — uma é regra do coletor
+  sobre o registro, a outra é leitura do conteúdo. A Legenda avisa.
