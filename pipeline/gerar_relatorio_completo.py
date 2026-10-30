@@ -26,7 +26,9 @@ from __future__ import annotations
 import argparse
 import collections
 import json
+import re
 import sys
+import unicodedata
 from datetime import date, datetime
 from pathlib import Path
 
@@ -60,8 +62,18 @@ VOC_NADA = "— não lido"
 sys.stdout.reconfigure(encoding="utf-8")
 
 
+TAG_TITULO = re.compile(r"\s*\[([^\]]{1,40})\]")
+SEM_MODULO = "(a determinar na leitura)"
+
+
 def ler(p: Path):
     return json.loads(p.read_text(encoding="utf-8-sig"))
+
+
+def chave(s: str) -> str:
+    """Sem acento e sem caixa: [ESTOQUE] e [Gestão de pátio] têm de bater com o mapa."""
+    s = unicodedata.normalize("NFKD", s or "")
+    return "".join(c for c in s if not unicodedata.combining(c)).strip().lower()
 
 
 def pct(parte: int, todo: int) -> str:
@@ -74,6 +86,52 @@ def barra(p: float) -> str:
 
 
 # ─────────────────────── carga ───────────────────────
+
+class Modulos:
+    """Resolve o eixo módulo — 'onde no produto' — para os registros da V2.
+
+    É o único eixo que atravessa V2 e V3: os quatro vocabulários discordam sobre QUE
+    TIPO de fricção é, mas concordam sobre ONDE ela acontece. Nada aqui é heurística
+    sobre o registro; é propriedade do rótulo, então todo registro com aquele rótulo
+    recebe o mesmo módulo e o resultado é auditável em modulo_por_rotulo.json.
+    """
+
+    def __init__(self):
+        m = ler(STORE / "modulo_por_rotulo.json")
+        self.versao = m["versao"]
+        self.validos = m["modulos_validos"]
+        self.colchete = {chave(k): v for k, v in m["colchete_do_titulo"].items()}
+        self.por_tema = {"chamado": {chave(k): v for k, v in m["tema_chamado"].items()},
+                         "conversa": {chave(k): v for k, v in m["tema_conversa"].items()}}
+        self.vazios = {chave(x) for x in m["tema_sem_assunto"]}
+        self.falso_fiscal = chave(m["tema_falso_positivo_fiscal"])
+        self.desacordo = 0
+
+    def resolver(self, r: dict, tema: str, fiscal_lido: bool) -> tuple[str, str]:
+        """(módulo, de onde veio). Vazio quando só a leitura resolve.
+
+        `fiscal_lido` diz se a classificação fiscal confirmou o registro. Campo fiscal
+        ligado mas lido como falso positivo NÃO vira módulo Fiscal: inflaria o maior
+        bloco do relatório com registro que o próprio classificador desmentiu.
+        """
+        if chave(tema) in self.vazios:
+            return "(sem assunto)", "tema vazio"
+        if r.get("fiscal") and fiscal_lido:
+            return "Fiscal", "definição"
+        por_colchete = None
+        if r["tipo"] == "chamado":
+            m = TAG_TITULO.match(r.get("titulo") or "")
+            if m:
+                por_colchete = self.colchete.get(chave(m.group(1)))
+        por_tema = self.por_tema[r["tipo"]].get(chave(tema))
+        if por_colchete and por_tema and por_colchete != por_tema:
+            self.desacordo += 1
+        if por_colchete:
+            return por_colchete, "colchete do título"
+        if por_tema:
+            return por_tema, "tema"
+        return "", ""
+
 
 def carregar(de: str, ate: str):
     """Anexa a cada registro da janela o rótulo do vocabulário que o classificou.
@@ -89,6 +147,7 @@ def carregar(de: str, ate: str):
           "conversa": ler(STORE / "classificacao_nao_fiscal_conv.json")}
     tax = ler(STORE / "taxonomia.json")
     tax_v3 = ler(STORE / "taxonomia_v3.json")
+    mods = Modulos()
 
     subs_por_frente = collections.defaultdict(set)
     for s in tax["subgrupos"]:
@@ -100,22 +159,26 @@ def carregar(de: str, ate: str):
             r = json.loads(linha)
             if not (de <= r["data"] <= ate):
                 continue
-            chave = "chamados" if r["tipo"] == "chamado" else "conversas"
+            # `chv`, não `chave`: esse nome é a função de normalização lá em cima, e
+            # sombreá-la aqui deixaria uma armadilha para a próxima edição.
+            chv = "chamados" if r["tipo"] == "chamado" else "conversas"
             idt = str(r["id"])
             r["natureza"] = "Fiscal" if r.get("fiscal") else "Não-fiscal"
             r |= {"vocab": VOC_NADA, "categoria": "", "categoria_nome": "",
-                  "tema": "", "subgrupo": "", "modulo": "", "divergente": False}
+                  "tema": "", "subgrupo": "", "modulo": "", "modulo_fonte": "",
+                  "divergente": False}
 
-            c = v3[chave].get(idt) if r.get("versao") == "V3" else None
+            c = v3[chv].get(idt) if r.get("versao") == "V3" else None
             if c:
                 frente = c.get("frente", "")
                 r |= {"vocab": VOC_V3, "categoria": frente,
                       "categoria_nome": c.get("frente_nome", frente),
-                      "tema": c.get("frente_nome", ""), "modulo": c.get("modulo", "")}
+                      "tema": c.get("frente_nome", ""), "modulo": c.get("modulo", ""),
+                      "modulo_fonte": "leitura (V3)"}
                 regs.append(r)
                 continue
 
-            c = fis[chave].get(idt)
+            c = fis[chv].get(idt)
             if c:
                 sub = c.get("subgrupo", "")
                 # Frente de tema único: o subgrupo é o próprio tema. Derivado da
@@ -126,6 +189,10 @@ def carregar(de: str, ate: str):
                 r |= {"vocab": VOC_FISCAL, "categoria": fr, "categoria_nome": fr,
                       "tema": c["tema"], "subgrupo": sub,
                       "divergente": not r.get("fiscal")}
+                # Só conta como fiscal confirmado quem o classificador não desmentiu.
+                mod, fonte = mods.resolver(
+                    r, c["tema"], chave(c["tema"]) != mods.falso_fiscal)
+                r |= {"modulo": mod, "modulo_fonte": fonte}
                 regs.append(r)
                 continue
 
@@ -134,8 +201,14 @@ def carregar(de: str, ate: str):
                 r |= {"vocab": VOC_NAOFIS, "categoria": c["tema"],
                       "categoria_nome": c["tema"], "tema": c["tema"],
                       "divergente": bool(r.get("fiscal"))}
+            # Não lido também passa aqui: o colchete do título resolve o módulo de
+            # muitos chamados sem custo de leitura nenhum. `c is None` significa que
+            # nada contradiz o campo fiscal da base — ter caído na classificação
+            # não-fiscal é o que o contradiz.
+            mod, fonte = mods.resolver(r, r["tema"], fiscal_lido=c is None)
+            r |= {"modulo": mod, "modulo_fonte": fonte}
             regs.append(r)
-    return regs, tax, tax_v3
+    return regs, tax, tax_v3, mods
 
 
 def grupo_versao(r: dict) -> str:
@@ -248,8 +321,35 @@ def aba_resumo(wb, regs, tax, de, ate, extracao, amostra):
                    "ainda está na V2.", "", "", "", ""])
     ws[f"B{ws.max_row}"].font = Font(italic=True, size=9, color="606060")
 
-    # ── camada 3: categoria, um bloco por vocabulário ──
-    titulo("3 — Categoria   (só esta camada depende da leitura)")
+    # ── camada 3: módulo, a única tabela que atravessa V2 e V3 ──
+    titulo("3 — Módulo: onde no produto   (V2 e V3 na mesma tabela)")
+    com_mod = [r for r in regs if r["modulo"]]
+    ws.append([f"{len(com_mod)} dos {len(regs)} registros ({pct(len(com_mod), len(regs))}) "
+               "já têm módulo. O resto está em '(a determinar na leitura)'. Esta é a "
+               "única camada em que V2 e V3 são comparáveis categoria a categoria: os "
+               "vocabulários discordam sobre QUE TIPO de fricção é, mas concordam sobre "
+               "ONDE ela acontece."])
+    ws[f"A{ws.max_row}"].font = Font(italic=True, size=9, color="606060")
+    ws[f"A{ws.max_row}"].alignment = Alignment(wrap_text=True, vertical="top")
+    ws.row_dimensions[ws.max_row].height = 42
+    cabecalho(["Módulo", "V2 chamados", "V2 conversas", "V3", "Total", "% do período"])
+    agg = collections.defaultdict(lambda: [0, 0, 0])
+    for r in regs:
+        m = r["modulo"] or SEM_MODULO
+        if grupo_versao(r) == "V3":
+            agg[m][2] += 1
+        else:
+            agg[m][0 if r["tipo"] == "chamado" else 1] += 1
+    ordenado = sorted(agg.items(), key=lambda x: -sum(x[1]))
+    for m, (a, b, c3) in ordenado:
+        tot = a + b + c3
+        ws.append([m, a, b, c3, tot, pct(tot, len(regs))])
+        if m in (SEM_MODULO, "(sem assunto)"):
+            for cel in ws[ws.max_row]:
+                cel.font = Font(italic=True, color="808080")
+
+    # ── camada 4: categoria, um bloco por vocabulário ──
+    titulo("4 — Categoria   (um bloco por vocabulário; não compare entre blocos)")
     blocos = [
         ("V2 · Fiscal — frentes P1 a P13",
          [r for r in regs if grupo_versao(r) == "V2" and r["natureza"] == "Fiscal"],
@@ -306,11 +406,12 @@ def aba_resumo(wb, regs, tax, de, ate, extracao, amostra):
 
 # ─────────────────────── abas de detalhe ───────────────────────
 
-COLS_CH = ["Id", "Versão", "Natureza", "Vocabulário", "Categoria", "Tema", "Subgrupo",
-           "Módulo", "Data", "Mês", "Canal", "Status", "Cliente", "CNPJ", "Título"]
-COLS_CV = ["Id", "Versão", "Natureza", "Vocabulário", "Categoria", "Tema", "Subgrupo",
-           "Módulo", "Data", "Mês", "Canal", "Duração (min)", "Mensagens", "Operador",
-           "Cliente", "Texto"]
+COLS_CH = ["Id", "Versão", "Natureza", "Módulo", "Origem do módulo", "Vocabulário",
+           "Categoria", "Tema", "Subgrupo", "Data", "Mês", "Canal", "Status",
+           "Cliente", "CNPJ", "Título"]
+COLS_CV = ["Id", "Versão", "Natureza", "Módulo", "Origem do módulo", "Vocabulário",
+           "Categoria", "Tema", "Subgrupo", "Data", "Mês", "Canal", "Duração (min)",
+           "Mensagens", "Operador", "Cliente", "Texto"]
 
 
 def amostrar(sel: list[dict], n: int) -> list[dict]:
@@ -339,12 +440,14 @@ def aba_detalhe(wb, regs, tipo, amostra):
         cel = ws.cell(row=1, column=i)
         cel.font = HF
         cel.fill = CHAM if tipo == "chamado" else CONV
-        if c in ("Versão", "Natureza", "Vocabulário", "Categoria"):
+        if c in ("Versão", "Natureza", "Módulo", "Origem do módulo", "Vocabulário",
+                 "Categoria"):
             cel.fill = HDR
 
     for r in sel:
-        comum = [r["id"], r.get("versao", "V2"), r["natureza"], r["vocab"],
-                 r["categoria"] or "—", r["tema"], r["subgrupo"], r["modulo"],
+        comum = [r["id"], r.get("versao", "V2"), r["natureza"],
+                 r["modulo"] or SEM_MODULO, r["modulo_fonte"] or "—", r["vocab"],
+                 r["categoria"] or "—", r["tema"], r["subgrupo"],
                  r["data"], r["data"][:7], r.get("canal", "")]
         if tipo == "chamado":
             ws.append(comum + [r.get("status", ""), r.get("cliente", ""),
@@ -356,7 +459,8 @@ def aba_detalhe(wb, regs, tipo, amostra):
                                mascarar_credenciais(r.get("texto") or "")[:900]])
 
     larg = {"Id": 10, "Versão": 12, "Natureza": 12, "Vocabulário": 20, "Categoria": 13,
-            "Tema": 48, "Subgrupo": 44, "Módulo": 20, "Data": 11, "Mês": 9, "Canal": 14,
+            "Tema": 48, "Subgrupo": 44, "Módulo": 24, "Origem do módulo": 17,
+            "Data": 11, "Mês": 9, "Canal": 14,
             "Status": 13, "Cliente": 28, "CNPJ": 18, "Título": 70,
             "Duração (min)": 12, "Mensagens": 11, "Operador": 18, "Texto": 70}
     for i, c in enumerate(cols, 1):
@@ -368,7 +472,7 @@ def aba_detalhe(wb, regs, tipo, amostra):
 
 # ─────────────────────── Cobertura ───────────────────────
 
-def aba_cobertura(wb, regs):
+def aba_cobertura(wb, regs, mods_desacordo):
     """Onde a classificação está completa e onde não está.
 
     É esta aba que impede o relatório de mentir enquanto a leitura não termina: sem
@@ -412,6 +516,35 @@ def aba_cobertura(wb, regs):
         a, b = pm[m]
         ws.append([m, a, b, a + b])
 
+    ws.append([])
+    ws.append(["Eixo módulo: de onde veio"])
+    ws[f"A{ws.max_row}"].font = Font(bold=True, size=12, color="1F4E79")
+    ws.append(["Origem", "Registros", "Custo"])
+    for c in ws[ws.max_row]:
+        c.fill, c.font = HDR, HF
+    origem = collections.Counter(r["modulo_fonte"] or "— falta determinar" for r in regs)
+    # O que ainda não foi classificado vai ser lido de qualquer jeito; o módulo sai
+    # junto, sem passo extra. O custo NOVO é só o do que já está lido e mesmo assim
+    # ficou sem módulo — é esse número que decide se o eixo vale a pena.
+    falta_novo = sum(1 for r in regs if not r["modulo"] and r["vocab"] != VOC_NADA)
+    falta_junto = sum(1 for r in regs if not r["modulo"] and r["vocab"] == VOC_NADA)
+    for k, v in origem.most_common():
+        ws.append([k, v, "grátis" if k != "— falta determinar" else ""])
+    ws.append(["   destes, saem junto com a leitura já prevista", falta_junto,
+               "sem custo extra"])
+    ws[f"A{ws.max_row}"].font = Font(italic=True, size=9, color="606060")
+    ws.append(["   destes, são releitura de registro já classificado", falta_novo,
+               "CUSTO NOVO"])
+    ws[f"A{ws.max_row}"].font = Font(italic=True, size=9, color="9C2119")
+    ws[f"C{ws.max_row}"].font = Font(bold=True, color="9C2119")
+
+    ws.append([])
+    ws.append([f"Colchete do título e tema discordaram sobre o módulo em "
+               f"{mods_desacordo} chamados. Nesses o colchete venceu: ele nomeia o "
+               "módulo, enquanto o tema só o revela de passagem."])
+    ws[f"A{ws.max_row}"].font = Font(italic=True, size=9, color="606060")
+    ws[f"A{ws.max_row}"].alignment = Alignment(wrap_text=True, vertical="top")
+
     div = sum(1 for r in regs if r["divergente"])
     ws.append([])
     ws.append([f"Divergência base x classificador: {div} registros têm o campo fiscal "
@@ -452,6 +585,23 @@ def aba_legenda(wb, tax, tax_v3, de, ate, regs):
          "regra do coletor sobre o registro; R6 vem da leitura do conteúdo. Um chamado "
          "pode ser marcado fiscal pelo coletor e ser lido como erro funcional da V3, e "
          "vice-versa. Compare cada um com o seu par, nunca um com o outro."),
+        ("Módulo", "Onde no produto a fricção acontece: Ordem de Serviço, Orçamentos & "
+                   "Serviços, Financeiro, Fiscal, Cadastros (cliente, veículo, peça, "
+                   "serviço), Peças & Estoque, Gestão de Pátio, Relatórios, Acesso e "
+                   "login, entre outros. É o ÚNICO eixo comparável entre V2 e V3: os "
+                   "vocabulários discordam sobre que tipo de fricção é, mas concordam "
+                   "sobre onde ela acontece. Mesma lista do eixo módulo da V3, de "
+                   "propósito — uma segunda lista tornaria os dois incomparáveis."),
+        ("Origem do módulo",
+         "Como o módulo foi atribuído. 'definição': registro fiscal, o módulo é Fiscal. "
+         "'colchete do título': o analista já nomeou o módulo no chamado ([Orçamento], "
+         "[Financeiro]...). 'tema': o tema da classificação só existe dentro de um "
+         "módulo (ex. 'Gestão de Pátio não abre'). 'leitura (V3)': lido registro a "
+         "registro. Nada aqui é palpite sobre o registro — é propriedade do rótulo, "
+         "auditável em data/store/modulo_por_rotulo.json. "
+         "'(a determinar na leitura)' é o que nenhum rótulo resolve: temas que "
+         "abrangem vários módulos por definição, como 'não sabe executar a rotina na "
+         "OS, no orçamento, no estoque ou no cadastro', que nomeia quatro."),
         ("Vocabulário", "Qual das quatro taxonomias classificou aquele registro. "
                         "Não compare Categoria entre vocabulários diferentes."),
         (VOC_FISCAL, f"{len(tax['frentes'])} frentes, {len(tax['temas'])} temas e "
@@ -503,7 +653,7 @@ def main() -> int:
     a = ap.parse_args()
     REPORT.mkdir(exist_ok=True)
 
-    regs, tax, tax_v3 = carregar(a.de, a.ate)
+    regs, tax, tax_v3, mods = carregar(a.de, a.ate)
     if not regs:
         print(f"Nenhum registro em {a.de}..{a.ate}.")
         return 1
@@ -513,7 +663,7 @@ def main() -> int:
     aba_resumo(wb, regs, tax, a.de, a.ate, extracao, a.amostra)
     n_ch, t_ch = aba_detalhe(wb, regs, "chamado", a.amostra)
     n_cv, t_cv = aba_detalhe(wb, regs, "conversa", a.amostra)
-    aba_cobertura(wb, regs)
+    aba_cobertura(wb, regs, mods.desacordo)
     aba_legenda(wb, tax, tax_v3, a.de, a.ate, regs)
 
     sufixo = "_PREVIA" if a.amostra else ""

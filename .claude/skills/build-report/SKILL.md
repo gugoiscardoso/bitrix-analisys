@@ -361,3 +361,41 @@ Cuidados que já custaram correção:
   como falso positivo do campo fiscal. Num balde anônimo isso sumiria.
 - **Natureza "Fiscal" e frente R6 não batem de propósito** — uma é regra do coletor
   sobre o registro, a outra é leitura do conteúdo. A Legenda avisa.
+
+#### Eixo módulo — o que torna V2 e V3 comparáveis
+
+Pedido em 30/10: dar categoria de negócio ao não-fiscal ("clientes, orçamentação,
+ordem de serviço"). Isso abriu o que eu tinha dado como impossível. Os quatro
+vocabulários discordam sobre **que tipo** de fricção é; todos concordam sobre **onde**
+ela acontece. Logo o eixo módulo atravessa V2 e V3 e cabe numa tabela só — é a
+camada 3 do Resumo.
+
+A lista de módulos é a **mesma** do eixo módulo de `taxonomia_v3.json`, de propósito:
+uma segunda lista tornaria os dois incomparáveis justamente no eixo que os une.
+"Clientes" entra em Cadastros, que cobre cliente, veículo, peça e serviço.
+
+`data/store/modulo_por_rotulo.json` mapeia rótulo → módulo. Nada ali é heurística
+sobre o registro — é propriedade do rótulo, então todo registro com aquele rótulo
+recebe o mesmo módulo, e o resultado é auditável. Precedência:
+
+1. tema de conversa vazia → `(sem assunto)`, nunca Transversal
+2. fiscal confirmado → `Fiscal`
+3. chamado: colchete do título (`[Orçamento]`, `[Financeiro]`...)
+4. tema, quando o tema só existe dentro de um módulo
+5. nada resolve → `(a determinar na leitura)`
+
+Medido em 30/10: **66,9% dos 46.981 registros ganham módulo sem custo nenhum**.
+
+Três armadilhas que o mapa resolve e que voltam se alguém simplificar:
+
+- **Campo fiscal ligado não basta.** 1.436 registros têm o campo ligado e foram lidos
+  como falso positivo. Dar-lhes módulo Fiscal infla o maior bloco do relatório com o
+  que o próprio classificador desmentiu. Só conta fiscal confirmado.
+- **Conversa vazia não é Transversal.** São ~4.8 mil no período. Jogá-las no balde
+  transversal esconderia que 10% do volume é só "bom dia" e chat abandonado.
+- **Colchete vence tema** quando discordam (122 casos): o colchete *nomeia* o módulo,
+  o tema só o revela de passagem.
+
+Custo: o que ainda não foi lido recebe módulo junto com a leitura, sem passo extra.
+O custo **novo** é só releitura de registro já classificado cujo tema abrange vários
+módulos por definição — 4.566 registros em 30/10. A aba Cobertura separa os dois.
