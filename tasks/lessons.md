@@ -163,3 +163,24 @@ encerrada, calado.
 
 **Regra:** ao ler coluna que só existe nos arquivos novos, teste o valor (`pd.isna`), não
 a existência da coluna. E distinga os três estados: sim, não, e não sei.
+
+## Paralelismo de subagentes tem teto, e o teto é da sessão
+
+Em 30/10/2026, classificando 69 lotes de 250 registros, subi de 6 para 9 subagentes
+simultâneos achando que o custo de orquestração era o único limite. Seis lotes
+morreram juntos com `rate_limit` HTTP 429 — "session limit". Não foi custo, foi
+concorrência: o teto é da sessão inteira, somando todos os agentes, e estoura de uma
+vez em todos em vez de enfileirar.
+
+O prejuízo foi pequeno só por sorte de projeto: os seis falharam ANTES de gravar, e
+`ler_pendentes.py` recalcula o que falta a partir do que está gravado, não de uma
+lista fixa. Se o pipeline tivesse estado em memória, teria perdido tudo.
+
+**Regra:** 4 a 6 subagentes simultâneos em trabalho longo. Antes de subir, pergunte o
+que se perde se todos morrerem ao mesmo tempo — e se a resposta não for "nada",
+não suba.
+
+**Regra que valeu mais que a anterior:** trabalho longo grava no caminho e recalcula o
+que falta pelo estado em disco. Tanto a leitura quanto `enriquecer_autores.py` foram
+escritos assim, e foi isso que transformou uma queda de seis agentes em um reinício de
+dois minutos.
