@@ -51,3 +51,12 @@ pipeline/_naofiscal/*/amostra.json
 pipeline/_naofiscal/lote_*.json
 pipeline/_naofiscal/resp_*.json
 pipeline/_naofiscal/amostra.json
+
+# Derivados grandes da leitura de 30/10/2026. Ficam de fora por tamanho (19 MB e
+# 50 MB), e só porque dá para refazer:
+#   remetentes.json    quem falou cada mensagem — `python pipeline/enriquecer_autores.py`
+#                      (~55 min de API; incremental, retoma de onde parou)
+#   transcricoes.json  conversa legível — sai de `consolidar_store.py` em ~4 min
+# leitura_completa.json NÃO entra aqui: é julgamento de leitura, não se regenera.
+data/store/remetentes.json
+data/store/transcricoes.json
