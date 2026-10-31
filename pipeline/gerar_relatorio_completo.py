@@ -57,6 +57,10 @@ BORDA = Border(bottom=Side(style="thin", color="D5DEE6"))
 VOC_FISCAL = "Fiscal V2 (P1–P13)"
 VOC_NAOFIS = "Não-fiscal V2 (temas)"
 VOC_V3 = "V3 (R1–R6)"
+# A leitura de 30/10 usou as MESMAS listas do vocabulário não-fiscal e do fiscal, por
+# grupo. O rótulo separado existe só para quem lê a planilha saber que aquele tema
+# veio de leitura feita agora, não do cache histórico.
+VOC_LEITURA = "Lido em 30/10"
 VOC_NADA = "— não lido"
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -165,6 +169,11 @@ def carregar(de: str, ate: str):
     except FileNotFoundError:
         transcricoes = {}
         print("AVISO: transcricoes.json não existe — rode consolidar_store.py.")
+    # O que a leitura de 30/10 produziu: módulo para todo mundo e tema para quem não
+    # tinha. Vem de arquivo próprio e não dos caches antigos, para que um erro aqui
+    # não alcance as séries que outros relatórios publicam.
+    lido = ler(STORE / "leitura_completa.json") if (
+        STORE / "leitura_completa.json").exists() else {"chamados": {}, "conversas": {}}
 
     subs_por_frente = collections.defaultdict(set)
     for s in tax["subgrupos"]:
@@ -226,7 +235,31 @@ def carregar(de: str, ate: str):
             mod, fonte = mods.resolver(r, r["tema"], fiscal_lido=c is None)
             r |= {"modulo": mod, "modulo_fonte": fonte}
             regs.append(r)
+
+    # A leitura entra por cima: ela viu o registro, o mapa de rótulos só o deduziu.
+    aplicar_leitura(regs, lido)
     return regs, tax, tax_v3, mods
+
+
+def aplicar_leitura(regs: list[dict], lido: dict) -> None:
+    """Sobrepõe o que a leitura de 30/10 produziu.
+
+    Módulo sempre vence o derivado: o mapa de rótulos acerta por construção, mas só
+    onde o rótulo determina o módulo; a leitura olhou o texto. Tema só preenche onde
+    faltava — reescrever tema de registro já classificado mudaria séries que outros
+    relatórios publicam, e nada neste pedido justifica isso.
+    """
+    for r in regs:
+        chv = "chamados" if r["tipo"] == "chamado" else "conversas"
+        v = lido.get(chv, {}).get(str(r["id"]))
+        if not v:
+            continue
+        if v.get("modulo"):
+            r["modulo"] = v["modulo"]
+            r["modulo_fonte"] = "leitura"
+        if v.get("tema") and not r["tema"]:
+            r |= {"vocab": VOC_LEITURA, "tema": v["tema"],
+                  "categoria": v["tema"], "categoria_nome": v["tema"]}
 
 
 def grupo_versao(r: dict) -> str:
@@ -342,11 +375,14 @@ def aba_resumo(wb, regs, tax, de, ate, extracao, amostra):
     # ── camada 3: módulo, a única tabela que atravessa V2 e V3 ──
     titulo("3 — Módulo: onde no produto   (V2 e V3 na mesma tabela)")
     com_mod = [r for r in regs if r["modulo"]]
-    ws.append([f"{len(com_mod)} dos {len(regs)} registros ({pct(len(com_mod), len(regs))}) "
-               "já têm módulo. O resto está em '(a determinar na leitura)'. Esta é a "
-               "única camada em que V2 e V3 são comparáveis categoria a categoria: os "
-               "vocabulários discordam sobre QUE TIPO de fricção é, mas concordam sobre "
-               "ONDE ela acontece."])
+    falta_mod = len(regs) - len(com_mod)
+    ws.append([(f"{len(com_mod)} dos {len(regs)} registros "
+                f"({pct(len(com_mod), len(regs))}) têm módulo"
+                + (f"; os outros {falta_mod} estão em '{SEM_MODULO}'. "
+                   if falta_mod else ", sem lacuna. ")
+                + "Esta é a única camada em que V2 e V3 são comparáveis categoria a "
+                "categoria: os vocabulários discordam sobre QUE TIPO de fricção é, mas "
+                "concordam sobre ONDE ela acontece.")])
     ws[f"A{ws.max_row}"].font = Font(italic=True, size=9, color="606060")
     ws[f"A{ws.max_row}"].alignment = Alignment(wrap_text=True, vertical="top")
     ws.row_dimensions[ws.max_row].height = 42
@@ -382,7 +418,9 @@ def aba_resumo(wb, regs, tax, de, ate, extracao, amostra):
          [r for r in regs if grupo_versao(r) == "V3"], VOC_V3),
     ]
     for nome, sel, voc in blocos:
-        lidos = [r for r in sel if r["vocab"] == voc]
+        # VOC_LEITURA entra em qualquer bloco: o bloco já é delimitado por versão,
+        # natureza e tipo, e a leitura usou exatamente a lista daquele recorte.
+        lidos = [r for r in sel if r["vocab"] in (voc, VOC_LEITURA)]
         # "Teste interno" é conversa aberta pelo próprio time da Ultracar para testar o
         # canal. A taxonomia da V3 manda deixá-la fora de toda contagem, e o relatório
         # diário já faz isso — aqui segue a mesma regra, para os dois baterem.
@@ -656,7 +694,11 @@ def aba_legenda(wb, tax, tax_v3, de, ate, regs):
          "abrangem vários módulos por definição, como 'não sabe executar a rotina na "
          "OS, no orçamento, no estoque ou no cadastro', que nomeia quatro."),
         ("Vocabulário", "Qual das quatro taxonomias classificou aquele registro. "
-                        "Não compare Categoria entre vocabulários diferentes."),
+                        "Não compare Categoria entre vocabulários diferentes. "
+                        "'Lido em 30/10' marca o registro que não tinha classificação "
+                        "e foi lido agora — com a MESMA lista do recorte dele, não com "
+                        "uma lista nova; o rótulo existe só para quem lê saber a "
+                        "procedência."),
         (VOC_FISCAL, f"{len(tax['frentes'])} frentes, {len(tax['temas'])} temas e "
                      f"{len(tax['subgrupos'])} subgrupos. Taxonomia {tax['versao']}, "
                      "congelada. É a única das quatro com três níveis."),
