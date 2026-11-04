@@ -3599,11 +3599,12 @@
    "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
   },
   "98181": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "6602ae78aa40",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "98191": {
    "modulo": "Orçamentos & Serviços",
@@ -3718,11 +3719,12 @@
    "tema": "Pedido de intervenção manual do suporte na base do cliente"
   },
   "98353": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "8ca698f19775",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "98399": {
    "modulo": "Cadastros",
@@ -3872,11 +3874,12 @@
    "tema": "Gestão de Pátio não abre ou não reflete o que está na OS"
   },
   "98585": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "6ad2daaf3f33",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "98587": {
    "modulo": "Peças & Estoque",
@@ -4621,11 +4624,12 @@
    "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
   },
   "99683": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "75a43addffe0",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "99695": {
    "modulo": "Financeiro",
@@ -4761,11 +4765,12 @@
    "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
   },
   "99887": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "eb6661b9e743",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "99889": {
    "modulo": "Ordem de Serviço",
@@ -4971,11 +4976,12 @@
    "tema": "Saldo de estoque diverge: entrada duplicada, saída inexistente, item some da busca"
   },
   "100111": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "a248e2ce130c",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100113": {
    "modulo": "Financeiro",
@@ -5048,11 +5054,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "100199": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "b0616e153edc",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100221": {
    "modulo": "Cadastros",
@@ -5118,18 +5125,20 @@
    "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
   },
   "100283": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "bd819f279014",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100289": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "527f20f84b4a",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100301": {
    "modulo": "Cadastros",
@@ -5279,11 +5288,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "100443": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "4bfb030f6ab3",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100449": {
    "modulo": "Acesso e login",
@@ -5426,11 +5436,12 @@
    "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
   },
   "100641": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "cd4257969759",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100643": {
    "modulo": "Relatórios",
@@ -5461,11 +5472,12 @@
    "tema": "Consulta e importação de dados externos (placa, Cilia, Fraga, OFX) falha ou traz dado divergente"
   },
   "100665": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "b15ab11d832c",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100667": {
    "modulo": "Ordem de Serviço",
@@ -5517,11 +5529,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "100703": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "8cf407a71ca0",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100705": {
    "modulo": "Peças & Estoque",
@@ -5580,11 +5593,12 @@
    "tema": "Pedido de intervenção manual do suporte na base do cliente"
   },
   "100767": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "b99accfb17b8",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100771": {
    "modulo": "Peças & Estoque",
@@ -5650,11 +5664,12 @@
    "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
   },
   "100809": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "bf55ab084c00",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100817": {
    "modulo": "Financeiro",
@@ -5692,11 +5707,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "100843": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "77954d2d76af",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100847": {
    "modulo": "Orçamentos & Serviços",
@@ -5734,11 +5750,12 @@
    "tema": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho"
   },
   "100889": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "b2c0a65716d8",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100893": {
    "modulo": "Financeiro",
@@ -5748,11 +5765,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "100895": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "d49db33c2b78",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100901": {
    "modulo": "Checklist & Diagnóstico",
@@ -5762,11 +5780,12 @@
    "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava"
   },
   "100907": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "fe82a41007a3",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100935": {
    "modulo": "Relatórios",
@@ -5776,11 +5795,12 @@
    "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela"
   },
   "100951": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "9507feb09a34",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "100973": {
    "modulo": "Cadastros",
@@ -5811,11 +5831,12 @@
    "tema": "Gestão de Pátio não abre ou não reflete o que está na OS"
   },
   "101009": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "877315635c5d",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "101031": {
    "modulo": "Acesso e login",
@@ -6189,11 +6210,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "106329": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "ba9e899c7edd",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "106333": {
    "modulo": "Orçamentos & Serviços",
@@ -6210,11 +6232,12 @@
    "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
   },
   "106357": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "688e2ae55984",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "106361": {
    "modulo": "Checklist & Diagnóstico",
@@ -6266,11 +6289,12 @@
    "tema": "Dúvida de uso: cliente não acha a opção ou não sabe o caminho"
   },
   "106387": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "f557ff5f8054",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "106393": {
    "modulo": "Gestão de Pátio",
@@ -6658,11 +6682,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "106689": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "0c4359125d08",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "106697": {
    "modulo": "Acesso e login",
@@ -6714,11 +6739,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "106723": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "df632a17ca59",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "106747": {
    "modulo": "Financeiro",
@@ -6735,11 +6761,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "106759": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "6cfcf03fae30",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "106779": {
    "modulo": "Transversal",
@@ -6924,11 +6951,12 @@
    "tema": "Pedido de intervenção manual do suporte na base do cliente"
   },
   "107005": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "e23f5548dd41",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "107067": {
    "modulo": "Peças & Estoque",
@@ -7232,11 +7260,12 @@
    "tema": "Saldo de estoque diverge: entrada duplicada, saída inexistente, item some da busca"
   },
   "107149": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "5d7c1fe12765",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "107151": {
    "modulo": "Cadastros",
@@ -7309,11 +7338,12 @@
    "tema": "Saldo de estoque diverge: entrada duplicada, saída inexistente, item some da busca"
   },
   "107199": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "34eb0183ecfa",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "107217": {
    "modulo": "Relatórios",
@@ -7456,11 +7486,12 @@
    "tema": "Saldo de estoque diverge: entrada duplicada, saída inexistente, item some da busca"
   },
   "101153": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "5e9c443de4a7",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "101155": {
    "modulo": "Relatórios",
@@ -7526,11 +7557,12 @@
    "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
   },
   "101201": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "6c7c5a2918a5",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "101203": {
    "modulo": "Financeiro",
@@ -7729,11 +7761,12 @@
    "tema": "Peça, insumo ou veículo cadastrado não é encontrado nem grava"
   },
   "101385": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "7a69d9f82f19",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "101389": {
    "modulo": "Gestão de Pátio",
@@ -7897,11 +7930,12 @@
    "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela"
   },
   "101537": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "7acd3969e8e4",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "101539": {
    "modulo": "Financeiro",
@@ -7925,18 +7959,20 @@
    "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
   },
   "101549": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "53f372f85f11",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "101553": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "a40299c44931",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "101557": {
    "modulo": "Financeiro",
@@ -7995,11 +8031,12 @@
    "tema": "Consulta e importação de dados externos (placa, Cilia, Fraga, OFX) falha ou traz dado divergente"
   },
   "101583": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "ff00d1ba1e8c",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "101585": {
    "modulo": "Gestão de Pátio",
@@ -8093,11 +8130,12 @@
    "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela"
   },
   "101715": {
-   "modulo": "Peças & Estoque",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "35f683a24e0a",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "101717": {
    "modulo": "Gestão de Pátio",
@@ -8156,11 +8194,12 @@
    "tema": "Pedido de intervenção manual do suporte na base do cliente"
   },
   "101779": {
-   "modulo": "Orçamentos & Serviços",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "63102e7bbe41",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "107389": {
    "modulo": "Cadastros",
@@ -8198,11 +8237,12 @@
    "tema": "Pedido de intervenção manual do suporte na base do cliente"
   },
   "107437": {
-   "modulo": "Checklist & Diagnóstico",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
    "hash": "e14c85517e50",
    "em": "2026-10-30",
-   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque",
+   "modulo_fonte": "regra 04/11"
   },
   "107443": {
    "modulo": "Cadastros",
@@ -112476,5 +112516,18 @@
    "em": "2026-10-30"
   }
  },
- "atualizado_em": "2026-10-30T21:39:21"
+ "atualizado_em": "2026-11-04",
+ "realinhamentos": [
+  {
+   "em": "2026-11-04",
+   "regra": "tema \"OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque\" -> modulo \"Ordem de Serviço\"",
+   "motivo": "decisao do usuario em 04/11/2026; o eixo e onde o usuario trava",
+   "registros": 40,
+   "de": [
+    "Checklist & Diagnóstico",
+    "Orçamentos & Serviços",
+    "Peças & Estoque"
+   ]
+  }
+ ]
 }

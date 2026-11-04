@@ -95,18 +95,18 @@ A taxonomia tem lacunas conhecidas. Até que ganhem rótulo, use estas saídas:
 Quando o texto cita mais de um módulo, escolha aquele em que o problema **acontece**,
 não os citados de passagem.
 
-## Divergência conhecida, ainda não decidida
+## "Não fecha a OS porque há compra pendente ou falta item no estoque"
 
-**"Não fecha a OS porque há compra pendente ou falta item no estoque."**
+**Módulo: Ordem de Serviço.** Decidido em 04/11/2026.
 
-A série de janeiro a outubro usou os dois critérios, em lotes diferentes:
-- **Peças & Estoque** — onde está a causa (foi o que a maioria dos lotes usou)
-- **Ordem de Serviço** — onde o usuário trava
+O eixo é "onde a fricção acontece", e esse caso tem a causa num lugar (a compra, o
+estoque) e o travamento em outro (a tela da OS). Vale onde o usuário trava: é o que
+responde "onde dói", que é a pergunta da tabela de módulo.
 
-Nenhum está errado; o eixo é "onde a fricção acontece" e esse caso tem as duas coisas
-em lugares diferentes. Enquanto não houver decisão, **use Peças & Estoque**, que foi o
-critério dominante na série — trocar agora quebraria a comparação com o relatório de
-janeiro a outubro sem ganho claro.
-
-Fica registrado porque é a única inconsistência conhecida da série, e quem auditar
-precisa saber que ela existe em vez de descobrir sozinho.
+Histórico, porque muda número: a série de janeiro a outubro saiu com os dois
+critérios — 63 registros em Ordem de Serviço e 40 espalhados entre Peças & Estoque,
+Orçamentos & Serviços e Checklist. Os 40 foram realinhados em 04/11 para Ordem de
+Serviço, de forma determinística: todo registro cujo tema é exatamente *"OS não fecha
+ou não aceita item por vínculo pendente de compra, entrega ou estoque"* recebe esse
+módulo. Quem comparar o relatório entregue em 30/10 com uma regeração posterior vai
+ver Ordem de Serviço 40 registros maior, e é só isto.
