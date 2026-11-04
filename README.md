@@ -88,11 +88,15 @@ do webhook do Bitrix dentro.** Quem tiver o clone tem acesso de leitura ao Bitri
 Ultracar.
 
 Isso é conveniente — a coleta funciona sem configurar nada — e é um segredo versionado.
-Enquanto o repositório for privado e restrito ao time, funciona. **Se ele for para
-outra pessoa, outra organização ou um host público, o token precisa sair do git e ser
-revogado**, porque continuaria no histórico mesmo depois de apagado do arquivo.
 
-Não há nada no código que impeça isso hoje; fica registrado como decisão consciente.
+**Decidido em 04/11/2026: fica como está**, porque o repositório é privado e restrito
+ao time. A conveniência de clonar e rodar vale mais que o risco nesse perímetro.
+
+A decisão depende do perímetro, não do arquivo. **Se o repositório for para outra
+pessoa, outra organização ou um host público, o token tem de ser revogado no Bitrix** —
+tirá-lo do arquivo não basta, porque ele continua em todo o histórico de commits
+anteriores. Revogar é a única saída, e é mais barato decidir isso antes de o repo
+circular do que depois.
 
 ---
 
