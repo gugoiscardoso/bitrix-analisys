@@ -1,0 +1,8 @@
+# Dependências do pipeline Python. Só duas; o resto é biblioteca padrão.
+#   pip install -r requirements.txt
+#
+# As versões abaixo são as usadas em 04/11/2026, com Python 3.12.4.
+# O `>=` é de propósito: nada aqui depende de API nova, e travar a versão
+# faria o projeto quebrar em máquina com pandas mais recente sem motivo.
+pandas>=2.3.0
+openpyxl>=3.1.5
