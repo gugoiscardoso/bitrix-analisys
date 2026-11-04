@@ -8768,6 +8768,13 @@
    "hash": "8d79673f0798",
    "em": "2026-11-04",
    "tema": "Status dessincronizado sistema x prefeitura/SEFAZ"
+  },
+  "107753": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "233760ad96ca",
+   "em": "2026-11-04",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
   }
  },
  "conversas": {
@@ -114107,7 +114114,7 @@
   "296991": {
    "modulo": "Financeiro",
    "fonte": "leitura",
-   "hash": "96df340a224d",
+   "hash": "db9887a45f64",
    "em": "2026-11-04",
    "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
   },
@@ -114226,7 +114233,7 @@
   "297075": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "03fa71b18037",
+   "hash": "3c923ebac434",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -114352,14 +114359,14 @@
   "297155": {
    "modulo": "Relatórios",
    "fonte": "leitura",
-   "hash": "4836ed2ffc15",
+   "hash": "62bfd42e596d",
    "em": "2026-11-04",
-   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
   },
   "297161": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "5db429347413",
+   "hash": "5ae679b2e0fc",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -114380,7 +114387,7 @@
   "297177": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "6dc08872aa0f",
+   "hash": "b032f1c3846b",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -114392,11 +114399,11 @@
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297183": {
-   "modulo": "(sem assunto)",
+   "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "7965ea3c8cab",
+   "hash": "114da2bdc430",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
   },
   "297187": {
    "modulo": "(sem assunto)",
@@ -114429,23 +114436,23 @@
   "297203": {
    "modulo": "Ordem de Serviço",
    "fonte": "leitura",
-   "hash": "de2c3306a9f3",
+   "hash": "76b376abf3f8",
    "em": "2026-11-04",
    "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "297215": {
    "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "b1e0eab37b45",
+   "hash": "867fe4fb3504",
    "em": "2026-11-04",
    "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
   },
   "297219": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "6c59907481f2",
+   "hash": "34641d448b0a",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   "297221": {
    "modulo": "Acesso e login",
@@ -114455,11 +114462,11 @@
    "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
   },
   "297233": {
-   "modulo": "(sem assunto)",
+   "modulo": "Ordem de Serviço",
    "fonte": "leitura",
-   "hash": "06d0432144ed",
+   "hash": "2476c486a69a",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
   },
   "297231": {
    "modulo": "Acesso e login",
@@ -114471,65 +114478,65 @@
   "297237": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "f7e3debc220e",
+   "hash": "4a9c4c1e1df7",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297245": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "a0f7e894b810",
+   "hash": "a2c8a48f5d09",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297249": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "f7b4a963aade",
+   "hash": "ad631244d24f",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   "297251": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "b01cf236730a",
+   "hash": "df952ccb9b73",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   "297253": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "65463ee664ab",
+   "hash": "f919273a85e1",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297255": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "865d4e15a3cf",
+   "hash": "8271e5af1a6e",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Configuração assistida pelo suporte"
   },
   "297265": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "d3a9c5dc0850",
+   "hash": "3e26bc5ce94e",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297269": {
    "modulo": "Peças & Estoque",
    "fonte": "leitura",
-   "hash": "cb87e7ea8199",
+   "hash": "a9f7bb20224a",
    "em": "2026-11-04",
    "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "297271": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "15830ba98cdc",
+   "hash": "ba46a07e3886",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Configuração assistida pelo suporte"
   },
   "297273": {
    "modulo": "(sem assunto)",
@@ -114541,49 +114548,49 @@
   "297275": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "e2468977c7f4",
+   "hash": "00daeaff16c2",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297277": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "c1b0c9863818",
+   "hash": "fa760329a116",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297285": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "18df6fc7232e",
+   "hash": "9da7e024c562",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297289": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "5ed2ddb4f71c",
+   "hash": "e2cc25ec1ee6",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Sem causa identificável na descrição"
   },
   "297291": {
    "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "cdfe31b867d6",
+   "hash": "a8b61a33be31",
    "em": "2026-11-04",
    "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
   },
   "297293": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "f2c807b78ead",
+   "hash": "da63329f83c9",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297295": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "4d62de8a8340",
+   "hash": "972aeff88b0a",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -114611,7 +114618,7 @@
   "297305": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "65463ee664ab",
+   "hash": "38a3b9a63547",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -114632,9 +114639,9 @@
   "297321": {
    "modulo": "Cadastros",
    "fonte": "leitura",
-   "hash": "56d55bebef92",
+   "hash": "c97944cfdb50",
    "em": "2026-11-04",
-   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "297319": {
    "modulo": "Transversal",
@@ -114660,14 +114667,14 @@
   "297331": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "ef67e0868c98",
+   "hash": "9eef0cccaf40",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297333": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "6bdb05b7071b",
+   "hash": "b3e787ea7364",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -114681,35 +114688,35 @@
   "297337": {
    "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "507ab37fa493",
+   "hash": "0a84cebb72a4",
    "em": "2026-11-04",
    "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
   },
   "297345": {
-   "modulo": "(sem assunto)",
+   "modulo": "Relatórios",
    "fonte": "leitura",
-   "hash": "c1b0c9863818",
+   "hash": "a9faa1b15a39",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
   },
   "297347": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "ece538053ce6",
+   "hash": "ffcbf7e0ae59",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297349": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "1a3ff4eec273",
+   "hash": "6f29da3f86ad",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297351": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "f0a89eeabd58",
+   "hash": "c9aeebe1b9e4",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -114786,14 +114793,14 @@
   "297385": {
    "modulo": "Peças & Estoque",
    "fonte": "leitura",
-   "hash": "84b69f72c11d",
+   "hash": "8a9e5f740d2d",
    "em": "2026-11-04",
    "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "297387": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "955962825fc5",
+   "hash": "e0d34c7ae4be",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -114805,11 +114812,11 @@
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297393": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "3c9709a801f6",
+   "hash": "89eecda67f99",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Sem causa identificável na descrição"
   },
   "297399": {
    "modulo": "Cadastros",
@@ -114835,14 +114842,14 @@
   "297421": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "a405d0d78f60",
+   "hash": "16668de1fd62",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297423": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "579aafe41db9",
+   "hash": "94edd54b805d",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -114896,11 +114903,11 @@
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297465": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "79591c3e1aec",
+   "hash": "d7171a2d8f35",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
   },
   "297467": {
    "modulo": "(sem assunto)",
@@ -114931,11 +114938,11 @@
    "tema": "Cliente cobra prazo ou retorno de chamado já aberto"
   },
   "297481": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "4b9ffa6c1472",
+   "hash": "b85730c12955",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "297489": {
    "modulo": "(sem assunto)",
@@ -114959,11 +114966,11 @@
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297503": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "14e576ff9982",
+   "hash": "e9685befef24",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "297507": {
    "modulo": "Cadastros",
@@ -115022,11 +115029,11 @@
    "tema": "Cliente não consegue configurar ou emitir o boleto bancário dos seus clientes"
   },
   "297543": {
-   "modulo": "Transversal",
+   "modulo": "Acesso e login",
    "fonte": "leitura",
-   "hash": "a27338420c0d",
+   "hash": "86b378569b41",
    "em": "2026-11-04",
-   "tema": "Sistema inteiro fora do ar, lento ou oscilando"
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "297549": {
    "modulo": "Transversal",
@@ -115038,35 +115045,35 @@
   "297551": {
    "modulo": "Gestão de Pátio",
    "fonte": "leitura",
-   "hash": "2274d9a56bde",
+   "hash": "52c35031b250",
    "em": "2026-11-04",
    "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "297553": {
-   "modulo": "Transversal",
+   "modulo": "Acesso e login",
    "fonte": "leitura",
-   "hash": "d64481d730ac",
+   "hash": "1f1d8b4fab6b",
    "em": "2026-11-04",
-   "tema": "Sistema inteiro fora do ar, lento ou oscilando"
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "297555": {
-   "modulo": "Transversal",
+   "modulo": "Acesso e login",
    "fonte": "leitura",
-   "hash": "84c32c51d8f0",
+   "hash": "ef5cc60ee7a0",
    "em": "2026-11-04",
-   "tema": "Sistema inteiro fora do ar, lento ou oscilando"
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "297557": {
-   "modulo": "Transversal",
+   "modulo": "Acesso e login",
    "fonte": "leitura",
-   "hash": "df92797efce9",
+   "hash": "952987c8a388",
    "em": "2026-11-04",
-   "tema": "Sistema inteiro fora do ar, lento ou oscilando"
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
   },
   "297559": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "3c9709a801f6",
+   "hash": "01dbd5c2985e",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -115080,7 +115087,7 @@
   "297563": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "619b11a47c71",
+   "hash": "e7a280e9eddb",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -115094,7 +115101,7 @@
   "297567": {
    "modulo": "Cadastros",
    "fonte": "leitura",
-   "hash": "c48c12b6a9fe",
+   "hash": "4e72f2b50b07",
    "em": "2026-11-04",
    "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
@@ -115164,16 +115171,16 @@
   "297597": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "f0a89eeabd58",
+   "hash": "f349b1a6a482",
    "em": "2026-11-04",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297599": {
-   "modulo": "(sem assunto)",
+   "modulo": "Relatórios",
    "fonte": "leitura",
-   "hash": "f0a89eeabd58",
+   "hash": "054918e72966",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
   },
   "297605": {
    "modulo": "(sem assunto)",
@@ -115197,11 +115204,11 @@
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297617": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "f0a89eeabd58",
+   "hash": "e7e5c2e345f0",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Configuração assistida pelo suporte"
   },
   "297621": {
    "modulo": "(sem assunto)",
@@ -115211,46 +115218,46 @@
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297619": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "0c4f13a2ad75",
+   "hash": "bb7b47a5d222",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
   },
   "297625": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "c7c49a177600",
+   "hash": "fd53b8892ae9",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "297623": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "c6e19836a284",
+   "hash": "f9a21b922492",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   "297627": {
-   "modulo": "(sem assunto)",
+   "modulo": "Acesso e login",
    "fonte": "leitura",
-   "hash": "aadc93baa206",
+   "hash": "12cef8826e43",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
   },
   "297629": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "fed274654c57",
+   "hash": "24aa4e23524b",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Acompanhamento de chamado já aberto"
   },
   "297631": {
    "modulo": "Financeiro",
    "fonte": "leitura",
-   "hash": "fadd5b1964e8",
+   "hash": "6b603863f71c",
    "em": "2026-11-04",
-   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+   "tema": "Não fiscal (falso positivo)"
   },
   "297635": {
    "modulo": "(sem assunto)",
@@ -115260,11 +115267,11 @@
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "297639": {
-   "modulo": "(sem assunto)",
+   "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "9b44f86396bb",
+   "hash": "9ad851c645c5",
    "em": "2026-11-04",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
   },
   "297641": {
    "modulo": "(sem assunto)",
@@ -120668,7 +120675,7 @@
   "296973": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "b73109bb73e5",
+   "hash": "ecbd1154ee93",
    "em": "2026-11-04",
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
@@ -120836,7 +120843,7 @@
   "297061": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "21b228cd6a3f",
+   "hash": "20ea363beb93",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
@@ -120850,14 +120857,14 @@
   "297071": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "b929ad3c6900",
+   "hash": "4fedbaa45eb1",
    "em": "2026-11-04",
    "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   "297077": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "8ee49c5875ce",
+   "hash": "33999d739802",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
@@ -120899,9 +120906,9 @@
   "297091": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "7b8ae21afb4b",
+   "hash": "a5fb759db935",
    "em": "2026-11-04",
-   "tema": "Sem causa identificável na descrição"
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)"
   },
   "297093": {
    "modulo": "Fiscal",
@@ -121039,7 +121046,7 @@
   "297175": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "dfb81cfc9e12",
+   "hash": "b11d53e60ae8",
    "em": "2026-11-04",
    "tema": "Sem causa identificável na descrição"
   },
@@ -121067,7 +121074,7 @@
   "297193": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "cd18b6f84ed8",
+   "hash": "72a9e1e96171",
    "em": "2026-11-04",
    "tema": "Nota travada em processamento/transmissão sem retorno"
   },
@@ -121079,23 +121086,23 @@
    "tema": "Configuração assistida pelo suporte"
   },
   "297205": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "b7ea6a1d3dd0",
+   "hash": "10f1b7240da1",
    "em": "2026-11-04",
-   "tema": "Conversa vazia / sem conteúdo útil"
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   "297207": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "2f04a55cf585",
+   "hash": "8233c5b6faaa",
    "em": "2026-11-04",
    "tema": "Sem causa identificável na descrição"
   },
   "297209": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "f2c6576f3f18",
+   "hash": "d554fdf24297",
    "em": "2026-11-04",
    "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
@@ -121109,9 +121116,9 @@
   "297213": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "fa86e367d3e3",
+   "hash": "bb26fe6700b1",
    "em": "2026-11-04",
-   "tema": "Configuração assistida pelo suporte"
+   "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   "297217": {
    "modulo": "Fiscal",
@@ -121165,14 +121172,14 @@
   "297241": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "3053efb4e7fe",
+   "hash": "026e097dff85",
    "em": "2026-11-04",
    "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   "297243": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "96588d7dc219",
+   "hash": "8ce5736dfa70",
    "em": "2026-11-04",
    "tema": "Sem causa identificável na descrição"
   },
@@ -121186,9 +121193,9 @@
   "297259": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "be7878fb1839",
+   "hash": "27133148f6f5",
    "em": "2026-11-04",
-   "tema": "Sem causa identificável na descrição"
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "297261": {
    "modulo": "Fiscal",
@@ -121200,21 +121207,21 @@
   "297263": {
    "modulo": "Cadastros",
    "fonte": "leitura",
-   "hash": "f1c8f6933985",
+   "hash": "06c65f2ee3ea",
    "em": "2026-11-04",
    "tema": "Não fiscal (falso positivo)"
   },
   "297267": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "b7b97658ac87",
+   "hash": "c52311d13b86",
    "em": "2026-11-04",
-   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+   "tema": "Sem causa identificável na descrição"
   },
   "297279": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "98fd7104694d",
+   "hash": "80f797970e32",
    "em": "2026-11-04",
    "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
   },
@@ -121235,7 +121242,7 @@
   "297287": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "ab08af70ca2e",
+   "hash": "05fa9f55b819",
    "em": "2026-11-04",
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
@@ -121256,14 +121263,14 @@
   "297309": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "893b90c2e0c3",
+   "hash": "39d15e9d0739",
    "em": "2026-11-04",
    "tema": "Envio de nota por e-mail falha"
   },
   "297315": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "3e31a2800c5c",
+   "hash": "6ce63838bc60",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
@@ -121291,30 +121298,30 @@
   "297335": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "b658409ea09c",
+   "hash": "373df492c22f",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
   "297341": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "e521576be915",
+   "hash": "a508022b0d2e",
    "em": "2026-11-04",
    "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
   },
   "297343": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "4215418a3a0e",
+   "hash": "8d12c7319fe2",
    "em": "2026-11-04",
    "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "297361": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "50309a46399d",
+   "hash": "a4500a69957e",
    "em": "2026-11-04",
-   "tema": "Sem causa identificável na descrição"
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
   },
   "297363": {
    "modulo": "Financeiro",
@@ -121333,7 +121340,7 @@
   "297373": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "2c7d391c8be8",
+   "hash": "4666623727ff",
    "em": "2026-11-04",
    "tema": "Sem causa identificável na descrição"
   },
@@ -121389,7 +121396,7 @@
   "297405": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "0650b5d741ea",
+   "hash": "f4ba266d57d9",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
@@ -121459,7 +121466,7 @@
   "297437": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "265ffbd1ad38",
+   "hash": "da97b492315b",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
@@ -121473,21 +121480,21 @@
   "297449": {
    "modulo": "Cadastros",
    "fonte": "leitura",
-   "hash": "82d0a689035b",
+   "hash": "4bc3939744a9",
    "em": "2026-11-04",
    "tema": "Não fiscal (falso positivo)"
   },
   "297451": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "de137bf82bfd",
+   "hash": "e88f5c28b8a7",
    "em": "2026-11-04",
    "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   "297453": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "b7e2321d16a0",
+   "hash": "ba21385edeca",
    "em": "2026-11-04",
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
@@ -121529,14 +121536,14 @@
   "297477": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "1cb62a8b3889",
+   "hash": "4d15d4dfdd60",
    "em": "2026-11-04",
    "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "297483": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "56c8a69c78c9",
+   "hash": "29f02d708fd8",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
@@ -121592,30 +121599,30 @@
   "297513": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "6d1bbdf67666",
+   "hash": "b12f4c0bda98",
    "em": "2026-11-04",
-   "tema": "Nota de devolução/garantia/remessa/complemento"
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   "297515": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "bf1afb03ccfe",
+   "hash": "816598692a59",
    "em": "2026-11-04",
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   "297517": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "a547d55e1859",
+   "hash": "9cdec7ffd2f2",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
   "297521": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "e45a22a7074c",
+   "hash": "e1c658dfff73",
    "em": "2026-11-04",
-   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "297523": {
    "modulo": "Fiscal",
@@ -121655,7 +121662,7 @@
   "297547": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "acbc1b5a3937",
+   "hash": "e19bdb28af4f",
    "em": "2026-11-04",
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
@@ -121676,16 +121683,16 @@
   "297591": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "a26a8a6be391",
+   "hash": "7e1247ca8f64",
    "em": "2026-11-04",
    "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
   },
   "297593": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "c3519039f2d0",
+   "hash": "4c3a20159e6e",
    "em": "2026-11-04",
-   "tema": "Sem causa identificável na descrição"
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "297601": {
    "modulo": "Peças & Estoque",
@@ -121704,35 +121711,35 @@
   "297611": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "fb98c99d6707",
+   "hash": "30fd83895396",
    "em": "2026-11-04",
    "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
   },
   "297613": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "1e690eaf9ccb",
+   "hash": "c8e5b684ed9f",
    "em": "2026-11-04",
    "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   "297615": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "fdb7a6f3e53d",
+   "hash": "b805a13572ac",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
   "297633": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "2eca218339b1",
+   "hash": "79982fbb1120",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
   "297637": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "479be104b3c0",
+   "hash": "ef277a17adda",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
   },
@@ -121742,9 +121749,422 @@
    "hash": "eafeabfd738d",
    "em": "2026-11-04",
    "tema": "Configuração assistida pelo suporte"
+  },
+  "297649": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "137c50d42121",
+   "em": "2026-11-04",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "297651": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "2451f902aa60",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297653": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "a834fc68cc49",
+   "em": "2026-11-04",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "297655": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "ef67e0868c98",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297659": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "e8ae4ad31230",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297661": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9ce33a261500",
+   "em": "2026-11-04",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "297663": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "20dc6f52cecb",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297665": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "f0a89eeabd58",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297671": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "798bb313caa9",
+   "em": "2026-11-04",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "297677": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "ea5e38cad368",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297679": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "3603dbd178a8",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297681": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "53c4791e24fc",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297685": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "2cab93940a5c",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297687": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "fdcbced8114e",
+   "em": "2026-11-04",
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+  },
+  "297689": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "ef67e0868c98",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297691": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a05086fe0cd7",
+   "em": "2026-11-04",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "297693": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "5bdc84af4c32",
+   "em": "2026-11-04",
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
+  },
+  "297695": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "da39a3ee5e6b",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297699": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "9ec7290197e5",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297705": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "f868a672d729",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297707": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "ef67e0868c98",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297713": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "4aead8995cbb",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297719": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "79442df37368",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297717": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "eafea49f634e",
+   "em": "2026-11-04",
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
+  },
+  "297723": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "d7fc585a6d5f",
+   "em": "2026-11-04",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "297727": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "3e16889d4946",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297729": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "15a064cc84fa",
+   "em": "2026-11-04",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "297735": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "f0a89eeabd58",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297743": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "effc1b9d0f7c",
+   "em": "2026-11-04",
+   "tema": "Cliente cobra prazo ou retorno de chamado já aberto"
+  },
+  "297745": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "21a89d0aa7ec",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297747": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "2137b427dffd",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297749": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "9b1e7c4d3ee2",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297751": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "599fb33e7f30",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297753": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "793f970c52de",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297759": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "f0a89eeabd58",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297761": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "f0a89eeabd58",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297765": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "766a8e6d94d9",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297767": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "f0a89eeabd58",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297771": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "619b11a47c71",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297775": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "f0a89eeabd58",
+   "em": "2026-11-04",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "297657": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "492bdef0ea75",
+   "em": "2026-11-04",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "297669": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "5b2d6243d54d",
+   "em": "2026-11-04",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "297673": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "582bfbcf322f",
+   "em": "2026-11-04",
+   "tema": "Relatórios fiscais divergentes"
+  },
+  "297675": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9824e01779e8",
+   "em": "2026-11-04",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "297683": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0532c520b61c",
+   "em": "2026-11-04",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "297697": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "94526a275f28",
+   "em": "2026-11-04",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "297701": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "221269eb2b33",
+   "em": "2026-11-04",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "297709": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "de3e604e100a",
+   "em": "2026-11-04",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "297711": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bb007fd875c8",
+   "em": "2026-11-04",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "297715": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8d79f5e6790f",
+   "em": "2026-11-04",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "297731": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d652fa33f342",
+   "em": "2026-11-04",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "297733": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ed1076cb27f7",
+   "em": "2026-11-04",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "297739": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0f28ade60f97",
+   "em": "2026-11-04",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  "297741": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "77b6673234d1",
+   "em": "2026-11-04",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "297755": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "74515548f8f6",
+   "em": "2026-11-04",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "297757": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "558001309218",
+   "em": "2026-11-04",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
+  },
+  "297763": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b37808a12a91",
+   "em": "2026-11-04",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "297769": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "83a1779d7782",
+   "em": "2026-11-04",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "297773": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c4215cdd8447",
+   "em": "2026-11-04",
+   "tema": "Sem causa identificável na descrição"
   }
  },
- "atualizado_em": "2026-11-04T15:25:12",
+ "atualizado_em": "2026-11-04T16:08:56",
  "realinhamentos": [
   {
    "em": "2026-11-04",

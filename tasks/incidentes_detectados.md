@@ -545,3 +545,29 @@ em calcular tributos antes de transmitir. Ids 295143, 295177, 295247, 295263, 29
 Campo da nota que a V3 não deixa mais editar — 107729 (NFC-e não permite remover o
 destinatário, a V2 permitia) e 295621. Não é rejeição, não é dúvida, não é
 configuração. Precisa de saída decidida antes que vire volume.
+
+## Execução diária de 04/11, fim de tarde (lotes A_001 e C_001)
+
+### E0014 — DPS repetida na NFS-e nacional, 4 clientes, chamado 107223
+*"Conjunto de série, número, município e CNPJ já existe numa DPS anterior"*: o sistema
+reenvia um número de DPS que o Portal Nacional já recebeu. Ids 297341, 297361, 297629,
+297757. O 296767 do lote anterior era o mesmo erro.
+
+O chamado 107223 foi aberto em **13/10**, antes da migração de 01/11. Em 297629 o cliente
+diz que espera desde então. Ou seja, o defeito já existia, e a migração multiplicou quem
+esbarra nele. Não é dúvida de numeração do tipo "está certo sair como 1?": é envio repetido.
+
+### O Portal Nacional segue gerando volume (continuação de 01/11)
+- **Bloqueio de ambiente** `A31` / `EM110` (CGSN 189/2026): 297259, 297343, 297477
+- **Leiaute da Sefin Nacional** `cvc-pattern-valid` / `cvc-complex-type`: 296973,
+  297287, 297453, 297669. Nenhum chamado citado.
+
+### Releitura apagou a marcação da queda de 04/11
+297543, 297553, 297555 e 297557 tinham entrado como "Sistema inteiro fora do ar" (ver
+"Queda de sistema em 04/11"). As conversas continuaram, o hash mudou e elas voltaram para
+a leitura **sem** a 297527, onde o atendente confirma a instabilidade. Lidas isoladas,
+viraram "não sabe executar a rotina" (3) e "função dá erro" (1), no módulo Acesso e login.
+
+Pelo critério, isso está certo: sem confirmação no próprio texto, não se marca queda. Mas
+é um limite do método: **a releitura de uma conversa perde o contexto que só existia no
+lote**. A queda de 04/11 conta hoje 5 conversas em vez de 9.
