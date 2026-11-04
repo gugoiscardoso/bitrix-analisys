@@ -64,9 +64,44 @@ A taxonomia tem lacunas conhecidas. Até que ganhem rótulo, use estas saídas:
   PIX) → tema financeiro. A lista de rotina cobre OS, orçamento, estoque e cadastro de
   usuário, não Financeiro.
 - **Rotina fiscal** ("como faço para...") → tema de rotina, módulo Fiscal.
-- **"Função quebra" genérico em CHAMADO** → se o defeito é numa OS, tema de OS que não
-  fecha; se é dado salvo que não aparece, tema de cadastro que não grava; se é erro em
-  compra ou estorno, tema de saldo de estoque.
+- **Dúvida comercial sobre parceiro ou integração de terceiro** ("vocês têm parceria
+  com o app X?") → tema de função que o sistema não tem, módulo Transversal.
+
+### Só para CHAMADOS — os rótulos abaixo não existem nas outras listas
+
+Se o seu prompt não tem esses rótulos, esta subseção não é para o seu grupo; ignore-a.
+
+- **"Função quebra" genérico** → se o defeito é numa OS, tema de OS que não fecha; se
+  é dado salvo que não aparece, tema de cadastro que não é encontrado nem grava; se é
+  erro em compra ou estorno, tema de saldo de estoque que diverge.
+
+## Migração da NFS-e para o Portal Nacional (a partir de 01/11/2026)
+
+Resolução CGSN 189/2026 e 191, obrigatória para optantes do Simples Nacional. A partir
+de novembro esse evento domina o grupo fiscal — foi 80% de um lote de 250. Sem regra,
+cada leitor o distribui de um jeito e o bloco inteiro muda de lugar entre execuções.
+
+O corte, por ordem de precedência:
+
+1. O texto cita **código de erro ou campo rejeitado** (`EM110`, `A31`, `E202`, `E160`,
+   `cvc-pattern-valid`, `cIndOp`, `IM do prestador`…) → **Rejeição/erro de validação**.
+2. O cliente **não consegue emitir** por causa da migração, ou o atendente identifica a
+   migração como a causa, sem código citado → **Particularidade municipal de NFS-e**.
+3. O cliente pede "configurem para mim" e não há erro citado → **Configuração
+   assistida pelo suporte**.
+4. O cliente só **pergunta** sobre a mudança, sem relatar falha → **Dúvida de uso**.
+
+Dois efeitos colaterais que têm tema próprio e não devem virar "particularidade":
+- **A numeração reiniciou em 1** para quem migrou, e vira dúvida recorrente
+  ("está certo a nota sair como 1?") → **Numeração/duplicidade**.
+- **`E0014`** (série + número + município + CNPJ já existe), por pulo de DPS →
+  também **Numeração/duplicidade**.
+
+## Dois pedidos no mesmo registro
+
+A regra zero resolve "cliente contra atendente", não "dois pedidos do mesmo cliente".
+Quando o registro tem dois assuntos distintos, classifique pelo que **ocupa mais do
+texto**. Se empatarem, pelo primeiro declarado.
 
 ## Fronteiras de módulo
 
@@ -86,6 +121,8 @@ A taxonomia tem lacunas conhecidas. Até que ganhem rótulo, use estas saídas:
 | Erro em lançamento, mesmo na tela do DRE | Financeiro |
 | Relatório que não abre, não filtra ou falha ao emitir — **inclusive financeiros** (DRE, fluxo de caixa) | Relatórios |
 | Layout da folha impressa | Relatórios |
+| Logo, CNPJ ou termo que **não se consegue configurar** | Cadastros |
+| Logo, CNPJ ou termo configurado que **não sai na impressão** | Relatórios |
 | TEF, Stone, Pix | Financeiro |
 | Agendamento e atividades do pátio | Gestão de Pátio |
 | Vídeo, manual ou material gravado | Auto-guias |
@@ -97,7 +134,9 @@ não os citados de passagem.
 
 ## "Não fecha a OS porque há compra pendente ou falta item no estoque"
 
-**Módulo: Ordem de Serviço.** Decidido em 04/11/2026.
+**Módulo: Ordem de Serviço.** Decidido em 04/11/2026. Vale para qualquer grupo; o tema
+citado abaixo é o da lista de CHAMADOS, mas a regra de módulo vale sempre que o caso
+aparecer.
 
 O eixo é "onde a fricção acontece", e esse caso tem a causa num lugar (a compra, o
 estoque) e o travamento em outro (a tela da OS). Vale onde o usuário trava: é o que

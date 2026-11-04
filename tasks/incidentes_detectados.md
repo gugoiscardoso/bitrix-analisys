@@ -375,3 +375,116 @@ classificador fiscal já havia marcado como "Não fiscal (falso positivo)").
 
 Duas medições independentes convergindo dão confiança no número: **o campo fiscal da
 base erra para mais em cerca de 5% dos casos.**
+
+## Queda de sistema em 04/11 (lote A_003) — confirmada, sem chamado
+Nove clientes distintos na mesma tarde, faixa 297527–297569: 297527, 297529, 297531,
+297543, 297549, 297553, 297555, 297557, 297569.
+
+O atendente confirma em 297527: "O sistema passou por uma instabilidade, já voltou."
+Em 297557 o cliente cola a mensagem da tela: *"Um problema inesperado aconteceu!
+Houve um problema na consulta de funcionalidades, contate o suporte para mais
+informações."*
+
+É queda de verdade — login e carregamento do sistema todo, não uma tela. **Nenhum
+chamado citado**, mantendo o padrão: os eventos de infraestrutura e de integração
+externa não geram número, só os defeitos de tela geram.
+
+## Novembro — o que mudou depois do rollout
+
+### Demanda espontânea pela V3 (lote A_002)
+Vinte registros num único dia são clientes PEDINDO a migração: "quero migrar para a
+nova versão", "habilita nosso acesso ao novo sistema", "não aparece o botão de
+solicitar". Ids com pedido de liberação: 296261, 296357, 296363, 296369, 296371,
+296467, 296631, 296701, 297055, 297221, 297231.
+
+Isso inverte o sinal de 29/10. Lá a V3 aparecia como fricção de quem foi migrado;
+aqui aparece como fila de quem quer entrar. Não existe tema para isso na taxonomia —
+foi classificado como acesso/plano/contrato por analogia. **Candidato forte a tema
+próprio**, porque é demanda comercial, não problema.
+
+### Placa não encontrada na integradora (lote A_002) — ATD-33620
+Oito clientes diferentes no mesmo dia, placas distintas, todos com "veículo não
+encontrado": 296377, 296571, 296585, 296713, 296735, 296913, 296945, 297063. O
+chamado ATD-33620 foi aberto para a Fraga verificar junto ao Senatran/Denatran.
+É a terceira vez que a integradora de placas aparece nesta lista (ver itens 21, 30,
+40) — o mesmo fornecedor falhando em abril, outubro e novembro.
+
+### Importação Soma/Cilia ainda travada (lote A_002) — chamados 107577 e 107549
+296869, 296889, 297319. Prazo informado ao cliente: dia 12. O Cilia já aparecia
+quebrado no relatório de outubro (item 31), com causa raiz identificada no chamado
+107457: o Cilia mudou de versão e o endpoint da Ultracar não acompanhou. Segue aberto.
+
+### O boleto quebrou de novo em 3 e 4/11 (lote A_001) — chamados 107509 e 107559
+~28 registros, faixa 294859–296117: 294859, 295009, 295025, 295087, 295099, 295163,
+295183, 295189, 295201, 295257, 295277, 295291, 295293, 295303, 295319, 295345,
+295389, 295391, 295453, 295469, 295501, 295597, 295665, 295715, 295745, 296001,
+296039, 296117 (mais 295279, que entrou como cobrança de prazo do mesmo chamado).
+
+Erros citados: `IncludeBoletoAsync`, "Nosso Número já incluído anteriormente para
+este convênio", "object reference not set to an instance of an object" ao pedir o PDF.
+O atendimento confirma **"erro geral nas bases"** e aponta a API dos bancos —
+**Sicredi, Sicoob, Itaú e Santander ao mesmo tempo**.
+
+**Este é o SEXTO episódio do boleto no período coberto** (abril, duas vezes em
+outubro, Sicoob no fim de outubro, 29/10 e agora 3–4/11). Quatro bancos falhando
+juntos não é falha de banco: é o lado da Ultracar, como o erro de parse já sugeria em
+abril. O problema nunca foi resolvido — foi contornado seis vezes.
+
+Se há uma coisa nesta lista para a gestão ler primeiro, é esta.
+
+### Placa sem marca/modelo, de novo (lote A_001) — ATD-33513 e ATD-33584
+295111, 295285, 295539, 295627, 295709, 296129, 296145. Campo marca obrigatório vem
+vazio e sem opção, travando a entrada do carro na OS. **Quarta aparição da
+integradora de placas na lista.**
+
+### Regressões da virada de versão (lote A_001)
+- **Duplicar peça não vincula mais a substituta** — regressão confirmada pelo suporte:
+  294859, 295519
+- **Etiqueta "Cliente final" some da OS após a atualização**, só volta criando outra
+  etiqueta e deslogando — chamado 107697: 295269, 296135
+
+---
+
+# NOVEMBRO — a migração da NFS-e é o evento do período
+
+## Portal Nacional, 01/11/2026 — chamado nenhum, ~200 conversas num lote só
+Resolução CGSN 189/2026 e 191, obrigatória para optantes do Simples Nacional. Num
+lote de 250 conversas de 03–04/11, **cerca de 200 são esse evento**. Faixa
+296025–296915.
+
+### O que os clientes recebem na tela
+- **Bloqueio de ambiente**: `EM110`, `EM111`, `A31`, `P3084`, `P3090`, `L9999`, `1651`
+  — *"não é permitido emitir NFSe através deste serviço na data de competência
+  informada"*.
+- **Rejeição de leiaute** quando o cliente tenta reconfigurar sozinho: o código de
+  serviço passou a exigir **6 dígitos** (140101, não 1401) e o de tributação municipal
+  **3 dígitos**. Mensagens: `cvc-pattern-valid`, `E202` (código de tributação não
+  informado), `E160` (desacordo com o XML Schema), `E0178` (não informar alíquota com
+  regime especial — tem de ir 0), *"IM do prestador não deve ser informado"* (precisa
+  apagar a inscrição municipal do cadastro), `cIndOp` esperado (050101 para oficina).
+- **A numeração reiniciou em 1** para quem migrou: 296113, 296323, 296359, 296651,
+  296717, 296753, 296803, 296807. Vira dúvida recorrente "está certo sair como 1?".
+  E `E0014` por pulo de DPS em 296767.
+- **O próprio Portal Nacional instável**: `Status 503 The service is unavailable`
+  (296115, 296133, 296733) e "a prefeitura está temporariamente indisponível" (296525).
+
+### O gargalo real, e é de processo, não de software
+**O suporte não consegue configurar sem o XML ou o PDF de uma nota já emitida no
+Portal Nacional — e o cliente não tem acesso ao portal.** Depende da contabilidade.
+Isso trava dezenas de atendimentos: 296093, 296235, 296535, 296647, 296661, 296663,
+296677, 296737, 296791.
+
+Em 296737 o cliente diz explicitamente que está no ping-pong: *a contabilidade diz
+que é com vocês, vocês dizem que é com eles.*
+
+Esse é o item desta lista com conserto mais barato: não é código, é conseguir o XML de
+referência por um caminho que não dependa do cliente intermediar a contabilidade.
+
+## Defeito secundário multi-cliente (lote C_002) — chamado 107691
+**NF-e de devolução rejeitada por falta de documento fiscal referenciado.** A chave
+tem de ir **no item**, não no cabeçalho. Ids 296027, 296107, 296119, 296127, 296159,
+296179, 296299, 296617, 296649, 296761.
+
+Atenção: a orientação divergiu entre atendentes — um tratou como instabilidade da
+SEFAZ, outro abriu chamado de desenvolvimento. Dez clientes receberam explicações
+diferentes para o mesmo erro.
