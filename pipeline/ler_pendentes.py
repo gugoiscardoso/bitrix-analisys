@@ -156,7 +156,8 @@ Orientação de módulo:
   responda o que lhe parecer mais próximo — o módulo dessas é corrigido depois, por
   regra, e não depende da sua escolha.
 
-REGISTROS:
+{criterios}
+REGISTROS: estao no arquivo lote_*.json deste mesmo grupo.
 """
 
 CABECA_D = """Você está classificando registros do suporte da Ultracar, uma empresa de
@@ -182,7 +183,8 @@ Orientação:
 - Muitos destes registros falam de mais de um módulo. Escolha aquele em que o problema
   ACONTECE, não os que são citados de passagem.
 
-REGISTROS:
+{criterios}
+REGISTROS: estao no arquivo lote_*.json deste mesmo grupo.
 """
 
 EXTRA = {
@@ -197,12 +199,34 @@ EXTRA = {
 LISTA_TEMA = {"A": "conversa", "B": "chamado", "C": "fiscal"}
 
 
+def criterios() -> str:
+    """Os critérios de fronteira, injetados em TODO prompt.
+
+    Eles vêm de arquivo e não do código porque são conteúdo editável, não lógica —
+    quem decide que "liberar acesso com pendência financeira é Transversal" é quem
+    conhece o negócio, e deve poder mudar isso sem mexer em Python.
+
+    Existem porque na leitura de 30/10/2026 cada um dos 69 lotes esbarrou nos mesmos
+    casos de fronteira e resolveu à sua maneira até a regra ser escrita. Os primeiros
+    lotes ficaram com critério mais frouxo que os últimos — este arquivo é o que
+    impede isso de acontecer de novo.
+    """
+    p = STORE / "criterios_leitura.md"
+    if not p.exists():
+        print(f"AVISO: {p.name} não existe. Os lotes vão sair SEM os critérios de "
+              "fronteira, e a classificação vai variar de leitor para leitor.")
+        return ""
+    return ("\n" + "=" * 70 + "\nCRITÉRIOS — leia antes de classificar\n"
+            + "=" * 70 + "\n\n" + p.read_text(encoding="utf-8").strip() + "\n")
+
+
 def montar_prompt(grupo: str, voc: dict) -> str:
     mods = "\n".join(f"  - {m}" for m in voc["modulos"])
     if grupo == "D":
-        return CABECA_D.format(modulos=mods)
+        return CABECA_D.format(modulos=mods, criterios=criterios())
     temas = "\n".join(f"  - {t}" for t in voc[LISTA_TEMA[grupo]])
-    return CABECA.format(extra=EXTRA[grupo], temas=temas, modulos=mods)
+    return CABECA.format(extra=EXTRA[grupo], temas=temas, modulos=mods,
+                         criterios=criterios())
 
 
 # ─────────────────────── comandos ───────────────────────

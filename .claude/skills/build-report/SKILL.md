@@ -1,6 +1,6 @@
 ---
 name: build-report
-description: Gera o relatório de fricção fiscal do suporte Ultracar para um período. Coleta o que falta no Bitrix, classifica apenas os registros novos e produz o relatório executivo e a base unificada em report/. Use quando o usuário pedir para gerar/atualizar o relatório fiscal, ou invocar /build-report.
+description: Gera o relatório de suporte da Ultracar para um período — V2 e V3 num arquivo só, fiscal e não-fiscal, chamados e conversas de chat e WhatsApp. Coleta o que falta no Bitrix, lê e classifica só os registros novos, e produz o relatório em report/. O formato oficial é o de gerar_relatorio_completo.py; o relatório fiscal e o da V3 seguem existindo como saídas próprias. Use quando o usuário pedir para gerar ou atualizar o relatório de suporte, fiscal ou da V3, ou invocar /build-report.
 ---
 
 # build-report
@@ -440,3 +440,80 @@ Uma mensagem por linha, com hora, para a aba Conversas. Três coisas que não s�
 `id_user` e o campo que `imopenlines.session.history.get` devolve chama-se **`senderid`**
 (`ConversationMessages.cs:40`). A correção é de uma linha, mas exige recoletar as
 conversas para o dado entrar nos exports.
+
+---
+
+# O FORMATO OFICIAL — use este
+
+A partir de 30/10/2026 o relatório entregue à gestão é o de
+`gerar_relatorio_completo.py`: um arquivo só, V2 e V3 juntos, janela de um ano.
+Os geradores anteriores (`gerar_relatorio.py`, `gerar_conversas.py`,
+`gerar_chamados.py`, `gerar_executivo_naofiscal.py`, `gerar_relatorio_v3.py`)
+continuam funcionando e **não** devem ser apagados — o `gerar_relatorio_v3.py` ainda
+atende o pedido diário da V3, e os outros sustentam séries publicadas. Mas o relatório
+geral é este.
+
+## A ordem
+
+```
+# 1. coletar o que falta (minutos)
+./Ultracar-Support-Bitrix-Analisys/bin/Debug/net10.0/Ultracar-Support-Bitrix-Analisys.exe \
+    --mode all --from <AAAA-MM-DD> --to <AAAA-MM-DD>
+
+# 2. quem falou cada mensagem (incremental; ~55 min do zero, segundos no dia a dia)
+python pipeline/enriquecer_autores.py
+
+# 3. consolidar (minutos) — usa o passo 2 para montar as transcrições com autor
+python pipeline/consolidar_store.py
+
+# 4. ler o que falta
+python pipeline/ler_pendentes.py status
+python pipeline/ler_pendentes.py preparar --de <de> --ate <ate>
+#    ... classificar cada lote_X_NNN.json com o prompt_X.md do mesmo grupo ...
+python pipeline/ler_pendentes.py absorver
+
+# 5. gerar
+python pipeline/gerar_relatorio_completo.py --de <de> --ate <ate>
+```
+
+O passo 4 se repete até `status` dizer `FALTA LER: 0`. O gerador **não** se recusa a
+rodar com leitura incompleta de propósito: ele mostra a cobertura no Resumo e cria a
+aba Cobertura. Isso é o que permite entregar uma prévia antes de pagar a leitura.
+
+## Como classificar um lote
+
+Entregue a um subagente por lote, com este contrato:
+
+- lê `prompt_X.md` e `lote_X_NNN.json`, grava `resp_X_NNN.json` em UTF-8 **sem BOM**;
+- a resposta tem exatamente os ids do lote, nem um a mais nem a menos;
+- `tema` e `modulo` são cópia **exata** dos rótulos — o jeito que funcionou em 69 de
+  69 lotes foi o agente montar o JSON por um script que LÊ os rótulos do próprio
+  prompt, em vez de digitar strings acentuadas;
+- peça também: as dúvidas reais (no máximo 3) e, se vários clientes tiveram o mesmo
+  defeito, o defeito, o número do chamado e a faixa de ids. **Foi daí que saiu o
+  catálogo de incidentes** — o maior valor do último relatório não estava no escopo.
+
+**Quatro a seis subagentes simultâneos, não mais.** Em 30/10 subi para nove e o limite
+de sessão derrubou seis de uma vez. Custou dois minutos só porque a fila se retoma do
+disco — ver `tasks/lessons.md`.
+
+## Onde moram as decisões
+
+| Arquivo | O que guarda |
+|---|---|
+| `data/store/criterios_leitura.md` | **os critérios de fronteira**, injetados em todo prompt |
+| `data/store/modulo_por_rotulo.json` | mapa determinístico rótulo → módulo |
+| `data/store/leitura_completa.json` | o resultado da leitura; **não se regenera** |
+| `data/store/taxonomia*.json` | as quatro listas de tema |
+
+`criterios_leitura.md` é o arquivo que faz a série não variar por leitor. Ele nasceu
+porque em 30/10 cada lote esbarrou nos mesmos casos de fronteira e resolveu do seu
+jeito até a regra ser escrita — os primeiros lotes ficaram mais frouxos que os
+últimos, e isso é uma limitação real daquele relatório. Editar esse arquivo muda os
+relatórios seguintes e **não** reclassifica o passado.
+
+## O que NÃO está versionado, e por quê
+
+`remetentes.json` (19 MB) e `transcricoes.json` (50 MB) ficam fora por tamanho, e só
+porque se refazem com os passos 2 e 3. Tudo o mais que envolve julgamento está no
+repositório.
