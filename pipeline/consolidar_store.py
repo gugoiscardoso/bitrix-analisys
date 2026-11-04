@@ -334,6 +334,27 @@ def versao_chamado(titulo: str, desc: str, tags, stage) -> str:
     return "V3-backlog" if tem_tag else "V2"
 
 
+def linha_de(valor) -> str:
+    """Id da linha de atendimento como string canônica: 17, nunca "17.0".
+
+    Um único nulo na coluna LineId faz o pandas ler a coluna INTEIRA como float, e aí
+    `str(17.0)` vira "17.0" — que não bate com LINHA_V3 e derruba a marcação V3 de
+    todas as conversas que entraram pela linha 17. Medido em 04/11/2026: o export
+    daquele dia tinha 4 nulos, e 164 das 180 conversas da V3 perderam a marca de uma
+    vez. A regra achava que era V2.
+
+    Segunda vez que um NaN do pandas muda o tipo de uma coluna e corrompe uma decisão
+    nesta base — ver `encerrada_de`. Qualquer campo vindo de planilha que vire chave
+    de comparação precisa ser normalizado assim.
+    """
+    if valor is None or (isinstance(valor, float) and pd.isna(valor)):
+        return ""
+    if isinstance(valor, float) and valor.is_integer():
+        return str(int(valor))
+    s = str(valor).strip()
+    return str(int(float(s))) if re.fullmatch(r"\d+\.0+", s) else s
+
+
 def versao_conversa(linha, redirecionamentos) -> str:
     """A linha de entrada decide, salvo redirecionamento — e aí vale o último.
 
@@ -343,7 +364,7 @@ def versao_conversa(linha, redirecionamentos) -> str:
     """
     if redirecionamentos:
         return "V3" if redirecionamentos[-1].strip().lower() == NOME_LINHA_V3 else "V2"
-    return "V3" if str(linha).strip() == LINHA_V3 else "V2"
+    return "V3" if linha_de(linha) == LINHA_V3 else "V2"
 
 
 def montar_redirecionamentos(msgs: pd.DataFrame) -> dict[int, list[str]]:
@@ -649,7 +670,7 @@ def main() -> int:
             "cliente": r.get("CustomerName") or "", "cnpj": "",
             "fiscal": fiscal,
             "versao": versao_conversa(r.get("LineId"), redirects.get(sid)),
-            "linha": str(r.get("LineId") or ""),
+            "linha": linha_de(r.get("LineId")),
             "duracao_min": int(r.get("DurationMinutes") or 0),
             "mensagens": int(r.get("TotalMessages") or 0),
             "operador": r.get("OperatorName") or "",

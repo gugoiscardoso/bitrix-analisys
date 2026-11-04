@@ -488,3 +488,60 @@ tem de ir **no item**, não no cabeçalho. Ids 296027, 296107, 296119, 296127, 2
 Atenção: a orientação divergiu entre atendentes — um tratou como instabilidade da
 SEFAZ, outro abriu chamado de desenvolvimento. Dez clientes receberam explicações
 diferentes para o mesmo erro.
+
+## Paridade V2 → V3 nos chamados de novembro (lote B_001)
+Dos 36 chamados do período, **22 são "pedido de campo, filtro ou regra que o sistema
+não oferece"** — e o grosso é paridade: coisa que existia na V2 e não existe na V3.
+
+Exemplo com dois clientes distintos e mesmo defeito: **relatório de Comissão por
+Funcionário na V3 vem em branco**, e por movimentação nem gera. Chamados **107625**
+(MAXIMA 100 AUTO PECAS) e **107707** (CARFLEX). O 107707 acrescenta que o filtro por
+status da OS — Aberta, Fechada, Cancelada — existia na V2 e sumiu na V3.
+
+Isso casa com a frente R3 da taxonomia da V3 ("lacuna de paridade com a V2"), que no
+relatório de 29/10 tinha só 9% do peso. Com o rollout avançando, é a frente a vigiar.
+
+## Qualidade do dado no Bitrix (lote B_001)
+O campo "O que precisa ser Ajustado" do chamado **107623** está com o texto do
+**107621** colado dentro — mesmo contato, chamados consecutivos. Quem abriu copiou e
+não trocou. Não dá para saber quantos outros têm isso; apareceu porque o leitor
+estranhou a descrição não bater com o título.
+
+## Dois achados concretos e baratos de consertar (lote C_001)
+
+### "sem gtin" em caixa baixa faz a SEFAZ rejeitar — 8 clientes
+A peça importada pelo XML do fornecedor entra com código de barras inválido ou com
+`sem gtin` em minúsculo. A SEFAZ rejeita (611 / cEAN inválido). A nota só passa depois
+de o cliente **editar item por item no estoque** para `SEM GTIN` em maiúsculo.
+
+Ids 295471, 295481, 295533, 295605, 295623, 295657, 295775, 295889.
+
+É diferença de caixa alta numa string. Normalizar na importação resolve oito
+atendimentos repetidos — e provavelmente muitos mais fora deste lote.
+
+### Reforma Tributária: grupo IBS/CBS malformado — ~13 registros, chamado 107613
+"Falha na validação do JSON de NFe" (NFE3:5) e "Falha no Schema XML — encontrado
+`vIBSMun`/`vIBSUF`/`vPIS`, campo `pIBSMun`/`pIBSUF`/`pPIS` é esperado". O sistema
+manda **valor** onde o schema espera **percentual**.
+
+Workaround que o suporte repete: apagar tudo de IBS/CBS em todos os itens, ou clicar
+em calcular tributos antes de transmitir. Ids 295143, 295177, 295247, 295263, 295385,
+295407, 295481, 295583, 295607, 295757, 295893, 295991, 295997.
+
+### Outros multi-cliente do mesmo lote
+- **Devolução rejeitada por documento referenciado + ICMS-ST obrigatório** — chamados
+  107689 e 107691: 295231, 295351, 295505, 295551, 295607, 295997
+- **NF gerada pela OS não traz os serviços** ("não foi possível agrupar serviços") —
+  chamados 107609, 107633, 107651, 107675; conversas 295101, 295445, 295503, 295603,
+  295801 (a Viecar aparece três vezes)
+- **Importação de compra sem "tipo de documento"**, sem o qual não há devolução nem
+  XML depois — chamado 107627: 295339, 295473, 295809, 295897
+- **Limite de 3 caracteres em série e código de tributação da NFS-e** — 107703,
+  295683, 295835, 295837
+- **PDF "CANCELADO" com nota autorizada** segue vivo (chamado 107497): 295287,
+  295383, 295881, mais a dessincronia em 107705, 107737, 107749
+
+### Lacuna de taxonomia que a V3 vai repetir
+Campo da nota que a V3 não deixa mais editar — 107729 (NFC-e não permite remover o
+destinatário, a V2 permitia) e 295621. Não é rejeição, não é dúvida, não é
+configuração. Precisa de saída decidida antes que vire volume.

@@ -184,3 +184,32 @@ não suba.
 que falta pelo estado em disco. Tanto a leitura quanto `enriquecer_autores.py` foram
 escritos assim, e foi isso que transformou uma queda de seis agentes em um reinício de
 dois minutos.
+
+## Um nulo numa planilha troca o tipo da coluna e quebra a comparação
+
+Em 04/11/2026 a recoleta fez 164 das 180 conversas da V3 perderem a marcação. Causa:
+o export daquele dia tinha **4 nulos** na coluna `LineId`, o pandas leu a coluna
+inteira como float, e `str(17.0)` virou `"17.0"` — que não bate com `"17"`, a linha
+da V3. A regra passou a classificar como V2 toda conversa que entrou pela linha da
+V3. O relatório mostraria 18 conversas V3 em vez de 345.
+
+É a **segunda vez** nesta base que um NaN do pandas muda o tipo de uma coluna e
+corrompe uma decisão — a primeira foi `bool(nan) == True` marcando toda conversa
+histórica como encerrada.
+
+**Regra:** todo campo que vem de planilha e vira chave de comparação passa por uma
+função de normalização própria, com teste. Nunca `str(valor)` direto.
+
+**Como foi pego, e por que quase não foi:** o gerador acusou 99,7% em vez de 100%, e
+161 registros sem classificação. Dava para ignorar — 0,3% parece arredondamento. Foi
+ao perseguir *quais* 161 que a marcação quebrada apareceu. **Diferença pequena que
+não deveria existir merece a pergunta "quais?", não um arredondamento.**
+
+## Editar o store à mão pula o validador que você mesmo escreveu
+
+No mesmo dia, realinhei 6 registros editando `leitura_completa.json` direto e gravei
+um rótulo truncado — "Particularidade municipal de NFS-e" sem o resto do nome — que
+não existe na taxonomia. O `absorver` teria recusado na hora; eu passei por fora dele.
+
+**Regra:** depois de qualquer edição direta no store, rodar uma validação de todos os
+rótulos contra as taxonomias. Foi o que achou o erro, e leva segundos.

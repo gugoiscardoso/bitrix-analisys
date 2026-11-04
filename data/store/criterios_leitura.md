@@ -83,7 +83,14 @@ cada leitor o distribui de um jeito e o bloco inteiro muda de lugar entre execu�
 
 O corte, por ordem de precedência:
 
-1. O texto cita **código de erro ou campo rejeitado** (`EM110`, `A31`, `E202`, `E160`,
+0. **Bloqueio de ambiente** — `EM110`, `EM111`, `A31`, `P3084`, `P3090`, ou a frase
+   *"não é permitido emitir NFSe através deste serviço na data de competência"* →
+   **Particularidade municipal de NFS-e**, mesmo tendo código. Esses códigos não são
+   falha de schema: são o município dizendo que aquele ambiente saiu do ar porque
+   migrou. Tratá-los como rejeição mistura o evento regulatório com erro de leiaute.
+   *(Medido em 04/11: sem esta exceção, 15 registros com a mesma assinatura ficaram
+   divididos em quatro temas diferentes.)*
+1. O texto cita **código de erro ou campo rejeitado de LEIAUTE** (`E202`, `E160`,
    `cvc-pattern-valid`, `cIndOp`, `IM do prestador`…) → **Rejeição/erro de validação**.
 2. O cliente **não consegue emitir** por causa da migração, ou o atendente identifica a
    migração como a causa, sem código citado → **Particularidade municipal de NFS-e**.
