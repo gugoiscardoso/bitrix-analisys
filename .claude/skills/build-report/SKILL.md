@@ -460,7 +460,9 @@ geral é este.
 ./Ultracar-Support-Bitrix-Analisys/bin/Debug/net10.0/Ultracar-Support-Bitrix-Analisys.exe \
     --mode all --from <AAAA-MM-DD> --to <AAAA-MM-DD>
 
-# 2. quem falou cada mensagem (incremental; ~55 min do zero, segundos no dia a dia)
+# 2. quem falou cada mensagem (incremental; ~55 min do zero, minutos no dia a dia)
+#    Lê os ids dos exports CRUS, então roda logo após a coleta — não precisa esperar
+#    a consolidação. Era o contrário até 04/11 e por isso não achava nada.
 python pipeline/enriquecer_autores.py
 
 # 3. consolidar (minutos) — usa o passo 2 para montar as transcrições com autor

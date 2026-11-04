@@ -58,13 +58,29 @@ def webhook() -> str:
 
 
 def sessoes_da_base() -> list[str]:
-    ids = []
-    with (STORE / "base_historica.jsonl").open(encoding="utf-8") as fh:
-        for linha in fh:
-            r = json.loads(linha)
-            if r["tipo"] == "conversa":
-                ids.append(str(r["id"]))
-    return ids
+    """Ids de sessão, dos exports CRUS e da base consolidada.
+
+    Precisa ler os exports, não só a base: a base só ganha as conversas novas depois
+    do `consolidar_store.py`, então rodar este script logo após a coleta — que é a
+    ordem natural e a documentada — não encontrava nada para buscar. Lendo os dois,
+    ele funciona antes ou depois da consolidação.
+    """
+    ids = set()
+    for arq in sorted((RAIZ / "data" / "raw").glob("conversations_export_*.xlsx")):
+        try:
+            import pandas as pd
+            col = pd.read_excel(arq, sheet_name="Conversations", usecols=["SessionId"])
+            ids.update(str(int(x)) for x in col["SessionId"].dropna())
+        except Exception as e:
+            print(f"  aviso: não li {arq.name} ({type(e).__name__})")
+    base = STORE / "base_historica.jsonl"
+    if base.exists():
+        with base.open(encoding="utf-8") as fh:
+            for linha in fh:
+                r = json.loads(linha)
+                if r["tipo"] == "conversa":
+                    ids.add(str(r["id"]))
+    return sorted(ids, key=int)
 
 
 def papel_de(sender: str, users: dict) -> str:

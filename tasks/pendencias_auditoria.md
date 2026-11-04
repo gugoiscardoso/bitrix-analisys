@@ -667,3 +667,26 @@ e a resposta vale para todos os relatórios futuros.
 
 Alternativa conhecida, se o formato de grupo estiver errado:
 `https://ultracar.bitrix24.com/company/personal/user/<uid>/tasks/task/view/<id>/`.
+
+## Portabilidade do projeto — levantado em 04/11/2026, não resolvido
+
+Pergunta do usuário: "é só rodar a skill e passar as datas?". Em chat novo na mesma
+máquina, essencialmente sim. Para OUTRA PESSOA com um clone limpo, não. Levantado até
+onde deu antes de parar:
+
+- **`.claude/skills/build-report/SKILL.md` está versionado** — a pessoa recebe o skill.
+- **`appsettings.json` está commitado, com o token do webhook do Bitrix dentro.**
+  Isso resolve a coleta para quem clonar e ao mesmo tempo é um segredo no
+  repositório. Precisa de decisão: tirar do git e documentar como configurar, ou
+  assumir que o repo é privado e deixar.
+- **Não existe `requirements.txt` nem README.** Quem clona não sabe que precisa de
+  pandas e openpyxl, nem que o coletor é um projeto .NET que precisa de `dotnet build`
+  antes do `.exe` que o skill manda rodar.
+- **Nada de dado está versionado**: `base_historica.jsonl`, `data/raw/`,
+  `remetentes.json` e `transcricoes.json` são todos ignorados. Um clone limpo começa
+  sem base e teria de recoletar os 10 meses — custo não medido, provavelmente horas.
+  O que está versionado é só o julgamento (classificações, critérios, taxonomias),
+  que é o certo; o que falta é dizer isso em algum lugar.
+
+Faltou medir o custo real da recoleta a frio e escrever um README com o caminho do
+zero. Retomar daqui.
