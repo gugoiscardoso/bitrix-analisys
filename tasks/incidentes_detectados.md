@@ -693,60 +693,66 @@ descreve o mesmo cadastro incompleto visto de duas telas.
 cobrando o mesmo chamado. Também **107785**, **107789**, **107793**, **107795**,
 **107797**, **107801**, **107809**, **106677**, **ATD-33584**.
 
-## Fechamento de 05/11 — a fila de atendimento parou de ser atendida
+## Fechamento de 05/11 — a fila de atendimento travou hoje
 
-**Este é o achado mais grave registrado neste arquivo, e não saiu da classificação: saiu
-de medir as transcrições.**
+**Números corrigidos na mesma noite.** A primeira versão desta seção dizia 43% em 04/11
+e 17% em 05/11. Estava errada: eu contava como atendimento só a linha
+`Atendente (Nome)`, e numa conversa transferida o nome do autor se perde e o diálogo
+humano vira `(sistema)` — o defeito descrito na seção seguinte. Como essa perda de
+autoria **explodiu justamente em 04 e 05/11**, ela derrubava a taxa pelos mesmos dias em
+que eu estava apontando queda de atendimento. A medição abaixo conta as duas formas:
+atendente com nome, e diálogo marcado como `(sistema)` depois de alguém pegar a conversa.
 
 Quando a fila passa do esperado, o sistema manda um aviso automático ("nossa fila de
 atendimento está maior que o esperado… em breve iremos te atender"). Ele não é novo —
 existe desde 25/06 e apareceu em 7.591 conversas. O que mudou é o que acontece **depois**
 dele:
 
-| mês | conversas com o aviso | atendidas por uma pessoa | taxa |
+| mês | conversas com o aviso | atendidas | taxa |
 |---|---|---|---|
-| jun | 64 | 60 | 94% |
-| jul | 754 | 746 | 99% |
-| ago | 2.067 | 2.018 | 98% |
-| set | 2.060 | 2.033 | 99% |
-| out | 1.577 | 1.530 | 97% |
-| **nov** | **1.069** | **532** | **50%** |
+| jun | 64 | 62 | 97% |
+| jul | 754 | 752 | 100% |
+| ago | 2.067 | 2.028 | 98% |
+| set | 2.060 | 2.041 | 99% |
+| out | 1.577 | 1.555 | 99% |
+| **nov** | **1.069** | **758** | **71%** |
 
-E dia a dia, a quebra tem data:
+Dia a dia, a quebra tem data e é de **um** dia, não de dois:
 
 | dia | com o aviso | atendidas | taxa |
 |---|---|---|---|
-| 29/10 | 259 | 250 | 97% |
+| 29/10 | 259 | 256 | 99% |
 | 03/11 | 312 | 309 | **99%** |
-| 04/11 | 361 | 157 | **43%** |
-| 05/11 | 396 | 66 | **17%** |
+| 04/11 | 361 | 304 | **84%** |
+| 05/11 | 396 | 145 | **37%** |
 
-Cinco meses entre 94% e 99%, e em dois dias cai para 17%. Hoje, **213 clientes
-escreveram, esperaram quinze minutos, receberam o aviso automático e nunca mais ouviram
-ninguém.**
+Cinco meses entre 97% e 100%, 04/11 com uma queda moderada, e hoje 37%. **Das 251
+conversas de hoje que viram o aviso e não foram atendidas, 205 ainda estavam abertas às
+23h15** — ou seja, continuavam na fila, não foram fechadas sem atendimento.
 
-### Três explicações benignas, todas testadas e descartadas
+### Duas explicações benignas, testadas e descartadas
 
-1. **"É só o fim do dia, essas conversas ainda vão ser atendidas."** Não: a coleta foi às
-   23h15 e a taxa é plana ao longo do dia. As **36 conversas abertas às 08h** — quinze
-   horas antes da coleta — tiveram **zero** atendimentos. Por hora: 0%, 23%, 18%, 2%,
-   27%, 12%, 7%, 35%, 22%, 28%.
-2. **"O cliente foi atendido em outra sessão, por transferência."** Não: a taxa de
+1. **"É só o fim do dia."** A taxa é plana ao longo do dia: as 36 conversas abertas às
+   **08h** — quinze horas antes da coleta — não têm atendente com nome. Não é acúmulo de
+   fim de tarde.
+2. **"O cliente foi atendido em outra sessão, por transferência."** A taxa de
    transferência ficou em 11–27%, a mesma faixa de outubro, e em 05/11 é a **mais baixa**
    do período (11%).
-3. **"É artefato da medição."** A linha de base de cinco meses usa exatamente a mesma
-   medição, no mesmo campo, com o mesmo regex.
+
+A terceira — "é artefato da medição" — **era parcialmente verdadeira**, e está corrigida
+acima. Fica como lembrete de que a linha de base é o que separa um achado de um bug: os
+cinco meses entre 97% e 100% usam a mesma medição.
 
 ### O que isto significa para o relatório
 
-O relatório conta **fricção registrada**. Estas 213 conversas de hoje entram nele como
-*"conversa sem assunto identificável"* — porque o cliente, de fato, não disse o assunto:
-ele desistiu antes. Ou seja, **quanto pior o atendimento, mais o balde "sem assunto"
-cresce, e mais o relatório parece dizer que não havia problema.** O balde "sem assunto"
-é 18,3% do período; parte dele não é ruído, é demanda perdida.
+O relatório conta **fricção registrada**. Cliente que desiste antes de dizer o assunto
+entra como *"conversa sem assunto identificável"* — porque ele, de fato, não disse o
+assunto. Ou seja, **quanto pior o atendimento, mais o balde "sem assunto" cresce, e mais
+o relatório parece dizer que não havia problema.** Esse balde é 18,3% do período; parte
+dele não é ruído, é demanda perdida.
 
-É a lacuna mais séria do método, e não se corrige com taxonomia: é uma métrica à parte,
-de atendimento, não de assunto.
+É a lacuna mais séria do método, e não se corrige com taxonomia: é métrica de
+atendimento, não de assunto.
 
 ## Autor da mensagem se perde depois da transferência
 

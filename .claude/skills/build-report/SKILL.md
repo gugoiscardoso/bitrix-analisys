@@ -533,3 +533,31 @@ relatórios seguintes e **não** reclassifica o passado.
 `remetentes.json` (19 MB) e `transcricoes.json` (50 MB) ficam fora por tamanho, e só
 porque se refazem com os passos 2 e 3. Tudo o mais que envolve julgamento está no
 repositório.
+
+## Atendimento por pessoa — `gerar_atendimento.py`
+
+```bash
+python pipeline/gerar_atendimento.py --dia 2026-11-05 --compara 10
+```
+
+Pergunta diferente da do relatório principal, e por isso arquivo separado: o relatório
+conta **fricção do cliente**, este conta **trabalho da equipe**. Misturar os dois numa
+planilha convida a ler um pelo outro.
+
+**Quem atendeu** sai de três fontes na transcrição: a fala (`Atendente (Nome)`), o pick
+(`Nome picked conversation`) e a transferência. As duas primeiras contam; a terceira
+**não** — conversa roteada para quem nunca a pegou não é atendimento dela. Em 05/11, 105
+das 218 conversas atendidas só tinham o nome no pick, porque o autor das mensagens se
+perde depois de uma transferência; exigir a fala descartaria metade do atendimento real.
+
+**O campo `operador` da base não serve para isto.** Ele é quem está atribuído, não quem
+atendeu: em 05/11 aponta duas pessoas em 478 das 484 conversas, e em 371 delas ninguém
+falou.
+
+**O arquivo abre com quem estava fora da fila**, calculado (quem atendeu 15+ em dois dos
+dias anteriores e ≤2 no dia). Isso não é enfeite: uma coluna de volume por pessoa, lida
+sozinha, faz parecer que quem ficou produziu pouco, quando o que explica o dia é quem não
+estava. Em 05/11 foram quatro pessoas com pico de 39 a 74 conversas/dia.
+
+Não mede tempo de atendimento, dificuldade nem qualidade — está escrito na aba Legenda,
+onde quem recebe o arquivo vai ler.
