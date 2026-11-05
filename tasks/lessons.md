@@ -213,3 +213,17 @@ não existe na taxonomia. O `absorver` teria recusado na hora; eu passei por for
 
 **Regra:** depois de qualquer edição direta no store, rodar uma validação de todos os
 rótulos contra as taxonomias. Foi o que achou o erro, e leva segundos.
+
+## `write_text` do Python reescreve o arquivo inteiro no Windows
+
+Editei cinco trechos de `criterios_leitura.md` com um script Python e o `git diff`
+acusou **377 linhas mudadas**. Nenhuma edição minha; o `pathlib.write_text` usa a
+tradução de newline padrão da plataforma e converteu as 219 linhas de LF para CRLF.
+
+O risco não é cosmético: um diff de 377 linhas esconde as 5 que importam, e ninguém
+revisa o que não consegue ler. Um critério errado passaria batido.
+
+**Regra:** para editar arquivo de texto do repositório em script, usar
+`write_bytes`, ou `open(..., newline="\n")`. E conferir o `--stat` depois: se o número
+de linhas mudadas não parecer com o tamanho da edição, o problema é o arquivo, não a
+edição.

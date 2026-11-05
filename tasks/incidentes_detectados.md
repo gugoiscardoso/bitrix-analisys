@@ -613,3 +613,82 @@ em 298051 sumiu a conta "telefonia". Parecido, não idêntico. Sem chamado.
 297723 pede para adiar a migração, 297729 pergunta a previsão, 297777 pediu o acesso
 sem querer, 297851 quer saber do novo layout. Foram para acesso/plano/contrato por
 analogia, como em 29/10. Reforça o pedido de tema próprio.
+
+## Segunda execução de 05/11, à tarde (janela até ~14:30)
+
+Os nomes de lote repetem os da manhã — a fila sempre começa em `_001` — mas são 451
+registros novos, coletados depois do job das 09h. Dois temas da manhã voltaram com
+clientes diferentes, e isso é o sinal: não é a mesma conversa relida, é o defeito
+reaparecendo.
+
+### Consulta de placa: de três clientes pela manhã para oito à tarde
+Sexta aparição da integradora, e a maior até aqui. A placa não puxa marca e modelo, não
+é aceita no campo, ou uma placa válida volta como "já cadastrada":
+**297791, 298197, 298215, 298299, 298343, 298369, 298381, 298581**.
+
+Em 298581 o atendente abriu chamado com a integradora **sem número**, e o cliente diz
+que outro já tinha sido aberto no dia anterior. Oito clientes, nenhum chamado
+rastreável. É o candidato mais forte a incidente aberto do dia.
+
+### A migração para a V3 está perdendo cadastro de serviço
+Sete clientes, assinaturas próximas mas não idênticas: mão de obra zerada, serviço
+cadastrado que não aparece no orçamento, tempo que não puxa, nomenclatura de peça
+alterada sozinha, campo de código mestre e de observação da peça que desapareceram:
+**298121, 298177, 298223, 298263, 298297, 298389, 298393**, mais **298481** no mesmo
+padrão de campo que sumiu. Chamado para o TI em 298177, também sem número.
+
+Isto não é dúvida de uso: é dado que existia na V2 e não chegou na V3.
+
+### Seis clientes pedindo a versão anterior de volta
+**297777, 298117, 298141, 298145, 298347, 298495** — migração sem treinamento, vários na
+véspera de feriado. Classificados como acesso/plano/contrato por analogia, porque **não
+existe tema para pedido de migração nem para rejeição da V3**. Terceiro dia seguido que
+esta lacuna aparece; é a que mais distorce o relatório, porque esconde rejeição da V3
+dentro de um balde de contrato.
+
+### Aba "Combustível" travando nota de item que não é combustível
+Rejeições "Obrigatório o preenchimento de Grupo de Tributação do ICMS monofásica sobre
+combustíveis" e "CFOP de Combustivel e nao informado grupo de combustivel":
+**297913, 298239, 298553, 298569**. Em dois casos o suporte resolveu **apagando todos os
+campos da aba Combustível do item** — workaround, não correção. Em 298239 faltava a UF
+nessa aba e a nota só mostrava "Buscando a orientação desta recusa". Nenhum chamado.
+
+### "Falha na validação do JSON de NFe"
+**298143, 298251, 298267, 298505**, na transmissão de nota de peças e de devolução.
+Mesma classe de falha do boleto: um parser de JSON recebendo outra coisa. Vale conferir
+se é a mesma causa — o boleto já quebrou seis vezes por isso.
+
+### Cupom fiscal parado e orçamento zerado juntos
+**298317** e **298323** com texto quase igual em clientes diferentes, e **298239** com os
+dois sintomas. Cupom parado em "processando" também em 298083 e 298147 (neste o atendente
+apontou SEFAZ-MG fora do ar, então pode não ser o mesmo).
+
+### Código municipal no formato antigo, agora com cinco clientes
+`cvc-pattern-valid: Value '1401' is not facet-valid`: **297977, 298225, 298371, 298391**,
+variante '1200131' em **297699**. Em 298371 o cliente diz que **a ficha cadastral do
+município só traz "1401"** — ou seja, o dado que o schema recusa é o que a prefeitura
+fornece. Isso aponta para conversão no lado da Ultracar, não para erro de cadastro.
+
+### "IM do prestador": a mensagem se contradiz entre clientes
+Uns recebem "não deve ser informado, pois não existem informações complementares no CNC",
+outros "deve ser informada": **297745, 298153, 298359, 298485**. Em 297745 resolveu-se
+**removendo** a Inscrição Municipal do cadastro da empresa.
+
+### NFC-e "fica só processando"
+**298213, 298233** com assinatura idêntica; perto, **298219** (não fatura), **298285**
+(erro ao imprimir depois de transmitir), **297639** e **297787** (não emite após
+configurar). Nenhum código de rejeição citado em nenhum.
+
+### Endereço do cliente, dois defeitos que se tocam (lote B_001)
+- Endereço cadastrado **não sai na impressão** do relatório da V3: chamados **107803**
+  (relatório administrativo) e **107787** (relatório da OS).
+- **Não há campo de endereço** ao cadastrar o cliente durante a abertura da OS; ele só
+  aparece depois de a OS existir: chamados **107805** e **107787**.
+
+O 107787 é a interseção dos dois. São dois chamados cada, pouco para surto, mas o par
+descreve o mesmo cadastro incompleto visto de duas telas.
+
+### Chamados citados nesta rodada
+**107581** (fiscal, prazo 11/11) cobrado em 297755, 297925 e 298485 — três clientes
+cobrando o mesmo chamado. Também **107785**, **107789**, **107793**, **107795**,
+**107797**, **107801**, **107809**, **106677**, **ATD-33584**.

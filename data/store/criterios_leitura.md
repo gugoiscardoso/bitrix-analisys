@@ -73,7 +73,9 @@ Se o seu prompt não tem esses rótulos, esta subseção não é para o seu grup
 
 - **"Função quebra" genérico** → se o defeito é numa OS, tema de OS que não fecha; se
   é dado salvo que não aparece, tema de cadastro que não é encontrado nem grava; se é
-  erro em compra ou estorno, tema de saldo de estoque que diverge.
+  erro em compra ou estorno, tema de saldo de estoque que diverge; se é uma função do
+  **Financeiro** que falha (agrupar contas, conciliar, gerar remessa), tema de boleto e
+  lançamento financeiro, módulo Financeiro — é o único balde financeiro que a lista tem.
 
 ## Migração da NFS-e para o Portal Nacional (a partir de 01/11/2026)
 
@@ -83,13 +85,23 @@ cada leitor o distribui de um jeito e o bloco inteiro muda de lugar entre execu�
 
 O corte, por ordem de precedência:
 
-0. **Bloqueio de ambiente** — `EM110`, `EM111`, `A31`, `P3084`, `P3090`, ou a frase
-   *"não é permitido emitir NFSe através deste serviço na data de competência"* →
-   **Particularidade municipal de NFS-e**, mesmo tendo código. Esses códigos não são
-   falha de schema: são o município dizendo que aquele ambiente saiu do ar porque
-   migrou. Tratá-los como rejeição mistura o evento regulatório com erro de leiaute.
-   *(Medido em 04/11: sem esta exceção, 15 registros com a mesma assinatura ficaram
-   divididos em quatro temas diferentes.)*
+0. **Bloqueio de ambiente** → **Particularidade municipal de NFS-e**, mesmo tendo
+   código. O teste não é o código, é o que a mensagem diz: se ela fala do **ambiente,
+   do município ou da data** — este serviço saiu do ar, emita no ambiente nacional,
+   este leiaute foi encerrado, procure a Prefeitura — é bloqueio de ambiente. Se ela
+   nomeia um **campo ou valor** da nota, é rejeição (regra 1).
+
+   Vistos até agora: `EM110`, `EM111`, `A31`, `P3084`, `P3090`, `2005-O` ("o leiaute 1
+   do lote de RPS foi encerrado"), `1647` ("emitir no ambiente nacional a partir de
+   01/11/2026"), `E232` ("procure a Prefeitura"), e a frase *"não é permitido emitir
+   NFSe através deste serviço na data de competência"*. **A lista é exemplo, não
+   fronteira** — ela cresceu três vezes em dois dias, e quem a tratar como fechada vai
+   mandar para rejeição o próximo código que signifique a mesma coisa.
+
+   Esses códigos não são falha de schema: são o município dizendo que aquele ambiente
+   saiu do ar porque migrou. Tratá-los como rejeição mistura o evento regulatório com
+   erro de leiaute. *(Medido em 04/11: sem esta exceção, 15 registros com a mesma
+   assinatura ficaram divididos em quatro temas diferentes.)*
 1. O texto cita **código de erro ou campo rejeitado de LEIAUTE** (`E202`, `E160`,
    `cvc-pattern-valid`, `cIndOp`, `IM do prestador`…) → **Rejeição/erro de validação**.
 2. O cliente **não consegue emitir** por causa da migração, ou o atendente identifica a
@@ -104,11 +116,59 @@ Dois efeitos colaterais que têm tema próprio e não devem virar "particularida
 - **`E0014`** (série + número + município + CNPJ já existe), por pulo de DPS →
   também **Numeração/duplicidade**.
 
+## Os dois temas de relatório financeiro (grupo de CONVERSAS)
+
+A lista de conversas tem dois rótulos que se sobrepõem:
+*"não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado
+não bate"* e *"não acha o relatório certo ou os números do relatório não batem"*.
+
+O corte usado na série:
+
+- O cliente procura ou questiona um **relatório** → tema de **relatório**. Vale também
+  para relatórios financeiros: DRE, balancete, contas a receber, conciliação, vendas
+  por tipo de documento.
+- O problema é um **lançamento ou saldo na tela** do financeiro → tema **financeiro**.
+- **Dúvida operacional do financeiro** (plano de contas, estorno, baixa, parcelamento,
+  PIX) também vai no tema financeiro, porque a lista não tem tema de rotina para esse
+  módulo.
+
+O módulo segue a tabela de fronteiras — relatório que falha ao emitir é Relatórios,
+inclusive o financeiro.
+
 ## Dois pedidos no mesmo registro
 
 A regra zero resolve "cliente contra atendente", não "dois pedidos do mesmo cliente".
 Quando o registro tem dois assuntos distintos, classifique pelo que **ocupa mais do
 texto**. Se empatarem, pelo primeiro declarado.
+
+Mede-se **só o corpo escrito pelo cliente**. O cabeçalho do chamado — o rótulo entre
+colchetes e o título do formulário — é a leitura do analista, não o pedido, e a regra
+zero já diz que o registro é do cliente. O cabeçalho vale como desempate quando o corpo
+empata, nunca como voto. *(Levantado em 05/11 no chamado 107787, cujo título diz
+"[Relatório]" e cujo corpo é, em dois terços, um pedido de campo no cadastro.)*
+
+## Consulta de placa que não retorna o veículo
+
+O tema *"Veículo, marca ou modelo não existe na base **e o cliente pede o cadastro**"*
+é **pedido de cadastro de um dado que falta** — a segunda metade do rótulo é a que
+decide. Não use para falha de consulta.
+
+Quando a placa não puxa marca e modelo, não é aceita, ou volta como "já cadastrada", é
+a integração de placas falhando: **tema de função que dá erro**, módulo **Cadastros** —
+é na tela de cadastro de veículo que o usuário trava, e a tabela de módulo pergunta onde
+dói, não de quem é a API. *(8 registros com essa assinatura em 05/11.)*
+
+## Layout de relatório que mudou da V2 para a V3
+
+Nenhum tema de relatório cobre **layout** — o único fala de filtro, vazio e valor que
+não bate. Quando o cliente diz que o relatório agora sai em mais páginas, desalinhado ou
+diferente do que era, e pede a versão antiga, use **tema de pedido de campo, filtro ou
+regra configurável**, módulo **Relatórios**.
+
+É o balde de "o sistema não tem o que o cliente quer", e é onde isso cai com menos
+distorção: o relatório existe e roda, só não sai como antes. Fica registrado como lacuna
+da taxonomia — não há rótulo para regressão de layout, e enquanto não houver, esses
+casos engordam um balde de pedido em vez de aparecerem como defeito da migração.
 
 ## Fronteiras de módulo
 
@@ -134,6 +194,7 @@ texto**. Se empatarem, pelo primeiro declarado.
 | Agendamento e atividades do pátio | Gestão de Pátio |
 | Vídeo, manual ou material gravado | Auto-guias |
 | Call ou treinamento ao vivo | Transversal |
+| Tela de consulta ou busca de peça (filtro, aplicação, catálogo) | Peças & Estoque |
 | Texto curto ou vazio demais para decidir | Transversal |
 
 Quando o texto cita mais de um módulo, escolha aquele em que o problema **acontece**,
