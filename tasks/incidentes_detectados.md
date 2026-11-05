@@ -571,3 +571,45 @@ viraram "não sabe executar a rotina" (3) e "função dá erro" (1), no módulo 
 Pelo critério, isso está certo: sem confirmação no próprio texto, não se marca queda. Mas
 é um limite do método: **a releitura de uma conversa perde o contexto que só existia no
 lote**. A queda de 04/11 conta hoje 5 conversas em vez de 9.
+
+## Execução diária de 05/11 (lotes A_001, B_001 e C_001)
+
+Parte dos ids abaixo já tinha sido lida em 04/11 e voltou porque a conversa cresceu
+(297287, 297341, 297343, 297361, 297477, 297669). O que é novo é a segunda ocorrência
+dos mesmos erros em clientes que ainda não tinham aparecido.
+
+### Leiaute da Sefin Nacional: duas assinaturas distintas, nenhum chamado
+- **`cvc-pattern-valid: Value '1401'`**, provavelmente um código de 4 dígitos onde o
+  padrão aceita 3: 297287, 297407, 297977. Em 297407 o cliente já desistiu e emite
+  direto no site da prefeitura.
+- **`cvc-complex-type.2.4.a`**, elemento fora de ordem no XML: 297669, 297919, 297961.
+  Em 297919 o erro voltou depois de ter sido corrigido com o suporte no dia anterior.
+
+Somadas às de 04/11 (296973, 297453), são ao menos 8 conversas de erro de leiaute do
+Portal Nacional **sem nenhum chamado aberto**. É defeito do XML que a Ultracar monta,
+não do cliente.
+
+### Outros multi-cliente do Portal Nacional (lote C_001)
+- **E160, arquivo em desacordo com o XML Schema**: 297801, 298113
+- **Erro 07455 na NFS-e**: 297603, 297833
+- **Alíquota informada sem retenção de ISS para ME/EPP** (tpRetISSQN/opSimpNac):
+  297409, 297431; parecido, com E0635 (convênio municipal), 297733
+- **"A IM do prestador deve ser informada"**: 297391, 297743 — este cobra o chamado
+  **107581**, o único citado
+- **PlugNotas pede série e numeração inicial de RPS**: 297401, 297491
+- **Bloqueio de ambiente** `A31` / `EM110` / `GOV130`: 297161, 297343, 297477
+- **E0014** segue: 297341, 297361 (cliente com R$ 22.327,01 em notas paradas)
+
+### Placa não encontrada, quinta aparição da integradora (lote A_001)
+297791 (RTZ5I23) e 297843 (EEG4B63), placas válidas, sem veículo correspondente; o
+atendente acionou a integradora nos dois. 298053 perdeu os dados do motor e a opção de
+atualizar, provavelmente a mesma integração. Nenhum chamado citado. Ver ATD-33620.
+
+### Pós-atualização no Financeiro (lote A_001)
+Plano de contas: em 297899 o do fornecedor não vem mais automático no contas a pagar;
+em 298051 sumiu a conta "telefonia". Parecido, não idêntico. Sem chamado.
+
+### Demanda de migração para a V3, de novo sem tema (lote A_001)
+297723 pede para adiar a migração, 297729 pergunta a previsão, 297777 pediu o acesso
+sem querer, 297851 quer saber do novo layout. Foram para acesso/plano/contrato por
+analogia, como em 29/10. Reforça o pedido de tema próprio.
