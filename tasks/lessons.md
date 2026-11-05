@@ -227,3 +227,24 @@ revisa o que não consegue ler. Um critério errado passaria batido.
 `write_bytes`, ou `open(..., newline="\n")`. E conferir o `--stat` depois: se o número
 de linhas mudadas não parecer com o tamanho da edição, o problema é o arquivo, não a
 edição.
+
+## Medi "zero atendimentos em 1.069 conversas" e o zero era meu regex
+
+Fui medir quantas conversas receberam o aviso de fila e depois foram atendidas. Deu
+**0 de 1.069**. Publiquei? Não — porque zero absoluto numa operação com oito atendentes
+é mais provável ser bug do que achado.
+
+Era o rótulo: a transcrição escreve `Atendente (João Pedro)`, e meu regex pedia
+`(Cliente|Atendente|\(sistema\)):` com dois-pontos logo depois. Nenhuma linha de
+atendente casava. Com o rótulo certo, a resposta real apareceu — e era uma queda de 97%
+para 17%, que é um achado de verdade, não um absurdo.
+
+**Regra:** resultado extremo (0%, 100%, "nenhum", "todos") é hipótese de bug até ser
+reproduzido por outro caminho. Antes de escrever o número, listar os valores que o campo
+realmente tem — `collections.Counter` nos rótulos custa uma linha e teria mostrado
+`Atendente (Nome)` de imediato.
+
+**E o corolário, que foi o que salvou:** a linha de base é o melhor detector de bug de
+medição que existe. Cinco meses entre 94% e 99% com a MESMA medição provaram que a
+medição funciona e que a queda de novembro é real. Medição sem série histórica ao lado
+não dá para distinguir de defeito de código.

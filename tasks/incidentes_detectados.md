@@ -692,3 +692,118 @@ descreve o mesmo cadastro incompleto visto de duas telas.
 **107581** (fiscal, prazo 11/11) cobrado em 297755, 297925 e 298485 — três clientes
 cobrando o mesmo chamado. Também **107785**, **107789**, **107793**, **107795**,
 **107797**, **107801**, **107809**, **106677**, **ATD-33584**.
+
+## Fechamento de 05/11 — a fila de atendimento parou de ser atendida
+
+**Este é o achado mais grave registrado neste arquivo, e não saiu da classificação: saiu
+de medir as transcrições.**
+
+Quando a fila passa do esperado, o sistema manda um aviso automático ("nossa fila de
+atendimento está maior que o esperado… em breve iremos te atender"). Ele não é novo —
+existe desde 25/06 e apareceu em 7.591 conversas. O que mudou é o que acontece **depois**
+dele:
+
+| mês | conversas com o aviso | atendidas por uma pessoa | taxa |
+|---|---|---|---|
+| jun | 64 | 60 | 94% |
+| jul | 754 | 746 | 99% |
+| ago | 2.067 | 2.018 | 98% |
+| set | 2.060 | 2.033 | 99% |
+| out | 1.577 | 1.530 | 97% |
+| **nov** | **1.069** | **532** | **50%** |
+
+E dia a dia, a quebra tem data:
+
+| dia | com o aviso | atendidas | taxa |
+|---|---|---|---|
+| 29/10 | 259 | 250 | 97% |
+| 03/11 | 312 | 309 | **99%** |
+| 04/11 | 361 | 157 | **43%** |
+| 05/11 | 396 | 66 | **17%** |
+
+Cinco meses entre 94% e 99%, e em dois dias cai para 17%. Hoje, **213 clientes
+escreveram, esperaram quinze minutos, receberam o aviso automático e nunca mais ouviram
+ninguém.**
+
+### Três explicações benignas, todas testadas e descartadas
+
+1. **"É só o fim do dia, essas conversas ainda vão ser atendidas."** Não: a coleta foi às
+   23h15 e a taxa é plana ao longo do dia. As **36 conversas abertas às 08h** — quinze
+   horas antes da coleta — tiveram **zero** atendimentos. Por hora: 0%, 23%, 18%, 2%,
+   27%, 12%, 7%, 35%, 22%, 28%.
+2. **"O cliente foi atendido em outra sessão, por transferência."** Não: a taxa de
+   transferência ficou em 11–27%, a mesma faixa de outubro, e em 05/11 é a **mais baixa**
+   do período (11%).
+3. **"É artefato da medição."** A linha de base de cinco meses usa exatamente a mesma
+   medição, no mesmo campo, com o mesmo regex.
+
+### O que isto significa para o relatório
+
+O relatório conta **fricção registrada**. Estas 213 conversas de hoje entram nele como
+*"conversa sem assunto identificável"* — porque o cliente, de fato, não disse o assunto:
+ele desistiu antes. Ou seja, **quanto pior o atendimento, mais o balde "sem assunto"
+cresce, e mais o relatório parece dizer que não havia problema.** O balde "sem assunto"
+é 18,3% do período; parte dele não é ruído, é demanda perdida.
+
+É a lacuna mais séria do método, e não se corrige com taxonomia: é uma métrica à parte,
+de atendimento, não de assunto.
+
+## Autor da mensagem se perde depois da transferência
+
+Encontrado ao conferir o número acima. Numa conversa transferida, as mensagens seguintes
+aparecem como `(sistema)` em vez de `Atendente (Nome)` ou `Cliente`, embora sejam diálogo
+humano óbvio — em 297869, "vc prefere dar continuidade pelo chat ou pelo zap?" está
+marcado como sistema.
+
+**1.197 conversas** têm três ou mais linhas `(sistema)` depois de um `picked
+conversation`. É a coluna Conversa do relatório mostrando "(sistema)" onde deveria dizer
+quem falou. Não afeta classificação (o texto está lá), afeta quem lê a transcrição.
+
+## Os defeitos de massa dos três lotes de fechamento
+
+### Leiaute da Sefin Nacional — 11 clientes, e agora com causa nomeada
+297869, 297919, 297977, 298225, 298315, 298391, 298413, 298611, 298651, 298785, 298891.
+
+A subassinatura que importa: `cvc-pattern-valid: Value '1401' is not facet-valid with
+respect to pattern '[0-9]{3}' for type 'TCCodTribMun'`. **O sistema envia o código de
+serviço municipal no formato antigo (1401, 1406, `14.01.01.000`, `1.2001.31.10`) num
+campo que o leiaute nacional exige com três dígitos.** Em 298371 o cliente diz que a
+ficha cadastral do município **só fornece "1401"** — então o dado que o schema recusa é o
+que a prefeitura dá. A conversão é do lado da Ultracar. É o defeito mais acionável do
+dia, e nenhum dos 11 tem chamado aberto.
+
+Segunda subassinatura, `cvc-complex-type.2.4.a` (elemento fora de ordem no XML): 297919,
+298785, 298891. Em 297919 o erro **voltou** depois de o suporte ter corrigido no dia
+anterior — não foi corrigido na origem.
+
+### Bloco IBS/CBS da Reforma — 6 clientes
+"Encontrado o campo 'IBSCBS'. Campo(s) 'COFINSST, ICMSUFDest' é obrigatório": 298163,
+298241, 298673; mesma família 298039 (E001), 298903, 298745, 298741 (destaque indevido
+para Simples). Em 298745 o suporte já havia ajustado dias antes e o erro voltou.
+
+### "IM do prestador" — 5 clientes, e o workaround é manual
+298359, 298499 (E0120), 298805 (E0120), 298101, 298153. A mensagem se contradiz entre
+clientes ("não deve ser informado" vs "deve ser informada"), e a solução repetida é
+**remover a Inscrição Municipal do cadastro da empresa** — manual, cliente por cliente.
+
+### "Falha na validação do JSON de NFe" — compra governamental
+298143, 298259, 298717, 298819. O detalhe em 298259 e 298717 é
+`documento[0].compraGovernamental.percentual`; em 297913, `gCompraGov` exigindo
+`dhCont`/`NFref`. Mesma classe do defeito do boleto: parser de JSON recebendo outra
+coisa.
+
+### Bloqueio de ambiente — um código diferente por cliente
+EM110 (298315), 1647 (298337), 2005-O (298345), E232 (298157), E999 Resolução CGSN
+191/2026 (298807), E0014 (298799). Confirma o que o critério já avisava: a lista cresce, e
+cada cliente vê um código distinto para o mesmo bloqueio. Em 298315 as duas assinaturas
+aparecem juntas (EM110 + `cvc-pattern-valid`), e a precedência da regra 0 decidiu.
+
+### Agrupamento de serviços sem área — 2 clientes
+"Não foi possível agrupar os serviços. Os seguintes serviços estão sem área definida":
+297485 e 298743. Em 297485 a cliente insiste que os itens **têm** área. Pequeno, mas é
+bug de produto, não de cadastro nem da prefeitura.
+
+### Nota presa bloqueando a própria migração — 3 clientes
+"Em processamento na prefeitura e a chave de acesso ainda não foi atribuída": 107835 (3
+dias), 298465, e 297931 (4 notas paradas do mês anterior, impedindo ativar o Portal
+Nacional).

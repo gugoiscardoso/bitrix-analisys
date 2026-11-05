@@ -571,6 +571,17 @@ def main() -> int:
     print(f"chamados            {len(tarefas)} mesclados de {len(fontes)} export(s): "
           + ", ".join(a.name.replace('bitrix_export_139_', '') for a in fontes))
 
+    # Status atual, de `atualizar_status.py`. O merge acima dá o status do dia em que
+    # o chamado foi coletado por último, e a janela diária só pega dois dias: sem este
+    # override, chamado que fechou depois da coleta fica aberto na planilha para sempre.
+    p_status = STORE / "status_chamados.json"
+    status_atual = (json.loads(p_status.read_text(encoding="utf-8")).get("status", {})
+                    if p_status.exists() else {})
+    print(f"status_chamados.json {len(status_atual)} override(s) de status"
+          if status_atual else
+          "status_chamados.json NÃO existe — a coluna Status fica a do dia da coleta."
+          "\n  Rode `python pipeline/atualizar_status.py` antes deste script.")
+
     registros = []
     cache = {"chamados": dict(cache_existente.get("chamados", {})),
              "conversas": dict(cache_existente.get("conversas", {}))}
@@ -593,7 +604,8 @@ def main() -> int:
             "data": (t.get("createdDate") or "")[:10],
             "criado_em": t.get("createdDate"), "fechado_em": t.get("closedDate"),
             "inicio_dev": t.get("dateStart"), "alterado_em": t.get("changedDate"),
-            "status": STATUS.get(str(t.get("status")), str(t.get("status"))),
+            "status": status_atual.get(
+                str(tid), STATUS.get(str(t.get("status")), str(t.get("status")))),
             # Quem abria estes chamados era o robô de IA do suporte N1, não um canal
             # chamado "Matrix": esse prefixo é o id da CONTA do cliente, que o robô
             # punha no título. A integração dele com o Bitrix caiu em 30/09/2026 —

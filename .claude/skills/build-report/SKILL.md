@@ -465,20 +465,34 @@ geral é este.
 #    a consolidação. Era o contrário até 04/11 e por isso não achava nada.
 python pipeline/enriquecer_autores.py
 
-# 3. consolidar (minutos) — usa o passo 2 para montar as transcrições com autor
+# 3. status atual dos chamados abertos (~20 chamadas de API, segundos)
+#    O merge dá o status do DIA DA COLETA, e a janela diária pega dois dias: sem este
+#    passo, chamado que fechou depois da última coleta fica aberto na planilha para
+#    sempre. Medido em 05/11: 84 dos 1.051 chamados abertos já estavam fechados.
+#    Grava `data/store/status_chamados.json`, que o passo 4 aplica como override.
+python pipeline/atualizar_status.py
+
+# 4. consolidar (minutos) — usa o passo 2 para montar as transcrições com autor
 python pipeline/consolidar_store.py
 
-# 4. ler o que falta
+# 5. ler o que falta
 python pipeline/ler_pendentes.py status
 python pipeline/ler_pendentes.py preparar --de <de> --ate <ate>
 #    ... classificar cada lote_X_NNN.json com o prompt_X.md do mesmo grupo ...
 python pipeline/ler_pendentes.py absorver
 
-# 5. gerar
+# 6. gerar
 python pipeline/gerar_relatorio_completo.py --de <de> --ate <ate>
 ```
 
-O passo 4 se repete até `status` dizer `FALTA LER: 0`. O gerador **não** se recusa a
+**O passo 3 não é opcional, e é o único do pipeline que descreve o presente.** Todas
+as outras colunas do relatório contam o que aconteceu num dia e não mudam mais; `Status`
+conta onde o chamado está *agora*. Se ele não rodar, a planilha mostra chamado fechado
+como aberto, sem avisar — e um relatório que erra o que está aberto erra justamente a
+pergunta que a chefia faz primeiro. Ele pula quem já está em status final, então o custo
+não cresce com a série.
+
+O passo 5 se repete até `status` dizer `FALTA LER: 0`. O gerador **não** se recusa a
 rodar com leitura incompleta de propósito: ele mostra a cobertura no Resumo e cria a
 aba Cobertura. Isso é o que permite entregar uma prévia antes de pagar a leitura.
 
