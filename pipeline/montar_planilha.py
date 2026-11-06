@@ -226,6 +226,11 @@ def main() -> None:
     ap.add_argument("--saida", required=True)
     ap.add_argument("--dia", help="dia fechado das abas de atendimento (padrão: ontem)")
     ap.add_argument("--compara", type=int, default=10)
+    ap.add_argument("--so-fila", action="store_true",
+                    help="só as abas que mudam de hora em hora (Agora, Fila por hora, "
+                         "Backlog). Pula as de atendimento, que carregam transcricoes.json "
+                         "(50 MB) e só mudam uma vez por dia — é o que faz a execução "
+                         "horária custar segundos em vez de minutos")
     a = ap.parse_args()
 
     agora = dt.datetime.now(BRT)
@@ -235,11 +240,16 @@ def main() -> None:
     f = ler_fila(agora)
     print(f"  esperando {f['esperando']} · em andamento {f['andamento']} · "
           f"chamados abertos {f['chamados_abertos']}")
-    print(f"montando as abas de atendimento de {dia}...")
-    abas = abas_atendimento(dia, a.compara)
+    if a.so_fila:
+        print("--so-fila: pulando as abas de atendimento")
+        abas = {}
+    else:
+        print(f"montando as abas de atendimento de {dia}...")
+        abas = abas_atendimento(dia, a.compara)
     abas["Agora"] = aba_agora(f)
     abas["Backlog de chamados"] = aba_backlog(f)
-    abas["Legenda"] = aba_legenda(f, dia)
+    if not a.so_fila:
+        abas["Legenda"] = aba_legenda(f, dia)
 
     saida = {"em": f["em"], "dia_atendimento": dia,
              "cabecalho_hora": CAB_HORA, "linha_hora": aba_hora(f), "abas": abas}

@@ -20,6 +20,7 @@ usa esse arquivo ao montar as transcrições; sem ele, a transcrição sai sem r
 """
 from __future__ import annotations
 import argparse
+import datetime as dt
 import json
 import sys
 import time
@@ -55,6 +56,45 @@ def webhook() -> str:
     if not url:
         raise SystemExit("Não achei o webhook em appsettings.json.")
     return url.rstrip("/")
+
+
+def datas_das_conversas() -> dict[str, str]:
+    """Sessão -> data de início (AAAA-MM-DD), do export mais recente que a contenha.
+
+    Serve para saber o que é recente, e recente é o que precisa ser rebuscado: a
+    conversa de hoje foi mapeada com as mensagens que tinha na hora da coleta, e cresceu
+    depois.
+
+    **Por que uma janela de dias, e não um detector exato.** Tentei dois:
+
+    1. Comparar o tamanho do mapa com o total de mensagens da base. Inútil: o mapa exclui
+       mensagem de sistema de propósito e a mediana da razão é 0,48 — qualquer corte
+       nessa escala parte a distribuição no meio em vez de achar defeito.
+    2. Comparar com `OperatorMessages` do export, que seria exato. Mas o exportador C#
+       classifica **100% das mensagens como sistema** (mesmo bug de autor que motivou
+       este script), então `OperatorMessages` é 0 em todas as 554 sessões do último
+       export. O campo existe e não vale nada.
+
+    O único detector exato seria perguntar à API, que é o que se quer evitar. Então:
+    janela. Medido por amostragem de 20 sessões por mês, mapa contra API — março, julho e
+    outubro deram 0 desatualizadas; novembro, 11 de 20. O que separa não é razão nenhuma,
+    é a conversa ter sido coletada enquanto ainda estava aberta.
+    """
+    import pandas as pd
+    fora: dict[str, str] = {}
+    for arq in sorted((RAIZ / "data" / "raw").glob("conversations_export_*.xlsx")):
+        try:
+            df = pd.read_excel(arq, sheet_name="Conversations",
+                               usecols=["SessionId", "StartedAt"])
+        except Exception as e:
+            print(f"  aviso: sem StartedAt em {arq.name} ({type(e).__name__}); "
+                  "as sessões dele só serão rebuscadas se estiverem ausentes do mapa")
+            continue
+        for sid, quando in zip(df["SessionId"], df["StartedAt"]):
+            if pd.isna(sid) or pd.isna(quando):
+                continue
+            fora[str(int(sid))] = str(quando)[:10]
+    return fora
 
 
 def sessoes_da_base() -> list[str]:
@@ -139,6 +179,8 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--tudo", action="store_true",
                     help="refaz todas as sessões em vez de só as que faltam")
+    ap.add_argument("--dias-frescos", type=int, default=10,
+                    help="quantos dias para trás são rebuscados mesmo já mapeados")
     ap.add_argument("--limite", type=int, default=0,
                     help="para depois de N sessões; para testar sem gastar a janela toda")
     a = ap.parse_args()
@@ -147,7 +189,31 @@ def main() -> int:
     feito = {} if a.tudo else (json.loads(SAIDA.read_text(encoding="utf-8"))
                                if SAIDA.exists() else {})
     todas = sessoes_da_base()
-    faltam = [s for s in todas if s not in feito]
+    # Sessão AUSENTE do mapa precisa ser buscada. Sessão RECENTE também, mesmo já
+    # mapeada, porque ela cresceu depois de ter sido mapeada.
+    #
+    # Isto era `[s for s in todas if s not in feito]`, e o efeito foi grave: a coleta da
+    # manhã pega o dia corrente com as conversas ainda abertas, então uma conversa
+    # iniciada às 9h era mapeada com 1 ou 2 mensagens e as 48 seguintes ficavam sem autor
+    # PARA SEMPRE. Na transcrição viram "(sistema)", e a contagem de atendimento feita
+    # sobre elas subcontou — chegou a dizer que o suporte atendeu 37% em 05/11 quando
+    # atendeu 97%. Ver a seção retratada em tasks/incidentes_detectados.md.
+    #
+    # Por que a janela de dias e não um detector mais fino: tentei comparar o tamanho do
+    # mapa com a contagem de mensagens da base, mas o mapa exclui mensagem de sistema de
+    # propósito e a mediana da razão é 0,48 — qualquer corte nessa escala parte a
+    # distribuição no meio em vez de achar defeito. Medindo mapa contra API por
+    # amostragem: março, julho e outubro deram 0 de 20 desatualizados; novembro, 11 de
+    # 20. O que distingue não é razão nenhuma, é a conversa ter sido coletada enquanto
+    # ainda estava aberta. Logo: rebusca a janela recente, e pronto.
+    corte = (dt.date.today() - dt.timedelta(days=a.dias_frescos)).isoformat()
+    datas = datas_das_conversas()
+    recentes = {s for s in todas if datas.get(s, "9999") >= corte}
+    ausentes = [s for s in todas if s not in feito]
+    rebusca = [s for s in todas if s in feito and s in recentes]
+    faltam = ausentes + rebusca
+    print(f"  ausentes do mapa: {len(ausentes)} · recentes a rebuscar: {len(rebusca)} "
+          f"(desde {corte}; conversa recente cresce depois de ser mapeada)")
     if a.limite:
         faltam = faltam[:a.limite]
     print(f"{len(todas)} conversas na base | {len(feito)} já mapeadas | "

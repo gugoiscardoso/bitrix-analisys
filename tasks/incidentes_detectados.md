@@ -693,66 +693,60 @@ descreve o mesmo cadastro incompleto visto de duas telas.
 cobrando o mesmo chamado. Também **107785**, **107789**, **107793**, **107795**,
 **107797**, **107801**, **107809**, **106677**, **ATD-33584**.
 
-## Fechamento de 05/11 — a fila de atendimento travou hoje
+## RETRATADO — "a fila de atendimento travou" não aconteceu
 
-**Números corrigidos na mesma noite.** A primeira versão desta seção dizia 43% em 04/11
-e 17% em 05/11. Estava errada: eu contava como atendimento só a linha
-`Atendente (Nome)`, e numa conversa transferida o nome do autor se perde e o diálogo
-humano vira `(sistema)` — o defeito descrito na seção seguinte. Como essa perda de
-autoria **explodiu justamente em 04 e 05/11**, ela derrubava a taxa pelos mesmos dias em
-que eu estava apontando queda de atendimento. A medição abaixo conta as duas formas:
-atendente com nome, e diálogo marcado como `(sistema)` depois de alguém pegar a conversa.
+**Esta seção afirmava, em duas versões, que o atendimento havia desabado em 04 e 05/11.
+Está errada, e a causa é um defeito de medição nosso, não da operação.**
 
-Quando a fila passa do esperado, o sistema manda um aviso automático ("nossa fila de
-atendimento está maior que o esperado… em breve iremos te atender"). Ele não é novo —
-existe desde 25/06 e apareceu em 7.591 conversas. O que mudou é o que acontece **depois**
-dele:
+O que eu publiquei, e o que a API diz quando perguntada direto:
 
-| mês | conversas com o aviso | atendidas | taxa |
-|---|---|---|---|
-| jun | 64 | 62 | 97% |
-| jul | 754 | 752 | 100% |
-| ago | 2.067 | 2.028 | 98% |
-| set | 2.060 | 2.041 | 99% |
-| out | 1.577 | 1.555 | 99% |
-| **nov** | **1.069** | **758** | **71%** |
+| dia | publicado (via transcrições) | real (API) |
+|---|---|---|
+| 03/11 | 99% | 99% |
+| 04/11 | 84% | **100%** (460 de 460) |
+| 05/11 | 37% | **97%** (462 de 476) |
 
-Dia a dia, a quebra tem data e é de **um** dia, não de dois:
+Não houve queda. O suporte atendeu praticamente tudo nos dois dias.
 
-| dia | com o aviso | atendidas | taxa |
-|---|---|---|---|
-| 29/10 | 259 | 256 | 99% |
-| 03/11 | 312 | 309 | **99%** |
-| 04/11 | 361 | 304 | **84%** |
-| 05/11 | 396 | 145 | **37%** |
+### A causa: o mapa de autores não é atualizado quando a conversa cresce
 
-Cinco meses entre 97% e 100%, 04/11 com uma queda moderada, e hoje 37%. **Das 251
-conversas de hoje que viram o aviso e não foram atendidas, 205 ainda estavam abertas às
-23h15** — ou seja, continuavam na fila, não foram fechadas sem atendimento.
+`enriquecer_autores.py` buscava só as sessões **ausentes** de `remetentes.json`:
 
-### Duas explicações benignas, testadas e descartadas
+```python
+faltam = [s for s in todas if s not in feito]
+```
 
-1. **"É só o fim do dia."** A taxa é plana ao longo do dia: as 36 conversas abertas às
-   **08h** — quinze horas antes da coleta — não têm atendente com nome. Não é acúmulo de
-   fim de tarde.
-2. **"O cliente foi atendido em outra sessão, por transferência."** A taxa de
-   transferência ficou em 11–27%, a mesma faixa de outubro, e em 05/11 é a **mais baixa**
-   do período (11%).
+Sessão já mapeada nunca era rebuscada. Como a coleta diária roda de manhã e pega o dia
+corrente, uma conversa iniciada às 9h era mapeada com as 1 ou 2 mensagens que tinha
+naquele instante — e as 48 seguintes ficavam **sem autor para sempre**. Na transcrição
+elas viram `(sistema)`, e qualquer contagem de atendimento feita sobre elas subconta.
 
-A terceira — "é artefato da medição" — **era parcialmente verdadeira**, e está corrigida
-acima. Fica como lembrete de que a linha de base é o que separa um achado de um bug: os
-cinco meses entre 97% e 100% usam a mesma medição.
+Exemplo medido: sessão 297419 tem **1** mensagem no mapa, rotulada "Cliente". A API tem
+**50**, das quais **18 do João Brum**.
 
-### O que isto significa para o relatório
+Isso explica o gradiente que eu li como queda: 03/11 bateu porque aquelas sessões já
+estavam fechadas quando foram mapeadas; 04/11 errou 12 pontos; 05/11, o dia da coleta,
+errou 43. **Quanto mais recente o dia, maior a subcontagem** — e eu li essa curva como
+uma operação piorando.
 
-O relatório conta **fricção registrada**. Cliente que desiste antes de dizer o assunto
-entra como *"conversa sem assunto identificável"* — porque ele, de fato, não disse o
-assunto. Ou seja, **quanto pior o atendimento, mais o balde "sem assunto" cresce, e mais
-o relatório parece dizer que não havia problema.** Esse balde é 18,3% do período; parte
-dele não é ruído, é demanda perdida.
+### O que sobrevive disto
 
-É a lacuna mais séria do método, e não se corrige com taxonomia: é métrica de
-atendimento, não de assunto.
+- O número de **hoje, ao vivo** (`fila_agora.py`): ele lê a API direto, não passa pela
+  base, e não tem esse defeito. Quando ele diz "106 esperando", são 106.
+- O aviso automático de fila cheia **existe** e aparece em milhares de conversas. O que
+  não se pode concluir dele, via transcrição, é quantas foram atendidas depois.
+- A observação de que "autor se perde depois da transferência" (seção seguinte) era o
+  sintoma visível deste mesmo defeito. A causa não é a transferência: é o mapa velho.
+
+### A lição, que já custou duas correções
+
+Eu corrigi este número uma vez, em 05/11, e a correção também estava errada — porque
+troquei a contagem mas não questionei a **fonte**. As duas versões liam transcrições.
+Perguntar à API foi o que resolveu, e só fiz isso quando precisei do dado ao vivo para
+outra coisa.
+
+**Série que depende de um derivado precisa ser conferida contra a origem ao menos uma
+vez.** Ver `tasks/lessons.md`.
 
 ## Autor da mensagem se perde depois da transferência
 

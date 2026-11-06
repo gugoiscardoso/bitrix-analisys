@@ -280,3 +280,30 @@ cega para a parte errada do arquivo, onde o comando é outro gerador.
 transfere a decisão para um texto que ninguém releu com essa execução em mente. Se dois
 arquivos têm de concordar, o que garante isso é uma checagem que falha, não uma frase de
 precedência.
+
+## Três correções no mesmo número, e as duas primeiras erraram por não olhar a fonte
+
+Em dois dias eu publiquei três versões da taxa de atendimento depois do aviso de fila:
+37%, depois 84/37%, e por fim "não houve queda". As duas primeiras liam
+`transcricoes.json`. A terceira perguntou à API.
+
+Só que a terceira também está incompleta, e o motivo é o mesmo em outra camada:
+`imopenlines.session.history.get` **pagina em 50 mensagens** e devolve `hasNextPage`.
+Nem o `enriquecer_autores.py` nem o meu leitor ao vivo pediam a página seguinte. Numa
+conversa de 50+ mensagens, o atendente costuma falar depois do começo — então as duas
+leituras perdem exatamente as conversas longas, que são as mais atendidas.
+
+O que isto ensina, e é o custo de três idas:
+
+1. **Corrigir a conta sem questionar a fonte repete o erro.** Na segunda versão eu
+   troquei o regex e me dei por satisfeito; a fonte era a mesma e seguia errada.
+2. **Campo de paginação não é detalhe de implementação.** `hasNextPage`, `next`,
+   `nextId` são a diferença entre "não achei" e "não procurei". Ao usar um endpoint novo,
+   ler a lista de campos da resposta inteira **antes** de contar qualquer coisa — foi lá
+   que estavam `message` (não `messages`), `tasks` dentro de `result`, e `hasNextPage`.
+3. **Número que cai sempre merece mais desconfiança que número que sobe.** As três
+   versões erraram para baixo, porque toda falha de leitura perde dado em vez de
+   inventar. "Caiu" é o sintoma padrão de leitura incompleta.
+4. **Enquanto não há resposta confiável, marque o artefato.** Pus o aviso na planilha
+   antes de qualquer pessoa agir em cima da contagem por pessoa. Número errado sem aviso
+   num painel que a gestão lê vale menos que número nenhum.
