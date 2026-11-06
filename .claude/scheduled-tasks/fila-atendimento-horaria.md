@@ -44,7 +44,10 @@ O JSON tem `abas` (nome → linhas) e `linha_hora`. Use o conector do Google She
 |---|---|---|
 | `Agora` | `update_values`, sobrescreve | `Agora!A1:B<n>` |
 | `Por pessoa` | `update_values`, sobrescreve | `Por pessoa!A1:E<n>` |
+| `Chamados por pessoa` | `update_values`, sobrescreve | `Chamados por pessoa!A1:F<n>` |
+| `Comparativo` | `update_values`, sobrescreve | `Comparativo!A1:L<n>` |
 | `Backlog de chamados` | `update_values`, sobrescreve | `Backlog de chamados!A1:B<n>` |
+| `Legenda` | `update_values`, sobrescreve | `Legenda!A1:C<n>` |
 | `Fila por hora` | **`append_values`**, acrescenta | `Fila por hora!A1` |
 
 **A de hora é `append_values`, não `update_values`.** Ela é o histórico do dia; sobrescrever

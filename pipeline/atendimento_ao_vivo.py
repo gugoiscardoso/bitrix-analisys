@@ -139,15 +139,51 @@ def ler(dia: str, agora: dt.datetime) -> dict:
             "concluiu": dict(concluiu), "falou": dict(falou), "msgs": dict(msgs)}
 
 
+CACHE = RAIZ / "data" / "store" / "atendimento_por_dia.json"
+
+
+def com_cache(dia: str, agora: dt.datetime, hoje: str) -> dict:
+    """Leitura de um dia, reaproveitando dias já lidos.
+
+    Dia fechado não muda mais, então é lido uma vez e guardado. **Hoje é sempre relido**,
+    porque é o único que ainda se move. Sem isto, montar o comparativo de dez dias a
+    cada hora levaria dez minutos em vez de um.
+
+    O arquivo é versionado: são poucos KB por dia, e é o que permite a um clone novo ter
+    o comparativo sem refazer dez dias de leitura.
+    """
+    cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
+    if dia != hoje and dia in cache:
+        return cache[dia]
+    r = ler(dia, agora)
+    cache[dia] = r
+    CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1) + "\n",
+                     encoding="utf-8", newline="\n")
+    return r
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dia")
     ap.add_argument("--json")
+    ap.add_argument("--cache", action="store_true",
+                    help="guarda o resultado em atendimento_por_dia.json e reaproveita "
+                         "dias já lidos; hoje é sempre relido")
+    ap.add_argument("--ate", help="com --cache: lê de --dia até --ate, um dia por vez")
     a = ap.parse_args()
     agora = dt.datetime.now(BRT)
     dia = a.dia or agora.date().isoformat()
+    hoje = agora.date().isoformat()
+    if a.ate:
+        d, fim = dt.date.fromisoformat(dia), dt.date.fromisoformat(a.ate)
+        while d <= fim:
+            print(f"lendo {d}...")
+            com_cache(d.isoformat(), agora, hoje)
+            d += dt.timedelta(days=1)
+        print(f"\ncache em {CACHE}")
+        return
     print(f"lendo o atendimento de {dia} ao vivo...")
-    r = ler(dia, agora)
+    r = com_cache(dia, agora, hoje) if a.cache else ler(dia, agora)
     print(f"\n{r['total']} conversas · {r['atendidas']} atendidas · "
           f"{r['na_fila']} clientes na fila sem ninguém\n")
     print(f"{'pessoa':24}{'atendendo':>11}{'concluiu':>10}{'total':>7}{'msgs':>7}")

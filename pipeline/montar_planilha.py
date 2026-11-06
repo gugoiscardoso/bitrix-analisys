@@ -26,9 +26,8 @@ RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "pipeline"))
 
 import atendimento_ao_vivo                                             # noqa: E402
+import chamados_ao_vivo                                                # noqa: E402
 from fila_agora import BRT, ler_fila                                    # noqa: E402
-from gerar_atendimento import (carregar, chamados_por_pessoa,           # noqa: E402
-                               metricas_do_dia)
 
 VAZIO = ""
 
@@ -111,23 +110,14 @@ def aba_backlog(f: dict) -> list[list]:
 
 def abas_atendimento(dia: str, compara: int, dia_vivo: str, f: dict,
                      so_api: bool = False) -> dict[str, list[list]]:
-    # As abas da base (Comparativo e Chamados por pessoa) carregam transcricoes.json,
-    # 50 MB, e mudam uma vez por dia. Na execução de hora em hora elas não são montadas:
-    # é o que faz a passada horária custar minutos em vez de muitos minutos.
-    anteriores: list[str] = []
-    antes: dict = {}
-    ch_dia: dict = {}
-    if not so_api:
-        conv, tr = carregar()
-        chamados = chamados_por_pessoa()
-        dias_com_dado = sorted({r["data"][:10] for r in conv.values()
-                                if r["data"][:10] <= dia})
-        anteriores = [d for d in dias_com_dado if d < dia][-compara:]
-        m = metricas_do_dia(dia, conv, tr)
-        antes = {d: metricas_do_dia(d, conv, tr) for d in anteriores}
-        ch_dia = chamados.get(dia, {})
-    abriu = ch_dia.get("abriu", {})
+    """As três abas de atendimento, todas da API.
 
+    Nenhuma lê mais `base_historica.jsonl` nem `transcricoes.json`. A base está limitada
+    na origem — o coletor C# guarda no máximo 50 mensagens por sessão —, então toda
+    contagem de atendimento feita sobre ela subconta conversa longa, que é justamente a
+    mais atendida. Com as três na API, o parâmetro `so_api` perdeu o sentido: a passada
+    completa já custa cerca de um minuto, e a horária monta tudo.
+    """
     # A aba por pessoa vem da API, NÃO da base. A base está limitada na origem: o
     # coletor C# guarda no máximo 50 mensagens por sessão, então a transcrição nasce
     # truncada e a contagem de atendimento subconta conversa longa — justamente a mais
@@ -173,17 +163,18 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str, f: dict,
          "costuma aparecer. Quem atende todo dia e não está aqui, não pegou conversa."],
     ]
 
-    if so_api:
-        return {"Por pessoa": por_pessoa}
-
-    rot = f"{dia[8:]}/{dia[5:7]}/{dia[:4]}"
+    # Chamados AO VIVO, pelo mesmo motivo das conversas: a base só é atualizada pela
+    # coleta diária, e a aba congelava no dia anterior.
+    chv = chamados_ao_vivo.ler(dia_vivo, dt.datetime.now(BRT))
     metr = ["concluiu", "moveu_fluxo", "mexeu_status", "abriu", "tocou"]
-    quem = {n for k in metr for n in ch_dia.get(k, {})}
-    ordem = sorted(quem, key=lambda n: (-ch_dia.get("tocou", {}).get(n, 0), n))
+    quem = {n for k in metr for n in chv.get(k, {})}
+    ordem = sorted(quem, key=lambda n: (-chv.get("tocou", {}).get(n, 0), n))
     cham: list[list] = [
-        [f"Chamados por pessoa — {rot}"],
-        ["Vem do último export de chamados, não da API ao vivo: chamado se move em dias, "
-         "não em minutos. Atualiza quando o relatório diário roda."],
+        [f"Chamados por pessoa — AO VIVO, {rotv}"],
+        ["Última execução", f"{dt.datetime.fromisoformat(f['em']):%d/%m/%Y %H:%M}"],
+        [VAZIO],
+        ["Chamados mexidos hoje", chv.get("chamados_mexidos", 0)],
+        [VAZIO],
         ["Trabalho feito NO chamado. Abrir é registrar o problema; mover e concluir é "
          "resolvê-lo, e em geral são pessoas diferentes."],
         ["Conta chamados distintos, não eventos. Não há coluna de 'respondeu': "
@@ -193,27 +184,33 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str, f: dict,
          "Chamados que tocou"],
     ]
     for n in ordem:
-        cham.append([n] + [ch_dia.get(k, {}).get(n, 0) for k in metr])
+        cham.append([n] + [chv.get(k, {}).get(n, 0) for k in metr])
     cham.append(["TOTAL (por pessoa, soma)"]
-                + [sum(ch_dia.get(k, {}).values()) for k in metr])
+                + [sum(chv.get(k, {}).values()) for k in metr])
 
-    dias = anteriores + [dia]
+    # Comparativo do cache de leituras ao vivo, não da base. Dia fechado é lido uma vez
+    # e guardado em atendimento_por_dia.json; hoje vem da leitura desta execução.
+    cache = {}
+    if atendimento_ao_vivo.CACHE.exists():
+        cache = json.loads(atendimento_ao_vivo.CACHE.read_text(encoding="utf-8"))
+    cache[dia_vivo] = vivo
+    dias = sorted(cache)[-(compara + 1):]
     comp: list[list] = [
         ["Conversas atendidas por pessoa, por dia"],
-        ["Serve para ler o dia: número baixo pode ser dia fraco da pessoa ou dia em que "
-         "ela não estava na fila. As linhas de total, embaixo, dizem qual dos dois."],
+        ["Última execução", f"{dt.datetime.fromisoformat(f['em']):%d/%m/%Y %H:%M}"],
+        ["Todos os dias são lidos da API, com paginação completa — inclusive os "
+         "fechados. O último dia é o de hoje, ainda em andamento."],
         [VAZIO],
         ["Pessoa"] + [f"{d[8:]}/{d[5:7]}" for d in dias],
     ]
-    todas = {n for d in dias for n in (antes.get(d) or m)["atendeu"]}
-    for n in sorted(todas, key=lambda x: -m["atendeu"][x]):
-        comp.append([n] + [(m if d == dia else antes[d])["atendeu"][n] or VAZIO
-                           for d in dias])
+    atend = {d: (cache[d].get("atendeu") or {}) for d in dias}
+    todas = {n for d in dias for n in atend[d]}
+    for n in sorted(todas, key=lambda x: -atend[dia_vivo].get(x, 0)):
+        comp.append([n] + [atend[d].get(n) or VAZIO for d in dias])
     for rotulo, chave in (("TOTAL atendidas", "atendidas"),
-                          ("Conversas abertas no dia", "total"),
-                          ("Receberam aviso de fila cheia", "com_aviso"),
-                          ("Dessas, atendidas", "aviso_atendido")):
-        comp.append([rotulo] + [(m if d == dia else antes[d])[chave] for d in dias])
+                          ("Conversas no dia", "total"),
+                          ("Nunca atendidas", "sem_atendimento")):
+        comp.append([rotulo] + [cache[d].get(chave, VAZIO) for d in dias])
 
     return {"Por pessoa": por_pessoa, "Chamados por pessoa": cham,
             "Comparativo": comp}
@@ -284,11 +281,10 @@ def main() -> None:
     ap.add_argument("--dia", help="dia fechado das abas de atendimento (padrão: ontem)")
     ap.add_argument("--compara", type=int, default=10)
     ap.add_argument("--horario", "--so-fila", dest="horario", action="store_true",
-                    help="modo da execução de hora em hora: monta tudo que vem da API "
-                         "(Agora, Fila por hora, Atendimentos por pessoa, Backlog) e "
-                         "PULA o que vem da base (Comparativo, Chamados por pessoa), "
-                         "que carrega transcricoes.json com 50 MB e só muda uma vez "
-                         "por dia")
+                    help="aceito por compatibilidade; não muda mais o que é montado. "
+                         "Todas as abas vêm da API desde que a base se mostrou limitada "
+                         "a 50 mensagens por conversa, e a passada completa custa cerca "
+                         "de um minuto")
     a = ap.parse_args()
 
     agora = dt.datetime.now(BRT)
@@ -298,9 +294,9 @@ def main() -> None:
     f = ler_fila(agora)
     print(f"  esperando {f['esperando']} · em andamento {f['andamento']} · "
           f"chamados abertos {f['chamados_abertos']}")
-    print(f"montando as abas de atendimento{'' if a.horario else f' de {dia}'}...")
+    print("montando as abas de atendimento (tudo da API)...")
     abas = abas_atendimento(dia, a.compara, agora.date().isoformat(), f,
-                            so_api=a.horario)
+                            so_api=False)
     abas["Agora"] = aba_agora(f)
     abas["Backlog de chamados"] = aba_backlog(f)
     if not a.horario:
