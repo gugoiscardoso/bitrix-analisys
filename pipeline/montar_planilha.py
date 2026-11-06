@@ -61,7 +61,8 @@ def aba_agora(f: dict) -> list[list]:
         [VAZIO],
         ["ESPERANDO é o número para agir: é cliente olhando a tela sem resposta. "
          "Em andamento costuma ser sessão que ninguém encerrou, não cliente esperando."],
-        [f"A fila é lida ao vivo da API do Bitrix, janela de {f['janela_dias']} dias. "
+        [f"Lida direto da API do Bitrix no momento da execução, janela de "
+         f"{f['janela_dias']} dias. "
          "Não depende do relatório diário nem de classificação."],
     ]
     return l
@@ -127,7 +128,7 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str, f: dict,
     # Os sumarizadores em linhas próprias, cada número na coluna B, para poderem ser
     # formatados grandes. Em frase corrida ninguém acha o número que importa.
     por_pessoa: list[list] = [
-        [f"Atendimentos por pessoa — AO VIVO, {rotv}"],
+        [f"Atendimentos por pessoa — hoje, {rotv}"],
         # Mesmo carimbo e MESMO número de fila da aba Agora. Antes cada aba calculava
         # o seu, com minutos de diferença, e a planilha mostrava 17 num lugar e 15 no
         # outro — num painel, dois números para a mesma coisa viram desconfiança nos
@@ -140,8 +141,8 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str, f: dict,
         ["Conversas no dia", vivo["total"]],
         ["Pessoas atendendo", len(vivo["atendeu"])],
         [VAZIO],
-        ["Lido direto da API do Bitrix, com paginação completa do histórico. Não "
-         "depende do relatório diário."],
+        ["Atualizado de hora em hora, das 8h às 18h em dias úteis. O número é o da última "
+         "execução, acima — não muda sozinho enquanto a planilha está aberta."],
         ["ATENDENDO = conversa ainda aberta em que a pessoa falou. CONCLUIU = conversa "
          "já encerrada em que ela falou. Quem transferiu e nunca falou não conta."],
         [VAZIO],
@@ -170,7 +171,7 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str, f: dict,
     quem = {n for k in metr for n in chv.get(k, {})}
     ordem = sorted(quem, key=lambda n: (-chv.get("tocou", {}).get(n, 0), n))
     cham: list[list] = [
-        [f"Chamados por pessoa — AO VIVO, {rotv}"],
+        [f"Chamados por pessoa — hoje, {rotv}"],
         ["Última execução", f"{dt.datetime.fromisoformat(f['em']):%d/%m/%Y %H:%M}"],
         [VAZIO],
         ["Chamados mexidos hoje", chv.get("chamados_mexidos", 0)],
@@ -225,14 +226,14 @@ def aba_legenda(f: dict, dia: str) -> list[list]:
         ["Legenda — de onde vem cada número"],
         [VAZIO],
         ["Aba", "O que é", "Com que frequência muda"],
-        ["Agora", "A fila neste instante, lida ao vivo da API do Bitrix. Não depende do "
-         "relatório diário nem de classificação por IA.", "A cada execução"],
+        ["Agora", "A fila no momento da execução, lida direto da API do Bitrix. Não depende do "
+         "relatório diário nem de classificação por IA.", "A cada hora"],
         ["Fila por hora", "Uma linha por execução, para ver a fila subindo e descendo "
-         "ao longo do dia.", "A cada execução (uma linha nova)"],
+         "ao longo do dia.", "A cada hora (uma linha nova)"],
         ["Atendimentos por pessoa", "Quem está atendendo e quem concluiu HOJE, lido ao "
          "vivo da API. Não é o mesmo número do arquivo Excel: o Excel vem da base, que "
          "guarda no máximo 50 mensagens por conversa e por isso subconta conversa "
-         "longa.", "A cada execução"],
+         "longa.", "A cada hora"],
         ["Chamados por pessoa", "Trabalho feito nos chamados no mesmo dia: quem "
          "concluiu, moveu e abriu.", "Uma vez por dia"],
         ["Comparativo", "As conversas atendidas por pessoa nos dias anteriores, para "
