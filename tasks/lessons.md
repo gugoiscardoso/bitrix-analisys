@@ -248,3 +248,35 @@ realmente tem — `collections.Counter` nos rótulos custa uma linha e teria mos
 medição que existe. Cinco meses entre 94% e 99% com a MESMA medição provaram que a
 medição funciona e que a queda de novembro é real. Medição sem série histórica ao lado
 não dá para distinguir de defeito de código.
+
+## Portão de verificação que não tem com o que comparar nunca dispara
+
+A tarefa agendada tinha duas travas que eu escrevi com confiança: "o total de registros
+tem de ter crescido" e "as conversas da V3 só crescem; se despencaram, pare". Nenhuma das
+duas podia funcionar — `base_historica.jsonl` está no .gitignore e a sessão das 9h nasce
+sem memória, então não existia o número de ontem para comparar.
+
+Pior que inúteis: **elas davam sensação de cobertura.** Uma delas é a trava do bug do
+`str(17.0)`, que apagou a marcação V3 de 164 conversas e passou por um relatório inteiro.
+Eu tinha escrito a trava e achado o assunto resolvido.
+
+**Regra:** toda verificação que compara com "antes" precisa que alguém grave o "antes".
+Ao escrever uma trava, pergunte de onde vem cada lado da comparação; se um dos lados não
+existe em disco, a trava é decorativa.
+
+**E prove que ela dispara.** Injetei uma linha de base falsa com 900 conversas V3 e
+confirmei que o script acusa a queda e sai com 1. Trava não testada é trava não escrita —
+vale para o `conferir_pipeline.py` também, que no primeiro teste deu falso positivo de si
+mesmo.
+
+## Instrução que manda "em caso de divergência, o outro arquivo manda"
+
+O prompt da tarefa agendada dizia: leia a skill do projeto, e ela manda em caso de
+divergência. Parecia prudente — uma fonte única de verdade. Era o contrário: a skill tem
+660 linhas e metade descreve um pipeline aposentado, então a instrução mandava a execução
+cega para a parte errada do arquivo, onde o comando é outro gerador.
+
+**Regra:** prompt de execução autônoma é auto-contido ou não é. "O outro arquivo manda"
+transfere a decisão para um texto que ninguém releu com essa execução em mente. Se dois
+arquivos têm de concordar, o que garante isso é uma checagem que falha, não uma frase de
+precedência.
