@@ -303,7 +303,26 @@ def main() -> None:
         abas["Legenda"] = aba_legenda(f, dia)
 
     abas = {nome: retangular(linhas) for nome, linhas in abas.items()}
-    saida = {"em": f["em"], "dia_atendimento": dia,
+
+    # Onde ficou cada linha que precisa de formatação própria. O número de pessoas muda
+    # todo dia, então a linha de TOTAL anda — e formatação aplicada a um índice fixo
+    # acaba na linha errada, que foi exatamente como a planilha ficou feia depois da
+    # primeira republicação. Quem publica usa estes índices em vez de adivinhar.
+    def achar(nome: str, prefixo: str) -> int | None:
+        for i, l in enumerate(abas.get(nome, []), start=1):
+            if str(l[0]).startswith(prefixo):
+                return i
+        return None
+
+    formato = {
+        nome: {k: v for k, v in (
+            ("cabecalho", achar(nome, "Pessoa")),
+            ("total", achar(nome, "TOTAL")),
+            ("ultima_linha", len(linhas)),
+        ) if v}
+        for nome, linhas in abas.items()
+    }
+    saida = {"em": f["em"], "dia_atendimento": dia, "formato": formato,
              "cabecalho_hora": CAB_HORA, "linha_hora": aba_hora(f), "abas": abas}
     Path(a.saida).write_text(json.dumps(saida, ensure_ascii=False, indent=1) + "\n",
                              encoding="utf-8", newline="\n")

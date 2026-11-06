@@ -60,7 +60,27 @@ Duas armadilhas de escrita, as duas já custaram uma republicação:
 - **Linha curta não apaga as colunas da direita.** O script já devolve toda linha com a
   largura da aba; mande as linhas como vieram, sem encurtar.
 
-## 3. Conferir
+## 3. Manter a formatação no lugar
+
+O `values.update` **não apaga formatação** — então, enquanto o número de linhas não
+mudar, a planilha continua bonita sozinha e este passo é rápido.
+
+O que muda é o **número de pessoas**: entra ou sai gente, a linha de TOTAL anda, e aí o
+cinza do total fica numa linha de pessoa e a última pessoa fica sem cinza. Por isso o
+JSON traz `formato`, com a linha de cabeçalho e a de TOTAL de cada aba, já contadas.
+
+Para cada aba em `formato`, se a linha de TOTAL **mudou** em relação à execução
+anterior (compare lendo a planilha), aplique com `update_spreadsheet`:
+
+- **linha de cabeçalho** (a que começa com "Pessoa"): negrito, texto branco, fundo
+  `{"red":0.12,"green":0.22,"blue":0.39}`, centralizado.
+- **linha de TOTAL**: negrito, fundo `{"red":0.93,"green":0.93,"blue":0.93}`.
+- as linhas entre as duas: fundo branco, sem negrito.
+
+Se a linha de TOTAL for a mesma da execução anterior, **não mexa na formatação** — é
+trabalho à toa e cada escrita é uma chance de estragar o que está bom.
+
+## 4. Conferir
 
 Leia de volta `Agora!A1:B6` e `Por pessoa!A1:B8` e confira:
 
@@ -69,7 +89,7 @@ Leia de volta `Agora!A1:B6` e `Por pessoa!A1:B8` e confira:
 - **"CLIENTES NA FILA SEM NINGUÉM" é o mesmo número nas duas.** Ele vem de uma fonte só;
   se divergir, alguma aba ficou da execução anterior.
 
-## 4. Relatar
+## 5. Relatar
 
 Uma ou duas linhas, em português: quantos clientes na fila sem ninguém, quantas em
 andamento, quantas pessoas atendendo, e a mais antiga esperando.
