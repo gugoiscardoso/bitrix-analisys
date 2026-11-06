@@ -104,8 +104,13 @@ que terminar há o que conferir.
 ## 5. Registrar a série e conferir que nada regrediu
 
 ```
-python pipeline/serie_diaria.py --registrar
+python pipeline/serie_diaria.py
 ```
+
+**Sem `--registrar` aqui.** Este passo só confere; quem grava é o passo 10, depois da
+leitura. Rodar com `--registrar` agora gravaria o número de leituras de *antes* de ler,
+e o campo ficaria sempre uma execução atrasado — foi o que aconteceu em 06/11, quando a
+série dizia 18.716 e o arquivo tinha 18.791.
 
 Compara os números de hoje com os da última execução e **sai com código 1 se algum
 regrediu**. Registros, conversas da V3 e leituras só crescem; queda significa que algo
@@ -250,6 +255,17 @@ entre 97% e 100% de junho a outubro, caiu para 84% em 04/11 e 37% em 05/11. **Ab
 
 Se houver defeito em massa novo, acrescente ao fim de `tasks/incidentes_detectados.md`,
 no mesmo estilo das entradas que já estão lá.
+
+## 10. Registrar a série
+
+```
+python pipeline/serie_diaria.py --registrar
+```
+
+Agora sim com `--registrar`, e só aqui: a leitura já aconteceu, então o número gravado é
+o estado final do dia e serve de linha de base honesta para amanhã.
+
+## 11. Commitar
 
 Por fim, commit direto na master (projeto simples, sem fluxo de branches). Entram as
 mudanças em `data/store/` que forem rastreadas e qualquer coisa em `tasks/`. O diretório

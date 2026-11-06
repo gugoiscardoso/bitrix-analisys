@@ -121,8 +121,8 @@ python pipeline/consolidar_store.py
 # 5. conferir que nada regrediu, contra a última execução (segundos)
 #    Sai com 1 se registros, conversas V3 ou leituras tiverem caído. É o portão do
 #    bug do str(17.0); sem a série gravada ele não tinha com o que comparar e nunca
-#    disparava.
-python pipeline/serie_diaria.py --registrar
+#    disparava. SEM --registrar: aqui só confere.
+python pipeline/serie_diaria.py
 
 # 6. ler o que falta
 #    A fila vive em data/store/_fila/leitura/ — NÃO em _fila/, que tem lixo de outro
@@ -142,6 +142,11 @@ python pipeline/gerar_relatorio_completo.py --de 2026-01-01 --ate <hoje>
 #    não aconteceu, e pedir hoje devolve planilha quase vazia, que se lê como
 #    "ninguém atendeu".
 python pipeline/gerar_atendimento.py --dia <dia> --compara 10
+
+# 9. registrar a série, agora que a leitura já aconteceu
+#    COM --registrar, e só aqui: no passo 5 o número de leituras ainda é o de antes
+#    de ler, e gravá-lo deixaria o campo uma execução atrasado para sempre.
+python pipeline/serie_diaria.py --registrar
 ```
 
 **Os arquivos saem em `report/`**, que está no .gitignore:

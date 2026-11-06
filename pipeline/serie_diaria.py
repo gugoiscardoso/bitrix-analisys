@@ -14,8 +14,18 @@ Um portão que nunca dispara é pior que portão nenhum: ele dá a sensação de
 Este script grava uma linha por execução em `data/store/serie_diaria.json`, que é
 versionado (poucos KB por ano) e serve de linha de base para a execução seguinte.
 
-    python pipeline/serie_diaria.py --registrar     # grava a linha de hoje
-    python pipeline/serie_diaria.py                 # compara com a última e sai 1 se regrediu
+**Roda duas vezes, e a ordem importa:**
+
+    python pipeline/serie_diaria.py                 # logo após consolidar: só confere,
+                                                    # sai 1 se regrediu, para o pipeline
+    python pipeline/serie_diaria.py --registrar     # no fim, depois da leitura: grava
+
+Na primeira versão isto rodava uma vez só, com `--registrar`, logo após a consolidação —
+antes do passo de leitura. Resultado: o campo `leituras` gravava o valor de *antes* de
+ler, ficando sempre uma execução atrasado. Em 06/11 a série dizia 18.716 quando o arquivo
+tinha 18.791. O portão não ficava falso para `registros` e `conversas_v3`, que vêm da
+consolidação, mas para `leituras` uma queda real seria mascarada por um dia de leitura
+normal. Conferir antes e gravar depois resolve os dois lados.
 """
 from __future__ import annotations
 
@@ -63,7 +73,10 @@ def carregar() -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--registrar", action="store_true",
-                    help="grava a linha de hoje depois de comparar")
+                    help="grava a linha de hoje depois de comparar. Rode SEM isto logo "
+                         "após consolidar (o portão, que pode parar o pipeline) e COM "
+                         "isto no fim, depois da leitura — senão o campo `leituras` "
+                         "fica sempre uma execução atrasado")
     a = ap.parse_args()
 
     agora = medir()
