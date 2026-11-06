@@ -357,3 +357,34 @@ que a escreve. Os dois dizem quando alguém *pretendeu* mudar; o dado diz quando
 **Regra irmã:** no dia da virada, não aproveite metade. Pegar as escalações de 06/10 e
 descartar os `N/A` do mesmo dia conta um lado sem contar o outro — viés de seleção que
 inflava a taxa para 56,8%. Dia ambíguo inteiro fora do denominador.
+
+## Não chame de inconsistência o que você viu numa amostra
+
+**06/11/2026 — erro meu, que levou o usuário a decidir sobre um problema inexistente.**
+
+Dois subagentes relataram ter classificado "pedido de treinamento" de formas diferentes.
+Rodei uma contagem, achei 15 registros divididos 7 a 6 entre Transversal e Auto-guias,
+olhei **quatro de cada lado**, achei os conjuntos indistinguíveis e reportei "deriva
+real, do tipo que `criterios_leitura.md` existe para evitar". Pedi uma decisão de
+critério.
+
+Quando fui implementar, listei a população inteira: 42 registros. Os 29 em Transversal
+eram quase todos treinamento **ao vivo** — horário, local, link, inscrição, "às 16h30" —
+e os 13 em Auto-guias citavam material gravado. E a tabela de fronteiras **já tinha** a
+regra "gravado → Auto-guias, ao vivo → Transversal". Os leitores não divergiram: eles
+aplicaram a regra, e eu não tinha lido a tabela até o fim. Restavam dois registros de
+fronteira, de verdade.
+
+O custo: o usuário gastou uma decisão achando que havia 13 registros errados e um
+critério faltando, quando havia dois registros e um critério incompleto.
+
+**Regra:** antes de reportar inconsistência entre classificadores, (1) liste a população
+inteira, não uma amostra, e (2) leia o critério existente até o fim para checar se a
+regra já existe. Divergência relatada por quem classificou é hipótese, não achado —
+amostra de quatro contra quatro não distingue "os leitores divergiram" de "os casos são
+mesmo diferentes".
+
+**E o corolário para o relato:** eu já tinha o número exato (42 registros, 29 contra 13)
+a um comando de distância quando escrevi "conjuntos indistinguíveis". Quando a frase que
+eu estou escrevendo é uma afirmação sobre o dado, o comando que a verifica vem antes
+dela, não depois.

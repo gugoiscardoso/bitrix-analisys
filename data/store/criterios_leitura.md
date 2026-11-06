@@ -194,11 +194,36 @@ casos engordam um balde de pedido em vez de aparecerem como defeito da migraçã
 | Agendamento e atividades do pátio | Gestão de Pátio |
 | Vídeo, manual ou material gravado | Auto-guias |
 | Call ou treinamento ao vivo | Transversal |
+| Pedido de treinamento **sem dizer o formato** | Transversal |
 | Tela de consulta ou busca de peça (filtro, aplicação, catálogo) | Peças & Estoque |
 | Texto curto ou vazio demais para decidir | Transversal |
 
 Quando o texto cita mais de um módulo, escolha aquele em que o problema **acontece**,
 não os citados de passagem.
+
+## "Treinamento", sem dizer se é ao vivo ou gravado
+
+**Módulo: Transversal.** Decidido em 06/11/2026.
+
+A tabela acima já separava material gravado (Auto-guias) de call ao vivo (Transversal), e
+essa separação continua valendo quando o texto diz qual é. O que não estava decidido era
+o pedido cru — "Treinamento", "Treinamento completo no Ultracar", "Solicitação de links
+para treinamento" —, em que o cliente não diz o formato e não há como saber.
+
+Vai para Transversal porque, sem formato declarado, o que o registro atesta é que o
+cliente **pediu ajuda para aprender o sistema**, e não que ele tentou usar um recurso de
+Auto-guias e esbarrou em algo. Auto-guias fica para quando o material gravado é o objeto
+do pedido ou o lugar da fricção ("não consigo abrir o vídeo pelo menu Vídeos", "há aulas
+gravadas sobre Estoque?").
+
+Esta regra vale para os dois eixos: o relatório humano e as conversas do robô N1 usam a
+mesma lista de módulos, de propósito.
+
+Não reclassifica o passado, pela regra do topo deste arquivo. Na leitura do N1 de
+06/11/2026 isso deixa cerca de dois registros de fronteira em Auto-guias que a regra
+nova mandaria para Transversal — num módulo que tem 13 de 2.615. Preferir a regra "o
+passado fica com o critério da época" a corrigir dois registros é o que mantém um número
+publicado reproduzível.
 
 ## "Não fecha a OS porque há compra pendente ou falta item no estoque"
 

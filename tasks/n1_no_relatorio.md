@@ -255,20 +255,22 @@ expôs:
       `6a90d533ff104f63a73386ae` ("OTEF e SPED", dois assuntos empatados). Resolvidos por
       regra de empate, não por critério. Se virarem padrão, entram em
       `criterios_leitura.md`.
-- [ ] **Pedido de treinamento não tem critério, e os lotes divergiram.** Um lote mandou
-      para `Transversal` ("vale o que o cliente pediu, não o formato da resposta"), outro
-      para `Auto-guias` ("pedido de vídeo/treinamento gravado"). Medido nas 1.615
-      primeiras classificadas: **15 conversas** falam de treinamento/vídeo, **7 em
-      Transversal e 6 em Auto-guias** — e os dois conjuntos são indistinguíveis
-      ("Treinamento sobre orçamento no novo sistema" caiu em Auto-guias; "Treinamentos
-      sobre módulo financeiro", em Transversal).
+- [x] **Pedido de treinamento — resolvido em 06/11/2026: Transversal** quando o formato
+      não é declarado. Escrito em `criterios_leitura.md`, na tabela de fronteiras e numa
+      seção com o porquê. Vale para os dois eixos, porque a lista de módulos é a mesma.
 
-      É deriva real, do tipo que `criterios_leitura.md` existe para evitar, mas são 13
-      registros em 1.615 (0,8%) num módulo que fica perto de zero de qualquer forma. Não
-      vale refazer lotes; vale uma linha no `criterios_leitura.md` antes da próxima
-      corrida. A escolha é de quem conhece o negócio: "pedido de treinamento é
-      Transversal porque o cliente pediu ajuda, não usou um recurso" **ou** "é Auto-guias
-      porque é a demanda que aquele módulo atende".
+      **Correção de um alarme falso meu.** Eu havia reportado "deriva real, 7 em
+      Transversal contra 6 em Auto-guias, conjuntos indistinguíveis". Era amostra de 4
+      contra 4. Com a lista inteira (42 registros que mencionam treinamento) o quadro é
+      coerente: os 29 em Transversal são quase todos treinamento **ao vivo** — horário,
+      local, link, inscrição, "às 16h30" — e os 13 em Auto-guias citam material gravado:
+      "aulas gravadas sobre Estoque", "não consigo acessar pelo menu Vídeos". A tabela de
+      fronteiras **já tinha** a separação ao vivo x gravado, e os leitores a aplicaram.
+      Sobram cerca de dois registros de fronteira, sem formato declarado, em Auto-guias.
+
+      Não reclassifiquei: a regra do próprio arquivo é que mudança de critério não
+      reclassifica o passado, e trocar dois registros de um módulo que tem 13 em 2.615
+      não paga quebrar a reprodutibilidade de um número já publicado.
 - [ ] Não editar `criterios_leitura.md` no meio de uma corrida de lotes: os primeiros
       lotes ficariam com critério diferente dos últimos, que é exatamente a deriva que o
       arquivo existe para evitar. Mudança de critério vale para a próxima corrida inteira.
