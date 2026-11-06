@@ -242,6 +242,18 @@ def aba_legenda(f: dict, dia: str) -> list[list]:
     ]
 
 
+def retangular(linhas: list[list]) -> list[list]:
+    """Completa toda linha com "" até a largura da mais larga.
+
+    O `values.update` do Sheets **não apaga** célula que a linha não menciona: linha de
+    uma coluna deixa B..E com o conteúdo da escrita anterior. Na primeira publicação os
+    números da versão antiga ficaram vazando à direita dos sumarizadores, e isso num
+    painel que a gestão lê é pior que célula vazia.
+    """
+    largura = max((len(l) for l in linhas), default=1)
+    return [list(l) + [""] * (largura - len(l)) for l in linhas]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--saida", required=True)
@@ -272,6 +284,7 @@ def main() -> None:
     if not a.so_fila:
         abas["Legenda"] = aba_legenda(f, dia)
 
+    abas = {nome: retangular(linhas) for nome, linhas in abas.items()}
     saida = {"em": f["em"], "dia_atendimento": dia,
              "cabecalho_hora": CAB_HORA, "linha_hora": aba_hora(f), "abas": abas}
     Path(a.saida).write_text(json.dumps(saida, ensure_ascii=False, indent=1) + "\n",
