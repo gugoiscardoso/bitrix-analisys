@@ -328,3 +328,32 @@ linha do `print` foi alcançada.
 (prompt de tarefa agendada, template, configuração), leia o arquivo de volta e procure o
 que deveria ter mudado. Arquivo que ninguém executa agora falha silenciosamente até a
 hora errada.
+
+**06/11/2026 — repeti este erro exatamente.** Renumerando as seções da tarefa agendada
+para abrir espaço para o passo do N1, rodei um `replace(..., 1)` por seção. O `## 8. `
+casou primeiro com `## 8. Gerar`, que eu mesmo acabara de escrever, e não com o `## 8.`
+antigo — o arquivo ficou na ordem 7, 9, 8, 10. Só peguei porque listei os cabeçalhos
+depois. **Renumerar com `replace` é a pior forma de fazer isso**: os rótulos novos e
+velhos coexistem no arquivo durante a operação. Ou renumera de trás para frente com
+âncora única, ou edita cada cabeçalho pelo texto inteiro.
+
+## A fronteira está no dado, não no comentário do código
+
+**06/11/2026 — erro meu, pego sozinho, mas depois de já ter reportado o número.**
+
+Medindo a taxa de escalação do robô N1, achei no código do N1 um comentário dizendo que o
+cabeçalho da coluna mudou em **13/10/2026**. Usei 01/10 como corte (começo do mês em que
+o flag aparecia) e publiquei "47,5% em outubro, 51,2% no período". Ao ir implementar,
+contei os valores **por dia** e a virada real era **06/10** — com 06/10 sendo o dia em que
+as duas semânticas convivem na mesma coluna. Os `N/A` de 01 a 05/10 não eram "não
+escalou", eram "não abriu chamado". Com o corte certo: 54,9% em outubro, 56,3% no período.
+
+Errei 5 pontos percentuais para baixo e entreguei o número antes de conferir.
+
+**Regra:** quando uma coluna muda de significado no meio da série, a data de virada se
+descobre contando os valores por dia, não lendo a documentação nem o comentário do código
+que a escreve. Os dois dizem quando alguém *pretendeu* mudar; o dado diz quando mudou.
+
+**Regra irmã:** no dia da virada, não aproveite metade. Pegar as escalações de 06/10 e
+descartar os `N/A` do mesmo dia conta um lado sem contar o outro — viés de seleção que
+inflava a taxa para 56,8%. Dia ambíguo inteiro fora do denominador.

@@ -107,7 +107,7 @@ que terminar há o que conferir.
 python pipeline/serie_diaria.py
 ```
 
-**Sem `--registrar` aqui.** Este passo só confere; quem grava é o passo 10, depois da
+**Sem `--registrar` aqui.** Este passo só confere; quem grava é o passo 12, depois da
 leitura. Rodar com `--registrar` agora gravaria o número de leituras de *antes* de ler,
 e o campo ficaria sempre uma execução atrasado — foi o que aconteceu em 06/11, quando a
 série dizia 18.716 e o arquivo tinha 18.791.
@@ -172,13 +172,46 @@ Repita preparar/absorver até `status` dizer **FALTA LER: 0**.
 python pipeline/ler_pendentes.py absorver --parcial
 ```
 
-Isso grava o que está válido em vez de recusar o arquivo inteiro. Siga para o passo 7, e
+Isso grava o que está válido em vez de recusar o arquivo inteiro. Siga para o passo 8, e
 então **entregue como prévia**: diga no começo da mensagem que é prévia, qual o
 percentual de classificados e quantos registros ficaram de fora. O gerador aceita leitura
 incompleta de propósito — ele mostra a cobertura e cria a aba Cobertura. Entregar prévia
 avisada às 9h é melhor que não entregar nada.
 
-## 7. Gerar
+## 7. O robô N1 — e este é o único passo que pode falhar sem parar o job
+
+As conversas do robô de suporte do site (a IA do widget) não vêm do Bitrix: vêm de uma
+planilha do Google que um CronJob do N1 alimenta. É a única fonte externa do pipeline.
+
+```
+python pipeline/coletar_n1.py
+python pipeline/classificar_n1.py status
+python pipeline/classificar_n1.py preparar
+```
+
+Se `preparar` disser que há lotes, classifique cada `lote_N1_NNN.json` de
+`data/store/_fila/n1/` com o `prompt_N1.md` da mesma pasta — mesmo contrato do passo 6,
+4 a 6 subagentes simultâneos — e absorva:
+
+```
+python pipeline/classificar_n1.py absorver
+```
+
+O volume novo é de ~37 conversas por dia, então na maioria dos dias não há lote nenhum e
+este passo custa segundos.
+
+**Se qualquer coisa aqui falhar — planilha fora do ar, credencial recusada, lote que não
+fecha —, siga para o passo 8 sem o N1 e diga isso na entrega.** A aba "Robô N1"
+simplesmente não sai: `carregar_n1` devolve vazio quando o store não existe, e nenhum
+número das outras abas depende dele. Este é o único passo com essa licença, e ela existe
+porque o N1 é um eixo lateral: derrubar o relatório do suporte humano por causa dele
+seria trocar o entregável pelo acessório.
+
+**Não mande o N1 para dentro dos números das outras abas.** Ele é fricção que NÃO chegou
+ao atendimento humano; somar moveria o denominador da série publicada em +21,8%. A
+decisão está em `tasks/n1_no_relatorio.md`.
+
+## 8. Gerar
 
 **São dois arquivos, e os dois vão para o usuário.**
 
@@ -206,7 +239,7 @@ dia é quem não estava. **Num dia em que ninguém faltou a linha não existe** 
 "Permission denied" — e ele é o último ato, depois de toda a leitura paga. Peça para
 fechar a planilha e rode o gerador de novo; **não** grave com outro nome.
 
-## 8. Conferir antes de entregar
+## 9. Conferir antes de entregar
 
 - **A linha "classificados" tem de dizer 100,0%.** Se disser 99,x%, **não aceite como
   arredondamento** — descubra QUAIS registros ficaram de fora e por quê. Foi assim que se
@@ -230,7 +263,7 @@ fechar a planilha e rode o gerador de novo; **não** grave com outro nome.
 A sanidade da V3 e o crescimento da base **já foram conferidos no passo 5**, contra a
 série — não tente reconferir de cabeça.
 
-## 9. Publicar na planilha do Google
+## 10. Publicar na planilha do Google
 
 ```
 python pipeline/publicar_relatorio.py
@@ -251,7 +284,7 @@ contornar.
 Se este passo falhar, **o relatório já foi gerado e entregue**: diga que a planilha não
 foi atualizada e siga para o commit. Não repita o pipeline inteiro por causa dele.
 
-## 10. Entregar e commitar
+## 11. Entregar e commitar
 
 Entregue **os dois arquivos** com `SendUserFile`, `status: "proactive"` (o usuário não
 está esperando na frente da tela). **Escreva também os dois caminhos absolutos** em bloco
@@ -277,7 +310,7 @@ entre 97% e 100% de junho a outubro, caiu para 84% em 04/11 e 37% em 05/11. **Ab
 Se houver defeito em massa novo, acrescente ao fim de `tasks/incidentes_detectados.md`,
 no mesmo estilo das entradas que já estão lá.
 
-## 11. Registrar a série
+## 12. Registrar a série
 
 ```
 python pipeline/serie_diaria.py --registrar
@@ -286,7 +319,7 @@ python pipeline/serie_diaria.py --registrar
 Agora sim com `--registrar`, e só aqui: a leitura já aconteceu, então o número gravado é
 o estado final do dia e serve de linha de base honesta para amanhã.
 
-## 12. Commitar
+## 13. Commitar
 
 Por fim, commit direto na master (projeto simples, sem fluxo de branches). Entram as
 mudanças em `data/store/` que forem rastreadas e qualquer coisa em `tasks/`. O diretório

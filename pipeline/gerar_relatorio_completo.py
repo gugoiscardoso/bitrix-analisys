@@ -535,6 +535,127 @@ def aba_detalhe(wb, regs, tipo, amostra):
     return len(sel), total
 
 
+# ─────────────────────── Robô N1 ───────────────────────
+
+# Fricção que NÃO chegou ao suporte humano: conversa que o robô do site atendeu. Fica em
+# aba e eixo próprios, FORA de `regs` e de todo denominador das outras abas — somar as
+# 2.627 conversas às humanas moveria o denominador da série já publicada em +21,8% sem
+# que nada tivesse mudado no mundo real. A decisão e os números estão em
+# `tasks/n1_no_relatorio.md` (06/11/2026).
+
+N1_COR = PatternFill("solid", fgColor="1F6F6B")   # teal: nem chamado (verde) nem conversa (violeta)
+
+COLS_N1 = ["Id", "Versão", "Módulo", "Assunto (do robô)", "Resultado",
+           "Escalou ao N2", "Chamado", "Data", "Mês", "Precisão", "Lacuna na base",
+           "Mensagens", "Duração (min)", "Foi útil?", "Cliente", "Matriz (id)",
+           "Conversa"]
+
+LARG_N1 = {"Id": 26, "Versão": 9, "Módulo": 24, "Assunto (do robô)": 46,
+           "Resultado": 34, "Escalou ao N2": 15, "Chamado": 10, "Data": 11, "Mês": 9,
+           "Precisão": 10, "Lacuna na base": 14, "Mensagens": 11,
+           "Duração (min)": 13, "Foi útil?": 10, "Cliente": 30, "Matriz (id)": 12,
+           "Conversa": 80}
+
+# Antes deste dia a coluna de escalação da planilha do N1 guardava número de chamado, e
+# não o flag. Mesmo valor de `coletar_n1.VIRADA_FLAG`; o rótulo abaixo é o que a aba
+# mostra para não deixar a célula vazia parecer "não escalou".
+N1_SEM_FLAG = "— não medido"
+
+
+def carregar_n1(de: str, ate: str) -> list[dict]:
+    """As conversas do N1 da janela, com o módulo lido anexado."""
+    origem = STORE / "n1_conversas.jsonl"
+    if not origem.exists():
+        return []
+    cls = ler(STORE / "classificacao_n1.json") if (
+        STORE / "classificacao_n1.json").exists() else {"conversas": {}}
+    try:
+        transcricoes = ler(STORE / "n1_transcricoes.json")
+    except FileNotFoundError:
+        transcricoes = {}
+
+    n1 = []
+    with origem.open(encoding="utf-8") as fh:
+        for linha in fh:
+            if not linha.strip():
+                continue
+            r = json.loads(linha)
+            if not (de <= (r.get("data") or "") <= ate):
+                continue
+            lido = cls["conversas"].get(r["id"]) or {}
+            r["modulo"] = lido.get("modulo", "")
+            r["transcricao"] = transcricoes.get(r["id"], "")
+            n1.append(r)
+    return n1
+
+
+def aba_robo_n1(wb, n1: list[dict], amostra: int):
+    sel = sorted(n1, key=lambda x: (x.get("data") or "", x["id"]), reverse=True)
+    total = len(sel)
+    sel = amostrar(sel, amostra)
+    nome = "Robô N1" + (" (amostra)" if amostra and len(sel) < total else "")
+    ws = wb.create_sheet(nome)
+    ws.append(COLS_N1)
+    for i, c in enumerate(COLS_N1, 1):
+        cel = ws.cell(row=1, column=i)
+        cel.font = HF
+        # Versão e Módulo em azul como nas outras abas: são o eixo transversal, o único
+        # que permite comparar o N1 com o suporte humano.
+        cel.fill = HDR if c in ("Versão", "Módulo") else N1_COR
+
+    for r in sel:
+        escalou = r.get("escalou_n2")
+        ws.append([
+            r["id"],
+            r.get("versao") or "—",
+            r["modulo"] or SEM_MODULO,
+            r.get("assunto_n1", ""),
+            r.get("resultado", ""),
+            N1_SEM_FLAG if escalou is None else ("Sim" if escalou else "Não"),
+            r.get("chamado_id") or "",
+            r.get("data", ""),
+            (r.get("data") or "")[:7],
+            r["precisao"] if r.get("precisao") is not None else "",
+            r.get("lacuna_kb", ""),
+            r.get("mensagens") if r.get("mensagens") is not None else "",
+            round(r["duracao_seg"] / 60, 1) if r.get("duracao_seg") else "",
+            {True: "Sim", False: "Não"}.get(r.get("foi_util"), ""),
+            r.get("cliente", ""),
+            r.get("matriz_id", ""),
+            mascarar_credenciais(r.get("transcricao") or r.get("texto") or ""),
+        ])
+
+    for i, c in enumerate(COLS_N1, 1):
+        ws.column_dimensions[get_column_letter(i)].width = LARG_N1[c]
+    ws.freeze_panes = "B2"
+    ws.auto_filter.ref = f"A1:{get_column_letter(len(COLS_N1))}{ws.max_row}"
+    col_pct = get_column_letter(COLS_N1.index("Precisão") + 1)
+    col_conv = get_column_letter(COLS_N1.index("Conversa") + 1)
+    for linha in range(2, ws.max_row + 1):
+        ws[f"{col_pct}{linha}"].number_format = "0%"
+        ws[f"{col_conv}{linha}"].alignment = Alignment(wrap_text=True, vertical="top")
+    return len(sel), total
+
+
+def medir_n1(n1: list[dict]) -> dict:
+    """Os números do N1 para o resumo impresso. Denominadores separados de propósito.
+
+    `escalou` só tem denominador onde o flag existe (de 07/10/2026): contar as conversas
+    de setembro como "não escalou" inventaria um denominador e puxaria a taxa para
+    baixo — foi assim que a primeira medição saiu 47,5% em vez de 54,9% em outubro.
+    """
+    com_flag = [r for r in n1 if r.get("escalou_n2") is not None]
+    return {
+        "total": len(n1),
+        "resolvido": sum(1 for r in n1 if r.get("resultado") == "Resolvido"),
+        "lacuna": sum(1 for r in n1 if r.get("lacuna_kb") == "Sim"),
+        "com_modulo": sum(1 for r in n1 if r.get("modulo")),
+        "com_chamado": sum(1 for r in n1 if r.get("chamado_id")),
+        "flag_base": len(com_flag),
+        "escalou": sum(1 for r in com_flag if r["escalou_n2"]),
+    }
+
+
 # ─────────────────────── Cobertura ───────────────────────
 
 def aba_cobertura(wb, regs, mods_desacordo):
@@ -758,6 +879,11 @@ def main() -> int:
     aba_resumo(wb, regs, tax, a.de, a.ate, extracao, a.amostra)
     n_ch, t_ch = aba_detalhe(wb, regs, "chamado", a.amostra)
     n_cv, t_cv = aba_detalhe(wb, regs, "conversa", a.amostra)
+    # O N1 entra aqui e em nenhum outro lugar: `regs` não o contém, então nenhuma camada
+    # do Resumo, nenhum percentual e nenhum denominador das outras abas se move.
+    n1 = carregar_n1(a.de, a.ate)
+    if n1:
+        n_n1, t_n1 = aba_robo_n1(wb, n1, a.amostra)
     # A Cobertura existe para avisar que um percentual é sobre parte do bloco. Com tudo
     # lido ela vira uma coluna de "100%" repetida, então sai — e a Legenda passa a
     # carregar a linha de cobertura, que é o que sobra de informativo.
@@ -775,6 +901,20 @@ def main() -> int:
     print(f"  {len(regs)} registros: {t_ch} chamados, {t_cv} conversas")
     print(f"  classificados: {lidos} ({pct(lidos, len(regs))}) | "
           f"falta: {len(regs) - lidos}")
+    if n1:
+        m = medir_n1(n1)
+        print(f"\n  Robô N1 (eixo próprio, fora dos números acima): "
+              f"{m['total']} conversas")
+        print(f"    resolvidas pelo robô: {m['resolvido']} "
+              f"({pct(m['resolvido'], m['total'])}) | "
+              f"lacuna na base: {m['lacuna']} ({pct(m['lacuna'], m['total'])})")
+        if m["flag_base"]:
+            print(f"    escalaram ao N2: {m['escalou']} de {m['flag_base']} "
+                  f"({pct(m['escalou'], m['flag_base'])}) — só onde o flag existe")
+        print(f"    viraram chamado no Bitrix: {m['com_chamado']} "
+              f"(já contados nas abas acima, canal \"Robô N1 (IA)\")")
+        print(f"    com módulo lido: {m['com_modulo']} "
+              f"({pct(m['com_modulo'], m['total'])})")
     if a.amostra:
         print(f"  AMOSTRA: abas de detalhe com {n_ch} e {n_cv} linhas")
     print(f"\n  {saida.resolve()}")

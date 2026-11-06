@@ -134,21 +134,36 @@ python pipeline/ler_pendentes.py preparar --de <de> --ate <ate>
 python pipeline/ler_pendentes.py absorver
 #    se um lote não fechar em 3 rodadas: absorver --parcial e entregar como prévia
 
-# 7. gerar o relatório do período (a janela é o ano corrente inteiro)
+# 7. o robô N1 — a única fonte que não vem do Bitrix
+#    Lê a planilha que o CronJob do N1 alimenta, com a MESMA conta de serviço do passo
+#    10. Classifica só o eixo MÓDULO, com o prompt do grupo D e a lista de
+#    modulo_por_rotulo.json: um vocabulário novo tornaria os eixos incomparáveis, e o
+#    assunto o N1 já entrega classificado por ele mesmo.
+#    SE QUALQUER PASSO DAQUI FALHAR, SIGA SEM ELE. A aba do N1 não sai e o resto do
+#    relatório fica intacto — `carregar_n1` devolve vazio quando o store não existe.
+#    O N1 é eixo lateral, não o entregável; derrubar o relatório humano por ele seria
+#    trocar o certo pelo acessório.
+python pipeline/coletar_n1.py
+python pipeline/classificar_n1.py status
+python pipeline/classificar_n1.py preparar
+#    ... classificar cada lote_N1_NNN.json com o prompt_N1.md ...
+python pipeline/classificar_n1.py absorver
+
+# 8. gerar o relatório do período (a janela é o ano corrente inteiro)
 python pipeline/gerar_relatorio_completo.py --de 2026-01-01 --ate <hoje>
 
-# 8. gerar o atendimento por pessoa (só se o usuário pediu, ou no job diário)
+# 9. gerar o atendimento por pessoa (só se o usuário pediu, ou no job diário)
 #    --dia é UM dia fechado, não a janela. De manhã, use ONTEM: o dia de hoje ainda
 #    não aconteceu, e pedir hoje devolve planilha quase vazia, que se lê como
 #    "ninguém atendeu".
 python pipeline/gerar_atendimento.py --dia <dia> --compara 10
 
-# 9. publicar o relatório na planilha do Google (~1 min para 49 mil linhas)
+# 10. publicar o relatório na planilha do Google (~1 min para 49 mil linhas)
 #    Conta de serviço no appsettings.json, API direta — NÃO o conector do Sheets:
 #    a aba Conversas tem 35 MB de texto e não cabe numa mensagem.
 python pipeline/publicar_relatorio.py
 
-# 10. registrar a série, agora que a leitura já aconteceu
+# 11. registrar a série, agora que a leitura já aconteceu
 #    COM --registrar, e só aqui: no passo 5 o número de leituras ainda é o de antes
 #    de ler, e gravá-lo deixaria o campo uma execução atrasado para sempre.
 python pipeline/serie_diaria.py --registrar
@@ -726,6 +741,76 @@ Três armadilhas que o mapa resolve e que voltam se alguém simplificar:
 Custo: o que ainda não foi lido recebe módulo junto com a leitura, sem passo extra.
 O custo **novo** é só releitura de registro já classificado cujo tema abrange vários
 módulos por definição — 4.566 registros em 30/10. A aba Cobertura separa os dois.
+
+#### A aba "Robô N1" — a única fonte que não é o Bitrix
+
+O robô de suporte do site (a IA do widget da V3, projeto `ultracar-support-ai`) guarda
+conversa em MongoDB sem API de listagem, mas um CronJob exporta cada conversa encerrada
+para uma planilha do Google. `coletar_n1.py` lê essa planilha com a **mesma conta de
+serviço** que `publicar_relatorio.py` usa para escrever — não há credencial nova; o id da
+planilha, que não é segredo, está no `appsettings.json`.
+
+**O N1 fica FORA de `regs` e de todo denominador.** Conversa do robô é fricção que não
+chegou ao suporte humano. Em 06/11/2026 eram 2.627 conversas contra 12.078 registros
+humanos na mesma janela: somar moveria o denominador de toda a série publicada em
+**+21,8%** sem que nada tivesse mudado no mundo real. `carregar_n1()` é um carregador
+próprio e `aba_robo_n1()` escreve uma aba própria; nenhuma camada do Resumo, nenhum
+percentual e nenhuma outra aba vê esses registros. Se algum dia alguém quiser somar, a
+decisão e os números estão em `tasks/n1_no_relatorio.md`.
+
+**Classificação: só o eixo módulo, com o prompt do grupo D.** O N1 já entrega o assunto
+classificado por ele mesmo (`Resultado`: resolvido, lacuna de conhecimento, encaminhado
+ao N2…) e um `Assunto` em texto livre. O que falta é o eixo transversal. `classificar_n1.py`
+importa o `CABECA_D` de `ler_pendentes.py` e a `modulos_validos` de
+`modulo_por_rotulo.json` em vez de copiar — duas cópias divergiriam na primeira edição, e
+um quinto vocabulário de tema tornaria os eixos incomparáveis, que é exatamente o que a
+seção do eixo módulo acima proíbe.
+
+**Três armadilhas desta fonte, todas medidas:**
+
+1. **A coluna I da planilha guarda duas coisas.** O cabeçalho de prod diz "Ticket", mas
+   desde outubro o código do N1 escreve ali o flag `escalatedToN2`. A virada está no
+   dado, não na documentação: até **06/10/2026** é número de chamado ou "N/A"; de
+   **07/10** em diante é "Encaminhado ao N2"/"N/A". Ler a coluna pelo nome do cabeçalho,
+   sem o corte de data, é bug garantido.
+2. **"N/A" antes da virada não quer dizer "não escalou"** — quer dizer "não abriu
+   chamado". Por isso `escalou_n2` é `None` em toda linha anterior a 07/10, inclusive nas
+   16 que já traziam o flag em 06/10, o dia em que as duas formas convivem: aproveitar as
+   escalações daquele dia e descartar os "N/A" dele contaria escalação sem contar o
+   contrário. Com o corte certo a taxa de outubro é 54,9%; com 01/10, 47,5%.
+3. **117 conversas já estão contadas como chamado.** Até 30/09 o robô abria chamado no
+   Bitrix, e esses 117 ids estão todos na base com canal "Robô N1 (IA)" — conferido,
+   117 de 117, zero fora do canal. Eles aparecem nas duas pontas de propósito: na aba
+   Chamados porque chegaram ao humano, e na aba do N1 com o número do chamado na coluna
+   `Chamado`, para serem filtráveis. **A comparabilidade quebra em 30/09**: antes o robô
+   abria chamado, depois ele encaminha ao N2, e o mesmo problema aparece em lugar
+   diferente.
+
+**Escalação só existe de 07/10/2026 em diante**, e são duas medidas diferentes: o flag do
+código (`escalou_n2`, 56,3% no período em que existe) e o handoff direto, em que o agente
+não tentou responder (`Resultado = "Encaminhado ao N2"`, 8,5%). Publicar só uma distorce.
+**O par "conversa do robô ↔ conversa humana que a recebeu" não é medível**: as conversas
+humanas da base têm `matriz` e `cnpj` vazios em 100% dos casos, só um nome de texto
+livre. Join por matriz + 4h deu 0 de 135. Se virar requisito, o caminho é o export do
+Bitrix passar a trazer um id de cliente.
+
+**Uma falha do N1 não derruba o relatório.** `carregar_n1()` devolve vazio quando o store
+não existe e a aba simplesmente não sai. É eixo lateral, não o entregável.
+
+#### Como registrar uma aba nova no relatório completo
+
+Quatro lugares, e esquecer o segundo dá `KeyError` na hora de salvar:
+
+1. A função da aba, com `wb.create_sheet(nome)`, e a chamada em `main()` — **a posição da
+   chamada define a ordem das abas** no arquivo.
+2. A lista de colunas **e** o dicionário de larguras. As abas de detalhe compartilham o
+   `larg` de `aba_detalhe`; uma aba com colunas próprias leva o seu (`COLS_N1`/`LARG_N1`
+   são o exemplo), justamente para não ter de alargar o dicionário comum.
+3. `formatar_planilha.py`: o conjunto `FIEL` são as abas que recebem formatação fiel,
+   célula por célula. Aba de detalhe **não** entra ali — o tratamento estrutural
+   (cabeçalho, largura, freeze, filtro) é o certo e é muito mais barato.
+4. `publicar_relatorio.py` não precisa de nada: `preparar_abas()` cria na planilha do
+   Google a aba que falta, a partir dos `sheetnames` do `.xlsx`.
 
 #### O que o chamado identifica, e quem o abriu
 

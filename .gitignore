@@ -61,6 +61,18 @@ pipeline/_naofiscal/amostra.json
 data/store/remetentes.json
 data/store/transcricoes.json
 
+# Espelho da planilha do CronJob do N1 (4 MB cada, e crescendo ~37 conversas por dia).
+# Fica de fora porque é cópia de fonte externa, refeita em segundos:
+#   python pipeline/coletar_n1.py
+# classificacao_n1.json NÃO entra aqui, pelo mesmo motivo que leitura_completa.json: é
+# julgamento de leitura e não se regenera. Como ele é indexado por id de conversa, a
+# classificação sobrevive a qualquer recoleta.
+# O risco conhecido: se algum dia o N1 podar linhas antigas da planilha, o espelho
+# encolhe junto e o histórico só existe no que já foi publicado. Se isso virar problema,
+# o lugar de resolver é um snapshot datado, não o git.
+data/store/n1_conversas.jsonl
+data/store/n1_transcricoes.json
+
 # ─── Segredos que NÃO entram no git ───────────────────────────────
 # local/sheets.env tem a chave privada da conta de serviço do Google
 # (ultracar-report-chat-ai@…), que escreve em toda planilha compartilhada
