@@ -767,3 +767,65 @@ e por isso o `gerar_atendimento.py`, que conta atendimento lendo esses rótulos,
 Resta um furo conhecido: depois de uma **transferência**, o autor das mensagens seguintes
 volta a cair em `(sistema)` mesmo sendo diálogo humano — 1.197 conversas. O
 `gerar_atendimento.py` contorna lendo também a linha de pick, que nomeia quem pegou.
+
+---
+
+# A planilha de acompanhamento da fila — ao vivo
+
+Terceiro produto, e o único que **não é retrospectivo**. Responde "quem está esperando
+agora", de hora em hora, numa planilha do Google:
+
+**https://docs.google.com/spreadsheets/d/1OMeE3bxuEhL3vInphdLKdOKEpDsCrQnROdJJmt4w2U8**
+
+```bash
+python pipeline/fila_agora.py                              # só o retrato, no terminal
+python pipeline/montar_planilha.py --saida abas.json       # monta todas as abas
+# depois, publicar abas.json na planilha com o conector do Sheets
+```
+
+**Não passa pelo pipeline e não classifica nada.** Lê a fila direto da API do Bitrix em
+segundos, sem custo de IA — é isso que torna viável rodar de hora em hora, enquanto o
+relatório diário leva minutos e paga leitura.
+
+## O corte que dá sentido ao número
+
+"Não concluído" e "não atendido" são coisas diferentes:
+
+- **Esperando** — sessão aberta e **ninguém do suporte falou ainda**. É cliente olhando
+  a tela agora, e é o número para agir.
+- **Em andamento** — aberta, mas alguém já respondeu. Boa parte é sessão que ninguém
+  encerrou.
+
+Em 06/11 10:46: 106 esperando, 136 em andamento. Entregar só "242 abertas" junta as duas
+e esconde a urgente.
+
+## Dois relógios, em abas separadas de propósito
+
+A fila de conversas se move em minutos; o backlog de chamados se move em meses (1.152
+abertos, mediana de 98 dias, 904 com mais de 30 dias). Juntos, um faz o outro parecer o
+que não é. Por isso o backlog tem aba própria e não entra no acompanhamento horário — de
+uma hora para outra ele não muda.
+
+## As abas de atendimento são importadas, não copiadas
+
+`montar_planilha.py` chama `metricas_do_dia` e `chamados_por_pessoa` do
+`gerar_atendimento.py`. **Nunca recalcule aqui.** Duas implementações da pergunta
+"quantas conversas o João atendeu ontem" dariam duas respostas, e ninguém saberia qual
+está certa.
+
+## Campos da API que já enganaram
+
+- O histórico vem em `result["message"]`, **não** `messages`, e é **dict** por id de
+  mensagem, não lista. Lendo `messages` o resultado foi "0 de 247 atendidas" — absurdo
+  que só não foi publicado porque conversa aberta há 25 h sem resposta não existe.
+- `tasks.task.list` devolve `{"result": {"tasks": [...]}}`, com o total em `total`. Lendo
+  `result` direto dá 24 chamados abertos quando são 1.152.
+- No bloco `users`, `connector=True` é o **cliente**; `senderid == "0"` é mensagem de
+  sistema e não conta como atendimento.
+- O paginador precisa de `start = j["next"]`. Sem essa linha ele refaz a página 1 para
+  sempre, e o sintoma é o script nunca terminar.
+
+## O que ainda não está feito
+
+A execução de hora em hora. Hoje é manual: rodar o `montar_planilha.py` e publicar. A aba
+`Fila por hora` já é append-only, pronta para receber uma linha por execução.
