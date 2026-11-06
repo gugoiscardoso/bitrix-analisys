@@ -1,29 +1,330 @@
 ---
 name: build-report
-description: Gera o relatório de suporte da Ultracar para um período — V2 e V3 num arquivo só, fiscal e não-fiscal, chamados e conversas de chat e WhatsApp. Coleta o que falta no Bitrix, lê e classifica só os registros novos, e produz o relatório em report/. O formato oficial é o de gerar_relatorio_completo.py; o relatório fiscal e o da V3 seguem existindo como saídas próprias. Use quando o usuário pedir para gerar ou atualizar o relatório de suporte, fiscal ou da V3, ou invocar /build-report.
+description: Relatórios do suporte Ultracar. Dois produtos. (1) O relatório de fricção do cliente — V2 e V3 num arquivo só, fiscal e não-fiscal, chamados e conversas de chat e WhatsApp, classificados por assunto e por módulo; sai de gerar_relatorio_completo.py. (2) O atendimento por pessoa — quantas conversas e chamados cada um atendeu num dia, com comparativo; sai de gerar_atendimento.py. Coleta o que falta no Bitrix, atualiza o status dos chamados abertos, lê e classifica só os registros novos. O relatório fiscal e o da V3 seguem existindo como saídas próprias. Use quando o usuário pedir para gerar ou atualizar o relatório de suporte, fiscal ou da V3, pedir atendimento ou produtividade por pessoa ou por atendente, ou invocar /build-report.
 ---
 
 # build-report
 
-Gera o relatório de fricção fiscal para uma janela de datas.
+Dois produtos, que respondem perguntas diferentes e por isso são arquivos separados:
 
-**Argumentos:** `--de <yyyy-MM-dd>` (obrigatório) e `--ate <yyyy-MM-dd>` (padrão: hoje).
-Aceite também linguagem natural do usuário ("junho", "últimos 3 meses") e converta.
+| O que o usuário pede | Arquivo | Seção |
+|---|---|---|
+| relatório do suporte, do período, fiscal, não-fiscal, por módulo | `gerar_relatorio_completo.py` | **[O FORMATO OFICIAL](#o-formato-oficial--use-este)** |
+| atendimento, produtividade, chamados ou conversas por pessoa | `gerar_atendimento.py` | **[Atendimento por pessoa](#atendimento-por-pessoa--gerar_atendimentopy)** |
 
-**Saída:** exatamente dois arquivos em `report/`, com o período no nome.
+O primeiro conta **fricção do cliente**: o que doeu e onde. O segundo conta **trabalho da
+equipe**: quem atendeu quanto. Não os misture num arquivo só — juntos, convidam a ler um
+pelo outro, e volume de atendimento não diz nada sobre produto.
+
+## Comece aqui
+
+**Vá direto para [O FORMATO OFICIAL](#o-formato-oficial--use-este), que tem a ordem
+completa.** É o caminho a seguir, e o único que inclui o
+`atualizar_status.py`.
+
+O **apêndice no fim do arquivo** guarda o pipeline fiscal original: de onde vieram as
+decisões de taxonomia, cache e amostragem, e como saem o relatório fiscal e o da V3. A
+ordem dele está incompleta para o relatório de hoje — leia-o quando precisar entender
+*por que* algo é como é, não para saber *o que rodar*.
+
+**Argumentos.** No relatório, `--de` é **obrigatório** (o argparse aborta sem ele) e
+`--ate` tem default hoje — mas a janela entregue à gestão é **o ano corrente inteiro**,
+`--de 2026-01-01 --ate <hoje>`, não o período que o usuário mencionou de passagem. Se ele
+pedir um recorte menor, confirme: quase sempre quer o ano com um recorte destacado, não
+uma planilha de uma semana. No atendimento, `--dia` é **um dia fechado** — ontem, se a
+execução é de manhã.
+
+**Saída:** sempre em `report/`, com o período ou o dia no nome.
 Nunca escreva em `docs/` — lá ficam os artefatos curados por humano.
+
+## Quatro coisas que valem em qualquer execução
+
+Estão detalhadas em [Cuidados](#cuidados), no apêndice, mas valem para o pipeline de hoje
+igual, então ficam aqui:
+
+- **Não crie tema nem subgrupo durante uma execução.** A taxonomia é congelada; se algo
+  não encaixa, o rótulo é o de "não se encaixa". Quebrar isso quebra a comparabilidade com
+  tudo que já foi publicado.
+- **Entradas com `"fonte": "manual"` são curadoria humana e intocáveis.** O `absorver` já
+  as ignora; não contorne.
+- **Excel aberto faz o gerador morrer com "Permission denied"** — e ele grava por último,
+  depois de toda a leitura paga. Peça para fechar e rode de novo; nunca grave com outro
+  nome.
+- **Nunca edite `data/store/` à mão.** O `absorver` valida cada rótulo contra as
+  taxonomias; editar direto pula a validação, e já gravou rótulo inválido uma vez.
 
 ## Princípio que não pode ser violado
 
-O relatório precisa ser **reproduzível**: rodar o mesmo período duas vezes deve dar o mesmo
-resultado. A única fonte de variação é a IA, e ela é contida por três mecanismos já implementados
-— cache de classificação, taxonomia congelada e prompt gerado. **Nunca reclassifique um registro
-que já está no cache** e **nunca invente subgrupo fora da taxonomia**. Se algo não encaixa,
-o rótulo correto é "Outro / não se encaixa".
+O relatório precisa ser **reproduzível**: rodar o mesmo período duas vezes deve dar o
+mesmo resultado. A única fonte de variação é a IA, e ela é contida por três coisas:
 
-## Passos
+1. **O julgamento já feito nunca é refeito.** `data/store/leitura_completa.json` (e os
+   `classificacao*.json` do pipeline fiscal) guardam cada registro já classificado,
+   indexado pelo hash do texto. **Nunca reclassifique um registro que já está lá** — nem
+   para "melhorar". Recoletar o mesmo período não invalida nada, porque o hash é do texto.
+2. **A taxonomia é congelada.** **Nunca invente tema ou subgrupo fora dela.** Se algo não
+   encaixa, o rótulo é o de "não se encaixa". O `absorver` recusa o arquivo inteiro se um
+   rótulo não estiver na lista, e editar `data/store/` à mão pula essa validação.
+3. **O prompt é gerado**, não escrito à mão, e carrega os critérios de
+   `data/store/criterios_leitura.md` embutidos.
 
-### 1. Coletar o que falta
+**A exceção, que é honesto admitir:** a série é reprodutível **a critérios constantes**.
+Editar `criterios_leitura.md` muda os relatórios seguintes e **não** reclassifica o
+passado — de propósito, para não reescrever números já publicados. Então a mesma janela
+rodada antes e depois de uma edição de critério pode diferir, e a diferença está no
+histórico daquele arquivo.
+
+# O FORMATO OFICIAL — use este
+
+A partir de 30/10/2026 o relatório entregue à gestão é o de
+`gerar_relatorio_completo.py`: um arquivo só, V2 e V3 juntos, janela de um ano.
+Os geradores anteriores (`gerar_relatorio.py`, `gerar_conversas.py`,
+`gerar_chamados.py`, `gerar_executivo_naofiscal.py`, `gerar_relatorio_v3.py`)
+continuam funcionando e **não** devem ser apagados — o `gerar_relatorio_v3.py` ainda
+atende o pedido diário da V3, e os outros sustentam séries publicadas. Mas o relatório
+geral é este.
+
+## Antes da primeira execução
+
+Precisa de **.NET 10 SDK** e **Python 3.12+**, e do coletor compilado — o `.exe` do passo
+1 não existe antes do build:
+
+```bash
+pip install -r requirements.txt
+dotnet build Ultracar-Support-Bitrix-Analisys
+```
+
+## A ordem
+
+```
+# 1. coletar o que falta (minutos)
+#    --to é EXCLUSIVO: o filtro é <=CREATED_DATE com data sem hora, então o dia que
+#    --to nomeia fica de fora. Para incluir hoje, passe amanhã.
+./Ultracar-Support-Bitrix-Analisys/bin/Debug/net10.0/Ultracar-Support-Bitrix-Analisys.exe \
+    --mode all --from <AAAA-MM-DD> --to <dia seguinte ao último que quer incluir>
+
+# 2. quem falou cada mensagem (incremental; ~55 min do zero, minutos no dia a dia)
+#    Lê os ids dos exports CRUS, então roda logo após a coleta — não precisa esperar
+#    a consolidação. Era o contrário até 04/11 e por isso não achava nada.
+python pipeline/enriquecer_autores.py
+
+# 3. status atual dos chamados abertos (~20 chamadas de API, segundos)
+#    O merge dá o status do DIA DA COLETA, e a janela diária pega dois dias: sem este
+#    passo, chamado que fechou depois da última coleta fica aberto na planilha para
+#    sempre. Medido em 05/11: 84 dos 1.051 chamados abertos já estavam fechados.
+#    Grava `data/store/status_chamados.json`, que o passo 4 aplica como override.
+python pipeline/atualizar_status.py
+
+# 4. consolidar (minutos) — usa o passo 2 para montar as transcrições com autor
+python pipeline/consolidar_store.py
+
+# 5. conferir que nada regrediu, contra a última execução (segundos)
+#    Sai com 1 se registros, conversas V3 ou leituras tiverem caído. É o portão do
+#    bug do str(17.0); sem a série gravada ele não tinha com o que comparar e nunca
+#    disparava.
+python pipeline/serie_diaria.py --registrar
+
+# 6. ler o que falta
+#    A fila vive em data/store/_fila/leitura/ — NÃO em _fila/, que tem lixo de outro
+#    pipeline. Os grupos são A (conversa não-fiscal), B (chamado não-fiscal),
+#    C (fiscal) e D (só módulo), loteados SEPARADAMENTE em lotes de até 250.
+python pipeline/ler_pendentes.py status
+python pipeline/ler_pendentes.py preparar --de <de> --ate <ate>
+#    ... classificar cada lote_X_NNN.json com o prompt_X.md do mesmo grupo ...
+python pipeline/ler_pendentes.py absorver
+#    se um lote não fechar em 3 rodadas: absorver --parcial e entregar como prévia
+
+# 7. gerar o relatório do período (a janela é o ano corrente inteiro)
+python pipeline/gerar_relatorio_completo.py --de 2026-01-01 --ate <hoje>
+
+# 8. gerar o atendimento por pessoa (só se o usuário pediu, ou no job diário)
+#    --dia é UM dia fechado, não a janela. De manhã, use ONTEM: o dia de hoje ainda
+#    não aconteceu, e pedir hoje devolve planilha quase vazia, que se lê como
+#    "ninguém atendeu".
+python pipeline/gerar_atendimento.py --dia <dia> --compara 10
+```
+
+**Os arquivos saem em `report/`**, que está no .gitignore:
+
+```
+report/relatorio_completo_<de>_<ate>.xlsx
+report/atendimento_por_pessoa_<dia>.xlsx
+```
+
+Entregue com `SendUserFile` **e** escreva os caminhos absolutos em bloco de código na
+mensagem — se o envio falhar, o usuário fica sem o arquivo e sem saber onde ele está.
+Se o Excel estiver aberto no arquivo de destino, o `wb.save()` morre com "Permission
+denied" **depois** de toda a leitura paga: peça para fechar e rode o gerador de novo,
+nunca grave com outro nome.
+
+**O passo 3 (status) não é opcional, e é o único do pipeline que descreve o presente.** Todas
+as outras colunas do relatório contam o que aconteceu num dia e não mudam mais; `Status`
+conta onde o chamado está *agora*. Se ele não rodar, a planilha mostra chamado fechado
+como aberto, sem avisar — e um relatório que erra o que está aberto erra justamente a
+pergunta que a chefia faz primeiro. Ele pula quem já está em status final, então o custo
+não cresce com a série.
+
+O passo 6 se repete até `status` dizer `FALTA LER: 0`. O gerador **não** se recusa a
+rodar com leitura incompleta de propósito: ele mostra a cobertura no Resumo e cria a aba
+Cobertura **enquanto houver registro sem tema ou sem módulo**. Com tudo classificado ela
+sai do arquivo — seria uma coluna de "100%" repetida — e a linha de cobertura fica na
+Legenda. Isso é o que permite entregar uma prévia antes de pagar a leitura.
+
+Atenção a um descasamento: a linha "classificados" conta só tema, e a aba Cobertura nasce
+de tema **ou** módulo faltando. Registro com tema e sem módulo dá 100,0% **com** aba
+Cobertura. Se os dois sinais discordarem, descubra qual registro é — não escolha um.
+
+## Como classificar um lote
+
+Entregue a um subagente por lote, com este contrato:
+
+- lê `prompt_X.md` e `lote_X_NNN.json` de **`data/store/_fila/leitura/`**, grava
+  `resp_X_NNN.json` no mesmo diretório, em UTF-8 **sem BOM**;
+- a resposta tem exatamente os ids do lote, nem um a mais nem a menos;
+- `tema` e `modulo` são cópia **exata** dos rótulos — o jeito que funcionou em 69 de
+  69 lotes foi o agente montar o JSON por um script que LÊ os rótulos do próprio
+  prompt, em vez de digitar strings acentuadas;
+- peça também: as dúvidas reais (no máximo 3) e, se vários clientes tiveram o mesmo
+  defeito, o defeito, o número do chamado e a faixa de ids. **Foi daí que saiu o
+  catálogo de incidentes** — o maior valor do último relatório não estava no escopo.
+
+**Quatro a seis subagentes simultâneos, não mais.** Em 30/10 subi para nove e o limite
+de sessão derrubou seis de uma vez. Custou dois minutos só porque a fila se retoma do
+disco — ver `tasks/lessons.md`.
+
+## Onde moram as decisões
+
+| Arquivo | O que guarda |
+|---|---|
+| `data/store/criterios_leitura.md` | **os critérios de fronteira**, injetados em todo prompt |
+| `data/store/modulo_por_rotulo.json` | mapa determinístico rótulo → módulo |
+| `data/store/leitura_completa.json` | o resultado da leitura; **não se regenera** |
+| `data/store/taxonomia*.json` | as quatro listas de tema |
+
+`criterios_leitura.md` é o arquivo que faz a série não variar por leitor. Ele nasceu
+porque em 30/10 cada lote esbarrou nos mesmos casos de fronteira e resolveu do seu
+jeito até a regra ser escrita — os primeiros lotes ficaram mais frouxos que os
+últimos, e isso é uma limitação real daquele relatório. Editar esse arquivo muda os
+relatórios seguintes e **não** reclassifica o passado.
+
+## O que NÃO está versionado, e por quê
+
+`data/raw/` (os exports), `base_historica.jsonl` (47 MB), `remetentes.json` (19 MB) e
+`transcricoes.json` (50 MB) ficam fora por tamanho, e só porque se refazem: o
+`remetentes.json` sai do `enriquecer_autores.py`, e a base e as transcrições saem do
+`consolidar_store.py`. **Um clone limpo não tem os exports** — precisa recoletar, que é o
+passo mais longo. Tudo o que envolve julgamento está no repositório.
+
+## Atendimento por pessoa — `gerar_atendimento.py`
+
+```bash
+python pipeline/gerar_atendimento.py --dia 2026-11-05 --compara 10
+```
+
+Pergunta diferente da do relatório principal, e por isso arquivo separado: o relatório
+conta **fricção do cliente**, este conta **trabalho da equipe**. Misturar os dois numa
+planilha convida a ler um pelo outro.
+
+**Quem atendeu** sai de três fontes na transcrição: a fala (`Atendente (Nome)`), o pick
+(`Nome picked conversation`) e a transferência. As duas primeiras contam; a terceira
+**não** — conversa roteada para quem nunca a pegou não é atendimento dela. Em 05/11, 105
+das 218 conversas atendidas só tinham o nome no pick, porque o autor das mensagens se
+perde depois de uma transferência; exigir a fala descartaria metade do atendimento real.
+
+**O campo `operador` da base não serve para isto.** Ele é quem está atribuído, não quem
+atendeu: em 05/11 aponta duas pessoas em 478 das 484 conversas, e em 371 delas ninguém
+falou.
+
+**O arquivo abre com quem estava fora da fila**, calculado (quem atendeu 15+ em dois dos
+dias anteriores e ≤2 no dia). Isso não é enfeite: uma coluna de volume por pessoa, lida
+sozinha, faz parecer que quem ficou produziu pouco, quando o que explica o dia é quem não
+estava. Em 05/11 foram quatro pessoas com pico de 39 a 74 conversas/dia.
+
+Não mede tempo de atendimento, dificuldade nem qualidade — está escrito na aba Legenda,
+onde quem recebe o arquivo vai ler.
+
+### A aba de chamados, e a coluna que não existe
+
+`Chamados por pessoa` conta o trabalho feito NO chamado: concluiu, moveu no fluxo, mexeu
+no status, abriu, tocou. Tudo vem do `history` do export, que veio preenchido nos 3.782
+chamados — o bloco `comments` veio em 440, todos de 2025.
+
+**Não há coluna de "respondeu", e isso é achado, não limitação do script.** Comentário em
+chamado acabou em **27/11/2025**, confirmado de duas formas independentes: no `history`,
+os eventos `COMMENT` param nessa data enquanto todos os outros campos seguem até hoje; e
+por amostragem na API (`task.commentitem.getlist`), todo chamado sorteado de out/nov 2025
+tem comentário e nenhum de dez/2025 em diante tem. A resposta ao cliente migrou para o
+chat. Uma coluna zerada diria "ninguém respondeu", que é falso — por isso ela sai do
+arquivo com a explicação no lugar dela.
+
+O caminho `COMMENT` segue no código para que uma janela de 2025 ainda saia certa.
+
+**Fusos:** o `history` chega em `+03:00` (servidor do Bitrix) e o chamado em `-03:00`.
+São seis horas, que jogam o fim da tarde para o dia seguinte. Provado pelo histograma:
+cru, os eventos picam às 14h–22h; convertidos, às 8h–17h com a queda do almoço. Terceira
+vez que fuso quase corrompe uma série aqui.
+
+**Invariantes para conferir:** nenhuma coluna pode ser maior que `Chamados que tocou`, e
+nome com espaço duplo criaria duas linhas para a mesma pessoa (o Bitrix devolve "Alice
+Ribeiro" com dois espaços em alguns registros).
+
+### As quatro abas
+
+| Aba | O que responde |
+|---|---|
+| `Por pessoa` | conversas atendidas, mensagens e chamados abertos no dia; abre com quem estava fora da fila |
+| `Chamados por pessoa` | trabalho feito no chamado: concluiu, moveu no fluxo, mexeu no status, abriu, tocou |
+| `Comparativo` | a mesma contagem de conversas nos dez dias anteriores, com os totais do dia embaixo |
+| `Legenda` | de onde vem cada número e o que o arquivo **não** mede |
+
+As duas primeiras abas medem trabalhos diferentes e **não se somam por pessoa**: quem
+atende abre chamado, quem move e conclui é outro time. Em 05/11, os dois maiores da aba
+de chamados não aparecem na de conversas, e vice-versa.
+
+---
+
+# Isto roda sozinho todo dia
+
+A tarefa agendada `relatorio-suporte-diario` (cron `0 9 * * *`, dispara ~09:07) executa
+o pipeline oficial inteiro e entrega **os dois arquivos**. O prompt dela vive em
+`C:\Users\Lucas\.claude\scheduled-tasks\relatorio-suporte-diario\SKILL.md` e é
+auto-contido — ele não lê este arquivo.
+
+**Consequência: mudança no pipeline tem de ser aplicada nos dois lugares.** Se você
+acrescentar um passo aqui e não lá, o job de amanhã roda o pipeline antigo e ninguém
+percebe, porque ele entrega um arquivo que parece certo.
+
+Depois de mexer no pipeline, rode:
+
+```bash
+python pipeline/conferir_pipeline.py
+```
+
+Ele compara os comandos da ordem oficial acima com os do prompt da tarefa, acusa o que
+está num e não no outro, e sai com código 1 se divergirem. Também reclama de comando
+citado cujo arquivo não existe. Testado removendo um passo do job de propósito: aponta
+o comando pelo nome.
+
+O `consolidar_store.py` também imprime se o `status_chamados.json` existe — é a mesma
+ideia, dentro da execução.
+
+---
+
+# Apêndice — o pipeline fiscal/V2 original
+
+> Guardado porque é de onde vêm as decisões de cache, taxonomia congelada e
+> auditoria por amostra, e porque o relatório fiscal e o da V3 ainda saem
+> daqui. **Não é o caminho a seguir para o relatório de hoje** — a ordem dele
+> está em O FORMATO OFICIAL, acima, e esta não tem o passo de status nem a
+> série diária.
+
+> Esta seção documenta como o relatório fiscal foi construído e **por que** cache,
+> taxonomia congelada e auditoria por amostra existem. Ela segue valendo para o
+> relatório fiscal e o da V3. **Para o relatório de hoje, a ordem correta é a de
+> [O FORMATO OFICIAL](#o-formato-oficial--use-este)** — a de baixo não tem o
+> `atualizar_status.py` e deixaria a coluna Status mentindo.
+
+## 1. Coletar o que falta
 
 Leia `data/store/coleta.json` para saber a data da última coleta bem-sucedida.
 
@@ -86,8 +387,10 @@ até `absorver` imprimir "Classificação completa nas duas etapas".**
    Ele diz em qual etapa está. Se anunciar "ETAPA 2 de 2", **volte ao passo 1** — os lotes
    da segunda rodada já estão na fila.
 
-Lance no máximo 6 subagentes em paralelo. Se houver mais lotes, faça em ondas — disparar muitos
-de uma vez já estourou o limite de cota antes e derrubou 12 de 16 lotes.
+Lance os subagentes em ondas; o teto vale para os dois pipelines e está escrito uma única vez
+em **[Como classificar um lote](#como-classificar-um-lote)**: quatro a seis simultâneos. Já
+estourou duas vezes, com números diferentes (12 de 16 numa, 6 de 9 na outra) — o que a
+medição mais recente fixou é o teto, não o tamanho do estrago.
 
 A absorção grava lote a lote, então uma queda no meio não perde o que já entrou. Se algum lote
 falhar, relance só ele e rode `absorver` de novo. O estado da rodada fica em `_fila/etapa.json`.
@@ -284,9 +587,20 @@ skill não o toca.
 
 ## Custo
 
-Cada execução classifica só o que é novo — cerca de 170 chamados e 2.000 conversas fiscais por
-mês, algo em torno de 850 mil tokens numa execução mensal. Se o usuário estiver perto do limite
-de cota, avise antes de disparar os subagentes e ofereça reduzir a janela.
+Cada execução classifica só o que é novo, e é isso que mantém o custo baixo. Duas ordens
+de grandeza bem diferentes:
+
+- **Atualização diária** (o caso normal): algumas centenas de registros, loteados em 250
+  por grupo. Em 05/11 foram 451 pela manhã e 342 à tarde, 3 a 4 lotes cada. Minutos de
+  subagente, custo pequeno.
+- **Execução anual inicial, num clone limpo:** nenhuma. As 70 mil classificações estão
+  versionadas, então não se relê nada — só a parte mecânica, ~6 h de máquina. Ver o
+  `README.md`.
+- **Pipeline fiscal antigo, se alguém o rodar:** ~170 chamados e 2.000 conversas fiscais
+  por mês, algo em torno de 850 mil tokens numa execução mensal.
+
+Se o usuário estiver perto do limite de cota, avise **antes** de disparar os subagentes e
+ofereça reduzir a janela.
 
 ### 7. Varredura do ponto cego — `varrer_ponto_cego.py`
 
@@ -435,154 +749,16 @@ Uma mensagem por linha, com hora, para a aba Conversas. Três coisas que não s�
   corta "obrigad", que numa leitura humana é fala legítima do cliente. O filtro da
   transcrição só tira o que nenhuma pessoa escreveu. As transferências de fila FICAM.
 
-**O autor da mensagem não existe nos dados.** O exportador grava `AuthorType=System` em
-100% das 296 mil mensagens de todos os exports, porque lê `author_id`/`AUTHOR_ID`/
+**O autor da mensagem não vem no export — quem o recupera é o passo 2.** O exportador C#
+grava `AuthorType=System` em 100% das mensagens, porque lê `author_id`/`AUTHOR_ID`/
 `id_user` e o campo que `imopenlines.session.history.get` devolve chama-se **`senderid`**
-(`ConversationMessages.cs:40`). A correção é de uma linha, mas exige recoletar as
-conversas para o dado entrar nos exports.
+(`ConversationMessages.cs:41`). O C# nunca foi corrigido.
 
----
+Em vez de recoletar tudo, o `enriquecer_autores.py` (passo 2) busca os papéis direto na
+API e grava `remetentes.json`, que o `consolidar_store.py` usa para rotular cada linha da
+transcrição como `Cliente` ou `Atendente (Nome)`. **Por isso o passo 2 não é opcional** —
+e por isso o `gerar_atendimento.py`, que conta atendimento lendo esses rótulos, funciona.
 
-# O FORMATO OFICIAL — use este
-
-A partir de 30/10/2026 o relatório entregue à gestão é o de
-`gerar_relatorio_completo.py`: um arquivo só, V2 e V3 juntos, janela de um ano.
-Os geradores anteriores (`gerar_relatorio.py`, `gerar_conversas.py`,
-`gerar_chamados.py`, `gerar_executivo_naofiscal.py`, `gerar_relatorio_v3.py`)
-continuam funcionando e **não** devem ser apagados — o `gerar_relatorio_v3.py` ainda
-atende o pedido diário da V3, e os outros sustentam séries publicadas. Mas o relatório
-geral é este.
-
-## A ordem
-
-```
-# 1. coletar o que falta (minutos)
-./Ultracar-Support-Bitrix-Analisys/bin/Debug/net10.0/Ultracar-Support-Bitrix-Analisys.exe \
-    --mode all --from <AAAA-MM-DD> --to <AAAA-MM-DD>
-
-# 2. quem falou cada mensagem (incremental; ~55 min do zero, minutos no dia a dia)
-#    Lê os ids dos exports CRUS, então roda logo após a coleta — não precisa esperar
-#    a consolidação. Era o contrário até 04/11 e por isso não achava nada.
-python pipeline/enriquecer_autores.py
-
-# 3. status atual dos chamados abertos (~20 chamadas de API, segundos)
-#    O merge dá o status do DIA DA COLETA, e a janela diária pega dois dias: sem este
-#    passo, chamado que fechou depois da última coleta fica aberto na planilha para
-#    sempre. Medido em 05/11: 84 dos 1.051 chamados abertos já estavam fechados.
-#    Grava `data/store/status_chamados.json`, que o passo 4 aplica como override.
-python pipeline/atualizar_status.py
-
-# 4. consolidar (minutos) — usa o passo 2 para montar as transcrições com autor
-python pipeline/consolidar_store.py
-
-# 5. ler o que falta
-python pipeline/ler_pendentes.py status
-python pipeline/ler_pendentes.py preparar --de <de> --ate <ate>
-#    ... classificar cada lote_X_NNN.json com o prompt_X.md do mesmo grupo ...
-python pipeline/ler_pendentes.py absorver
-
-# 6. gerar
-python pipeline/gerar_relatorio_completo.py --de <de> --ate <ate>
-```
-
-**O passo 3 não é opcional, e é o único do pipeline que descreve o presente.** Todas
-as outras colunas do relatório contam o que aconteceu num dia e não mudam mais; `Status`
-conta onde o chamado está *agora*. Se ele não rodar, a planilha mostra chamado fechado
-como aberto, sem avisar — e um relatório que erra o que está aberto erra justamente a
-pergunta que a chefia faz primeiro. Ele pula quem já está em status final, então o custo
-não cresce com a série.
-
-O passo 5 se repete até `status` dizer `FALTA LER: 0`. O gerador **não** se recusa a
-rodar com leitura incompleta de propósito: ele mostra a cobertura no Resumo e cria a
-aba Cobertura. Isso é o que permite entregar uma prévia antes de pagar a leitura.
-
-## Como classificar um lote
-
-Entregue a um subagente por lote, com este contrato:
-
-- lê `prompt_X.md` e `lote_X_NNN.json`, grava `resp_X_NNN.json` em UTF-8 **sem BOM**;
-- a resposta tem exatamente os ids do lote, nem um a mais nem a menos;
-- `tema` e `modulo` são cópia **exata** dos rótulos — o jeito que funcionou em 69 de
-  69 lotes foi o agente montar o JSON por um script que LÊ os rótulos do próprio
-  prompt, em vez de digitar strings acentuadas;
-- peça também: as dúvidas reais (no máximo 3) e, se vários clientes tiveram o mesmo
-  defeito, o defeito, o número do chamado e a faixa de ids. **Foi daí que saiu o
-  catálogo de incidentes** — o maior valor do último relatório não estava no escopo.
-
-**Quatro a seis subagentes simultâneos, não mais.** Em 30/10 subi para nove e o limite
-de sessão derrubou seis de uma vez. Custou dois minutos só porque a fila se retoma do
-disco — ver `tasks/lessons.md`.
-
-## Onde moram as decisões
-
-| Arquivo | O que guarda |
-|---|---|
-| `data/store/criterios_leitura.md` | **os critérios de fronteira**, injetados em todo prompt |
-| `data/store/modulo_por_rotulo.json` | mapa determinístico rótulo → módulo |
-| `data/store/leitura_completa.json` | o resultado da leitura; **não se regenera** |
-| `data/store/taxonomia*.json` | as quatro listas de tema |
-
-`criterios_leitura.md` é o arquivo que faz a série não variar por leitor. Ele nasceu
-porque em 30/10 cada lote esbarrou nos mesmos casos de fronteira e resolveu do seu
-jeito até a regra ser escrita — os primeiros lotes ficaram mais frouxos que os
-últimos, e isso é uma limitação real daquele relatório. Editar esse arquivo muda os
-relatórios seguintes e **não** reclassifica o passado.
-
-## O que NÃO está versionado, e por quê
-
-`remetentes.json` (19 MB) e `transcricoes.json` (50 MB) ficam fora por tamanho, e só
-porque se refazem com os passos 2 e 3. Tudo o mais que envolve julgamento está no
-repositório.
-
-## Atendimento por pessoa — `gerar_atendimento.py`
-
-```bash
-python pipeline/gerar_atendimento.py --dia 2026-11-05 --compara 10
-```
-
-Pergunta diferente da do relatório principal, e por isso arquivo separado: o relatório
-conta **fricção do cliente**, este conta **trabalho da equipe**. Misturar os dois numa
-planilha convida a ler um pelo outro.
-
-**Quem atendeu** sai de três fontes na transcrição: a fala (`Atendente (Nome)`), o pick
-(`Nome picked conversation`) e a transferência. As duas primeiras contam; a terceira
-**não** — conversa roteada para quem nunca a pegou não é atendimento dela. Em 05/11, 105
-das 218 conversas atendidas só tinham o nome no pick, porque o autor das mensagens se
-perde depois de uma transferência; exigir a fala descartaria metade do atendimento real.
-
-**O campo `operador` da base não serve para isto.** Ele é quem está atribuído, não quem
-atendeu: em 05/11 aponta duas pessoas em 478 das 484 conversas, e em 371 delas ninguém
-falou.
-
-**O arquivo abre com quem estava fora da fila**, calculado (quem atendeu 15+ em dois dos
-dias anteriores e ≤2 no dia). Isso não é enfeite: uma coluna de volume por pessoa, lida
-sozinha, faz parecer que quem ficou produziu pouco, quando o que explica o dia é quem não
-estava. Em 05/11 foram quatro pessoas com pico de 39 a 74 conversas/dia.
-
-Não mede tempo de atendimento, dificuldade nem qualidade — está escrito na aba Legenda,
-onde quem recebe o arquivo vai ler.
-
-### A aba de chamados, e a coluna que não existe
-
-`Chamados por pessoa` conta o trabalho feito NO chamado: concluiu, moveu no fluxo, mexeu
-no status, abriu, tocou. Tudo vem do `history` do export, que veio preenchido nos 3.782
-chamados — o bloco `comments` veio em 440, todos de 2025.
-
-**Não há coluna de "respondeu", e isso é achado, não limitação do script.** Comentário em
-chamado acabou em **27/11/2025**, confirmado de duas formas independentes: no `history`,
-os eventos `COMMENT` param nessa data enquanto todos os outros campos seguem até hoje; e
-por amostragem na API (`task.commentitem.getlist`), todo chamado sorteado de out/nov 2025
-tem comentário e nenhum de dez/2025 em diante tem. A resposta ao cliente migrou para o
-chat. Uma coluna zerada diria "ninguém respondeu", que é falso — por isso ela sai do
-arquivo com a explicação no lugar dela.
-
-O caminho `COMMENT` segue no código para que uma janela de 2025 ainda saia certa.
-
-**Fusos:** o `history` chega em `+03:00` (servidor do Bitrix) e o chamado em `-03:00`.
-São seis horas, que jogam o fim da tarde para o dia seguinte. Provado pelo histograma:
-cru, os eventos picam às 14h–22h; convertidos, às 8h–17h com a queda do almoço. Terceira
-vez que fuso quase corrompe uma série aqui.
-
-**Invariantes para conferir:** nenhuma coluna pode ser maior que `Chamados que tocou`, e
-nome com espaço duplo criaria duas linhas para a mesma pessoa (o Bitrix devolve "Alice
-Ribeiro" com dois espaços em alguns registros).
+Resta um furo conhecido: depois de uma **transferência**, o autor das mensagens seguintes
+volta a cair em `(sistema)` mesmo sendo diálogo humano — 1.197 conversas. O
+`gerar_atendimento.py` contorna lendo também a linha de pick, que nomeia quem pegou.

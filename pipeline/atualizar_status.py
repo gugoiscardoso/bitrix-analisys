@@ -6,10 +6,13 @@ sobrescrever o mais velho, então o status de um chamado é o do dia em que ele 
 coletado pela última vez. A janela diária pega dois dias. Chamado de agosto que fechou
 em setembro continua "em andamento" na planilha para sempre.
 
-Medido em 05/11/2026, numa amostra de 88 chamados que a base dizia abertos: 85 seguiam
-abertos no Bitrix, 3 haviam fechado. A deriva é pequena — mas é pequena *hoje*, cresce
-sozinha, e custa 20 chamadas de API para zerar. A coluna Status é a única do relatório
-que descreve o presente e não o passado; se ela mentir, mente sem avisar.
+Medido em 05/11/2026: uma amostra de 88 chamados que a base dizia abertos sugeriu 3%
+de deriva, e o sweep completo dos 1.051 achou **84 já fechados — 8%**. A amostra era
+pequena demais, e fica o registro de que foi a medição completa, não a estimativa, que
+deu a resposta.
+
+A coluna Status é a única do relatório que descreve o presente e não o passado; se ela
+mentir, mente sem avisar. Custa ~20 chamadas de API para zerar.
 
 **Por que um arquivo próprio e não um patch na base:** `base_historica.jsonl` é derivado
 e o `consolidar_store.py` o reconstrói inteiro a cada rodada. Patch aplicado nele se

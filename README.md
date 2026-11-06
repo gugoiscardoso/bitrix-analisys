@@ -9,19 +9,26 @@ com os critérios de classificação e os cuidados, está em
 [`.claude/skills/build-report/SKILL.md`](.claude/skills/build-report/SKILL.md) — leia
 esse arquivo antes de rodar qualquer coisa.
 
+Há um segundo produto, que responde outra pergunta: `pipeline/gerar_atendimento.py` dá
+**quantas conversas e chamados cada pessoa atendeu** num dia, com comparativo dos dias
+anteriores. O relatório conta fricção do cliente; este conta trabalho da equipe. São
+arquivos separados de propósito — juntos, convidam a ler um pelo outro.
+
+Os dois saem sozinhos todo dia às 9h, pela tarefa agendada `relatorio-suporte-diario`.
+
 ---
 
 ## O que está no git e o que não está
 
 Esta é a decisão de projeto que mais importa entender:
 
-**Está versionado todo o julgamento.** São **70 mil classificações** acumuladas —
+**Está versionado todo o julgamento.** São **70.733 classificações** acumuladas —
 cada registro lido e rotulado por assunto e por módulo, mais as taxonomias e os
 critérios de fronteira. É o que custou caro e o que não se regenera:
 
 | Arquivo | Conteúdo |
 |---|---|
-| `data/store/leitura_completa.json` | 18.081 leituras (assunto + módulo) |
+| `data/store/leitura_completa.json` | 18.716 leituras (assunto + módulo) |
 | `data/store/classificacao.json` | 26.224 classificações fiscais |
 | `data/store/classificacao_nao_fiscal*.json` | 25.539 não-fiscais |
 | `data/store/classificacao_v3.json` | 254 da V3 |
@@ -57,17 +64,25 @@ Depois, o caminho completo. Os tempos são medidos, não estimados:
 # 2. quem falou cada mensagem         ~55 min do zero, incremental depois
 python pipeline/enriquecer_autores.py
 
-# 3. consolidar                       ~5 min
+# 3. status atual dos chamados abertos  segundos (~20 chamadas de API)
+#    Sem este passo a coluna Status fica a do dia da coleta, e chamado que fechou
+#    depois aparece como aberto. Medido em 05/11: 84 de 1.051 já estavam fechados.
+python pipeline/atualizar_status.py
+
+# 4. consolidar                       ~5 min
 python pipeline/consolidar_store.py
 
-# 4. conferir que nada ficou por ler  deve dizer FALTA LER: 0
+# 5. conferir que nada ficou por ler  deve dizer FALTA LER: 0
 python pipeline/ler_pendentes.py status
 
-# 5. gerar
-python pipeline/gerar_relatorio_completo.py --de 2026-01-01 --ate 2026-11-04
+# 6. gerar o relatório do período
+python pipeline/gerar_relatorio_completo.py --de 2026-01-01 --ate 2026-11-05
+
+# 7. e, se quiserem o atendimento por pessoa, UM dia fechado
+python pipeline/gerar_atendimento.py --dia 2026-11-05 --compara 10
 ```
 
-O passo 4 **tem de dar zero**. Se der mais que zero, são registros novos, e aí o
+O passo 5 **tem de dar zero**. Se der mais que zero, são registros novos, e aí o
 pipeline de leitura entra — está descrito no skill. Classificação já feita volta pelo
 cache: o hash é do texto, e recoletar o mesmo período não invalida nada (verificado em
 04/11, recoletando por cima de um dia já lido).

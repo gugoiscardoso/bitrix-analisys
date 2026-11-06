@@ -157,15 +157,19 @@ def metricas_do_dia(dia: str, conv: dict, tr: dict) -> dict:
             continue
         total += 1
         t = tr.get(i, "")
-        nomes_fala = FALA.findall(t)
-        nomes_pick = PICK.findall(t)
-        donos = {n.strip() for n in nomes_fala} | {n.strip() for n in nomes_pick}
+        # limpar_nome dos dois lados, igual aos chamados: hoje nenhum dos 27 nomes da
+        # transcrição tem espaço duplo, mas o do Bitrix tem, e é a mesma pessoa vindo
+        # das duas fontes. Normalizar num lado só deixaria a aba de conversas podendo
+        # duplicar alguém que a aba de chamados já unifica.
+        nomes_fala = [limpar_nome(n) for n in FALA.findall(t)]
+        nomes_pick = [limpar_nome(n) for n in PICK.findall(t)]
+        donos = set(nomes_fala) | set(nomes_pick)
         for n in donos:
             atendeu[n] += 1
-        for n in {x.strip() for x in nomes_fala}:
+        for n in set(nomes_fala):
             falou[n] += 1
         for n in nomes_fala:
-            msgs[n.strip()] += 1
+            msgs[n] += 1
         if donos:
             atendidas += 1
         elif not r.get("encerrada"):
@@ -197,7 +201,9 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dia", default=dt.date.today().isoformat())
     ap.add_argument("--compara", type=int, default=10,
-                    help="quantos dias úteis anteriores entram no comparativo")
+                    help="quantos dias ANTERIORES COM DADO entram no comparativo; "
+                         "não filtra fim de semana, então sábado e domingo aparecem "
+                         "com volume quase zero, e isso é o esperado")
     a = ap.parse_args()
 
     conv, tr = carregar()
