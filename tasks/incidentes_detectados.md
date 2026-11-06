@@ -813,3 +813,26 @@ bug de produto, não de cadastro nem da prefeitura.
 "Em processamento na prefeitura e a chave de acesso ainda não foi atribuída": 107835 (3
 dias), 298465, e 297931 (4 notas paradas do mês anterior, impedindo ativar o Portal
 Nacional).
+
+## Execução diária de 06/11 (lotes A_001, B_001 e C_001)
+
+187 registros novos (114 conversas não-fiscais, 4 chamados, 69 fiscais). Nenhum defeito
+novo de massa; o que aparece é continuação dos de 05/11.
+
+### "Falha na validação do JSON de NFe" — 4 clientes, agora com IBS/CBS
+298267, 298417, 299025, 299065, todos em NF-e de peças. Em 299065 o detalhe é
+`ibscbs.classificacao: Preenchimento obrigatório` — o mesmo parser de JSON das entradas
+de compra governamental, agora pedindo o bloco da Reforma. Nenhum dos 4 cita chamado.
+
+### Leiaute da Sefin Nacional e E0014 seguem
+`cvc-pattern-valid: Value '1401'`: 298371 (de novo), 298391, 298413. `E0014`: 298799,
+298989. A migração da NFS-e para o Portal Nacional domina o lote fiscal.
+
+### Placa que não digita nem puxa o veículo na OS — 2 clientes
+298381 e 299039. Pequeno, mas mesma assinatura em clientes diferentes.
+
+### Perguntas sobre a migração V2→V3 sem rótulo próprio
+298405, 298721, 298951, 298997, 299055 ("quando vou migrar", "é obrigatório?", "não
+enviaram o acesso"). Caem em acesso/plano/contrato por falta de tema; se crescer, é
+candidato a rótulo na próxima revisão da taxonomia. Campos da V2 que sumiram na V3:
+298263, 298347, 298495, 298703, 298939; e o chamado 107843 (campo prisma exige placa na V3).
