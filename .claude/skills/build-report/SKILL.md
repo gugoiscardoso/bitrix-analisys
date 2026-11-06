@@ -561,3 +561,28 @@ estava. Em 05/11 foram quatro pessoas com pico de 39 a 74 conversas/dia.
 
 Não mede tempo de atendimento, dificuldade nem qualidade — está escrito na aba Legenda,
 onde quem recebe o arquivo vai ler.
+
+### A aba de chamados, e a coluna que não existe
+
+`Chamados por pessoa` conta o trabalho feito NO chamado: concluiu, moveu no fluxo, mexeu
+no status, abriu, tocou. Tudo vem do `history` do export, que veio preenchido nos 3.782
+chamados — o bloco `comments` veio em 440, todos de 2025.
+
+**Não há coluna de "respondeu", e isso é achado, não limitação do script.** Comentário em
+chamado acabou em **27/11/2025**, confirmado de duas formas independentes: no `history`,
+os eventos `COMMENT` param nessa data enquanto todos os outros campos seguem até hoje; e
+por amostragem na API (`task.commentitem.getlist`), todo chamado sorteado de out/nov 2025
+tem comentário e nenhum de dez/2025 em diante tem. A resposta ao cliente migrou para o
+chat. Uma coluna zerada diria "ninguém respondeu", que é falso — por isso ela sai do
+arquivo com a explicação no lugar dela.
+
+O caminho `COMMENT` segue no código para que uma janela de 2025 ainda saia certa.
+
+**Fusos:** o `history` chega em `+03:00` (servidor do Bitrix) e o chamado em `-03:00`.
+São seis horas, que jogam o fim da tarde para o dia seguinte. Provado pelo histograma:
+cru, os eventos picam às 14h–22h; convertidos, às 8h–17h com a queda do almoço. Terceira
+vez que fuso quase corrompe uma série aqui.
+
+**Invariantes para conferir:** nenhuma coluna pode ser maior que `Chamados que tocou`, e
+nome com espaço duplo criaria duas linhas para a mesma pessoa (o Bitrix devolve "Alice
+Ribeiro" com dois espaços em alguns registros).

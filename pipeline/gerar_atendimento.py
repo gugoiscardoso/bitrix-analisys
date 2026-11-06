@@ -66,21 +66,83 @@ def carregar() -> tuple[dict, dict]:
     return conv, tr
 
 
-def chamados_por_pessoa() -> dict[str, collections.Counter]:
-    """dia -> {pessoa: chamados que ela abriu}. O creator é o analista que atendeu
-    o cliente; o responsible é sempre a mesma pessoa (a gestora), então não serve."""
-    vistos = {}
+BRT = dt.timezone(dt.timedelta(hours=-3))
+CONCLUIDA = "5"
+
+
+def limpar_nome(n: str | None) -> str:
+    """Nome em forma canônica. O Bitrix devolve o mesmo nome com espaço duplo em
+    alguns registros ("Alice  Ribeiro"), o que criaria duas linhas para uma pessoa."""
+    return re.sub(r"\s+", " ", (n or "").strip())
+
+
+def dia_brt(iso: str) -> str:
+    """Data em Brasília. O `history` do Bitrix vem em +03:00 e o chamado em -03:00:
+    seis horas de diferença, que jogam o fim da tarde para o dia seguinte se ignoradas.
+    Provado pelo histograma: cru, os eventos picam às 14h–22h; convertidos, às 8h–17h
+    com a queda do almoço — a forma de um dia de trabalho. Terceira vez que um fuso
+    quase corrompe uma série nesta base."""
+    return dt.datetime.fromisoformat(iso).astimezone(BRT).date().isoformat()
+
+
+def chamados_por_pessoa() -> dict[str, dict[str, collections.Counter]]:
+    """dia -> métrica -> {pessoa: nº de chamados}.
+
+    `abriu` vem do creator, que é o analista que atendeu o cliente — o responsible é
+    sempre a mesma pessoa (a gestora da fila de desenvolvimento) e não serve.
+
+    As outras três vêm do `history`, não do bloco `comments`: comments só veio
+    preenchido em 440 dos 3.782 chamados, enquanto o history veio em todos e registra
+    cada comentário e cada mudança de status com o autor e a hora.
+    """
+    envelopes = {}
     for arq in sorted(glob.glob(str(RAW / "bitrix_export_*.json"))):
         for td in json.loads(Path(arq).read_text(encoding="utf-8"))["tasks"]:
-            t = td.get("task") or {}
-            if t.get("id") is not None:
-                vistos[str(t["id"])] = t
-    por_dia: dict[str, collections.Counter] = collections.defaultdict(collections.Counter)
-    for t in vistos.values():
+            if (td.get("task") or {}).get("id") is not None:
+                envelopes[str(td["task"]["id"])] = td
+
+    # (dia, métrica) -> pessoa -> set de chamados. Conjunto, não contador: a pessoa que
+    # comenta cinco vezes no mesmo chamado atendeu um chamado, não cinco.
+    bruto: dict[tuple[str, str], dict[str, set]] = collections.defaultdict(
+        lambda: collections.defaultdict(set))
+
+    for tid, td in envelopes.items():
+        t = td["task"]
         d = (t.get("createdDate") or "")[:10]
-        nome = (t.get("creator") or {}).get("name")
+        nome = limpar_nome((t.get("creator") or {}).get("name"))
         if d and nome:
-            por_dia[d][nome] += 1
+            bruto[(d, "abriu")][nome].add(tid)
+            # Abrir é tocar. Sem esta linha, quem abriu um chamado cujos eventos de
+            # histórico são de outra pessoa aparecia com "tocou" vazio — acontece em
+            # 1,3% dos chamados, quando o campo creator e o evento de criação divergem.
+            bruto[(d, "tocou")][nome].add(tid)
+
+        for h in td.get("history") or []:
+            quando = h.get("createdDate")
+            u = h.get("user") or {}
+            quem = limpar_nome(f"{u.get('name') or ''} {u.get('lastName') or ''}")
+            if not quando or not quem:
+                continue
+            dh = dia_brt(quando)
+            campo = h.get("field")
+            bruto[(dh, "tocou")][quem].add(tid)
+            if campo == "STAGE":
+                bruto[(dh, "moveu_fluxo")][quem].add(tid)
+            elif campo == "STATUS":
+                if str((h.get("value") or {}).get("to")) == CONCLUIDA:
+                    bruto[(dh, "concluiu")][quem].add(tid)
+                else:
+                    bruto[(dh, "mexeu_status")][quem].add(tid)
+            elif campo in ("COMMENT", "COMMENT_EDIT"):
+                # Só existe até 27/11/2025: a equipe parou de comentar em chamado.
+                # Mantido para que uma janela antiga ainda saia certa.
+                bruto[(dh, "respondeu")][quem].add(tid)
+
+    por_dia: dict[str, dict[str, collections.Counter]] = collections.defaultdict(
+        lambda: collections.defaultdict(collections.Counter))
+    for (d, metrica), pessoas in bruto.items():
+        for quem, ids in pessoas.items():
+            por_dia[d][metrica][quem] = len(ids)
     return por_dia
 
 
@@ -192,11 +254,13 @@ def main() -> None:
     cols = ["Pessoa", "Conversas atendidas", "Das quais escreveu",
             "Mensagens enviadas", "Chamados abertos", "Total (conversas + chamados)"]
     cabecalho(ws, cols, linha=6)
-    pessoas = sorted(set(hoje["atendeu"]) | set(chamados.get(a.dia, {})),
-                     key=lambda n: (-(hoje["atendeu"][n] + chamados.get(a.dia, {}).get(n, 0)), n))
+    ch_dia = chamados.get(a.dia, {})
+    abriu = ch_dia.get("abriu", collections.Counter())
+    pessoas = sorted(set(hoje["atendeu"]) | set(abriu),
+                     key=lambda n: (-(hoje["atendeu"][n] + abriu[n]), n))
     r = 7
     for n in pessoas:
-        ch = chamados.get(a.dia, {}).get(n, 0)
+        ch = abriu[n]
         ws.cell(row=r, column=1, value=n)
         ws.cell(row=r, column=2, value=hoje["atendeu"][n])
         ws.cell(row=r, column=3, value=hoje["falou"][n])
@@ -206,13 +270,59 @@ def main() -> None:
         r += 1
     for j, v in ((1, "TOTAL"), (2, sum(hoje["atendeu"].values())),
                  (3, sum(hoje["falou"].values())), (4, sum(hoje["msgs"].values())),
-                 (5, sum(chamados.get(a.dia, {}).values())),
-                 (6, sum(hoje["atendeu"].values()) + sum(chamados.get(a.dia, {}).values()))):
+                 (5, sum(abriu.values())),
+                 (6, sum(hoje["atendeu"].values()) + sum(abriu.values()))):
         cel = ws.cell(row=r, column=j, value=v)
         cel.font, cel.fill = Font(bold=True), CINZA
     larguras(ws, [26, 20, 18, 18, 16, 20])
 
-    # ---------- aba 2: comparativo ----------
+    # ---------- aba 2: chamados ----------
+    wsc = wb.create_sheet("Chamados por pessoa")
+    wsc["A1"] = f"Chamados por pessoa — {a.dia[8:]}/{a.dia[5:7]}/{a.dia[:4]}"
+    wsc["A1"].font = Font(size=14, bold=True)
+    wsc["A2"] = ("Trabalho feito NO chamado: quem o movimentou e quem o concluiu. "
+                 "Abrir um chamado é registrar o problema; movê-lo no fluxo e concluí-lo "
+                 "é resolvê-lo, e em geral são pessoas diferentes.")
+    wsc["A2"].font = Font(italic=True, color="595959")
+    wsc["A3"] = ("Cada coluna conta CHAMADOS DISTINTOS, não eventos: mover o mesmo "
+                 "chamado cinco vezes é um chamado. As colunas não somam entre si — a "
+                 "mesma pessoa pode mover e concluir o mesmo chamado.")
+    wsc["A3"].font = Font(italic=True, color="595959")
+    if not ch_dia.get("respondeu") and a.dia >= "2025-12-01":
+        wsc["A4"] = ("NÃO HÁ coluna de 'respondeu': comentário em chamado acabou em "
+                     "27/11/2025 — conferido por amostragem na API, todo chamado de "
+                     "out/nov 2025 tem comentário e nenhum de dezembro em diante tem. "
+                     "A resposta ao cliente passou a acontecer no chat, que está na aba "
+                     "'Por pessoa'. Uma coluna zerada aqui diria 'ninguém respondeu', "
+                     "que é falso.")
+        wsc["A4"].font = Font(italic=True, color="9C0006")
+
+    colsc = ["Pessoa", "Concluiu", "Moveu no fluxo", "Mexeu no status", "Abriu",
+             "Chamados que tocou"]
+    cabecalho(wsc, colsc, linha=6)
+    metr = ["concluiu", "moveu_fluxo", "mexeu_status", "abriu", "tocou"]
+    quem_todos = {n for m in metr for n in ch_dia.get(m, {})}
+    ordem_c = sorted(quem_todos, key=lambda n: (-ch_dia.get("tocou", {}).get(n, 0),
+                                                -ch_dia.get("concluiu", {}).get(n, 0), n))
+    r = 7
+    for n in ordem_c:
+        wsc.cell(row=r, column=1, value=n)
+        for j, m in enumerate(metr, 2):
+            wsc.cell(row=r, column=j, value=ch_dia.get(m, {}).get(n, 0) or None)
+        r += 1
+    wsc.cell(row=r, column=1, value="TOTAL (chamados distintos)").font = Font(bold=True)
+    wsc.cell(row=r, column=1).fill = CINZA
+    for j, m in enumerate(metr, 2):
+        cel = wsc.cell(row=r, column=j, value=sum(ch_dia.get(m, {}).values()))
+        cel.font, cel.fill = Font(bold=True), CINZA
+    wsc.cell(row=r + 2, column=1, value=(
+        "Atenção: o TOTAL é a soma por pessoa, então um chamado em que duas pessoas "
+        "trabalharam conta duas vezes nessa linha. Para contar chamados únicos do dia, "
+        "use a aba Legenda."))
+    wsc.cell(row=r + 2, column=1).font = Font(italic=True, color="9C0006")
+    larguras(wsc, [26, 13, 12, 10, 17, 20])
+
+    # ---------- aba 3: comparativo ----------
     ws2 = wb.create_sheet("Comparativo")
     ws2["A1"] = "Conversas atendidas por pessoa, por dia"
     ws2["A1"].font = Font(size=14, bold=True)
@@ -263,6 +373,23 @@ def main() -> None:
          "Chamados criados por ela no dia. Vem do campo 'creator' do Bitrix, que é o "
          "analista que atendeu o cliente. O campo 'responsible' não serve: é sempre a "
          "mesma pessoa, a gestora da fila de desenvolvimento."),
+        ("Concluiu / Moveu no fluxo (aba Chamados)",
+         "'Concluiu' = chamados que a pessoa passou para o status concluída. 'Moveu no "
+         "fluxo' = chamados que ela moveu de etapa no quadro. É o trabalho feito NO "
+         "chamado, não a abertura dele: quem abre registra o problema, quem move e "
+         "conclui resolve. Conta chamados distintos, não eventos."),
+        ("Por que não há 'respondeu'",
+         "Comentário em chamado acabou em 27/11/2025. Conferido de duas formas: o "
+         "histórico registra comentários até essa data e nenhum depois, enquanto todos "
+         "os outros tipos de evento seguem até hoje; e por amostragem na API, todo "
+         "chamado sorteado de outubro e novembro de 2025 tem comentário, e nenhum de "
+         "dezembro de 2025 em diante tem. A resposta ao cliente passou para o chat, que "
+         "é a aba 'Por pessoa'. Uma coluna zerada diria 'ninguém respondeu', que é falso."),
+        ("De onde vêm os números dos chamados",
+         "Do histórico de cada chamado, que veio preenchido em todos os 3.782 — o bloco "
+         "de comentários veio em apenas 440, e todos de 2025. As horas do histórico "
+         "chegam no fuso do servidor (+03:00) e são convertidas para Brasília; sem isso "
+         "o fim da tarde cairia no dia seguinte."),
         ("Por que não usamos o campo 'operador'",
          "'Operador' é quem está atribuído à conversa, não quem atendeu. Ele aponta a "
          "primeira linha da fila em quase toda conversa, inclusive nas que ninguém "
