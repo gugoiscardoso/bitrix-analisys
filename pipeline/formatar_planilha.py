@@ -27,7 +27,7 @@ from openpyxl.utils import get_column_letter
 
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "pipeline"))
-from publicar_relatorio import com_repeticao, servico  # noqa: E402
+from publicar_relatorio import com_repeticao, mais_recente, servico  # noqa: E402
 
 # Abas pequenas: formatação fiel, célula a célula. Grandes: por regra.
 FIEL = {"Resumo", "Legenda"}
@@ -146,6 +146,18 @@ def pedidos_estruturais(ws, sheet_id: int, n_col: int, n_lin: int) -> list[dict]
             "cell": {"userEnteredFormat": {"wrapStrategy": "CLIP",
                                            "verticalAlignment": "TOP"}},
             "fields": "userEnteredFormat(wrapStrategy,verticalAlignment)"}})
+    if "Precisão" in cab:
+        j = cab.index("Precisão")
+        # O número é fração (0,8), e só o formato o mostra como 80%. O `number_format`
+        # do openpyxl não atravessa para cá: aba grande recebe regra, não formatação
+        # fiel. Sem isto a coluna é publicada como "0,8" e se lê como oito décimos de
+        # alguma coisa — a aba do N1 saiu assim na primeira publicação, em 06/11/2026.
+        fora.append({"repeatCell": {
+            "range": {"sheetId": sheet_id, "startRowIndex": 1,
+                      "startColumnIndex": j, "endColumnIndex": j + 1},
+            "cell": {"userEnteredFormat": {
+                "numberFormat": {"type": "PERCENT", "pattern": "0%"}}},
+            "fields": "userEnteredFormat.numberFormat"}})
     return fora
 
 
@@ -185,8 +197,9 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--arquivo")
     a = ap.parse_args()
-    caminho = Path(a.arquivo) if a.arquivo else Path(
-        sorted(glob.glob(str(RAIZ / "report" / "relatorio_completo_*.xlsx")))[-1])
+    # Mesma escolha do publicador, e pelo mesmo motivo: ordem alfabética fazia a prévia
+    # vencer o arquivo real da mesma janela. Ver `mais_recente` lá.
+    caminho = Path(a.arquivo) if a.arquivo else mais_recente()
     svc, cfg = servico()
     n = aplicar(svc, cfg["ReportSpreadsheetId"], caminho)
     print(f"\n{n} requisições aplicadas")

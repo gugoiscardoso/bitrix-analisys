@@ -208,6 +208,27 @@ somar os dois eixos apagaria a informação em vez de criá-la.
 Isto é a primeira coisa que o relatório passa a responder e antes não respondia: não
 "quantas conversas o robô atendeu", mas *em que o robô é acionado que o humano não é*.
 
+## Publicado, e dois bugs que a publicação revelou
+
+Publicado em 06/11/2026 na planilha de sempre: aba "Robô N1" com 2.627 linhas, 17
+colunas, congelamento e filtro. As abas humanas seguem intactas (3.229 chamados, 45.782
+conversas).
+
+Dois defeitos apareceram no caminho, **nenhum deles causado pelo N1** — a aba nova só os
+expôs:
+
+1. **O publicador escolhia o arquivo por ordem alfabética**, não por data
+   (`sorted(glob(...))[-1]`). Como `"_"` vem depois de `"."`, o `..._PREVIA.xlsx` SEMPRE
+   vencia o arquivo real da mesma janela. Qualquer prévia da janela corrente deixava a
+   próxima publicação — inclusive **o job das 9h, que roda sem argumento** — subindo
+   25 linhas de amostra sobre a planilha que a gestão lê. Agora é data de modificação, e
+   prévia não é candidata. `formatar_planilha.py` tinha a mesma linha e aponta para a
+   mesma função.
+2. **`Precisão` era publicada como `0,8`** em vez de `80%`. O `number_format` do openpyxl
+   não atravessa para o Google: aba grande recebe regra, não formatação fiel. Resolvido
+   com uma regra de formato por nome de coluna, no mesmo padrão que o `CLIP` da coluna
+   `Conversa` já usava.
+
 ## O que foi implementado (06/11/2026)
 
 - [x] **`pipeline/coletar_n1.py`** — lê a planilha com a conta de serviço existente,

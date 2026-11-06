@@ -178,6 +178,35 @@ def escrever(svc, sid: str, nome: str, linhas: list[list]) -> None:
         print(f"    {enviadas}/{len(linhas)}", flush=True)
 
 
+def mais_recente() -> Path:
+    """O relatório completo mais novo, por data de modificação e nunca uma prévia.
+
+    Era `sorted(glob(...))[-1]`, ordem alfabética, e isso errava de duas formas que só
+    apareceram em 06/11/2026:
+
+    1. **A prévia ganhava do arquivo real da mesma janela.** `--amostra` grava com
+       sufixo `_PREVIA`, e `"_"` (0x5F) vem depois de `"."` (0x2E): entre
+       `relatorio_completo_2026-01-01_2026-11-06.xlsx` e o `..._PREVIA.xlsx`, o último
+       da lista era SEMPRE a prévia. Quem gerasse uma prévia da janela corrente deixava
+       o publicador seguinte — inclusive o job das 9h, que roda sem argumento —
+       publicando 25 linhas de amostra sobre a planilha que a gestão lê.
+    2. **Janela diferente ganhava de janela mais nova.** `_2026-08-27_...` ordena depois
+       de `_2026-01-01_...`, então um recorte curto de teste vencia o relatório do ano.
+
+    Data de modificação é o que "mais recente" quer dizer, e prévia não é candidata a
+    publicação: o sufixo existe justamente para dizer que o arquivo está incompleto.
+    """
+    todos = glob.glob(str(RAIZ / "report" / "relatorio_completo_*.xlsx"))
+    candidatos = [Path(p) for p in todos if "_PREVIA" not in Path(p).name]
+    if not candidatos:
+        raise SystemExit(
+            "Não achei relatório completo em report/.\n"
+            "  (Prévias com sufixo _PREVIA são ignoradas de propósito: são amostra.)\n"
+            "  Rode `python pipeline/gerar_relatorio_completo.py --de … --ate …` sem "
+            "--amostra, ou passe --arquivo.")
+    return max(candidatos, key=lambda p: p.stat().st_mtime)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--arquivo")
@@ -188,8 +217,7 @@ def main() -> None:
                     help="só os valores; útil para republicar rápido sem mexer no visual")
     a = ap.parse_args()
 
-    caminho = Path(a.arquivo) if a.arquivo else Path(
-        sorted(glob.glob(str(RAIZ / "report" / "relatorio_completo_*.xlsx")))[-1])
+    caminho = Path(a.arquivo) if a.arquivo else mais_recente()
     print(f"lendo {caminho.name} ({caminho.stat().st_size / 1e6:.1f} MB)")
     abas = ler_xlsx(caminho, a.sem_transcricao)
     if a.abas:
