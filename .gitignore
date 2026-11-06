@@ -60,3 +60,10 @@ pipeline/_naofiscal/amostra.json
 # leitura_completa.json NÃO entra aqui: é julgamento de leitura, não se regenera.
 data/store/remetentes.json
 data/store/transcricoes.json
+
+# ─── Segredos que NÃO entram no git ───────────────────────────────
+# local/sheets.env tem a chave privada da conta de serviço do Google
+# (ultracar-report-chat-ai@…), que escreve em toda planilha compartilhada
+# com ela — inclusive a do N1. O id da planilha, que não é segredo, fica
+# versionado no appsettings. Para repor num clone novo, veja o README.
+local/

@@ -98,20 +98,23 @@ coleta — veja `data/store/coleta.json`. Leva minutos em vez de horas.
 
 ## Antes de clonar isto para outro lugar
 
-**`Ultracar-Support-Bitrix-Analisys/appsettings.json` tem dois segredos dentro, e eles
-não têm o mesmo peso:**
+**`Ultracar-Support-Bitrix-Analisys/appsettings.json` está no repositório com o token
+do webhook do Bitrix dentro.** Quem tiver o clone tem acesso de **leitura** ao Bitrix da
+Ultracar.
 
-1. **O token do webhook do Bitrix**, versionado — acesso de **leitura** ao Bitrix.
-2. **A chave privada da conta de serviço do Google** `ultracar-report-chat-ai@…`, a
-   mesma do relatório do N1 — acesso de **escrita** a toda planilha compartilhada com
-   ela, hoje a do N1 e a do relatório completo. Posta ali em 06/11/2026.
+A outra credencial do projeto, a da conta de serviço do Google, **não está versionada**:
+ela vive em `local/sheets.env`, que está no `.gitignore`. A diferença entre as duas não é
+capricho — o token do Bitrix só lê; a chave do Google **escreve** em toda planilha
+compartilhada com a conta `ultracar-report-chat-ai@…`, inclusive a do relatório do N1,
+que não é deste projeto.
 
-A chave do Google **não está versionada**: o classificador de segurança recusa commitar
-chave privada, e a recusa está certa. Consequência prática: **um clone novo não publica
-na planilha até alguém pôr a chave de volta** no appsettings — ela está no
-`launchSettings.json` do repositório do `ultracar-support-ai`.
+**Num clone novo, o `publicar_relatorio.py` não roda até alguém repor a chave.** Ele diz
+isso com todas as letras quando falta, e o valor está em
+`ultracar-support-ai/Infrastructure.EndInactiveConversations.Job/Properties/launchSettings.json`,
+na variável `GOOGLE_SHEETS_CREDENTIALS_JSON`. O id da planilha, que não é segredo, segue
+no appsettings.
 
-O resto deste aviso vale para o token do Bitrix.
+
 
 Isso é conveniente — a coleta funciona sem configurar nada — e é um segredo versionado.
 

@@ -35,6 +35,7 @@ import argparse
 import datetime as dt
 import glob
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -52,10 +53,44 @@ TENTATIVAS = 4
 COLUNA_PESADA = "Conversa"     # ~90% do peso do arquivo
 
 
+ENV_LOCAL = RAIZ / "local" / "sheets.env"
+VAR = "GOOGLE_SHEETS_CREDENTIALS_JSON"
+
+
+def credencial() -> dict:
+    """A chave da conta de serviço, do ambiente ou de `local/sheets.env`.
+
+    Fora do repositório de propósito: é chave PRIVADA, e quem a tem escreve em toda
+    planilha compartilhada com a conta — hoje a do relatório e a do N1. O id da
+    planilha, que não é segredo, fica no appsettings versionado.
+
+    O nome da variável é o mesmo que o `ultracar-support-ai` usa, para quem já conhece
+    um projeto reconhecer o outro.
+    """
+    bruto = os.environ.get(VAR)
+    if not bruto and ENV_LOCAL.exists():
+        for linha in ENV_LOCAL.read_text(encoding="utf-8").splitlines():
+            linha = linha.strip()
+            if linha.startswith(f"{VAR}="):
+                bruto = linha[len(VAR) + 1:]
+                break
+    if not bruto:
+        raise SystemExit(
+            f"Não achei a credencial.\n"
+            f"  Esperava {VAR} no ambiente ou em {ENV_LOCAL}.\n"
+            f"  O arquivo não é versionado; num clone novo, copie o valor de\n"
+            f"  ultracar-support-ai/Infrastructure.EndInactiveConversations.Job/\n"
+            f"  Properties/launchSettings.json")
+    try:
+        return json.loads(bruto)
+    except json.JSONDecodeError as e:
+        raise SystemExit(f"{VAR} não é JSON válido: {e}")
+
+
 def servico():
     cfg = json.loads(CONFIG.read_text(encoding="utf-8"))["GoogleSheets"]
     cred = service_account.Credentials.from_service_account_info(
-        cfg["CredentialsJson"], scopes=ESCOPO)
+        credencial(), scopes=ESCOPO)
     return build("sheets", "v4", credentials=cred, cache_discovery=False), cfg
 
 
