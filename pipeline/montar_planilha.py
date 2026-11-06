@@ -25,6 +25,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "pipeline"))
 
+import atendimento_ao_vivo                                             # noqa: E402
 from fila_agora import BRT, ler_fila                                    # noqa: E402
 from gerar_atendimento import (carregar, chamados_por_pessoa,           # noqa: E402
                                metricas_do_dia)
@@ -106,7 +107,7 @@ def aba_backlog(f: dict) -> list[list]:
     return l
 
 
-def abas_atendimento(dia: str, compara: int) -> dict[str, list[list]]:
+def abas_atendimento(dia: str, compara: int, dia_vivo: str) -> dict[str, list[list]]:
     conv, tr = carregar()
     chamados = chamados_por_pessoa()
     dias_com_dado = sorted({r["data"][:10] for r in conv.values()
@@ -117,34 +118,54 @@ def abas_atendimento(dia: str, compara: int) -> dict[str, list[list]]:
     ch_dia = chamados.get(dia, {})
     abriu = ch_dia.get("abriu", {})
 
-    rot = f"{dia[8:]}/{dia[5:7]}/{dia[:4]}"
-    pessoas = sorted(set(m["atendeu"]) | set(abriu),
-                     key=lambda n: (-(m["atendeu"][n] + abriu.get(n, 0)), n))
+    # A aba por pessoa vem da API, NÃO da base. A base está limitada na origem: o
+    # coletor C# guarda no máximo 50 mensagens por sessão, então a transcrição nasce
+    # truncada e a contagem de atendimento subconta conversa longa — justamente a mais
+    # atendida. A API, paginada, não tem esse teto.
+    vivo = atendimento_ao_vivo.ler(dia_vivo, dt.datetime.now(BRT))
+    rotv = f"{dia_vivo[8:]}/{dia_vivo[5:7]}/{dia_vivo[:4]}"
+    # Os sumarizadores em linhas próprias, cada número na coluna B, para poderem ser
+    # formatados grandes. Em frase corrida ninguém acha o número que importa.
     por_pessoa: list[list] = [
-        [f"Conversas por pessoa — {rot}"],
-        [f"{m['total']} conversas abertas no dia · {m['atendidas']} atendidas · "
-         f"{m['abertas_sem_atend']} ficaram abertas sem ninguém atender"],
-        ["Atendeu = escreveu na conversa OU pegou a conversa da fila. Conversa "
-         "transferida para quem nunca a pegou não conta para essa pessoa."],
-        # Sem esta linha, quem lê vê o cabeçalho dizer 262 e o TOTAL dizer 267 e
-        # conclui que um dos dois está errado. A diferença é proposital.
-        [f"A soma da coluna ({sum(m['atendeu'].values())}) passa do total do dia "
-         f"({m['atendidas']}) porque conversa transferida conta para as duas pessoas "
-         "que a atenderam — é atendimento das duas."],
-        ["Pessoa", "Conversas atendidas", "Das quais escreveu", "Mensagens enviadas",
-         "Chamados abertos"],
+        [f"Atendimentos por pessoa — AO VIVO, {rotv}"],
+        [VAZIO],
+        ["CLIENTES NA FILA SEM NINGUÉM", vivo["na_fila"]],
+        ["Atendendo agora", sum(vivo["atendendo"].values())],
+        ["Concluídas hoje", sum(vivo["concluiu"].values())],
+        ["Conversas no dia", vivo["total"]],
+        ["Pessoas atendendo", len(vivo["atendeu"])],
+        [VAZIO],
+        [f"Atualizado em {dt.datetime.now(BRT):%d/%m/%Y %H:%M} · lido direto da API do "
+         "Bitrix, com paginação completa do histórico. Não depende do relatório diário."],
+        ["ATENDENDO = conversa ainda aberta em que a pessoa falou. CONCLUIU = conversa "
+         "já encerrada em que ela falou. Quem transferiu e nunca falou não conta."],
+        [VAZIO],
+        ["Pessoa", "Atendendo agora", "Concluiu", "Total atendidas",
+         "Mensagens enviadas"],
     ]
-    for n in pessoas:
-        por_pessoa.append([n, m["atendeu"][n], m["falou"][n], m["msgs"][n],
-                           abriu.get(n, 0)])
-    por_pessoa.append(["TOTAL", sum(m["atendeu"].values()), sum(m["falou"].values()),
-                       sum(m["msgs"].values()), sum(abriu.values())])
+    for n, q in sorted(vivo["atendeu"].items(), key=lambda kv: (-kv[1], kv[0])):
+        por_pessoa.append([n, vivo["atendendo"].get(n, 0), vivo["concluiu"].get(n, 0),
+                           q, vivo["msgs"].get(n, 0)])
+    por_pessoa += [
+        ["TOTAL (soma por pessoa)", sum(vivo["atendendo"].values()),
+         sum(vivo["concluiu"].values()), sum(vivo["atendeu"].values()),
+         sum(vivo["msgs"].values())],
+        [VAZIO],
+        [f"{len(vivo['atendeu'])} pessoas atenderam alguma conversa. Conversa "
+         "transferida conta para as duas pessoas que falaram nela, então a soma por "
+         "pessoa pode passar do total do dia."],
+        ["Para 'quem NÃO atendeu': compare com a aba Comparativo, que mostra quem "
+         "costuma aparecer. Quem atende todo dia e não está aqui, não pegou conversa."],
+    ]
 
+    rot = f"{dia[8:]}/{dia[5:7]}/{dia[:4]}"
     metr = ["concluiu", "moveu_fluxo", "mexeu_status", "abriu", "tocou"]
     quem = {n for k in metr for n in ch_dia.get(k, {})}
     ordem = sorted(quem, key=lambda n: (-ch_dia.get("tocou", {}).get(n, 0), n))
     cham: list[list] = [
         [f"Chamados por pessoa — {rot}"],
+        ["Vem do último export de chamados, não da API ao vivo: chamado se move em dias, "
+         "não em minutos. Atualiza quando o relatório diário roda."],
         ["Trabalho feito NO chamado. Abrir é registrar o problema; mover e concluir é "
          "resolvê-lo, e em geral são pessoas diferentes."],
         ["Conta chamados distintos, não eventos. Não há coluna de 'respondeu': "
@@ -245,7 +266,7 @@ def main() -> None:
         abas = {}
     else:
         print(f"montando as abas de atendimento de {dia}...")
-        abas = abas_atendimento(dia, a.compara)
+        abas = abas_atendimento(dia, a.compara, agora.date().isoformat())
     abas["Agora"] = aba_agora(f)
     abas["Backlog de chamados"] = aba_backlog(f)
     if not a.so_fila:
