@@ -184,6 +184,8 @@ def main() -> None:
     ap.add_argument("--sem-transcricao", action="store_true",
                     help=f"descarta a coluna '{COLUNA_PESADA}', que é ~90% do peso")
     ap.add_argument("--abas", help="só estas abas, separadas por vírgula")
+    ap.add_argument("--sem-formatar", action="store_true",
+                    help="só os valores; útil para republicar rápido sem mexer no visual")
     a = ap.parse_args()
 
     caminho = Path(a.arquivo) if a.arquivo else Path(
@@ -205,6 +207,15 @@ def main() -> None:
     for nome, linhas in abas.items():
         print(f"  escrevendo {nome}...")
         escrever(svc, sid, nome, linhas)
+
+    # A formatação vem junto de propósito: separada, viraria um segundo comando que
+    # alguém esquece de rodar, e a planilha ficaria com dado novo em visual nenhum.
+    # Importado aqui dentro porque o formatador importa deste módulo.
+    if not a.sem_formatar:
+        print("\n  formatando...")
+        import formatar_planilha
+        formatar_planilha.aplicar(svc, sid, caminho, list(abas))
+
     print(f"\npronto em {(time.time() - inicio) / 60:.1f} min")
     print(f"https://docs.google.com/spreadsheets/d/{sid}/edit")
 
