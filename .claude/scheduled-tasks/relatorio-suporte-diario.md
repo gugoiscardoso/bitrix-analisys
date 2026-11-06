@@ -101,7 +101,7 @@ que terminar há o que conferir.
 3. `subgrupos fora da taxonomia: 0`. Qualquer número aqui significa rótulo inválido na
    base; pare e relate.
 
-## 5. Registrar a série e conferir que nada regrediu
+## 5. Conferir que nada regrediu (não grava nada)
 
 ```
 python pipeline/serie_diaria.py
