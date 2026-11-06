@@ -1,0 +1,98 @@
+---
+name: fila-atendimento-horaria
+description: De hora em hora, das 8h às 18h em dias úteis, atualiza a planilha de acompanhamento da fila de atendimento no Google Sheets.
+---
+
+Atualize a planilha de acompanhamento da fila de atendimento. Leva cerca de **1 minuto**.
+
+Diretório de trabalho: `C:\Dev\Qigger\Ultracar\bitrix-analisys`. Rode tudo de lá.
+
+**Este prompt é auto-contido e manda.** Não leia a skill do projeto para decidir o que
+rodar: ela descreve o relatório diário, que é outra coisa. Se quiser entender por que um
+número é como é, leia depois de publicar.
+
+**Não commite nada.** Esta tarefa não altera o repositório — ela só lê a API e escreve na
+planilha. Se o `git status` acusar mudança, alguma coisa saiu do lugar: relate e não
+commite.
+
+---
+
+## 1. Montar
+
+```
+python pipeline/montar_planilha.py --horario --saida %TEMP%\fila_horaria.json
+```
+
+O `--horario` monta só o que vem da API e muda de hora em hora: **Agora**, **Por
+pessoa** e **Backlog de chamados**, mais a linha de **Fila por hora**. Ele pula
+Comparativo e Chamados por pessoa de propósito — essas vêm da base, carregam 50 MB e só
+mudam uma vez por dia, quando o relatório diário roda.
+
+**Confira na saída:** as três abas montadas e a linha `esperando N · em andamento N ·
+chamados abertos N`. Se o script falhar, **pare e relate — não publique nada**. Planilha
+pela metade é pior que planilha velha: quem olha não sabe que está pela metade.
+
+## 2. Publicar no Google Sheets
+
+Planilha: **`1OMeE3bxuEhL3vInphdLKdOKEpDsCrQnROdJJmt4w2U8`** (Atendimentos - Bitrix).
+Confira o id caractere a caractere antes de escrever; um id trocado escreve na planilha
+de outra pessoa, e isso já quase aconteceu.
+
+O JSON tem `abas` (nome → linhas) e `linha_hora`. Use o conector do Google Sheets:
+
+| Aba | Como escrever | Intervalo |
+|---|---|---|
+| `Agora` | `update_values`, sobrescreve | `Agora!A1:B<n>` |
+| `Por pessoa` | `update_values`, sobrescreve | `Por pessoa!A1:E<n>` |
+| `Backlog de chamados` | `update_values`, sobrescreve | `Backlog de chamados!A1:B<n>` |
+| `Fila por hora` | **`append_values`**, acrescenta | `Fila por hora!A1` |
+
+**A de hora é `append_values`, não `update_values`.** Ela é o histórico do dia; sobrescrever
+apaga as horas anteriores, que é a única coisa que essa aba tem de útil.
+
+Duas armadilhas de escrita, as duas já custaram uma republicação:
+
+- **O intervalo tem de ter exatamente o número de linhas que você manda.** Mandar 47
+  linhas para `A1:E46` é erro, não corte.
+- **Linha curta não apaga as colunas da direita.** O script já devolve toda linha com a
+  largura da aba; mande as linhas como vieram, sem encurtar.
+
+## 3. Conferir
+
+Leia de volta `Agora!A1:B6` e `Por pessoa!A1:B8` e confira:
+
+- **O carimbo de "Última execução" é o mesmo nas duas** e é o de agora. Carimbos
+  diferentes significam que uma aba não foi escrita.
+- **"CLIENTES NA FILA SEM NINGUÉM" é o mesmo número nas duas.** Ele vem de uma fonte só;
+  se divergir, alguma aba ficou da execução anterior.
+
+## 4. Relatar
+
+Uma ou duas linhas, em português: quantos clientes na fila sem ninguém, quantas em
+andamento, quantas pessoas atendendo, e a mais antiga esperando.
+
+**Se a fila sem ninguém passar de 40, ou a mais antiga passar de 4 horas, destaque.**
+Fora disso, não precisa alarmar: a fila oscila ao longo do dia, e é para isso que existe
+a aba por hora.
+
+---
+
+## O que estes números são, para não os reinterpretar
+
+- **CLIENTES NA FILA SEM NINGUÉM** — sessão aberta em que ninguém do suporte falou
+  ainda. É cliente olhando a tela agora, e é o número que a gestão olha primeiro.
+- **Em andamento** — sessão aberta, mas alguém já respondeu. Boa parte é sessão que
+  ninguém encerrou, não cliente esperando. Não some os dois num total de "fila".
+- **Atendendo / Concluiu**, por pessoa — conversa aberta em que a pessoa falou, e
+  conversa encerrada em que ela falou. Transferência para quem nunca falou não conta
+  para essa pessoa.
+- **O backlog de chamados é outro relógio**: 1.160 abertos, mediana de 98 dias. Não é
+  fila de atendimento e não muda de uma hora para outra.
+
+## Armadilha que custou quatro correções publicadas
+
+`imopenlines.session.history.get` devolve **50 mensagens** e avisa com `hasNextPage`; a
+página seguinte vem com `LAST_ID`. O `pipeline/historico.py` já pagina, e todos os
+leitores passam por ele. **Se for mexer em alguma contagem, não chame o endpoint direto.**
+Sem paginar, o atendente que falou no começo da conversa some, conversa longa aparece
+como não atendida, e a fila incha — chegou a mostrar 106 esperando onde eram 24.

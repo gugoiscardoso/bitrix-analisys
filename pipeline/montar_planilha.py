@@ -109,15 +109,23 @@ def aba_backlog(f: dict) -> list[list]:
     return l
 
 
-def abas_atendimento(dia: str, compara: int, dia_vivo: str) -> dict[str, list[list]]:
-    conv, tr = carregar()
-    chamados = chamados_por_pessoa()
-    dias_com_dado = sorted({r["data"][:10] for r in conv.values()
-                            if r["data"][:10] <= dia})
-    anteriores = [d for d in dias_com_dado if d < dia][-compara:]
-    m = metricas_do_dia(dia, conv, tr)
-    antes = {d: metricas_do_dia(d, conv, tr) for d in anteriores}
-    ch_dia = chamados.get(dia, {})
+def abas_atendimento(dia: str, compara: int, dia_vivo: str, f: dict,
+                     so_api: bool = False) -> dict[str, list[list]]:
+    # As abas da base (Comparativo e Chamados por pessoa) carregam transcricoes.json,
+    # 50 MB, e mudam uma vez por dia. Na execução de hora em hora elas não são montadas:
+    # é o que faz a passada horária custar minutos em vez de muitos minutos.
+    anteriores: list[str] = []
+    antes: dict = {}
+    ch_dia: dict = {}
+    if not so_api:
+        conv, tr = carregar()
+        chamados = chamados_por_pessoa()
+        dias_com_dado = sorted({r["data"][:10] for r in conv.values()
+                                if r["data"][:10] <= dia})
+        anteriores = [d for d in dias_com_dado if d < dia][-compara:]
+        m = metricas_do_dia(dia, conv, tr)
+        antes = {d: metricas_do_dia(d, conv, tr) for d in anteriores}
+        ch_dia = chamados.get(dia, {})
     abriu = ch_dia.get("abriu", {})
 
     # A aba por pessoa vem da API, NÃO da base. A base está limitada na origem: o
@@ -130,9 +138,13 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str) -> dict[str, list[li
     # formatados grandes. Em frase corrida ninguém acha o número que importa.
     por_pessoa: list[list] = [
         [f"Atendimentos por pessoa — AO VIVO, {rotv}"],
-        ["Última execução", f"{dt.datetime.now(BRT):%d/%m/%Y %H:%M}"],
+        # Mesmo carimbo e MESMO número de fila da aba Agora. Antes cada aba calculava
+        # o seu, com minutos de diferença, e a planilha mostrava 17 num lugar e 15 no
+        # outro — num painel, dois números para a mesma coisa viram desconfiança nos
+        # dois.
+        ["Última execução", f"{dt.datetime.fromisoformat(f['em']):%d/%m/%Y %H:%M}"],
         [VAZIO],
-        ["CLIENTES NA FILA SEM NINGUÉM", vivo["na_fila"]],
+        ["CLIENTES NA FILA SEM NINGUÉM", f["esperando"]],
         ["Atendendo agora", sum(vivo["atendendo"].values())],
         ["Concluídas hoje", sum(vivo["concluiu"].values())],
         ["Conversas no dia", vivo["total"]],
@@ -160,6 +172,9 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str) -> dict[str, list[li
         ["Para 'quem NÃO atendeu': compare com a aba Comparativo, que mostra quem "
          "costuma aparecer. Quem atende todo dia e não está aqui, não pegou conversa."],
     ]
+
+    if so_api:
+        return {"Por pessoa": por_pessoa}
 
     rot = f"{dia[8:]}/{dia[5:7]}/{dia[:4]}"
     metr = ["concluiu", "moveu_fluxo", "mexeu_status", "abriu", "tocou"]
@@ -204,6 +219,10 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str) -> dict[str, list[li
             "Comparativo": comp}
 
 
+def _nada():
+    return None
+
+
 def aba_legenda(f: dict, dia: str) -> list[list]:
     return [
         ["Legenda — de onde vem cada número"],
@@ -213,8 +232,10 @@ def aba_legenda(f: dict, dia: str) -> list[list]:
          "relatório diário nem de classificação por IA.", "A cada execução"],
         ["Fila por hora", "Uma linha por execução, para ver a fila subindo e descendo "
          "ao longo do dia.", "A cada execução (uma linha nova)"],
-        ["Por pessoa", f"Conversas atendidas por pessoa em {dia[8:]}/{dia[5:7]}, o "
-         "último dia fechado. Mesmo cálculo do arquivo Excel.", "Uma vez por dia"],
+        ["Atendimentos por pessoa", "Quem está atendendo e quem concluiu HOJE, lido ao "
+         "vivo da API. Não é o mesmo número do arquivo Excel: o Excel vem da base, que "
+         "guarda no máximo 50 mensagens por conversa e por isso subconta conversa "
+         "longa.", "A cada execução"],
         ["Chamados por pessoa", "Trabalho feito nos chamados no mesmo dia: quem "
          "concluiu, moveu e abriu.", "Uma vez por dia"],
         ["Comparativo", "As conversas atendidas por pessoa nos dias anteriores, para "
@@ -262,11 +283,12 @@ def main() -> None:
     ap.add_argument("--saida", required=True)
     ap.add_argument("--dia", help="dia fechado das abas de atendimento (padrão: ontem)")
     ap.add_argument("--compara", type=int, default=10)
-    ap.add_argument("--so-fila", action="store_true",
-                    help="só as abas que mudam de hora em hora (Agora, Fila por hora, "
-                         "Backlog). Pula as de atendimento, que carregam transcricoes.json "
-                         "(50 MB) e só mudam uma vez por dia — é o que faz a execução "
-                         "horária custar segundos em vez de minutos")
+    ap.add_argument("--horario", "--so-fila", dest="horario", action="store_true",
+                    help="modo da execução de hora em hora: monta tudo que vem da API "
+                         "(Agora, Fila por hora, Atendimentos por pessoa, Backlog) e "
+                         "PULA o que vem da base (Comparativo, Chamados por pessoa), "
+                         "que carrega transcricoes.json com 50 MB e só muda uma vez "
+                         "por dia")
     a = ap.parse_args()
 
     agora = dt.datetime.now(BRT)
@@ -276,15 +298,12 @@ def main() -> None:
     f = ler_fila(agora)
     print(f"  esperando {f['esperando']} · em andamento {f['andamento']} · "
           f"chamados abertos {f['chamados_abertos']}")
-    if a.so_fila:
-        print("--so-fila: pulando as abas de atendimento")
-        abas = {}
-    else:
-        print(f"montando as abas de atendimento de {dia}...")
-        abas = abas_atendimento(dia, a.compara, agora.date().isoformat())
+    print(f"montando as abas de atendimento{'' if a.horario else f' de {dia}'}...")
+    abas = abas_atendimento(dia, a.compara, agora.date().isoformat(), f,
+                            so_api=a.horario)
     abas["Agora"] = aba_agora(f)
     abas["Backlog de chamados"] = aba_backlog(f)
-    if not a.so_fila:
+    if not a.horario:
         abas["Legenda"] = aba_legenda(f, dia)
 
     abas = {nome: retangular(linhas) for nome, linhas in abas.items()}

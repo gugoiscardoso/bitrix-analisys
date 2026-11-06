@@ -74,14 +74,21 @@ def main() -> int:
     # A cópia versionada do prompt da tarefa tem de ser idêntica ao original. O
     # original mora fora do repositório e não tem backup; a cópia é o único rastro
     # se o perfil do usuário se perder, e cópia que envelhece em silêncio não é backup.
-    copia = RAIZ / ".claude" / "scheduled-tasks" / "relatorio-suporte-diario.md"
-    if not copia.exists():
-        problemas.append(f"{copia.relative_to(RAIZ)} — a cópia versionada do prompt "
-                         "da tarefa não existe")
-    elif copia.read_bytes() != JOB.read_bytes():
-        problemas.append(
-            f"{copia.relative_to(RAIZ)} — divergiu do original em {JOB}. "
-            "Copie o original por cima (o original manda).")
+    tarefas = {
+        "relatorio-suporte-diario.md": JOB,
+        "fila-atendimento-horaria.md":
+            Path.home() / ".claude" / "scheduled-tasks" /
+            "fila-atendimento-horaria" / "SKILL.md",
+    }
+    for nome, original in tarefas.items():
+        copia = RAIZ / ".claude" / "scheduled-tasks" / nome
+        if not original.exists():
+            problemas.append(f"{nome} — a tarefa não existe mais em {original}")
+        elif not copia.exists():
+            problemas.append(f"{nome} — a cópia versionada do prompt não existe")
+        elif copia.read_bytes() != original.read_bytes():
+            problemas.append(f"{nome} — divergiu do original em {original}. "
+                             "Copie o original por cima (o original manda).")
 
     print(f"ordem oficial da skill: {len(na_skill)} comandos")
     print(f"tarefa agendada:        {len(no_job)} comandos")
