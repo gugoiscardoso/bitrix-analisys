@@ -168,10 +168,25 @@ def main() -> None:
     fora = sorted(n for n in habituais if hoje["atendeu"][n] <= 2)
     if fora:
         pico = {n: max(antes[d]["atendeu"][n] for d in anteriores) for n in fora}
-        ws["A4"] = ("Fora da fila hoje, entre quem costuma atender: "
+        # O volume do dia comparado aos anteriores, medido e não afirmado: dizer
+        # "o maior volume do período" sem conferir já saiu errado uma vez.
+        uteis = sorted(antes[d]["total"] for d in anteriores if antes[d]["total"] >= 50)
+        if uteis and hoje["total"] > max(uteis):
+            vol = f"O dia teve o maior volume do período ({hoje['total']} conversas)"
+        elif uteis:
+            mediana = uteis[len(uteis) // 2]
+            rel = ("acima" if hoje["total"] > mediana else
+                   "abaixo" if hoje["total"] < mediana else "na")
+            vol = (f"O dia teve {hoje['total']} conversas, {rel} "
+                   f"{'da' if rel == 'na' else 'd'}a mediana dos dias úteis "
+                   f"anteriores ({mediana})")
+        else:
+            vol = f"O dia teve {hoje['total']} conversas"
+        ws["A4"] = (f"Fora da fila em {a.dia[8:]}/{a.dia[5:7]}, entre quem costuma "
+                    "atender: "
                     + ", ".join(f"{n} (pico de {pico[n]}/dia)" for n in fora)
-                    + ". O dia teve o maior volume do período, com menos gente na fila — "
-                      "leia a coluna de volume com isso em mente.")
+                    + f". {vol}, com menos gente na fila — leia a coluna de volume com "
+                      "isso em mente.")
         ws["A4"].font = Font(italic=True, color="9C0006")
 
     cols = ["Pessoa", "Conversas atendidas", "Das quais escreveu",
