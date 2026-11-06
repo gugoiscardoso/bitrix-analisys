@@ -98,9 +98,20 @@ coleta — veja `data/store/coleta.json`. Leva minutos em vez de horas.
 
 ## Antes de clonar isto para outro lugar
 
-**`Ultracar-Support-Bitrix-Analisys/appsettings.json` está no repositório com o token
-do webhook do Bitrix dentro.** Quem tiver o clone tem acesso de leitura ao Bitrix da
-Ultracar.
+**`Ultracar-Support-Bitrix-Analisys/appsettings.json` tem dois segredos dentro, e eles
+não têm o mesmo peso:**
+
+1. **O token do webhook do Bitrix**, versionado — acesso de **leitura** ao Bitrix.
+2. **A chave privada da conta de serviço do Google** `ultracar-report-chat-ai@…`, a
+   mesma do relatório do N1 — acesso de **escrita** a toda planilha compartilhada com
+   ela, hoje a do N1 e a do relatório completo. Posta ali em 06/11/2026.
+
+A chave do Google **não está versionada**: o classificador de segurança recusa commitar
+chave privada, e a recusa está certa. Consequência prática: **um clone novo não publica
+na planilha até alguém pôr a chave de volta** no appsettings — ela está no
+`launchSettings.json` do repositório do `ultracar-support-ai`.
+
+O resto deste aviso vale para o token do Bitrix.
 
 Isso é conveniente — a coleta funciona sem configurar nada — e é um segredo versionado.
 

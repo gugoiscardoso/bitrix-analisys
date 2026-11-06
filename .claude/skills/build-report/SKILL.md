@@ -143,7 +143,12 @@ python pipeline/gerar_relatorio_completo.py --de 2026-01-01 --ate <hoje>
 #    "ninguém atendeu".
 python pipeline/gerar_atendimento.py --dia <dia> --compara 10
 
-# 9. registrar a série, agora que a leitura já aconteceu
+# 9. publicar o relatório na planilha do Google (~1 min para 49 mil linhas)
+#    Conta de serviço no appsettings.json, API direta — NÃO o conector do Sheets:
+#    a aba Conversas tem 35 MB de texto e não cabe numa mensagem.
+python pipeline/publicar_relatorio.py
+
+# 10. registrar a série, agora que a leitura já aconteceu
 #    COM --registrar, e só aqui: no passo 5 o número de leituras ainda é o de antes
 #    de ler, e gravá-lo deixaria o campo uma execução atrasado para sempre.
 python pipeline/serie_diaria.py --registrar
@@ -155,6 +160,9 @@ python pipeline/serie_diaria.py --registrar
 report/relatorio_completo_<de>_<ate>.xlsx
 report/atendimento_por_pessoa_<dia>.xlsx
 ```
+
+O relatório também vive numa planilha do Google, publicada pelo passo 9:
+**https://docs.google.com/spreadsheets/d/1GiNwPzgvwhaTfIvhZVlelq3K_wlbzZ_IR-EQFqb52TY**
 
 Entregue com `SendUserFile` **e** escreva os caminhos absolutos em bloco de código na
 mensagem — se o envio falhar, o usuário fica sem o arquivo e sem saber onde ele está.

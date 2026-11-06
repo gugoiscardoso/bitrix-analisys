@@ -230,7 +230,28 @@ fechar a planilha e rode o gerador de novo; **não** grave com outro nome.
 A sanidade da V3 e o crescimento da base **já foram conferidos no passo 5**, contra a
 série — não tente reconferir de cabeça.
 
-## 9. Entregar e commitar
+## 9. Publicar na planilha do Google
+
+```
+python pipeline/publicar_relatorio.py
+```
+
+Sobe o .xlsx recém-gerado para a planilha **Relatório Completo de Atendimento**, as
+quatro abas. Leva pouco mais de um minuto para as 49 mil linhas.
+
+Ele fala direto com a API do Google usando a conta de serviço do `appsettings.json` —
+não é o conector do Sheets, e por isso o volume não passa pela sessão. **Não tente
+publicar pelo conector**: a aba Conversas tem 35 MB de texto e não cabe numa mensagem.
+
+**Confira na saída:** as quatro abas listadas com a contagem de linhas, e a linha
+`pronto em N min`. Se der `HttpError 403`, a planilha deixou de estar compartilhada com
+`ultracar-report-chat-ai@ultracar-492817.iam.gserviceaccount.com` — relate, não tente
+contornar.
+
+Se este passo falhar, **o relatório já foi gerado e entregue**: diga que a planilha não
+foi atualizada e siga para o commit. Não repita o pipeline inteiro por causa dele.
+
+## 10. Entregar e commitar
 
 Entregue **os dois arquivos** com `SendUserFile`, `status: "proactive"` (o usuário não
 está esperando na frente da tela). **Escreva também os dois caminhos absolutos** em bloco
@@ -256,7 +277,7 @@ entre 97% e 100% de junho a outubro, caiu para 84% em 04/11 e 37% em 05/11. **Ab
 Se houver defeito em massa novo, acrescente ao fim de `tasks/incidentes_detectados.md`,
 no mesmo estilo das entradas que já estão lá.
 
-## 10. Registrar a série
+## 11. Registrar a série
 
 ```
 python pipeline/serie_diaria.py --registrar
@@ -265,7 +286,7 @@ python pipeline/serie_diaria.py --registrar
 Agora sim com `--registrar`, e só aqui: a leitura já aconteceu, então o número gravado é
 o estado final do dia e serve de linha de base honesta para amanhã.
 
-## 11. Commitar
+## 12. Commitar
 
 Por fim, commit direto na master (projeto simples, sem fluxo de branches). Entram as
 mudanças em `data/store/` que forem rastreadas e qualquer coisa em `tasks/`. O diretório
