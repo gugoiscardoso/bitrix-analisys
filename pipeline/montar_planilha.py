@@ -37,7 +37,7 @@ def aba_agora(f: dict) -> list[list]:
     em = dt.datetime.fromisoformat(f["em"])
     l: list[list] = [
         ["Fila de atendimento — retrato do momento"],
-        [f"Atualizado em {em:%d/%m/%Y %H:%M}"],
+        ["Última execução", f"{em:%d/%m/%Y %H:%M}"],
         [VAZIO],
         ["ESPERANDO (ninguém do suporte respondeu ainda)", f["esperando"]],
         ["Em andamento (alguém já respondeu, sessão aberta)", f["andamento"]],
@@ -72,14 +72,16 @@ def aba_hora(f: dict) -> list[list]:
     """Uma linha por execução. O cabeçalho só vai na primeira vez."""
     em = dt.datetime.fromisoformat(f["em"])
     return [[
-        f"{em:%d/%m/%Y %H:%M}", f["entraram_na_hora"], f["fechadas_na_hora"],
+        f"{em:%d/%m/%Y %H:%M}", f.get("hora_medida", ""),
+        f["entraram_na_hora"], f["fechadas_na_hora"],
         f["esperando"], f["andamento"], round(f["espera_max_min"] / 60, 1),
         f["esperando_de_ontem"], f["esperando_de_hoje"],
         f["entraram_hoje"], f["fechadas_hoje"], f["chamados_abertos"],
     ]]
 
 
-CAB_HORA = [["Momento", "Entraram na hora", "Fechadas na hora", "Esperando",
+CAB_HORA = [["Momento", "Hora medida", "Entraram na hora", "Fechadas na hora",
+             "Esperando",
              "Em andamento", "Mais antiga esperando (h)", "Esperando de ontem",
              "Esperando de hoje", "Entraram hoje", "Fechadas hoje",
              "Chamados abertos"]]
@@ -128,6 +130,7 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str) -> dict[str, list[li
     # formatados grandes. Em frase corrida ninguém acha o número que importa.
     por_pessoa: list[list] = [
         [f"Atendimentos por pessoa — AO VIVO, {rotv}"],
+        ["Última execução", f"{dt.datetime.now(BRT):%d/%m/%Y %H:%M}"],
         [VAZIO],
         ["CLIENTES NA FILA SEM NINGUÉM", vivo["na_fila"]],
         ["Atendendo agora", sum(vivo["atendendo"].values())],
@@ -135,8 +138,8 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str) -> dict[str, list[li
         ["Conversas no dia", vivo["total"]],
         ["Pessoas atendendo", len(vivo["atendeu"])],
         [VAZIO],
-        [f"Atualizado em {dt.datetime.now(BRT):%d/%m/%Y %H:%M} · lido direto da API do "
-         "Bitrix, com paginação completa do histórico. Não depende do relatório diário."],
+        ["Lido direto da API do Bitrix, com paginação completa do histórico. Não "
+         "depende do relatório diário."],
         ["ATENDENDO = conversa ainda aberta em que a pessoa falou. CONCLUIU = conversa "
          "já encerrada em que ela falou. Quem transferiu e nunca falou não conta."],
         [VAZIO],

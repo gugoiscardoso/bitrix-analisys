@@ -125,14 +125,19 @@ def ler_fila(agora: dt.datetime) -> dict:
 
     ses = paginar(base, "crm.activity.list", {
         "filter[PROVIDER_ID]": PROVIDER, "filter[>CREATED]": desde,
-        "select[]": ["ID", "CREATED", "COMPLETED", "ASSOCIATED_ENTITY_ID"],
+        "select[]": ["ID", "CREATED", "COMPLETED", "END_TIME",
+                     "ASSOCIATED_ENTITY_ID"],
         "order[CREATED]": "ASC"})
 
     hoje, ontem = agora.date(), agora.date() - dt.timedelta(days=1)
     por_dia = collections.defaultdict(collections.Counter)
     abertas = {}
+    # A HORA ANTERIOR COMPLETA, não a hora corrente. Medir "desde o topo da hora" fazia
+    # a execução das 12:01 reportar um minuto de movimento, e o resultado saía 0 — foi
+    # assim que a primeira versão da aba por hora nasceu com duas colunas zeradas.
     entraram_hora = fechadas_hora = 0
-    hora_cheia = agora.replace(minute=0, second=0, microsecond=0)
+    fim_hora = agora.replace(minute=0, second=0, microsecond=0)
+    ini_hora = fim_hora - dt.timedelta(hours=1)
 
     for a in ses:
         criada = dt.datetime.fromisoformat(a["CREATED"]).astimezone(BRT)
@@ -141,9 +146,14 @@ def ler_fila(agora: dt.datetime) -> dict:
                else "ontem" if criada.date() == ontem else "antes")
         por_dia[rot]["entraram"] += 1
         por_dia[rot]["abertas" if aberta else "fechadas"] += 1
-        if criada >= hora_cheia:
+        if ini_hora <= criada < fim_hora:
             entraram_hora += 1
-            if not aberta:
+        # Fechadas NA hora é quando a sessão foi encerrada, não quando entrou. END_TIME
+        # marca o encerramento (bate com LAST_UPDATED nas fechadas); nas abertas ele vem
+        # igual ao CREATED, e o filtro por COMPLETED já as exclui.
+        if not aberta and a.get("END_TIME"):
+            fim = dt.datetime.fromisoformat(a["END_TIME"]).astimezone(BRT)
+            if ini_hora <= fim < fim_hora:
                 fechadas_hora += 1
         sid = a.get("ASSOCIATED_ENTITY_ID")
         if aberta and sid:
@@ -197,6 +207,7 @@ def ler_fila(agora: dt.datetime) -> dict:
         "abertas_de_ontem": por_dia["ontem"]["abertas"] + por_dia["antes"]["abertas"],
         "entraram_na_hora": entraram_hora,
         "fechadas_na_hora": fechadas_hora,
+        "hora_medida": f"{ini_hora:%H:%M}-{fim_hora:%H:%M}",
         "chamados_abertos": tot,
         "chamados_mediana_dias": dias[len(dias) // 2] if dias else 0,
         "chamados_max_dias": dias[-1] if dias else 0,
