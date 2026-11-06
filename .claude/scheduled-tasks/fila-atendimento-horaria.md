@@ -20,15 +20,20 @@ commite.
 ## 1. Montar
 
 ```
-python pipeline/montar_planilha.py --horario --saida %TEMP%\fila_horaria.json
+python pipeline/montar_planilha.py --saida %TEMP%\fila_horaria.json
 ```
 
-O `--horario` monta só o que vem da API e muda de hora em hora: **Agora**, **Por
-pessoa** e **Backlog de chamados**, mais a linha de **Fila por hora**. Ele pula
-Comparativo e Chamados por pessoa de propósito — essas vêm da base, carregam 50 MB e só
-mudam uma vez por dia, quando o relatório diário roda.
+Monta as **seis** abas, todas da API: Agora, Atendimentos por pessoa, Chamados por
+pessoa, Comparativo, Backlog de chamados e a linha de Fila por hora. Leva cerca de um
+minuto.
 
-**Confira na saída:** as três abas montadas e a linha `esperando N · em andamento N ·
+Nenhuma aba lê a base do relatório diário. A base guarda no máximo 50 mensagens por
+conversa, então toda contagem de atendimento feita sobre ela subconta conversa longa —
+que é justamente a mais atendida. O Comparativo usa um cache por dia
+(`data/store/atendimento_por_dia.json`): dia fechado é lido uma vez e guardado, e só
+hoje é relido, senão a passada levaria dez minutos em vez de um.
+
+**Confira na saída:** as seis abas montadas e a linha `esperando N · em andamento N ·
 chamados abertos N`. Se o script falhar, **pare e relate — não publique nada**. Planilha
 pela metade é pior que planilha velha: quem olha não sabe que está pela metade.
 

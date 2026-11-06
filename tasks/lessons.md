@@ -307,3 +307,24 @@ O que isto ensina, e é o custo de três idas:
 4. **Enquanto não há resposta confiável, marque o artefato.** Pus o aviso na planilha
    antes de qualquer pessoa agir em cima da contagem por pessoa. Número errado sem aviso
    num painel que a gestão lê vale menos que número nenhum.
+
+## `str.replace` sem conferir é edição que não aconteceu
+
+Atualizei o prompt da tarefa horária com `t.replace(velho, novo)` e o script imprimiu
+"prompt atualizado". Não atualizou nada: o trecho tinha uma barra invertida
+(`%TEMP%\fila_horaria.json`) que eu escapei diferente no `velho`, então o casamento
+falhou em silêncio e o `replace` devolveu o texto intacto.
+
+Só apareceu porque o usuário perguntou "já está na automação?" e eu fui conferir em vez
+de responder de memória. A tarefa teria rodado mandando publicar três abas quando são
+seis.
+
+**Regra:** `replace` numa edição programática sempre com `assert t.count(alvo) == 1`
+antes. Eu uso isso na maioria dos scripts desta sessão e justamente neste não usei.
+Mensagem de sucesso impressa pelo próprio script não é verificação — ela só prova que a
+linha do `print` foi alcançada.
+
+**E o corolário:** depois de editar um arquivo que só vai ser lido por outra execução
+(prompt de tarefa agendada, template, configuração), leia o arquivo de volta e procure o
+que deveria ter mudado. Arquivo que ninguém executa agora falha silenciosamente até a
+hora errada.
