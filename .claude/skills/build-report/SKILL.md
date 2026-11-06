@@ -122,6 +122,9 @@ python pipeline/consolidar_store.py
 #    Sai com 1 se registros, conversas V3 ou leituras tiverem caído. É o portão do
 #    bug do str(17.0); sem a série gravada ele não tinha com o que comparar e nunca
 #    disparava. SEM --registrar: aqui só confere.
+#    O volume do N1 também é vigiado, mas só AVISA — não sai com 1, pela mesma licença
+#    do passo 7. E o delta dele aparece no passo 11, não aqui: o N1 só é coletado no
+#    passo 7, então neste ponto o espelho ainda é o da execução anterior.
 python pipeline/serie_diaria.py
 
 # 6. ler o que falta
@@ -166,6 +169,9 @@ python pipeline/publicar_relatorio.py
 # 11. registrar a série, agora que a leitura já aconteceu
 #    COM --registrar, e só aqui: no passo 5 o número de leituras ainda é o de antes
 #    de ler, e gravá-lo deixaria o campo uma execução atrasado para sempre.
+#    É AQUI que um encolhimento do N1 aparece, porque é a primeira medição depois do
+#    passo 7. Se sair "AVISO — o robô N1 encolheu", diga na entrega: o relatório humano
+#    está certo, a aba do N1 é que está pela metade.
 python pipeline/serie_diaria.py --registrar
 ```
 

@@ -125,6 +125,12 @@ sensação de cobertura — e este é justamente o portão do bug que apagou a m
 
 Se sair 1, **pare e relate**, dizendo qual número caiu e quanto.
 
+**O robô N1 é vigiado aqui também, mas não para o pipeline.** Se aparecer
+`AVISO — o robô N1 encolheu`, o código de saída continua 0 e você segue: o relatório
+humano não depende daquela fonte, pela mesma licença do passo 7. Diga na entrega.
+E não espere ver o delta do N1 *neste* passo — o N1 só é coletado no passo 7, então aqui
+o espelho ainda é o da execução anterior. Um encolhimento aparece no passo 12.
+
 ## 6. Ler o que entrou
 
 ```
@@ -318,6 +324,12 @@ python pipeline/serie_diaria.py --registrar
 
 Agora sim com `--registrar`, e só aqui: a leitura já aconteceu, então o número gravado é
 o estado final do dia e serve de linha de base honesta para amanhã.
+
+**É aqui que um encolhimento do robô N1 aparece**, porque é a primeira medição depois da
+coleta do passo 7. Se sair `AVISO — o robô N1 encolheu`, o passo não falha (código 0) e
+nada do relatório humano está errado — mas a aba do N1 saiu pela metade, e isso tem de
+estar na entrega. Já publicou? Então diga; vale republicar na próxima execução, não
+agora.
 
 ## 13. Commitar
 

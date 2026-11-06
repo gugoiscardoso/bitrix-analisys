@@ -278,5 +278,15 @@ expôs:
       investigação ou nota de rodapé
 - [ ] Pedir ao N1 (ou ao export do Bitrix) um id de cliente nas conversas humanas, se o
       par ponta-a-ponta virar requisito
-- [ ] Avaliar se o volume do N1 merece um campo em `serie_diaria.py` — hoje a série não
-      vigia essa fonte, então uma queda de volume do Cron passaria em silêncio
+- [x] **`serie_diaria.py` passa a vigiar o N1** (06/11/2026): campos `n1_conversas` e
+      `n1_modulos`. Em categoria própria (`VIGIADOS_N1`): **avisa e segue, sem parar o
+      pipeline**, porque um portão duro desfaria pelas costas a licença do passo do N1 de
+      falhar sem derrubar o relatório humano. Campo ausente não é queda a zero — sem
+      store não há medida, e as linhas anteriores a 06/11 não têm os campos.
+
+      Testado com código de saída real nos três casos: queda humana sai 1; N1 encolhido
+      sai 0 com aviso alto; store ausente sai 0 com nota.
+
+      Sutileza de ordem, documentada nos dois lugares: o delta do N1 **não** aparece no
+      passo 5 (o portão), porque o N1 só é coletado no passo 7 — aparece no
+      `--registrar` do fim.
