@@ -124798,7 +124798,7 @@
   "298267": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "9e2bb971b3b7",
+   "hash": "6c9e0c830b82",
    "em": "2026-11-05",
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
@@ -124840,7 +124840,7 @@
   "298293": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "ca10e4d51137",
+   "hash": "b0262af814cf",
    "em": "2026-11-05",
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
@@ -125421,7 +125421,7 @@
   "298739": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "76b39b117b3f",
+   "hash": "86fa0e24f65e",
    "em": "2026-11-05",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
@@ -126189,7 +126189,7 @@
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   }
  },
- "atualizado_em": "2026-11-05T20:31:54",
+ "atualizado_em": "2026-11-05T22:30:55",
  "realinhamentos": [
   {
    "em": "2026-11-04",
