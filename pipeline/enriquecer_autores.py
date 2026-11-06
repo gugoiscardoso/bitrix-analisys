@@ -23,6 +23,8 @@ import argparse
 import datetime as dt
 import json
 import sys
+
+import historico
 import time
 import urllib.error
 import urllib.parse
@@ -97,6 +99,33 @@ def datas_das_conversas() -> dict[str, str]:
     return fora
 
 
+PAGINA = 50          # teto de mensagens por chamada de imopenlines.session.history.get
+
+
+def totais_de_mensagens() -> dict[str, int]:
+    """Sessão -> total de mensagens, do export mais completo.
+
+    `TotalMessages` é confiável; `OperatorMessages` e `CustomerMessages` não — o
+    exportador C# classifica 100% das mensagens como sistema, e aqueles dois campos são
+    zero em toda a base. É só a ATRIBUIÇÃO de autor que ele erra, não a contagem.
+    """
+    import pandas as pd
+    fora: dict[str, int] = {}
+    for arq in sorted((RAIZ / "data" / "raw").glob("conversations_export_*.xlsx")):
+        try:
+            df = pd.read_excel(arq, sheet_name="Conversations",
+                               usecols=["SessionId", "TotalMessages"])
+        except Exception as e:
+            print(f"  aviso: sem TotalMessages em {arq.name} ({type(e).__name__})")
+            continue
+        for sid, n in zip(df["SessionId"], df["TotalMessages"]):
+            if pd.isna(sid) or pd.isna(n):
+                continue
+            s = str(int(sid))
+            fora[s] = max(fora.get(s, 0), int(n))
+    return fora
+
+
 def sessoes_da_base() -> list[str]:
     """Ids de sessão, dos exports CRUS e da base consolidada.
 
@@ -139,40 +168,27 @@ def papel_de(sender: str, users: dict) -> str:
 
 
 def buscar_lote(base: str, ids: list[str]) -> dict[str, dict[str, str]]:
-    cmds = {f"h{i}": f"imopenlines.session.history.get?SESSION_ID={s}"
-            for i, s in enumerate(ids)}
-    corpo = urllib.parse.urlencode({f"cmd[{k}]": v for k, v in cmds.items()}).encode()
-    for tentativa in range(1, TENTATIVAS + 1):
-        try:
-            req = urllib.request.Request(f"{base}/batch", data=corpo)
-            with urllib.request.urlopen(req, timeout=180) as resp:
-                j = json.loads(resp.read().decode("utf-8"))
-            break
-        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as e:
-            if tentativa == TENTATIVAS:
-                print(f"  lote falhou em definitivo ({type(e).__name__}); segue adiante")
-                return {}
-            time.sleep(2 * tentativa)
+    """{sessão: {id da mensagem: papel}} para o lote, com TODAS as páginas.
 
-    res = (j.get("result") or {}).get("result") or {}
-    out = {}
-    for chave, hist in res.items():
-        if not isinstance(hist, dict):
-            continue
-        sid = ids[int(chave[1:])]
-        users = hist.get("users") or {}
-        msgs = hist.get("message") or {}
-        it = msgs.values() if isinstance(msgs, dict) else msgs
-        # Grava só o que não é sistema: é ~45% das mensagens, e o arquivo fica menos
-        # da metade. Mensagem ausente do mapa é tratada como plataforma na leitura.
-        mapa = {}
-        for m in it:
+    A paginação é a razão desta função não falar mais com a API direto: ela delega ao
+    `historico.completo`, que repete a chamada com `LAST_ID` enquanto `hasNextPage` for
+    verdadeiro. Antes, pegava só as 50 mensagens mais novas de cada sessão — e como o
+    atendente costuma entrar no começo da conversa, conversa longa ficava sem atendente
+    no mapa. São 1.444 conversas com mais de 50 mensagens nesta base.
+    """
+    hist = historico.completo(base, ids)
+    fora: dict[str, dict[str, str]] = {}
+    for sid, v in hist.items():
+        users = v.get("users") or {}
+        mapa: dict[str, str] = {}
+        # Grava só o que não é sistema: é ~45% das mensagens, e o arquivo fica menos da
+        # metade. Mensagem ausente do mapa é tratada como plataforma na leitura.
+        for m in v.get("message") or []:
             papel = papel_de(str(m.get("senderid") or ""), users)
             if papel != "sistema":
                 mapa[str(m.get("id"))] = papel
-        out[sid] = mapa
-    return out
-
+        fora[sid] = mapa
+    return fora
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
@@ -209,11 +225,18 @@ def main() -> int:
     corte = (dt.date.today() - dt.timedelta(days=a.dias_frescos)).isoformat()
     datas = datas_das_conversas()
     recentes = {s for s in todas if datas.get(s, "9999") >= corte}
+    # Conversa com mais de PAGINA mensagens foi truncada pela leitura de página única
+    # que este script fazia antes. Esse detector é exato, diferente da janela de dias:
+    # a contagem total de mensagens do export é confiável (é só a ATRIBUIÇÃO de autor
+    # que o C# erra). São 1.444 conversas, 3,2% da base.
+    longas = {s for s, n in totais_de_mensagens().items() if n > PAGINA}
     ausentes = [s for s in todas if s not in feito]
-    rebusca = [s for s in todas if s in feito and s in recentes]
+    rebusca = [s for s in todas if s in feito and (s in recentes or s in longas)]
     faltam = ausentes + rebusca
-    print(f"  ausentes do mapa: {len(ausentes)} · recentes a rebuscar: {len(rebusca)} "
-          f"(desde {corte}; conversa recente cresce depois de ser mapeada)")
+    print(f"  ausentes do mapa: {len(ausentes)} · a rebuscar: {len(rebusca)}")
+    print(f"    recentes (desde {corte}): {len(recentes & set(todas) & set(feito))}"
+          f" · longas (>{PAGINA} mensagens, truncadas antes): "
+          f"{len(longas & set(todas) & set(feito))}")
     if a.limite:
         faltam = faltam[:a.limite]
     print(f"{len(todas)} conversas na base | {len(feito)} já mapeadas | "

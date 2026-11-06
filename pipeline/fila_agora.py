@@ -103,7 +103,7 @@ def atendida(hist: dict) -> bool:
     `connector=True` é o cliente — qualquer outro autor humano é do suporte.
     """
     msgs = hist.get("message") or {}
-    itens = list(msgs.values()) if isinstance(msgs, dict) else msgs
+    itens = list(msgs.values()) if isinstance(msgs, dict) else list(msgs)
     users = hist.get("users") or {}
     for m in itens:
         quem = str(m.get("senderid") or "")
@@ -149,29 +149,23 @@ def ler_fila(agora: dt.datetime) -> dict:
         if aberta and sid:
             abertas[str(sid)] = (criada, rot)
 
-    # histórico só das abertas: é o que diz quem está realmente esperando
+    # Histórico só das abertas, PAGINADO: a chamada simples traz as 50 mensagens mais
+    # novas, e o atendente costuma falar no começo. Sem paginar, conversa longa aberta
+    # aparece como "ninguém respondeu", que é o número mais grave desta planilha.
+    from historico import completo
     esperando, andamento = [], []
     espera_por_dia = collections.Counter()
     ids = list(abertas)
-    for i in range(0, len(ids), POR_LOTE):
-        campos = {"halt": "0"}
-        for s in ids[i:i + POR_LOTE]:
-            campos[f"cmd[s{s}]"] = f"imopenlines.session.history.get?SESSION_ID={s}"
-        req = urllib.request.Request(f"{base}/batch",
-                                     data=urllib.parse.urlencode(campos).encode())
-        with urllib.request.urlopen(req, timeout=300) as f:
-            res = ((json.load(f).get("result") or {}).get("result") or {})
-        for chave, val in res.items():
-            sid = chave[1:]
-            if sid not in abertas:
-                continue
-            criada, rot = abertas[sid]
-            idade = (agora - criada).total_seconds() / 60
-            if atendida(val or {}):
-                andamento.append(idade)
-            else:
-                esperando.append(idade)
-                espera_por_dia[rot] += 1
+    for sid, v in completo(base, ids).items():
+        if sid not in abertas:
+            continue
+        criada, rot = abertas[sid]
+        idade = (agora - criada).total_seconds() / 60
+        if atendida(v):
+            andamento.append(idade)
+        else:
+            esperando.append(idade)
+            espera_por_dia[rot] += 1
 
     # chamados: outro relógio, aba própria
     tot = get(base, "tasks.task.list", {"filter[GROUP_ID]": c["GroupId"],

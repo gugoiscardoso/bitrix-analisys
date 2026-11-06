@@ -44,7 +44,8 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "pipeline"))
 
-from fila_agora import BRT, POR_LOTE, cfg, paginar  # noqa: E402
+from fila_agora import BRT, cfg, paginar  # noqa: E402
+from historico import completo  # noqa: E402
 
 import urllib.parse  # noqa: E402
 import urllib.request  # noqa: E402
@@ -59,8 +60,8 @@ def limpar(n: str) -> str:
 
 def quem_atendeu(hist: dict) -> tuple[set[str], set[str], collections.Counter]:
     """(atendeu, falou, mensagens por pessoa) de uma sessão."""
-    msgs = hist.get("message") or {}
-    itens = list(msgs.values()) if isinstance(msgs, dict) else msgs
+    msgs = hist.get("message") or []
+    itens = list(msgs.values()) if isinstance(msgs, dict) else list(msgs)
     users = hist.get("users") or {}
     falou: set[str] = set()
     aceitou: set[str] = set()
@@ -99,35 +100,43 @@ def ler(dia: str, agora: dt.datetime) -> dict:
     fechada = {str(a["ASSOCIATED_ENTITY_ID"]): str(a.get("COMPLETED", "")).upper() == "Y"
                for a in ses if a.get("ASSOCIATED_ENTITY_ID")}
 
-    atendeu = collections.Counter()
+    atendeu = collections.Counter()      # total, aberta ou fechada
+    atendendo = collections.Counter()    # sessão AINDA ABERTA em que a pessoa falou
+    concluiu = collections.Counter()     # sessão FECHADA em que a pessoa falou
     falou = collections.Counter()
     msgs = collections.Counter()
-    n_atendidas = n_sem = 0
-    for i in range(0, len(ids), POR_LOTE):
-        campos = {"halt": "0"}
-        for s in ids[i:i + POR_LOTE]:
-            campos[f"cmd[s{s}]"] = f"imopenlines.session.history.get?SESSION_ID={s}"
-        req = urllib.request.Request(f"{base}/batch",
-                                     data=urllib.parse.urlencode(campos).encode())
-        with urllib.request.urlopen(req, timeout=300) as f:
-            res = ((json.load(f).get("result") or {}).get("result") or {})
-        for chave, val in res.items():
-            sid = chave[1:]
-            a, fa, m = quem_atendeu(val or {})
-            for n in a:
-                atendeu[n] += 1
-            for n in fa:
-                falou[n] += 1
-            msgs.update(m)
-            if a:
-                n_atendidas += 1
-            elif not fechada.get(sid, True):
-                n_sem += 1
-        print(f"  {min(i + POR_LOTE, len(ids))}/{len(ids)}", flush=True)
+    n_atendidas = n_sem = n_fila = 0
+
+    def eco(feito, total, extra=""):
+        print(f"  {feito}/{total} {extra}", flush=True)
+
+    # Paginado: a chamada simples devolve só as 50 mensagens MAIS NOVAS, e o atendente
+    # costuma entrar no começo da conversa. Sem paginar, conversa longa aparece como
+    # não atendida.
+    hist = completo(base, ids, progresso=eco)
+    for sid, v in hist.items():
+        a, fa, m = quem_atendeu(v)
+        esta_fechada = fechada.get(sid, False)
+        for n in a:
+            atendeu[n] += 1
+            (concluiu if esta_fechada else atendendo)[n] += 1
+        for n in fa:
+            falou[n] += 1
+        msgs.update(m)
+        if a:
+            n_atendidas += 1
+        else:
+            n_sem += 1
+            if not esta_fechada:
+                n_fila += 1       # ninguém falou E segue aberta: é cliente na fila
 
     return {"dia": dia, "em": agora.isoformat(timespec="seconds"),
-            "total": len(ids), "atendidas": n_atendidas, "abertas_sem_atend": n_sem,
-            "atendeu": dict(atendeu), "falou": dict(falou), "msgs": dict(msgs)}
+            "total": len(ids), "atendidas": n_atendidas,
+            "sem_atendimento": n_sem, "na_fila": n_fila,
+            # nome antigo, que o montador da planilha ainda usa
+            "abertas_sem_atend": n_fila,
+            "atendeu": dict(atendeu), "atendendo": dict(atendendo),
+            "concluiu": dict(concluiu), "falou": dict(falou), "msgs": dict(msgs)}
 
 
 def main() -> None:
@@ -140,10 +149,11 @@ def main() -> None:
     print(f"lendo o atendimento de {dia} ao vivo...")
     r = ler(dia, agora)
     print(f"\n{r['total']} conversas · {r['atendidas']} atendidas · "
-          f"{r['abertas_sem_atend']} abertas sem atendimento\n")
-    print(f"{'pessoa':24}{'atendeu':>9}{'falou':>8}{'msgs':>7}")
+          f"{r['na_fila']} clientes na fila sem ninguém\n")
+    print(f"{'pessoa':24}{'atendendo':>11}{'concluiu':>10}{'total':>7}{'msgs':>7}")
     for n, q in sorted(r["atendeu"].items(), key=lambda kv: -kv[1]):
-        print(f"{n[:23]:24}{q:9d}{r['falou'].get(n, 0):8d}{r['msgs'].get(n, 0):7d}")
+        print(f"{n[:23]:24}{r['atendendo'].get(n, 0):11d}"
+              f"{r['concluiu'].get(n, 0):10d}{q:7d}{r['msgs'].get(n, 0):7d}")
     if a.json:
         Path(a.json).write_text(json.dumps(r, ensure_ascii=False, indent=1) + "\n",
                                 encoding="utf-8", newline="\n")
