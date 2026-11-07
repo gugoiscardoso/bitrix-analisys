@@ -830,3 +830,30 @@ de compra governamental, agora pedindo o bloco da Reforma. Nenhum dos 4 cita cha
 enviaram o acesso"). Caem em acesso/plano/contrato por falta de tema; se crescer, é
 candidato a rótulo na próxima revisão da taxonomia. Campos da V2 que sumiram na V3:
 298263, 298347, 298495, 298703, 298939; e o chamado 107843 (campo prisma exige placa na V3).
+
+## Execução diária de 07/11 (lotes A_001, B_001 e C_001)
+
+472 registros novos (235 conversas não-fiscais, 29 chamados, 208 fiscais). Um defeito
+novo de massa, e a placa de 06/11 explodiu.
+
+### Integração de placas não puxa o veículo — 12 clientes
+A placa não traz marca, modelo e chassi, e a opção "Atualizar dados do veículo" sumiu:
+299087, 299177, 299363, 299365, 299415, 299427, 299431, 299483, 299515, 299643, mais
+299039 e 299581 (cadastro automático do carro ao abrir OS). Em 06/11 eram 2. Nenhum
+chamado 107xxx; há chamados abertos na integradora, ATD-33837 (299363) e ATD-33872
+(299515). Classificado como erro de função, módulo Cadastros.
+
+### Rejeição "codigoIndOp preenchido exige bloco IBS/CBS completo" — 4 clientes
+299155, 299233, 299237, 299595, sem chamado. Mesma família do JSON de NF-e pedindo o
+bloco da Reforma em 06/11.
+
+### Dado do cadastro do cliente que não sai no orçamento/impressão — 3 clientes
+Endereço cortado no relatório administrativo (107867), endereço que não aparece no
+orçamento (107911), km que não aparece no orçamento (107923).
+
+### Menores
+- Boleto do Banco do Brasil falhando — 3 clientes: 299337, 299467, 299627.
+- Chave da NF de compra não traz o fornecedor: chamado 107855 (citado em 299797), mesma
+  queixa em 299495.
+- A migração da NFS-e para o Portal Nacional segue dominando o lote fiscal (298923 a
+  299817).

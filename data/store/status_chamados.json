@@ -1,6 +1,6 @@
 {
-  "em": "2026-11-06T12:20:26Z",
-  "consultados": 971,
+  "em": "2026-11-07T14:35:20Z",
+  "consultados": 1013,
   "status": {
     "73515": "concluída",
     "86167": "concluída",
@@ -64,6 +64,7 @@
     "106911": "concluída",
     "106995": "concluída",
     "107017": "concluída",
+    "107045": "concluída",
     "107049": "concluída",
     "107061": "em andamento",
     "107067": "concluída",
@@ -106,10 +107,15 @@
     "107447": "em andamento",
     "107465": "em andamento",
     "107471": "concluída",
+    "107481": "concluída",
     "107497": "em andamento",
     "107501": "concluída",
     "107521": "em andamento",
     "107527": "em andamento",
-    "107545": "concluída"
+    "107545": "concluída",
+    "107561": "concluída",
+    "107573": "concluída",
+    "107813": "concluída",
+    "107815": "em andamento"
   }
 }
