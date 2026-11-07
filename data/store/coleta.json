@@ -1,10 +1,10 @@
 {
   "chamados": {
-    "em": "2026-11-06T12:16:48Z",
-    "arquivo": "bitrix_export_139_20261106_121648.json",
-    "registros": 33,
-    "from": "2026-11-05",
-    "to": "2026-11-07",
+    "em": "2026-11-07T14:19:33Z",
+    "arquivo": "bitrix_export_139_20261107_141933.json",
+    "registros": 46,
+    "from": "2026-11-06",
+    "to": "2026-11-08",
     "changedSince": null
   },
   "conversas": {

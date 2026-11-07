@@ -1,6 +1,6 @@
 ---
 name: fila-atendimento-horaria
-description: De hora em hora, das 8h às 18h em dias úteis, atualiza a planilha de acompanhamento da fila de atendimento no Google Sheets.
+description: De hora em hora, das 8h às 18h todos os dias, inclusive fim de semana, atualiza a planilha de acompanhamento da fila de atendimento no Google Sheets.
 ---
 
 Atualize a planilha de acompanhamento da fila de atendimento. Leva cerca de **1 minuto**.

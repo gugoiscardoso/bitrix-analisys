@@ -141,7 +141,7 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str, f: dict,
         ["Conversas no dia", vivo["total"]],
         ["Pessoas atendendo", len(vivo["atendeu"])],
         [VAZIO],
-        ["Atualizado de hora em hora, das 8h às 18h em dias úteis. O número é o da última "
+        ["Atualizado de hora em hora, das 8h às 18h, todos os dias. O número é o da última "
          "execução, acima — não muda sozinho enquanto a planilha está aberta."],
         ["ATENDENDO = conversa ainda aberta em que a pessoa falou. CONCLUIU = conversa "
          "já encerrada em que ela falou. Quem transferiu e nunca falou não conta."],
