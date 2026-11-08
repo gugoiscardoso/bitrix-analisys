@@ -9335,6 +9335,13 @@
    "hash": "c248418d7612",
    "em": "2026-11-07",
    "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "107959": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "9b7826860f1b",
+   "em": "2026-11-08",
+   "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
   }
  },
  "conversas": {
@@ -128249,8 +128256,8 @@
   "299759": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "5125c57a7920",
-   "em": "2026-11-07",
+   "hash": "6a309bf253c6",
+   "em": "2026-11-08",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "299761": {
@@ -128277,9 +128284,9 @@
   "299767": {
    "modulo": "Ordem de Serviço",
    "fonte": "leitura",
-   "hash": "5944525b73fd",
-   "em": "2026-11-07",
-   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+   "hash": "065ad67f66ec",
+   "em": "2026-11-08",
+   "tema": "Não fiscal (falso positivo)"
   },
   "299769": {
    "modulo": "Peças & Estoque",
@@ -128326,8 +128333,8 @@
   "299789": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "ee0efe4aa8a5",
-   "em": "2026-11-07",
+   "hash": "c2103d1c2a65",
+   "em": "2026-11-08",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "299791": {
@@ -128354,8 +128361,8 @@
   "299801": {
    "modulo": "(sem assunto)",
    "fonte": "leitura",
-   "hash": "65463ee664ab",
-   "em": "2026-11-07",
+   "hash": "56727a416a25",
+   "em": "2026-11-08",
    "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
   },
   "299805": {
@@ -128389,15 +128396,15 @@
   "299815": {
    "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "53aa7d74c756",
-   "em": "2026-11-07",
+   "hash": "c2b1734b6c8f",
+   "em": "2026-11-08",
    "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
   },
   "299821": {
    "modulo": "Peças & Estoque",
    "fonte": "leitura",
-   "hash": "354c5c256d04",
-   "em": "2026-11-07",
+   "hash": "39a1ea21c1a8",
+   "em": "2026-11-08",
    "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
   },
   "299823": {
@@ -129502,15 +129509,15 @@
   "299787": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "e2ead6d8a265",
-   "em": "2026-11-07",
+   "hash": "56dd308b0bab",
+   "em": "2026-11-08",
    "tema": "Sem causa identificável na descrição"
   },
   "299793": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "e10068ba59f3",
-   "em": "2026-11-07",
+   "hash": "67f0106e8703",
+   "em": "2026-11-08",
    "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   "299797": {
@@ -129523,8 +129530,8 @@
   "299803": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "643c5b7d731b",
-   "em": "2026-11-07",
+   "hash": "669ff06212a8",
+   "em": "2026-11-08",
    "tema": "Sem causa identificável na descrição"
   },
   "299817": {
@@ -129540,9 +129547,72 @@
    "hash": "427ee5a4dfb5",
    "em": "2026-11-07",
    "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  "299833": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "65463ee664ab",
+   "em": "2026-11-08",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "299835": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "5adb6a44461e",
+   "em": "2026-11-08",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "299837": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "65463ee664ab",
+   "em": "2026-11-08",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "299839": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "ef67e0868c98",
+   "em": "2026-11-08",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "299841": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "ff305215f6c9",
+   "em": "2026-11-08",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "299843": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "da39a3ee5e6b",
+   "em": "2026-11-08",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "299845": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "dc94b6d5e9e6",
+   "em": "2026-11-08",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "299847": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "e92e71b4497c",
+   "em": "2026-11-08",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "299849": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "c4edf7d08474",
+   "em": "2026-11-08",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   }
  },
- "atualizado_em": "2026-11-07T11:44:48",
+ "atualizado_em": "2026-11-08T12:21:13",
  "realinhamentos": [
   {
    "em": "2026-11-04",
