@@ -16325,8 +16325,44 @@
    "fonte": "leitura",
    "hash": "7ab016f457f9",
    "em": "2026-11-08T12:21:21"
+  },
+  "6af15febb45836b0744c82bf": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "0404c05fd766",
+   "em": "2026-11-09T09:25:02"
+  },
+  "6af1acb9b45836b0744c82eb": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "86ba334a5d2c",
+   "em": "2026-11-09T09:25:02"
+  },
+  "6af1af3c5953c4a2d779c141": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "738586d146e1",
+   "em": "2026-11-09T09:25:02"
+  },
+  "6af1b192bb4d393cda354549": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "eb1d528c6d16",
+   "em": "2026-11-09T09:25:02"
+  },
+  "6af1b2255953c4a2d779c161": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "8df6a580ec66",
+   "em": "2026-11-09T09:25:02"
+  },
+  "6af1b3e6b45836b0744c8354": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a07e33bd1a07",
+   "em": "2026-11-09T09:25:02"
   }
  },
- "atualizado_em": "2026-11-08T12:21:21",
+ "atualizado_em": "2026-11-09T09:25:02",
  "modulos_versao": "2026-10-30"
 }

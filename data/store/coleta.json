@@ -1,18 +1,18 @@
 {
   "chamados": {
-    "em": "2026-11-08T15:04:16Z",
-    "arquivo": "bitrix_export_139_20261108_150416.json",
-    "registros": 3,
-    "from": "2026-11-07",
-    "to": "2026-11-09",
+    "em": "2026-11-09T12:07:54Z",
+    "arquivo": "bitrix_export_139_20261109_120754.json",
+    "registros": 2,
+    "from": "2026-11-08",
+    "to": "2026-11-10",
     "changedSince": null
   },
   "conversas": {
-    "em": "2026-11-08T15:04:30Z",
-    "arquivo": "conversations_export_20261108_150427.xlsx",
-    "registros": 46,
-    "from": "2026-11-07",
-    "to": "2026-11-09",
+    "em": "2026-11-09T12:08:13Z",
+    "arquivo": "conversations_export_20261109_120810.xlsx",
+    "registros": 57,
+    "from": "2026-11-08",
+    "to": "2026-11-10",
     "changedSince": null
   }
 }
