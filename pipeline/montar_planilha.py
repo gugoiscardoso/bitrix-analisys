@@ -309,15 +309,19 @@ def main() -> None:
     # todo dia, então a linha de TOTAL anda — e formatação aplicada a um índice fixo
     # acaba na linha errada, que foi exatamente como a planilha ficou feia depois da
     # primeira republicação. Quem publica usa estes índices em vez de adivinhar.
-    def achar(nome: str, prefixo: str) -> int | None:
+    # O cabeçalho casa a célula inteira: por prefixo, "Pessoa" achava antes o resumo
+    # "Pessoas atendendo", que fica acima da tabela na aba Por pessoa. O TOTAL segue
+    # por prefixo porque cada aba completa o rótulo de um jeito ("TOTAL (soma...)").
+    def achar(nome: str, texto: str, exato: bool = False) -> int | None:
         for i, l in enumerate(abas.get(nome, []), start=1):
-            if str(l[0]).startswith(prefixo):
+            celula = str(l[0]).strip()
+            if (celula == texto) if exato else celula.startswith(texto):
                 return i
         return None
 
     formato = {
         nome: {k: v for k, v in (
-            ("cabecalho", achar(nome, "Pessoa")),
+            ("cabecalho", achar(nome, "Pessoa", exato=True)),
             ("total", achar(nome, "TOTAL")),
             ("ultima_linha", len(linhas)),
         ) if v}
