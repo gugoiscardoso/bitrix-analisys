@@ -70,5 +70,15 @@
     "leituras": 19263,
     "n1_conversas": 2741,
     "n1_modulos": 2727
+  },
+  {
+    "em": "2026-11-10T09:33:18",
+    "registros": 50349,
+    "chamados": 3851,
+    "conversas": 46498,
+    "conversas_v3": 636,
+    "leituras": 19623,
+    "n1_conversas": 2861,
+    "n1_modulos": 2843
   }
 ]

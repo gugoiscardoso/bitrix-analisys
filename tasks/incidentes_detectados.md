@@ -857,3 +857,61 @@ orçamento (107911), km que não aparece no orçamento (107923).
   queixa em 299495.
 - A migração da NFS-e para o Portal Nacional segue dominando o lote fiscal (298923 a
   299817).
+
+## Execução diária de 10/11 (lotes A_001, B_001 e C_001)
+
+387 registros novos (175 conversas não-fiscais, 14 chamados, 198 fiscais), quase todos de
+09/11. Nenhum defeito inédito de grande porte; o que há é a continuação da placa e do
+Portal Nacional, agora com chamado aberto para os dois.
+
+### `tpOper` / indicador de operação na NFS-e Nacional — chamado 107967, 7 registros
+A nota é recusada com "Código do tipo de Operação (tpOper) não pode ser informado quando
+não se tratar de compra governamental"; ao tirar o código, outro erro aparece. Com esse
+texto: 107967, 299929 (cita o chamado), 300137, 300547. Variantes do mesmo campo
+("preencheu tpOper/codigoIndOp, então exige o bloco IBS/CBS"): 300007, 300419, 300647.
+É a rejeição `codigoIndOp` de 07/11, que agora tem chamado.
+
+### Integração de placas segue — 8 registros, chamado 107921
+A placa não puxa o veículo, ou veículo já cadastrado volta como "não cadastrado": 299881,
+300015, 300061, 300275, 300373, 300497, 300557, 300609. Chamados 107921 (299881, 300373)
+e 107973 (300015); ATD-33915 na integradora (300061). Em 07/11 eram 12 sem chamado 107xxx.
+
+### `cvc-pattern-valid` no código de tributação municipal — 5 registros, sem chamado
+`1401`/`14.01` recusado pelo leiaute da Sefin Nacional: 299921, 299949, 300259, 300333,
+300347. O 300283 é parecido, com `07455`. Mesma assinatura de 06/11.
+
+### Outros do Portal Nacional (lote C_001)
+- E0175, regime especial de tributação do ISSQN para Simples Nacional — 4: 300137,
+  300389, 300561, 300283.
+- Numeração da NFS-e reiniciou em 1 depois da migração — 4: 299955, 300135, 300399,
+  299989 (este com E0014).
+- "Não é permitido informar alíquota" de ISS (opSimpNac = 3) — 2: 300285, 300383.
+- NFS-e que não emite depois da ida para o portal, sem código legível — 299983, 300175,
+  300179.
+
+### Bloco IBS/CBS na NF-e/NFC-e
+- Rejeição 225/215 de schema por causa do campo `IBSCBS` / `cMunFGIBS` — 3: 300157,
+  300351, 300563.
+- "Falha na validação do JSON de NFe", `fundoCombatePobreza.baseCalculo` obrigatório —
+  2: 300437, 300451.
+
+### Menores
+- Quantidade e valor dos produtos zerados ao inserir itens no orçamento/OS, e kits que
+  não entram — 300217, 300257, 300635, sem chamado. Pode ser o mesmo cliente em mais de
+  um registro; o 300635 diz que voltou no dia seguinte ao atendimento.
+- Importação do Cilia não traz veículo nem itens — chamado 107885: 299931, 299999.
+- V3 exige placa na OS — 299861 (chamado 107843, motor avulso) e 300519 (chamado 108017,
+  trailer novo sem placa).
+- Layout do orçamento impresso mudou na V3: o "Resumo Geral" desceu e empurra a
+  assinatura para outra folha — 300167, 300271, 300477, sem chamado.
+
+### V3: pedidos de volta e perguntas sobre a migração
+Seis chamados pedem algo que a V2 tinha e a V3 não tem: 107987, 108003, 108005, 108015,
+108023, 108025. Perguntas sobre a migração seguem sem rótulo próprio e caem em
+acesso/plano/contrato: 300111, 300149, 300203, 300255, 300359, 300381, 300605, 300685.
+
+### Robô N1 (116 conversas novas)
+Saldo financeiro que muda ou desajusta sozinho — 3 conversas, e o robô mandou todas ao
+N2: `6af1e06dbb4d393cda354700`, `6af2171bbb4d393cda354801`, `6af2f1e95c0caf89646f98ac`
+(vizinha: `6af2138ebb4d393cda3547e3`, saldo do Movimento de Caixa divergente). Não
+apareceu no suporte humano neste lote.
