@@ -915,3 +915,68 @@ Saldo financeiro que muda ou desajusta sozinho — 3 conversas, e o robô mandou
 N2: `6af1e06dbb4d393cda354700`, `6af2171bbb4d393cda354801`, `6af2f1e95c0caf89646f98ac`
 (vizinha: `6af2138ebb4d393cda3547e3`, saldo do Movimento de Caixa divergente). Não
 apareceu no suporte humano neste lote.
+
+## Execução diária de 11/11 (lotes A_001, B_001 e C_001)
+
+383 registros lidos (159 conversas não-fiscais, 15 chamados, 209 fiscais), quase todos de
+10/11. Dois defeitos fiscais multi-cliente que ainda não estavam nesta lista (PIS/COFINS
+na NF-e de peças e o agrupamento de compras), mais a continuação do Portal Nacional, da
+placa e do boleto.
+
+### NF-e de peças recusada por PIS/COFINS — 7 clientes, sem chamado
+`vPIS`, `pPIS`, `pCOFINS` obrigatórios; "PISOutr não está completo". Ids 300727, 300965,
+301145, 301173, 301217, 301255, e 301099 (em nota de devolução). O atendente corrige o
+preenchimento caso a caso; ninguém abriu chamado. O robô N1 viu a mesma família no mesmo
+dia (ver abaixo).
+
+### Agrupamento de compras passou a exigir CST/CSOSN de ICMS no item — 3 registros
+301245, 301253, 301261, ao menos 2 clientes; um diz "em todos os agrupamentos, antes não
+dava". Sem chamado. Tem cara de regressão recente.
+
+### Nota de devolução de compra não gera — chamados 108045 e 108047
+"Não foi possível finalizar a requisição" ou sem retorno: os dois chamados, mais 300909
+(mesmo cliente do 108047), 300813 e 300869 (resolvidas no atendimento). 3 a 4 clientes.
+Devolução/garantia/remessa foi o maior tema fiscal do lote (44 de 209).
+
+### Portal Nacional segue — ~45 registros, chamado 108061
+Entre 300649 e 301283: 29 em particularidade municipal, 9 em configuração assistida, o
+resto em rejeição (`cvc-pattern-valid` '1401', `codigoIndOp`/IBSCBS, E0177, E0625, E0621,
+E0904) ou numeração (E0014, numeração reiniciada). Chamado 108061 (trava de série/DPS),
+com a conversa 300889 do mesmo cliente.
+
+### Integração de placas segue — 6 registros
+300721 (nenhum veículo novo aparece "desde quinta-feira passada", 7 placas, ATD-33967),
+301011, 300717 (ATD-33962), 301039, 301073, 301201. Chamados do dia sobre placa: 108031
+(dentro do orçamento) e 108041 (leitura por foto no Ultravision).
+
+### Boleto não gera ou demora — 3 clientes, sem chamado
+300665 (PDF não baixa), 300823 ("mais de uma hora por boleto, há 3 semanas"), 301257 e
+301317 (mesma cliente, dois dias seguidos). Chamados de boleto do dia, cada um com defeito
+próprio: 108059 (duplicidade na conciliação por OFX reimportado), 108065 (erro ao salvar
+configuração), 108095 (não gera PDF).
+
+### V3: busca de peça não considera o campo Observação — chamado 108035
+300773, 300939 e 301153 (mesmo cliente, o último cobrando o chamado) e 300693 (outro
+cliente; busca por descrição/aplicação não lista as opções, atendente confirma erro em
+tratamento). Regressão V2→V3.
+
+### Menores
+- E-mail de NFS-e/NF que não sai: chamado 108101 com 301277 (há 2 meses), e 300687,
+  301171, 301309 de um único cliente depois da ida para o Portal Nacional; 301005 e 301105
+  de outro cliente, "desde a mudança de versão".
+- EXCEPTION ao emitir NF-e — chamado 108091, com 300825 e 300991 (mesmo cliente).
+- Pedidos de migração para a V3 seguem sem rótulo próprio: 300849, 300961, 301143,
+  301157, 301107.
+
+### Robô N1 (129 conversas novas, 63 fiscais)
+- E0904 (`tpOper` fora de compra governamental) — 3: `6af32100907efe90201f22f0`,
+  `6af3270c907efe90201f2326`, `6af3765139152e693cc442d0`. É o chamado 107967 de 10/11.
+- Schema de NF-e com campo obrigatório ausente (PISOutr/COFINSOutr, IBSCBS) e "Falha na
+  validação do JSON de NFe" — 8 ao todo: `6af3104c0b3dd72d0c4902b2`,
+  `6af342bdc457fbc4b3872292`, `6af37ac1c457fbc4b387246e`, `6af3815ec457fbc4b3872481`,
+  `6af3295cc457fbc4b387224c`, `6af364c4907efe90201f24d1`, `6af368bfc457fbc4b387237d`,
+  `6af37231907efe90201f2538`.
+- Não emite depois de trocar o certificado digital (o novo não fica selecionado) — 2:
+  `6af2fd210b3dd72d0c4901e0`, `6af3661e907efe90201f24d2`.
+- Cerca de 17 conversas sobre nota de devolução (como emitir, erro, onde encontrar) —
+  mesmo tema que liderou o lote fiscal humano.

@@ -9496,6 +9496,230 @@
    "hash": "9a69862cecdd",
    "em": "2026-11-10",
    "tema": "Certificado digital (cadastro, vencimento, atualização)"
+  },
+  "108031": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "559ae422c9f5",
+   "em": "2026-11-11",
+   "tema": "Consulta e importação de dados externos (placa, Cilia, Fraga, OFX) falha ou traz dado divergente"
+  },
+  "108033": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "54d95c36fcb9",
+   "em": "2026-11-11",
+   "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
+  },
+  "108035": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "4e1f0cbbdfda",
+   "em": "2026-11-11",
+   "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
+  },
+  "108037": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "6db9fd71690b",
+   "em": "2026-11-11",
+   "tema": "Saldo de estoque diverge: entrada duplicada, saída inexistente, item some da busca"
+  },
+  "108039": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "afe1bac881b7",
+   "em": "2026-11-11",
+   "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
+  },
+  "108041": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "6916601f7c40",
+   "em": "2026-11-11",
+   "tema": "Consulta e importação de dados externos (placa, Cilia, Fraga, OFX) falha ou traz dado divergente"
+  },
+  "108043": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "1eadac279490",
+   "em": "2026-11-11",
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+  },
+  "108053": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "4680066eb93d",
+   "em": "2026-11-11",
+   "tema": "Permissão configurada não é respeitada e acesso do usuário se perde"
+  },
+  "108059": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "f2d862b0ed7d",
+   "em": "2026-11-11",
+   "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
+  },
+  "108065": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "42cdbccc4dc2",
+   "em": "2026-11-11",
+   "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
+  },
+  "108071": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "b7e45edde206",
+   "em": "2026-11-11",
+   "tema": "OS não fecha ou não aceita item por vínculo pendente de compra, entrega ou estoque"
+  },
+  "108087": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "1e5a5d9209c7",
+   "em": "2026-11-11",
+   "tema": "Pedido de campo, filtro ou regra configurável que o sistema não oferece"
+  },
+  "108095": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "6ebc07a171b4",
+   "em": "2026-11-11",
+   "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
+  },
+  "108097": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "ff0d3b69438e",
+   "em": "2026-11-11",
+   "tema": "Boleto não emite ou não baixa e lançamento financeiro sai com valor errado"
+  },
+  "108103": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "783ac420933c",
+   "em": "2026-11-11",
+   "tema": "Relatório ignora filtro, vem vazio ou fecha valor diferente da tela"
+  },
+  "108029": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "83a5a2a2733c",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "108045": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6d8a50da8465",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "108047": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6237733d10aa",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "108049": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "65d568bc5c0d",
+   "em": "2026-11-11",
+   "tema": "PDF/DANFE/impressão (não gera, dados fora do lugar)"
+  },
+  "108057": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0da25657f1b9",
+   "em": "2026-11-11",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
+  },
+  "108061": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "1f92ed42653e",
+   "em": "2026-11-11",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
+  },
+  "108063": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3f7182afb8c4",
+   "em": "2026-11-11",
+   "tema": "Status dessincronizado sistema x prefeitura/SEFAZ"
+  },
+  "108069": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "0cee26bdb18b",
+   "em": "2026-11-11",
+   "tema": "Relatórios fiscais divergentes"
+  },
+  "108073": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c89aa0f00aec",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "108079": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c9fcb00f59a8",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "108081": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "947277b0faa5",
+   "em": "2026-11-11",
+   "tema": "Não fiscal (falso positivo)"
+  },
+  "108085": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "21d2b73d0711",
+   "em": "2026-11-11",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  "108089": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8548e8e96ec9",
+   "em": "2026-11-11",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
+  },
+  "108091": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bcdb545e25bc",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "108093": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8483d4d08006",
+   "em": "2026-11-11",
+   "tema": "Nota travada em processamento/transmissão sem retorno"
+  },
+  "108099": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3c4f9078e5df",
+   "em": "2026-11-11",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  "108101": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "4f5f60059003",
+   "em": "2026-11-11",
+   "tema": "Envio de nota por e-mail falha"
   }
  },
  "conversas": {
@@ -131182,8 +131406,8 @@
   "300599": {
    "modulo": "Relatórios",
    "fonte": "leitura",
-   "hash": "a3d3df899f3e",
-   "em": "2026-11-10",
+   "hash": "9eaefb04180f",
+   "em": "2026-11-11",
    "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
   },
   "300605": {
@@ -131203,8 +131427,8 @@
   "300619": {
    "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "54ca938ba971",
-   "em": "2026-11-10",
+   "hash": "774e2360e21d",
+   "em": "2026-11-11",
    "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
   },
   "300627": {
@@ -131217,22 +131441,22 @@
   "300633": {
    "modulo": "Ordem de Serviço",
    "fonte": "leitura",
-   "hash": "1316a69946f7",
-   "em": "2026-11-10",
+   "hash": "f8841496ff14",
+   "em": "2026-11-11",
    "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "300635": {
    "modulo": "Orçamentos & Serviços",
    "fonte": "leitura",
-   "hash": "9cb8ef2eae1f",
-   "em": "2026-11-10",
+   "hash": "b9b854b016a6",
+   "em": "2026-11-11",
    "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
   },
   "300637": {
    "modulo": "Financeiro",
    "fonte": "leitura",
-   "hash": "b0e9d0573fca",
-   "em": "2026-11-10",
+   "hash": "9c9e336a2fae",
+   "em": "2026-11-11",
    "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
   },
   "300643": {
@@ -131245,65 +131469,65 @@
   "300645": {
    "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "bddd828a0a08",
-   "em": "2026-11-10",
+   "hash": "8becfc3e5189",
+   "em": "2026-11-11",
    "tema": "Cliente pede treinamento, call ou consultoria para aprender a usar o módulo"
   },
   "300661": {
    "modulo": "Cadastros",
    "fonte": "leitura",
-   "hash": "ec6899aea238",
-   "em": "2026-11-10",
+   "hash": "14e7d462203d",
+   "em": "2026-11-11",
    "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "300663": {
-   "modulo": "(sem assunto)",
+   "modulo": "Relatórios",
    "fonte": "leitura",
-   "hash": "47d5708a0c8b",
-   "em": "2026-11-10",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "hash": "b869791ed76a",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
   },
   "300665": {
    "modulo": "Financeiro",
    "fonte": "leitura",
-   "hash": "679b43374f2d",
-   "em": "2026-11-10",
+   "hash": "efc7efa391c1",
+   "em": "2026-11-11",
    "tema": "Cliente não consegue configurar ou emitir o boleto bancário dos seus clientes"
   },
   "300667": {
-   "modulo": "(sem assunto)",
+   "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "a580548a7c90",
-   "em": "2026-11-10",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "hash": "f02bd773aef9",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
   },
   "300671": {
    "modulo": "Ordem de Serviço",
    "fonte": "leitura",
-   "hash": "5a9027470fc9",
-   "em": "2026-11-10",
+   "hash": "75c66c583625",
+   "em": "2026-11-11",
    "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
   },
   "300673": {
    "modulo": "Relatórios",
    "fonte": "leitura",
-   "hash": "bdc2f422a9a8",
-   "em": "2026-11-10",
+   "hash": "ea8d30a48838",
+   "em": "2026-11-11",
    "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
   },
   "300675": {
    "modulo": "Ordem de Serviço",
    "fonte": "leitura",
-   "hash": "004b7487571d",
-   "em": "2026-11-10",
+   "hash": "dcf4378fdbae",
+   "em": "2026-11-11",
    "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
   },
   "300683": {
-   "modulo": "(sem assunto)",
+   "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "65463ee664ab",
-   "em": "2026-11-10",
-   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+   "hash": "6fdff54c5aef",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   "300685": {
    "modulo": "Transversal",
@@ -132349,10 +132573,10 @@
    "tema": "Sem causa identificável na descrição"
   },
   "300589": {
-   "modulo": "Fiscal",
+   "modulo": "Transversal",
    "fonte": "leitura",
-   "hash": "77d259eca0f0",
-   "em": "2026-11-10",
+   "hash": "ff33ff3a1d94",
+   "em": "2026-11-11",
    "tema": "Acompanhamento de chamado já aberto"
   },
   "300591": {
@@ -132449,8 +132673,8 @@
   "300639": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "5095d2aa0226",
-   "em": "2026-11-10",
+   "hash": "351a1aebae0e",
+   "em": "2026-11-11",
    "tema": "Certificado digital (cadastro, vencimento, atualização)"
   },
   "300641": {
@@ -132463,50 +132687,50 @@
   "300647": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "5dc7dba2acb2",
-   "em": "2026-11-10",
+   "hash": "348706c1dcac",
+   "em": "2026-11-11",
    "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   },
   "300649": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "e7995fd42fea",
-   "em": "2026-11-10",
+   "hash": "a04d87a64208",
+   "em": "2026-11-11",
    "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "300651": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "1f01d5fc562c",
-   "em": "2026-11-10",
+   "hash": "a30abf46c924",
+   "em": "2026-11-11",
    "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   "300653": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "227cd1d6affb",
-   "em": "2026-11-10",
+   "hash": "00f1428af284",
+   "em": "2026-11-11",
    "tema": "Sem causa identificável na descrição"
   },
   "300655": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "adddd15b8078",
-   "em": "2026-11-10",
+   "hash": "6db7c54b75ec",
+   "em": "2026-11-11",
    "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
   },
   "300657": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "6e7fc4b8fdb5",
-   "em": "2026-11-10",
+   "hash": "e7a330f1f942",
+   "em": "2026-11-11",
    "tema": "Configuração assistida pelo suporte"
   },
   "300659": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "67c0027b0e93",
-   "em": "2026-11-10",
+   "hash": "992513bc28f2",
+   "em": "2026-11-11",
    "tema": "Nota de devolução/garantia/remessa/complemento"
   },
   "300669": {
@@ -132519,26 +132743,2301 @@
   "300677": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "f8c1b82a6321",
-   "em": "2026-11-10",
+   "hash": "08ebffd38f1f",
+   "em": "2026-11-11",
    "tema": "Sem causa identificável na descrição"
   },
   "300679": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "3d9377ea5fb0",
-   "em": "2026-11-10",
+   "hash": "4e8f960f84a1",
+   "em": "2026-11-11",
    "tema": "Dúvida de uso / orientação (how-to fiscal)"
   },
   "300681": {
    "modulo": "Fiscal",
    "fonte": "leitura",
-   "hash": "7890bc1ef01b",
-   "em": "2026-11-10",
+   "hash": "e73b61ccee1c",
+   "em": "2026-11-11",
    "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300687": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "878a88c6c8a9",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300689": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "81f3e8e76d33",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300693": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "45ad95048174",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300705": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "4463e9561b50",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300707": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "0c56332dc4bc",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300715": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "895ce8551cda",
+   "em": "2026-11-11",
+   "tema": "Cliente cobra prazo ou retorno de chamado já aberto"
+  },
+  "300717": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "be6a817b756d",
+   "em": "2026-11-11",
+   "tema": "Veículo, marca ou modelo não existe na base e o cliente pede o cadastro"
+  },
+  "300721": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "e87b4b24e8f2",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300723": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "64f0fcac1d26",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300729": {
+   "modulo": "Checklist & Diagnóstico",
+   "fonte": "leitura",
+   "hash": "cac74f545a78",
+   "em": "2026-11-11",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "300733": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "fbcf955ed8c6",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300739": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "6fa1722067ca",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300749": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "26fa26c34c48",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300761": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "21f06414630d",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300769": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "e15b22cc62e5",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300773": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "19c131105758",
+   "em": "2026-11-11",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "300775": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a2aa737c4356",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300743": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "83d36d5d2bb8",
+   "em": "2026-11-11",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "300787": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "89de50dcf4db",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300789": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "b9e501563a87",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+  },
+  "300793": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "b48e4c382f9c",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300795": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "d4194d23f270",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300807": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "603ad2471b91",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300809": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "f61acc92f15f",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+  },
+  "300811": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "141ce07574d7",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300815": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "cb0d7af82400",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300817": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "0807fcda0f91",
+   "em": "2026-11-11",
+   "tema": "Cliente não consegue configurar ou emitir o boleto bancário dos seus clientes"
+  },
+  "300821": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "ca34a1bf65f8",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300823": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "45ccc0dd7b0e",
+   "em": "2026-11-11",
+   "tema": "Cliente não consegue configurar ou emitir o boleto bancário dos seus clientes"
+  },
+  "300831": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "2391869fc6dc",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300841": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "be82a5588193",
+   "em": "2026-11-11",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "300843": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "6c648e33146b",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300845": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "bb0a170dc065",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300849": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "3ebcdbbeeef2",
+   "em": "2026-11-11",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "300861": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "256650da77aa",
+   "em": "2026-11-11",
+   "tema": "Cliente não consegue configurar ou emitir o boleto bancário dos seus clientes"
+  },
+  "300863": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "111f09148b81",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300871": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "c24d41bf3b82",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300873": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "91c2900aa8b9",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300875": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "0c9a5cbcf741",
+   "em": "2026-11-11",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "300885": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "eefd2f725d68",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300891": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "9043bbbeca1e",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300905": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "4a0faf8970d4",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300907": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "b73e04aa6c7a",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+  },
+  "300911": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "c19279dfed2e",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300913": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "7fd74bce6e37",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300915": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "be26cbbeebe7",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300917": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "97a5e8bc245a",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300921": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "10949c96fb39",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300927": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "6d78edd0ba6f",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300929": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "c8655468e2ac",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300935": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "876be0de3cfe",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300939": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "bd990103b754",
+   "em": "2026-11-11",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "300943": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "e86700fabc6d",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300941": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "4c5f2243f979",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300947": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "2e588628ed4e",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300961": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "c704e65e3784",
+   "em": "2026-11-11",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "300967": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "27deb168ca50",
+   "em": "2026-11-11",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "300969": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "62cf48fd71ca",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300971": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "9d167a4bafb3",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300973": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "14e3f4f2c4fa",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300977": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "eb0b3004fd5b",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300979": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "09936a79afc5",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300981": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "6942115eae64",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300985": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "500603961870",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300987": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "3d58d9b78794",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "300995": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "7a4a9362c7c1",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "300997": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "f9b6da43538a",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "301001": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "60364e40c5d2",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301003": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "702b8b64505b",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301011": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "d667845021b1",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "301013": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "0660a8f27505",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301015": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "53f73446835a",
+   "em": "2026-11-11",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "301019": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "724e272a352b",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "301023": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "12ade87cc9c9",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+  },
+  "301037": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "16b933d83ba6",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301041": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "5c77f56bf659",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301047": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "7f2a148fe333",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301051": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "cbe342d0a9ce",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301039": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "99cba444d8df",
+   "em": "2026-11-11",
+   "tema": "Veículo, marca ou modelo não existe na base e o cliente pede o cadastro"
+  },
+  "301063": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "d9e3e25d49ba",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301071": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "cb5fb99abcb0",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301073": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "f0fa863621fd",
+   "em": "2026-11-11",
+   "tema": "Cliente cobra prazo ou retorno de chamado já aberto"
+  },
+  "301093": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6b63421bab21",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "301107": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "e618c4b6ece3",
+   "em": "2026-11-11",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "301111": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "b8f6f99c54e7",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301115": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "8a022d9e5e58",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301117": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "1aa757109f0f",
+   "em": "2026-11-11",
+   "tema": "Cliente pede treinamento, call ou consultoria para aprender a usar o módulo"
+  },
+  "301137": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "f1aed8950205",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+  },
+  "301143": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "cf892b099a43",
+   "em": "2026-11-11",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "301149": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "8b07a3b5d1b8",
+   "em": "2026-11-11",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "301153": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "5afd0b96dcf6",
+   "em": "2026-11-11",
+   "tema": "Cliente cobra prazo ou retorno de chamado já aberto"
+  },
+  "301155": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "712a3c0bfcbb",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301157": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "f622047d89db",
+   "em": "2026-11-11",
+   "tema": "Acesso bloqueado por mensalidade, ou dúvida de plano, CNPJ e contrato"
+  },
+  "301159": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "260f207e9158",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301161": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "79dd588228ae",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301165": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "1993d968bd57",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301167": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "dc6aa37a89d3",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301169": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "7e999937762f",
+   "em": "2026-11-11",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "301171": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "22d872272e5f",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "301183": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "9ac9b798fc96",
+   "em": "2026-11-11",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "301187": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "dde31231f878",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301193": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "57ffa11a32db",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301197": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "e802d0b67562",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301199": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "5207949ca65e",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301201": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "7917923b0e91",
+   "em": "2026-11-11",
+   "tema": "Veículo, marca ou modelo não existe na base e o cliente pede o cadastro"
+  },
+  "301205": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "350f7d3ea5bd",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301211": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "52c7b4272bc6",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+  },
+  "301221": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "6f9a0983c834",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301219": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "4d1cbb5082b6",
+   "em": "2026-11-11",
+   "tema": "Cliente pede função que o sistema não tem e recebe 'não é possível' ou vira chamado de melhoria"
+  },
+  "301225": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "be2df19889ab",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301227": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "e51fd2c8bde1",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301229": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "7a85f4764bbd",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301223": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "4f6817af1e1a",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+  },
+  "301235": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "5a8805738ca8",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301239": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "c9fac3d4d9e5",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301241": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "d86d648ade32",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301243": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "42f683257d15",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301257": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "6d542c6a9cd9",
+   "em": "2026-11-11",
+   "tema": "Cliente não consegue configurar ou emitir o boleto bancário dos seus clientes"
+  },
+  "301259": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "6dfe591e7518",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301267": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "71af0e30293a",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301269": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "3453a12d15ba",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "301271": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "9e187187490b",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
+  },
+  "301279": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "598f64b79a46",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301281": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "5a17fab48c77",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301289": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "0a256b19dd65",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301297": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "8655a35322be",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o lançamento ou o relatório financeiro que precisa, ou o valor apresentado não bate"
+  },
+  "301299": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "1cd1b1e2a49b",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301305": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "ce03ecd83a8e",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301307": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "a09bd7e338ee",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
+  },
+  "301309": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b01d6a96d45b",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "301313": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "5d717e7e7172",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301315": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "f0bbd9afa74a",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301317": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "9c97df88ef0e",
+   "em": "2026-11-11",
+   "tema": "Cliente não consegue configurar ou emitir o boleto bancário dos seus clientes"
+  },
+  "301321": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "b1353bfc1388",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301325": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "855bd40f71ca",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
+  },
+  "301329": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "755567ac7800",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
+  },
+  "301333": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "64b869600d08",
+   "em": "2026-11-11",
+   "tema": "Cliente não acha o relatório certo ou os números do relatório não batem"
+  },
+  "301337": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "d4c801f452b2",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "301339": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "7a6cb8cd82f1",
+   "em": "2026-11-11",
+   "tema": "Cliente não sabe executar a rotina na OS, no orçamento, no estoque ou no cadastro de usuário"
+  },
+  "301341": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "16a56152a908",
+   "em": "2026-11-11",
+   "tema": "Cliente cobra prazo ou retorno de chamado já aberto"
+  },
+  "301345": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "10b0080a6391",
+   "em": "2026-11-11",
+   "tema": "Cliente pede treinamento, call ou consultoria para aprender a usar o módulo"
+  },
+  "301347": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "142a8f41aa93",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301357": {
+   "modulo": "Gestão de Pátio",
+   "fonte": "leitura",
+   "hash": "0d722c544eed",
+   "em": "2026-11-11",
+   "tema": "Função específica dá erro ou comporta-se errado e vira chamado para o desenvolvimento"
+  },
+  "301363": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "945fa8ea4bea",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301367": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "f4c1c5066373",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "301369": {
+   "modulo": "(sem assunto)",
+   "fonte": "leitura",
+   "hash": "1ae35d72488b",
+   "em": "2026-11-11",
+   "tema": "Conversa sem assunto identificável (saudação, chat abandonado ou resolvido fora do chat)"
+  },
+  "300691": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "f0b7fbc97f3e",
+   "em": "2026-11-11",
+   "tema": "Não fiscal (falso positivo)"
+  },
+  "300697": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "35f8101a34fd",
+   "em": "2026-11-11",
+   "tema": "Acompanhamento de chamado já aberto"
+  },
+  "300699": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ad3a3ef21c61",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300701": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "1241bd7666ea",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300703": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "cda264c4b6ae",
+   "em": "2026-11-11",
+   "tema": "Certificado digital (cadastro, vencimento, atualização)"
+  },
+  "300709": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0187e4741160",
+   "em": "2026-11-11",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "300711": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "fe84cc3db3a9",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300713": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3a7bebccdb20",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "300719": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "390b2ad90535",
+   "em": "2026-11-11",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
+  },
+  "300725": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3d356f64b69f",
+   "em": "2026-11-11",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "300727": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8dba0a89329f",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300731": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "33d83deb512b",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300737": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9cc4b4ea477e",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "300735": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "b36ce8a09c5e",
+   "em": "2026-11-11",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  "300741": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "e5e138b19138",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "300747": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d55fb8de81a6",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300751": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9f77a972232a",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300753": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a755b450fdce",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300755": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8410f56231ac",
+   "em": "2026-11-11",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "300757": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9887bef2bac9",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300759": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "1809e138457b",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300763": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "37cedc8be515",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300745": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "1a0b65b4e2cb",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300765": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "3c61e42a02a8",
+   "em": "2026-11-11",
+   "tema": "Não fiscal (falso positivo)"
+  },
+  "300767": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "26ec2623a042",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300771": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d443e6386970",
+   "em": "2026-11-11",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
+  },
+  "300777": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "2bb1f751d8c7",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300779": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "609c825c546e",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300781": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "fd163fbb07c1",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300785": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "06852d4bae33",
+   "em": "2026-11-11",
+   "tema": "Certificado digital (cadastro, vencimento, atualização)"
+  },
+  "300783": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "041dd9d23c94",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300791": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "16f0cf2af536",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300797": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f565d437eeb4",
+   "em": "2026-11-11",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
+  },
+  "300799": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "175113a50004",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300801": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "7ff50fbda5b0",
+   "em": "2026-11-11",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "300803": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ab74274d6781",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300805": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "35186a4b54d1",
+   "em": "2026-11-11",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
+  },
+  "300813": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c4afed644ec4",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300819": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "7f816c331b6c",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300825": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "8ad846be04d5",
+   "em": "2026-11-11",
+   "tema": "Acompanhamento de chamado já aberto"
+  },
+  "300827": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8029f0f0dd5d",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300833": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "63dc7c3611ab",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300835": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "42188355fc51",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "300837": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6f2c5e72583f",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300847": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "41b8df924a45",
+   "em": "2026-11-11",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
+  },
+  "300851": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "456b845d4972",
+   "em": "2026-11-11",
+   "tema": "Certificado digital (cadastro, vencimento, atualização)"
+  },
+  "300853": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d4ed7a981f06",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "300855": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "70878c29a83a",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300857": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "5ab12be07425",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300859": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "0c32a65375ec",
+   "em": "2026-11-11",
+   "tema": "Acompanhamento de chamado já aberto"
+  },
+  "300865": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "db791fcb74a8",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "300869": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ce69eb80722d",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300867": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a9dc89719653",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300877": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "3544708065e7",
+   "em": "2026-11-11",
+   "tema": "Acompanhamento de chamado já aberto"
+  },
+  "300881": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "2ea9ae26dbab",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300879": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "48d910ef7d9e",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "300887": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "907764704fbf",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300889": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c90369c894d1",
+   "em": "2026-11-11",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "300895": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "691300372a91",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300893": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "dacfd563089d",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300897": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8d0d1551b433",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300899": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "174c78aea6ff",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300901": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "72daef8c7066",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300909": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f42b13d450f5",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300919": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3094ff3f3bf6",
+   "em": "2026-11-11",
+   "tema": "Certificado digital (cadastro, vencimento, atualização)"
+  },
+  "300923": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "eb73cd0e8faa",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300925": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "779a99574199",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300931": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6a53e694e12a",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "300933": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "75f401931472",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300937": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "70ba092c2eed",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300945": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "181f86a690ba",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300949": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3a7758bf277c",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300951": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9f9ea8be5161",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300953": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "514c9c4c9f27",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "300955": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "aaea70d60c26",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300957": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "dce6b4b4df09",
+   "em": "2026-11-11",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "300959": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8be100ff5a54",
+   "em": "2026-11-11",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
+  },
+  "300963": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "526a0a54521e",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300965": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "59174f296eb2",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300975": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "7097640a01e5",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "300983": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "4dc869fc18b4",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "300989": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "52dea88be540",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "300991": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "c51614352e53",
+   "em": "2026-11-11",
+   "tema": "Acompanhamento de chamado já aberto"
+  },
+  "300993": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "826c3c2fd1d7",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "300999": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "56abc232e742",
+   "em": "2026-11-11",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  "301005": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "646c8ca5cd89",
+   "em": "2026-11-11",
+   "tema": "Envio de nota por e-mail falha"
+  },
+  "301007": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "07f325c28edc",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301009": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "53f6bd4fa7a0",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301017": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a20f451ef6a0",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301021": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "e2900bead87f",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301025": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f2e6a94084d3",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301027": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ba62bf7139fd",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "301029": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "198f846fc0a2",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301031": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "83c0ed091180",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301033": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6cddbd618e0a",
+   "em": "2026-11-11",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "301043": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "2860bc71a303",
+   "em": "2026-11-11",
+   "tema": "Não fiscal (falso positivo)"
+  },
+  "301045": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b2fdabca5687",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "301049": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6c94151a50e0",
+   "em": "2026-11-11",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
+  },
+  "301053": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "49b613e17bba",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301055": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "2458eeda44f5",
+   "em": "2026-11-11",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  "301059": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "da660558a994",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301061": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "53b1564b10ab",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301067": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0ade042ecfe0",
+   "em": "2026-11-11",
+   "tema": "Cálculo/exibição de impostos errada (PIS/COFINS/ICMS/ISS/IBS/CBS/retenções)"
+  },
+  "301069": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "626a5c25e99f",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301075": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bb912a06e4bf",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301077": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "1fd2f13e12f8",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301081": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9f09fd5ff393",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301085": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bb882ca97422",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301089": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "e2d3daf518e5",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301091": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3eebe6df4315",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301095": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ede4744de1e6",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "301097": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "2ca21f83e76c",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "301099": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b6dc528fb93c",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301101": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "1274aaa27378",
+   "em": "2026-11-11",
+   "tema": "Não fiscal (falso positivo)"
+  },
+  "301103": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "4f9275fcea6e",
+   "em": "2026-11-11",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  "301105": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "08ee3648589a",
+   "em": "2026-11-11",
+   "tema": "Envio de nota por e-mail falha"
+  },
+  "301109": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "62962ba532d3",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301113": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "684d8b3a5dc8",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301119": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "746a5acd0d2f",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "301121": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "4a33e1827b9c",
+   "em": "2026-11-11",
+   "tema": "Configuração assistida pelo suporte"
+  },
+  "301123": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "4573c35b5bed",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301125": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "07d838d9c844",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301127": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9ee54a2c96a6",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301131": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "868e437794e7",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301133": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "809419392b8a",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301135": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "eccd5233f7ab",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301141": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "e3dbead9f163",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301145": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "e07844e44b7d",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301147": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a99b312ab67e",
+   "em": "2026-11-11",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  "301151": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d27aa8b745ed",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301163": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6823ce285b84",
+   "em": "2026-11-11",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  "301173": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "7df284d15200",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301175": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "10c6f06844ab",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301177": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "2eee346bb06d",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301181": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "50e9557fb940",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301185": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a163c2ba9d5b",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301189": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6bbfe2daf9d1",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301191": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "e9297874019c",
+   "em": "2026-11-11",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  "301195": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "454a4400d583",
+   "em": "2026-11-11",
+   "tema": "Certificado digital (cadastro, vencimento, atualização)"
+  },
+  "301203": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "5d91013a2318",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301207": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "94dc9f884839",
+   "em": "2026-11-11",
+   "tema": "Sem causa identificável na descrição"
+  },
+  "301209": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "dd1e081cfed0",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301213": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "23d808a9b7b1",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301215": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bedb3e4a7ee3",
+   "em": "2026-11-11",
+   "tema": "XML de compra / importação / manifestação do destinatário"
+  },
+  "301217": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "77b08840a81f",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301233": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "7f21d9daacb4",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301237": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "4fd295ddff8f",
+   "em": "2026-11-11",
+   "tema": "Cancelamento/exclusão de nota"
+  },
+  "301245": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "c722166b9e01",
+   "em": "2026-11-11",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  "301247": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "4586856b75e5",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301249": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "33e8b0bae98d",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301251": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c189cc2b9970",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301253": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "eeb740112acb",
+   "em": "2026-11-11",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  "301255": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c7017952ac76",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301261": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "22e14a62f731",
+   "em": "2026-11-11",
+   "tema": "Cadastro/config fiscal (NCM, CFOP, CST, cód. serviço, SPED, regime)"
+  },
+  "301265": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "a0886f5e225d",
+   "em": "2026-11-11",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  "301273": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "4eea11da0d5d",
+   "em": "2026-11-11",
+   "tema": "Não fiscal (falso positivo)"
+  },
+  "301275": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "58f596cbe3b8",
+   "em": "2026-11-11",
+   "tema": "Particularidade municipal de NFS-e (layout, homologação, instabilidade da prefeitura)"
+  },
+  "301277": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "af7826178444",
+   "em": "2026-11-11",
+   "tema": "Envio de nota por e-mail falha"
+  },
+  "301283": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bf2ee45c93bd",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301285": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "39d8e977b417",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301287": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "116497f196a3",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "301291": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bf43685dbc47",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "301293": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "86615df64c37",
+   "em": "2026-11-11",
+   "tema": "Integração financeiro/estoque/OS com a nota"
+  },
+  "301295": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ac966b9ced13",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301301": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "5ab3144a4f71",
+   "em": "2026-11-11",
+   "tema": "Acompanhamento de chamado já aberto"
+  },
+  "301303": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "ab3c6ba4550c",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "301311": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9a5750d42d94",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301319": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b00a4801f0e4",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301323": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "51acae4afa56",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
+  },
+  "301327": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "fc40db6a9047",
+   "em": "2026-11-11",
+   "tema": "Dúvida de uso / orientação (how-to fiscal)"
+  },
+  "301331": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "7e1284ed565f",
+   "em": "2026-11-11",
+   "tema": "Numeração/duplicidade (pulos, RPS, DPS, inutilização)"
+  },
+  "301335": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f309a430e48d",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301343": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "bae947aa14a9",
+   "em": "2026-11-11",
+   "tema": "Não fiscal (falso positivo)"
+  },
+  "301349": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "17951c21cc55",
+   "em": "2026-11-11",
+   "tema": "Acompanhamento de chamado já aberto"
+  },
+  "301351": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ee235d6be8a5",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301353": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "c52e6266037d",
+   "em": "2026-11-11",
+   "tema": "Não fiscal (falso positivo)"
+  },
+  "301355": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3bbcb1167818",
+   "em": "2026-11-11",
+   "tema": "Nota de devolução/garantia/remessa/complemento"
+  },
+  "301359": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9b364ceeb3f1",
+   "em": "2026-11-11",
+   "tema": "Relatórios fiscais divergentes"
+  },
+  "301361": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "31900c7e8a59",
+   "em": "2026-11-11",
+   "tema": "Rejeição/erro de validação (schema XML, E0xxx, tags, campos, IE)"
   }
  },
- "atualizado_em": "2026-11-10T09:30:13",
+ "atualizado_em": "2026-11-11T09:26:53",
  "realinhamentos": [
   {
    "em": "2026-11-04",
