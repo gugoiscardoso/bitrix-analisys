@@ -90,5 +90,15 @@
     "leituras": 19980,
     "n1_conversas": 2990,
     "n1_modulos": 2970
+  },
+  {
+    "em": "2026-11-12T09:55:28",
+    "registros": 51099,
+    "chamados": 3903,
+    "conversas": 47196,
+    "conversas_v3": 799,
+    "leituras": 20373,
+    "n1_conversas": 3167,
+    "n1_modulos": 3145
   }
 ]

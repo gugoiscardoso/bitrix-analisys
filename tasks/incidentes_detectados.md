@@ -980,3 +980,77 @@ tratamento). Regressão V2→V3.
   `6af2fd210b3dd72d0c4901e0`, `6af3661e907efe90201f24d2`.
 - Cerca de 17 conversas sobre nota de devolução (como emitir, erro, onde encontrar) —
   mesmo tema que liderou o lote fiscal humano.
+
+## Execução diária de 12/11 (lotes A_001, B_001 e C_001)
+
+414 registros lidos (208 conversas não-fiscais, 16 chamados, 190 fiscais) e 175 conversas
+do robô N1.
+
+### Instabilidade da API operacional na tarde de 11/11 — ~36 conversas humanas, sem chamado
+Erros `Error invoke operational API(PartRestService), status response: unknown`,
+`400 BAD_REQUEST` e `500 INTERNAL_SERVER_ERROR`, entre os ids 301819 e 301995. Os
+fabricantes sumiram (não dava para cadastrar peça nem inserir peça digitada) e falharam
+importação de compra, montagem de orçamento e emissão de nota. O suporte respondeu com o
+comunicado "breve momento de instabilidade, já retornou ao normal". Nenhum número de
+chamado aparece. Aparentemente um cliente por conversa.
+- Não-fiscal, função com erro (9): 301829, 301843, 301853, 301895, 301859, 301883, 301941,
+  301995, 301869.
+- Não-fiscal, fora do ar (13): 301821, 301839, 301863, 301873, 301897, 301901, 301905,
+  301909, 301915, 301923, 301931, 301969, 301981.
+- Fiscal, como "NFS-e interna / API interna" (13): 301819, 301831, 301845, 301847, 301857,
+  301861, 301889, 301891 (erro literal); 301867, 301881, 301913, 301943 (confirmado pelo
+  atendente); 301837 (INTERNAL_SERVER_ERROR).
+- Prováveis, erro só em anexo, ficaram como "Sem causa identificável": 301825, 301835,
+  301871, 301875, 301919.
+- Sequela num cliente: 301827 e 302035 — depois do incidente parou de conseguir arrastar
+  XML para a importação de compra; o atendente abriu chamado, número não aparece.
+- O mesmo incidente bateu no robô N1: `6af4c3e3907efe90201f2a3a`,
+  `6af4c413907efe90201f2a3b`, `6af4c445c457fbc4b38728f9`, `6af4c498c457fbc4b3872900`,
+  `6af4c611907efe90201f2a91`, e prováveis `6af4c4dec457fbc4b3872908` e
+  `6af4c61e907efe90201f2a92`.
+
+Critério de corte usado (dúvida dos dois lotes): quem nomeou a função que falhou foi para
+função com erro no módulo dela; quem disse "sem sistema" ou só recebeu o comunicado foi
+para fora do ar / Transversal; no fiscal, como o cliente acessava o sistema e só a nota
+falhava, ficou em API interna e não em instabilidade geral.
+
+### Itens de combustível/óleo exigindo preenchimento novo — 4 clientes, sem chamado
+Rejeição 660 / aba Combustível: 301687, 301801, 302045, 302101. Dois dizem que "nunca
+pediu isso".
+
+### `codigoIndOp` exige bloco IBS/CBS completo (NFS-e) — 3 clientes, sem chamado
+301505, 301713, 301799; o suporte ajusta a configuração caso a caso. No robô N1 o mesmo
+erro aparece como E1235: `6af4adc6c457fbc4b387284f`, `6af4bc6dc457fbc4b38728d0`.
+Correlato: NFS-e saindo com IBS/CBS para optante do Simples mesmo com alíquota zerada —
+301391 e 301421 (no segundo o atendente diz que só foi corrigido na versão nova).
+
+### V3: peças do estoque "não aparecem" no orçamento — 6 clientes, não é defeito
+302033, 302107, 302123, 302129, e de passagem 302079 e 302147. O cliente recém-migrado
+entra em Orçamentos (função nova) em vez de Ordem de Serviço. É fricção de migração, não
+bug; classificado como rotina / Orçamentos & Serviços.
+
+### Veículo cadastrado no cliente não aparece na OS — chamados 108127 e 108165
+Dois clientes. No 108127 (V3), ao tentar recadastrar, a placa volta como "já cadastrada".
+
+### Menores
+- Erro de servidor ao abrir qualquer cadastro de peça no PortoCar — chamado 108135,
+  interno; o texto diz que acontece "com qualquer base porto".
+- NF-e de peças não transmite (`PlugNotasUnprocessableEntity`) — chamado 108073, com
+  301389 e 301817 ("há 4 dias sem emitir NF"); podem ser o mesmo cliente.
+- NF não é enviada por e-mail — chamado 108101 segue: 301309 e 301617.
+- Preço de custo e margem de peças mudaram sozinhos na passagem V2→V3 — chamado 108107
+  (custo de 832,00 para 1081,60; margem de 30% para 60%). Um cliente; vale vigiar.
+- NFC-e 4729 e 4742 não aparecem no sistema nem no XML — um cliente só: chamado 108139,
+  301363, 301803.
+- Pedidos de voltar à versão antiga ou agendar a migração seguem sem rótulo próprio:
+  301419, 301423, 301601, 302023, 302025, 302029, 302071, 302079, 302131, 302135, 302147.
+- Ruído de teste na base: 301745, 301795, 301887, 302005 ("teste do spike") e 302013 a
+  302019 (resumo automático, empresa "Automatico") — foram para "Conversa vazia".
+
+### Robô N1 (175 conversas novas, 52 fiscais)
+- NFS-e rejeitada, "XML não está de acordo com o leiaute da Sefin Nacional" — 3:
+  `6af4571f907efe90201f26e0`, `6af4646b907efe90201f2759`, `6af4827b39152e693cc4455e`.
+- Venda direta/avulsa não tem módulo na tabela de fronteiras; as três do dia foram para
+  Orçamentos & Serviços (`6af4c61e907efe90201f2a92`, `6af4cb1139152e693cc44806`,
+  `6af4cc7839152e693cc4482c`). Vale uma regra.
+- Nota de devolução de compra segue sendo um grupo grande, com erros distintos entre si.
