@@ -1,9 +1,10 @@
 ---
 name: fila-atendimento-horaria
-description: De hora em hora, das 8h às 18h todos os dias, inclusive fim de semana, atualiza a planilha de acompanhamento da fila de atendimento no Google Sheets.
+description: A cada 10 minutos, das 8h às 18h todos os dias, atualiza a planilha de acompanhamento da fila de atendimento. A série mantém uma linha por hora, reescrita ao longo da hora.
 ---
 
-Atualize a planilha de acompanhamento da fila de atendimento. Leva cerca de **1 minuto**.
+Atualize a planilha de acompanhamento da fila de atendimento. O script leva cerca de
+**1 minuto**; a execução inteira, uns 3.
 
 Diretório de trabalho: `C:\Dev\Qigger\Ultracar\bitrix-analisys`. Rode tudo de lá.
 
@@ -24,8 +25,7 @@ python pipeline/montar_planilha.py --saida %TEMP%\fila_horaria.json
 ```
 
 Monta as **seis** abas, todas da API: Agora, Atendimentos por pessoa, Chamados por
-pessoa, Comparativo, Backlog de chamados e a linha de Fila por hora. Leva cerca de um
-minuto.
+pessoa, Comparativo, Backlog de chamados e a linha de Fila por hora.
 
 Nenhuma aba lê a base do relatório diário. A base guarda no máximo 50 mensagens por
 conversa, então toda contagem de atendimento feita sobre ela subconta conversa longa —
@@ -53,10 +53,29 @@ O JSON tem `abas` (nome → linhas) e `linha_hora`. Use o conector do Google She
 | `Comparativo` | `update_values`, sobrescreve | `Comparativo!A1:L<n>` |
 | `Backlog de chamados` | `update_values`, sobrescreve | `Backlog de chamados!A1:B<n>` |
 | `Legenda` | `update_values`, sobrescreve | `Legenda!A1:C<n>` |
-| `Fila por hora` | **`append_values`**, acrescenta | `Fila por hora!A1` |
+| `Fila por hora` | **uma linha por hora**, ver abaixo | `Fila por hora` |
 
-**A de hora é `append_values`, não `update_values`.** Ela é o histórico do dia; sobrescrever
-apaga as horas anteriores, que é a única coisa que essa aba tem de útil.
+**A aba `Fila por hora` tem UMA linha por hora, atualizada ao longo dela.** A tarefa roda
+de 10 em 10 minutos, então na maior parte das vezes a linha da hora vigente já existe e
+deve ser **sobrescrita**, não duplicada:
+
+1. Leia a última linha preenchida da aba (`Fila por hora!A:B` basta).
+2. Compare a **"Hora medida"** dela com a `hora_medida` que o script gerou. A janela é a
+   identidade da linha — é ela que diz o que a linha contém, não o horário em que a
+   execução rodou.
+3. **Mesma janela:** `update_values` naquela linha, por exemplo `Fila por hora!A58:L58`.
+4. **Janela diferente, ou aba só com cabeçalho:** `append_values` numa linha nova.
+
+Comparar a janela, e não a hora do `Momento`, evita um erro silencioso na virada: uma
+linha gerada às 09:19 que mediu `08:00-09:00` tem Momento na hora 09 mas pertence à
+janela das 08h — sobrescrevê-la apagaria uma hora inteira do histórico.
+
+As colunas "Entraram na hora" e "Fechadas na hora" medem **a hora corrente até agora** —
+às 08:50 a janela é 08:00–08:50, e a coluna "Hora medida" declara isso. Por isso a linha
+da hora em curso cresce ao longo dela, e a última escrita da hora é a que fica.
+
+**Nunca sobrescreva uma linha de hora anterior.** O histórico do dia é a única coisa que
+essa aba tem de útil, e ele não se recupera.
 
 Duas armadilhas de escrita, as duas já custaram uma republicação:
 

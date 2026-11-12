@@ -132,12 +132,18 @@ def ler_fila(agora: dt.datetime) -> dict:
     hoje, ontem = agora.date(), agora.date() - dt.timedelta(days=1)
     por_dia = collections.defaultdict(collections.Counter)
     abertas = {}
-    # A HORA ANTERIOR COMPLETA, não a hora corrente. Medir "desde o topo da hora" fazia
-    # a execução das 12:01 reportar um minuto de movimento, e o resultado saía 0 — foi
-    # assim que a primeira versão da aba por hora nasceu com duas colunas zeradas.
+    # A HORA CORRENTE ATÉ AGORA: do topo da hora até este instante. Às 08:50 isso é
+    # 08:00-08:50, e a coluna "Hora medida" declara essa janela, então a linha nunca
+    # mente sobre o que contém.
+    #
+    # Era a hora ANTERIOR completa, e fazia sentido quando a execução era de hora em
+    # hora. Com execução de 10 em 10 minutos atualizando a mesma linha, a hora anterior
+    # daria o mesmo número seis vezes seguidas e a atualização não faria nada. O preço
+    # desta escolha é que a linha de uma hora em curso está sempre incompleta — e é por
+    # isso que a janela medida vai escrita ao lado.
     entraram_hora = fechadas_hora = 0
-    fim_hora = agora.replace(minute=0, second=0, microsecond=0)
-    ini_hora = fim_hora - dt.timedelta(hours=1)
+    ini_hora = agora.replace(minute=0, second=0, microsecond=0)
+    fim_hora = agora
 
     for a in ses:
         criada = dt.datetime.fromisoformat(a["CREATED"]).astimezone(BRT)
