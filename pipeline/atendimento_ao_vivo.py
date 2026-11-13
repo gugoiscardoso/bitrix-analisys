@@ -142,18 +142,34 @@ def ler(dia: str, agora: dt.datetime) -> dict:
 CACHE = RAIZ / "data" / "store" / "atendimento_por_dia.json"
 
 
+def definitivo(r: dict, dia: str) -> bool:
+    """A leitura guardada foi feita DEPOIS de o dia acabar?
+
+    Leitura feita no próprio dia é retrato parcial. O 06/11/2026 foi guardado às 12:33
+    daquele dia, com 194 conversas onde os vizinhos têm 470, e como a regra era só "não
+    é hoje e está no arquivo", o retrato parcial ficou no Comparativo como definitivo.
+    """
+    try:
+        return dt.datetime.fromisoformat(r["em"]).date().isoformat() > dia
+    except (KeyError, TypeError, ValueError):
+        return False
+
+
 def com_cache(dia: str, agora: dt.datetime, hoje: str) -> dict:
     """Leitura de um dia, reaproveitando dias já lidos.
 
     Dia fechado não muda mais, então é lido uma vez e guardado. **Hoje é sempre relido**,
-    porque é o único que ainda se move. Sem isto, montar o comparativo de dez dias a
-    cada hora levaria dez minutos em vez de um.
+    porque é o único que ainda se move, e o mesmo vale para dia guardado antes de
+    terminar (ver `definitivo`). Sem o cache, montar o comparativo de dez dias a cada
+    execução levaria dez minutos em vez de um.
 
-    O arquivo é versionado: são poucos KB por dia, e é o que permite a um clone novo ter
-    o comparativo sem refazer dez dias de leitura.
+    O arquivo NÃO é versionado. Quem o preenche é o `montar_planilha.py`, a cada
+    execução da tarefa agendada, e arquivo versionado que muda todo dia deixaria o
+    repositório sujo para uma tarefa que promete não tocar nele. Um clone novo o
+    reconstrói sozinho na primeira execução, ao custo de um minuto por dia da janela.
     """
     cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
-    if dia != hoje and dia in cache:
+    if dia != hoje and dia in cache and definitivo(cache[dia], dia):
         return cache[dia]
     r = ler(dia, agora)
     cache[dia] = r

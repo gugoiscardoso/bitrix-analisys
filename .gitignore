@@ -73,6 +73,12 @@ data/store/transcricoes.json
 data/store/n1_conversas.jsonl
 data/store/n1_transcricoes.json
 
+# Cache do Comparativo da planilha da fila: um dia fechado por entrada, lido da API.
+# Quem o preenche é o montar_planilha.py, a cada execução da tarefa agendada — e
+# arquivo versionado que muda todo dia sujaria o repositório de uma tarefa que promete
+# não tocar nele. Some? A primeira execução o refaz, a ~1 minuto por dia da janela.
+data/store/atendimento_por_dia.json
+
 # ─── Segredos que NÃO entram no git ───────────────────────────────
 # local/sheets.env tem a chave privada da conta de serviço do Google
 # (ultracar-report-chat-ai@…), que escreve em toda planilha compartilhada

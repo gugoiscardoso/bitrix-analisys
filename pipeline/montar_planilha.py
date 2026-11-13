@@ -189,13 +189,20 @@ def abas_atendimento(dia: str, compara: int, dia_vivo: str, f: dict,
     cham.append(["TOTAL (por pessoa, soma)"]
                 + [sum(chv.get(k, {}).values()) for k in metr])
 
-    # Comparativo do cache de leituras ao vivo, não da base. Dia fechado é lido uma vez
-    # e guardado em atendimento_por_dia.json; hoje vem da leitura desta execução.
-    cache = {}
-    if atendimento_ao_vivo.CACHE.exists():
-        cache = json.loads(atendimento_ao_vivo.CACHE.read_text(encoding="utf-8"))
+    # Comparativo: os `compara` dias de calendário antes de hoje, mais hoje. Dia fechado
+    # sai do cache e, se não estiver lá, é lido e guardado AGORA; hoje vem da leitura
+    # desta execução.
+    #
+    # A janela é de calendário, não "os últimos dias que o cache tem". Era assim, e
+    # este script só lia o cache, sem nunca preenchê-lo: o arquivo foi preenchido à mão
+    # em 06/11/2026 e a aba passou uma semana mostrando 28/10 a 06/11 colados em hoje,
+    # sem nada que avisasse que faltavam seis dias no meio.
+    agora = dt.datetime.now(BRT)
+    d_hoje = dt.date.fromisoformat(dia_vivo)
+    dias = [(d_hoje - dt.timedelta(days=n)).isoformat() for n in range(compara, 0, -1)]
+    cache = {d: atendimento_ao_vivo.com_cache(d, agora, dia_vivo) for d in dias}
     cache[dia_vivo] = vivo
-    dias = sorted(cache)[-(compara + 1):]
+    dias.append(dia_vivo)
     comp: list[list] = [
         ["Conversas atendidas por pessoa, por dia"],
         ["Última execução", f"{dt.datetime.fromisoformat(f['em']):%d/%m/%Y %H:%M}"],

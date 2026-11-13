@@ -1,10 +1,10 @@
 ---
 name: fila-atendimento-horaria
-description: A cada 10 minutos, das 8h às 18h todos os dias, atualiza a planilha de acompanhamento da fila de atendimento. A série mantém uma linha por hora, reescrita ao longo da hora.
+description: A cada 20 minutos, das 8h às 18h todos os dias, atualiza a planilha de acompanhamento da fila de atendimento. A série mantém uma linha por hora, reescrita ao longo da hora.
 ---
 
-Atualize a planilha de acompanhamento da fila de atendimento. O script leva cerca de
-**1 minuto**; a execução inteira, uns 3.
+Atualize a planilha de acompanhamento da fila de atendimento. São dois scripts e cerca
+de **2 minutos** no total.
 
 Diretório de trabalho: `C:\Dev\Qigger\Ultracar\bitrix-analisys`. Rode tudo de lá.
 
@@ -27,100 +27,51 @@ python pipeline/montar_planilha.py --saida %TEMP%\fila_horaria.json
 Monta as **seis** abas, todas da API: Agora, Atendimentos por pessoa, Chamados por
 pessoa, Comparativo, Backlog de chamados e a linha de Fila por hora.
 
-Nenhuma aba lê a base do relatório diário. A base guarda no máximo 50 mensagens por
-conversa, então toda contagem de atendimento feita sobre ela subconta conversa longa —
-que é justamente a mais atendida. O Comparativo usa um cache por dia
-(`data/store/atendimento_por_dia.json`): dia fechado é lido uma vez e guardado, e só
-hoje é relido, senão a passada levaria dez minutos em vez de um.
+O Comparativo mostra os dez dias de calendário antes de hoje. Dia fechado sai de um
+cache local (`data/store/atendimento_por_dia.json`, fora do git); o que faltar é lido da
+API na hora, a cerca de 1 minuto por dia. Por isso **a primeira execução do dia leva um
+minuto a mais** — ela lê o dia anterior —, e uma execução depois de dias parado leva
+vários. Não é travamento; deixe terminar.
 
 **Confira na saída:** as seis abas montadas e a linha `esperando N · em andamento N ·
-chamados abertos N`. Se o script falhar, **pare e relate — não publique nada**. Planilha
-pela metade é pior que planilha velha: quem olha não sabe que está pela metade.
+chamados abertos N`. Se o script falhar, **pare e relate — não publique nada**.
 
-## 2. Publicar no Google Sheets
+## 2. Publicar
 
-Planilha: **`1OMeE3bxuEhL3vInphdLKdOKEpDsCrQnROdJJmt4w2U8`** (Atendimentos - Bitrix).
-Confira o id caractere a caractere antes de escrever; um id trocado escreve na planilha
-de outra pessoa, e isso já quase aconteceu.
+```
+python -X utf8 pipeline/publicar_fila.py --entrada %TEMP%\fila_horaria.json
+```
 
-O JSON tem `abas` (nome → linhas) e `linha_hora`. Use o conector do Google Sheets:
+O script escreve direto na API do Google com a conta de serviço, a mesma do relatório
+completo. Ele faz sozinho tudo o que antes era manual: envia as sete abas num envio só
+(tudo ou nada), decide se a linha de `Fila por hora` é sobrescrita ou nova, repete em
+erro 429/500/503, reaplica a formatação de cabeçalho e TOTAL, e lê de volta para
+conferir o carimbo e a fila nas duas abas.
 
-| Aba | Como escrever | Intervalo |
-|---|---|---|
-| `Agora` | `update_values`, sobrescreve | `Agora!A1:B<n>` |
-| `Por pessoa` | `update_values`, sobrescreve | `Por pessoa!A1:E<n>` |
-| `Chamados por pessoa` | `update_values`, sobrescreve | `Chamados por pessoa!A1:F<n>` |
-| `Comparativo` | `update_values`, sobrescreve | `Comparativo!A1:L<n>` |
-| `Backlog de chamados` | `update_values`, sobrescreve | `Backlog de chamados!A1:B<n>` |
-| `Legenda` | `update_values`, sobrescreve | `Legenda!A1:C<n>` |
-| `Fila por hora` | **uma linha por hora**, ver abaixo | `Fila por hora` |
+**Não use o conector do Google Sheets para escrever nesta planilha**, nem como plano B.
+Em 13/11/2026 o conector ficou duas horas devolvendo 500 e deixou a planilha pela
+metade; foi por isso que a publicação virou script. Escrita manual pelo conector também
+passa por cima da regra da linha da hora, e linha de hora anterior sobrescrita não se
+recupera.
 
-**A aba `Fila por hora` tem UMA linha por hora, atualizada ao longo dela.** A tarefa roda
-de 10 em 10 minutos, então na maior parte das vezes a linha da hora vigente já existe e
-deve ser **sobrescrita**, não duplicada:
+**Sucesso é a linha `publicado e conferido: carimbo …`.** Qualquer outra coisa é falha:
 
-1. Leia a última linha preenchida da aba (`Fila por hora!A:B` basta).
-2. Compare a **"Hora medida"** dela com a `hora_medida` que o script gerou. A janela é a
-   identidade da linha — é ela que diz o que a linha contém, não o horário em que a
-   execução rodou.
-3. **Mesma janela:** `update_values` naquela linha, por exemplo `Fila por hora!A58:L58`.
-4. **Janela diferente, ou aba só com cabeçalho:** `append_values` numa linha nova.
+- `CONFERÊNCIA FALHOU` — relate os números que o script mostrou.
+- Erro HTTP depois das repetições — relate o código. Não tente de novo por outro
+  caminho; a próxima execução, em 20 minutos, tenta sozinha.
+- `A conta de serviço não tem acesso` — alguém tirou o compartilhamento; relate.
 
-Comparar a janela, e não a hora do `Momento`, evita um erro silencioso na virada: uma
-linha gerada às 09:19 que mediu `08:00-09:00` tem Momento na hora 09 mas pertence à
-janela das 08h — sobrescrevê-la apagaria uma hora inteira do histórico.
-
-As colunas "Entraram na hora" e "Fechadas na hora" medem **a hora corrente até agora** —
-às 08:50 a janela é 08:00–08:50, e a coluna "Hora medida" declara isso. Por isso a linha
-da hora em curso cresce ao longo dela, e a última escrita da hora é a que fica.
-
-**Nunca sobrescreva uma linha de hora anterior.** O histórico do dia é a única coisa que
-essa aba tem de útil, e ele não se recupera.
-
-Duas armadilhas de escrita, as duas já custaram uma republicação:
-
-- **O intervalo tem de ter exatamente o número de linhas que você manda.** Mandar 47
-  linhas para `A1:E46` é erro, não corte.
-- **Linha curta não apaga as colunas da direita.** O script já devolve toda linha com a
-  largura da aba; mande as linhas como vieram, sem encurtar.
-
-## 3. Manter a formatação no lugar
-
-O `values.update` **não apaga formatação** — então, enquanto o número de linhas não
-mudar, a planilha continua bonita sozinha e este passo é rápido.
-
-O que muda é o **número de pessoas**: entra ou sai gente, a linha de TOTAL anda, e aí o
-cinza do total fica numa linha de pessoa e a última pessoa fica sem cinza. Por isso o
-JSON traz `formato`, com a linha de cabeçalho e a de TOTAL de cada aba, já contadas.
-
-Para cada aba em `formato`, se a linha de TOTAL **mudou** em relação à execução
-anterior (compare lendo a planilha), aplique com `update_spreadsheet`:
-
-- **linha de cabeçalho** (a que começa com "Pessoa"): negrito, texto branco, fundo
-  `{"red":0.12,"green":0.22,"blue":0.39}`, centralizado.
-- **linha de TOTAL**: negrito, fundo `{"red":0.93,"green":0.93,"blue":0.93}`.
-- as linhas entre as duas: fundo branco, sem negrito.
-
-Se a linha de TOTAL for a mesma da execução anterior, **não mexa na formatação** — é
-trabalho à toa e cada escrita é uma chance de estragar o que está bom.
-
-## 4. Conferir
-
-Leia de volta `Agora!A1:B6` e `Por pessoa!A1:B8` e confira:
-
-- **O carimbo de "Última execução" é o mesmo nas duas** e é o de agora. Carimbos
-  diferentes significam que uma aba não foi escrita.
-- **"CLIENTES NA FILA SEM NINGUÉM" é o mesmo número nas duas.** Ele vem de uma fonte só;
-  se divergir, alguma aba ficou da execução anterior.
-
-## 5. Relatar
+## 3. Relatar
 
 Uma ou duas linhas, em português: quantos clientes na fila sem ninguém, quantas em
-andamento, quantas pessoas atendendo, e a mais antiga esperando.
+andamento, quantas pessoas atendendo, e a mais antiga esperando. Os números estão no
+JSON (`abas.Agora` e `abas["Por pessoa"]`).
 
 **Se a fila sem ninguém passar de 40, ou a mais antiga passar de 4 horas, destaque.**
 Fora disso, não precisa alarmar: a fila oscila ao longo do dia, e é para isso que existe
 a aba por hora.
+
+Se a publicação falhou, diga isso na primeira linha, antes dos números.
 
 ---
 
@@ -133,8 +84,8 @@ a aba por hora.
 - **Atendendo / Concluiu**, por pessoa — conversa aberta em que a pessoa falou, e
   conversa encerrada em que ela falou. Transferência para quem nunca falou não conta
   para essa pessoa.
-- **O backlog de chamados é outro relógio**: 1.160 abertos, mediana de 98 dias. Não é
-  fila de atendimento e não muda de uma hora para outra.
+- **O backlog de chamados é outro relógio**: mais de mil abertos, mediana de meses. Não
+  é fila de atendimento e não muda de uma hora para outra.
 
 ## Armadilha que custou quatro correções publicadas
 
