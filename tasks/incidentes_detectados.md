@@ -1054,3 +1054,152 @@ Dois clientes. No 108127 (V3), ao tentar recadastrar, a placa volta como "já ca
   Orçamentos & Serviços (`6af4c61e907efe90201f2a92`, `6af4cb1139152e693cc44806`,
   `6af4cc7839152e693cc4482c`). Vale uma regra.
 - Nota de devolução de compra segue sendo um grupo grande, com erros distintos entre si.
+
+## Execução diária de 13/11 (lotes A_001, A_002, B_001 e C_001)
+
+530 registros lidos (252 conversas não-fiscais, 39 chamados, 239 fiscais) e 338 conversas
+do robô N1 (343 novas na planilha, quase o dobro da véspera). A V3 ganhou 172 conversas
+num dia só (799 → 971): é dia de virada em massa, e quase todo incidente abaixo é da V3.
+
+### V3: estoque não reflete na OS depois de compra ou correção — ~25 registros, chamado 108227
+O item segue "sem estoque", em vermelho, e trava o fechamento da OS, mesmo depois de a
+compra ser autorizada ou o estoque corrigido. É o maior incidente do dia e atravessa os
+quatro lotes.
+- Conversas não-fiscais, função com erro / Ordem de Serviço (11): 302259, 302431, 302589,
+  302711, 302753, 302759, 302841, 302887, 302935, 303079, 303083.
+- Mesma assinatura sem citar a OS, Peças & Estoque (3): 302311, 302575, 302707.
+- Resolvidos com o botão "Atualizar itens", ficaram como rotina (2): 302417, 302475.
+- Chamados (3 clientes): 108227, 108237 (status da peça não vai para "em produção"),
+  108241 (quantidade do item não atualiza).
+- Fiscal, como "Integração financeiro/estoque/OS com a nota" (6): 108243, 302735 (mesmo
+  cliente do 108243), 302739 (cita o 108227), 302705 (cita o 108241), 302847 (cita o
+  108253), 302423.
+- Robô N1 (7): `6af5c0615909eea9e7e8aa37`, `6af5cef86131adb3941d5d2b`,
+  `6af5cefc2a4d5b1adb9586ef`, `6af5ef712a4d5b1adb958841`, `6af5ff8e2a4d5b1adb9589c3`,
+  `6af611742a4d5b1adb958b47`, `6af61e8a5909eea9e7e8b147`. O robô manda usar "Atualizar
+  itens".
+Correlato, saldo negativo de estoque: chamados 108251 (V2) e 108253 (V3) — versões
+diferentes, pode não ser a mesma causa.
+
+### V3: orçamento não encontra peças e serviços do cadastro próprio — 15 conversas humanas e 13 do N1
+Só aparecem as sugestões da IA. Em 12/11 isto foi registrado como "não é defeito" (o
+cliente entra em Orçamentos em vez de OS); hoje o suporte ora trata como uso errado, ora
+abre chamado ("vou abrir chamado referente à busca de peças", 302107; "time já está
+verificando"). Sem número de chamado no texto. Dois resumos do N1 atribuem a causa ao
+filtro de compatibilidade com o veículo.
+- Função com erro / Orçamentos & Serviços (10): 302089, 302107, 302129, 302187, 302225,
+  302235, 302585, 302635, 302717, 302923 (este por inferência).
+- Rotina / Orçamentos & Serviços (5): 302123, 302165, 302171, 302511, 302765. Também
+  302131, que ficou em "voltar versão".
+- Robô N1 (13): `6af5a8065909eea9e7e8a710`, `6af5b3f06131adb3941d598b`,
+  `6af5b7236131adb3941d5a27`, `6af5b7326131adb3941d5a28`, `6af5b92c5909eea9e7e8a959`,
+  `6af5ba1e6131adb3941d5ace`, `6af5baaa6131adb3941d5ada`, `6af5bec22a4d5b1adb958535`,
+  `6af5e10d5909eea9e7e8acbd`, `6af5f5f42a4d5b1adb9588b9`, `6af5ff165909eea9e7e8aeef`,
+  `6af610cf5909eea9e7e8b080`, `6af6f5362a4d5b1adb958d94`.
+O mesmo fenômeno ficou partido em dois temas pelo enquadramento do cliente ("não puxa" =
+erro; "como faço?" = rotina). Vale uma regra.
+
+### Login com "senha inválida" sem troca de senha, manhã de 13/11 — 10 conversas e 1 chamado
+302991, 302995, 302999, 303005, 303013, 303023, 303041, 303043, 303059, 303093. Vários
+clientes dizem que ninguém trocou a senha; em 303043 o atendente responde "estamos
+verificando essa situação" e aplica paliativo; em 303023, 303041 e 303059 o e-mail de
+recuperação não chega. O chamado 108277 relata 5 casos de CNPJs diferentes. Classificado
+como rotina / Acesso e login pela regra escrita (o sistema estava no ar e o reset
+resolvia), mas tem cara de incidente — a conferir amanhã se continua.
+
+### V3: tipo de documento vazio na importação de XML de compra — 9 conversas e 6 do N1, sem chamado
+O combo não lista nada (nem "Vale") e a importação não conclui: 302429, 302455, 302469,
+302721, 302823, 302889. A mesma causa impede a devolução de achar a compra: 302427,
+302551, 302633. Paliativo do suporte: marcar "É um documento fiscal" em Financeiro >
+Contas > Tipos de documento. N1: `6af5c9332a4d5b1adb958671`, `6af5cbfb5909eea9e7e8ab3d`,
+`6af5d9932a4d5b1adb95877d`, `6af5ec465909eea9e7e8ad42`, `6af5fbcc5909eea9e7e8ae91`,
+`6af5fc695909eea9e7e8aeac`.
+
+### V3: grupo Fatura/parcelas derruba a NF-e — 8 registros, sem chamado
+Rejeição 905 "Campos do grupo Fatura não informados" ou "Falha na validação do JSON …
+cobranca.parcelas": 302249, 302473, 302525, 302605, 302745, 302803, 302819, 302213. O
+suporte resolve apagando a fatura; 302605 e 302819 reclamam que o cliente final fica sem
+parcelas e vencimentos. No N1, "Falha na validação do JSON de NFe" / Schema XML aparece
+em 10: `6af5b4bc5909eea9e7e8a8a3`, `6af5da185909eea9e7e8ac54`, `6af5dfd12a4d5b1adb9587d6`,
+`6af5f0435909eea9e7e8ad72`, `6af5fa805909eea9e7e8ae61`, `6af5fc595909eea9e7e8aea5`,
+`6af601e66131adb3941d6139`, `6af604366131adb3941d615a`, e prováveis
+`6af6e8085909eea9e7e8b211` e `6af61baf6131adb3941d6367`.
+
+### Consulta de placa ou chassi não retorna o veículo — 7 conversas e 6 do N1
+Atendimentos na integradora ATD-34124 (302763) e ATD-34139 (302843). 302211, 302279,
+302535, 302749, 302763, 302843, 303091 (este traz dado errado: diesel em vez de flex).
+N1: `6af5a6782a4d5b1adb958186`, `6af5b3626131adb3941d596a`, `6af5b3892a4d5b1adb958351`,
+`6af5ba112a4d5b1adb9584c4`, `6af5e7f72a4d5b1adb958813`, `6af5fbdf5909eea9e7e8ae92`.
+É a "integração de placas" de 10 e 11/11, que segue.
+
+### V3: venda direta não autoriza nem aceita vendedor, empresa e quantidade — 7 conversas, chamados 108233, 108217 e 108197
+302103, 302393, 302523, 302599 (108233, filtro por código), 302801 (cita o 108217),
+302867, 303033. O chamado 108197 é "Erro de API para autorizar venda direta". N1:
+`6af59ec75909eea9e7e8a5ed`, `6af5a7235909eea9e7e8a706`, `6af5cbba5909eea9e7e8ab36`.
+Venda direta segue sem módulo na tabela de fronteiras; foi tudo para Orçamentos &
+Serviços (no B_001, o 108197 foi para Ordem de Serviço por falta de balde).
+
+### Rejeição 963, PIX estático recusado pela SEFAZ — 4 registros
+302215, 302241, 302925, 302119 (sem o código, mesma solução: trocar para PIX dinâmico);
+302121 é provável quinto.
+
+### Portal Nacional da NFS-e segue — ~30 registros
+Particularidade municipal (10): 302201, 302219, 302331, 302385, 302437, 302567, 302609,
+302655, 302669, 303037. Configuração assistida (9): 302145, 302159, 302389, 302531,
+302557, 302773, 302793, 303027, 303053. Rejeições de leiaute:
+- regime especial / alíquota (E0175, E0625): 302555, 302645, 302787, 302885;
+- código de tributação municipal de 3 dígitos (E0314): 302443, 302555, 302653;
+- IM do prestador (E0120): 302833, 302981, e chamado 107917 no 302277;
+- tpOper / `codigoIndOp` exigindo bloco IBS/CBS: 302565, 302683, 302871.
+
+### Menores
+- GTIN / cEAN inválido ("SEM GTIN" digitado errado): 302507, 302637, 302859, 302939,
+  303061; em 302637 e 303061 a correção não salva no cadastro. N1:
+  `6af610952a4d5b1adb958b20`, `6af623462a4d5b1adb958c84`.
+- Nota presa em "processando": 302335, 302757, 302893, e 302487 (chamado 107895).
+- NFS-e não envia por e-mail (NF-e e NFC-e enviam): 302323, 302339, 302783. N1:
+  `6af5bf0f2a4d5b1adb958536`, `6af5c0d75909eea9e7e8aa1b`.
+- Sintegra incorreto: 302291 (chamado 107493), 302975, 303009.
+- Nota de devolução com ICMS-ST / CFOP 5202 no N1: `6af5caf42a4d5b1adb95868e`,
+  `6af5f91a2a4d5b1adb958915`, `6af5fa082a4d5b1adb95892f`, `6af5fa766131adb3941d6029`.
+- Estoque não salva alteração ou zera após a entrada, N1 (5): `6af5b4d52a4d5b1adb9583a2`,
+  `6af5b8745909eea9e7e8a93b`, `6af5b8ff6131adb3941d5a8a`, `6af5cd2e5909eea9e7e8ab6a`,
+  `6af5ffd46131adb3941d6106`.
+- Agrupamento de notas/compras não mostra mais a soma — chamado 108181; 302193 e 302329.
+- Manifesto do destinatário, rejeição 656 "Consumo indevido": 302813 e 302985,
+  aparentemente o mesmo cliente, "há meses".
+- Lentidão ou queda geral em 12/11: 302173, 302369, 302827, 302831.
+- Regressão V2→V3 pedida de volta: assinatura do cliente no checklist (chamados 108207 e
+  108215); consultar chassi pela placa sem cadastrar o veículo (302167, 302275, 303045).
+- Checklist/Diagnóstico: "Relato do Cliente" rejeita texto longo e observações não salvam
+  — chamados 108261 e 108271.
+- Chamados cobrados mais de uma vez: 108073 e 107885 (302245, 302659, 303025); 108203,
+  Rio Truck, retenção de PIS/COFINS fora do PDF da NFS-e (302229, 302541).
+
+### V3: pedidos de volta à versão antiga — 11 conversas humanas e 11 do N1
+302131, 302135, 302151, 302183, 302195, 302299, 302399, 302449, 302457, 302751, 302863.
+N1: `6af59aef6131adb3941d5704`, `6af5acc85909eea9e7e8a78c`, `6af5ad245909eea9e7e8a796`,
+`6af5b2522a4d5b1adb958317`, `6af5b4f55909eea9e7e8a8b4`, `6af5bb605909eea9e7e8a9d6`,
+`6af5bdda2a4d5b1adb95852a`, `6af5c1ec2a4d5b1adb95859e`, `6af5cc632a4d5b1adb9586c3`,
+`6af5ea382a4d5b1adb95881d`, `6af617e72a4d5b1adb958bae`. Segue sem rótulo próprio: no
+humano foi para "função que o sistema não tem" / Transversal; no N1, Transversal.
+Regressões atribuídas à migração no N1: dados da oficina somem do PDF do orçamento
+(`6af606166131adb3941d61a8`), boletos não vieram em Contas a Pagar
+(`6af618675909eea9e7e8b0e6`), previsão do mês sumiu da Visão Geral
+(`6af6187f5909eea9e7e8b0e7`), status e etiquetas das OS migrados errado
+(`6af620f86131adb3941d63c3`).
+
+### Ruído e higiene
+- 10 conversas são testes e2e do "Chat do ERP Ultracar DEV" (usuários de teste,
+  `e2e-…@example.test`): 302607, 302639, 302647, 302917, 302921, 302927, 302933, 302945,
+  302947, 302951. Foram para "Conversa vazia" / Transversal; não são clientes e talvez
+  devam ser filtradas na coleta.
+- 302337, 302531 e 302609 têm senha digitada pelo cliente em texto claro no chat
+  (sistema, certificado, prefeitura) — e essas conversas vão para a planilha publicada.
+
+### Dúvidas de critério do dia
+- Nota de devolução com código de rejeição citado: ficou em "Nota de devolução…" (o
+  pedido do cliente é emitir a devolução). Se a regra for "código citado vence", 8 a 10
+  dos 34 migram para Rejeição. O prompt não diz qual prevalece.
+- "Peças cadastradas sumiram" depois da migração, no N1, fica entre Cadastros e Peças &
+  Estoque; foi para Cadastros.

@@ -18869,8 +18869,2036 @@
    "fonte": "leitura",
    "hash": "f5bd8ced0a94",
    "em": "2026-11-12T09:51:04"
+  },
+  "6af5960e6131adb3941d56e3": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "0a948d115780",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af597fb6131adb3941d56f6": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "e86480eb8b9f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af59aef6131adb3941d5704": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "8bccc17ff3e3",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af59cfb5909eea9e7e8a5e0": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "eaef8ee5074f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af59d945909eea9e7e8a5e2": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "8a22ef2f084e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af59ec75909eea9e7e8a5ed": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "9adf0441efe8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af59ecf6131adb3941d574a": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "2019f3c3ea29",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af59ed52a4d5b1adb95808f": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "adb8b8ae35bc",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af59f595909eea9e7e8a5f4": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "294041c5fe80",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a1906131adb3941d5794": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "62d9e110cf5c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a1e52a4d5b1adb9580ea": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "6da41cbef020",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a20b5909eea9e7e8a64d": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "456487e570bd",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a23e2a4d5b1adb9580f1": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "c36342e25c69",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a2622a4d5b1adb9580f2": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "ffedf681a71a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a2952a4d5b1adb9580f3": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "7956e38a7364",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a3ca5909eea9e7e8a688": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "5e5b5275fbc8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a4ad6131adb3941d5811": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a1821dd10331",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a4ba2a4d5b1adb95812d": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "6bf840c59a29",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a4ea6131adb3941d5812": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b12cb940abc9",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a5636131adb3941d581d": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "239bce782e2c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a57e2a4d5b1adb958172": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "ccbd1cfa4fea",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a62c2a4d5b1adb95817c": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "a5297fa0017a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a6782a4d5b1adb958186": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "04116b76e70f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a69c6131adb3941d5839": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "7a49b20e99e7",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a7235909eea9e7e8a706": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "478749dd252f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a7726131adb3941d584a": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "d827d9086156",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a8065909eea9e7e8a710": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "25114449e6d0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a8912a4d5b1adb95819e": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "28a7e5b0d5b6",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a8bd5909eea9e7e8a71a": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "2d5fdd76083f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a8d86131adb3941d5877": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "8eb3718853da",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5a9505909eea9e7e8a736": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "52ba8de00e62",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5aa186131adb3941d589a": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "f9342fa63a73",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5aa225909eea9e7e8a74d": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "ff794f493fa9",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5aad72a4d5b1adb9581f7": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "1ba1d3f6b076",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ab2c6131adb3941d58b2": {
+   "modulo": "Visão Geral",
+   "fonte": "leitura",
+   "hash": "a6ac3fc58243",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ab8f6131adb3941d58b4": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "269be2a7efc2",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5abe05909eea9e7e8a77a": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b831f91598f3",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ac445909eea9e7e8a77b": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "31987aee90a4",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5acc85909eea9e7e8a78c": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "ba5203e5801e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ad245909eea9e7e8a796": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "346e73998691",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ad6d5909eea9e7e8a797": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "c30b10776569",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5adb86131adb3941d5909": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "54b9762831f8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5adc32a4d5b1adb958254": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "736b8cda38e3",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ade16131adb3941d590a": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "a69c7458733a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ae4e6131adb3941d591a": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "7162cb25f19f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5aeff5909eea9e7e8a7d5": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "2472d261504c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5af326131adb3941d5924": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "2b6c1a5e2837",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5af446131adb3941d5925": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "901eae24923b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5af6e6131adb3941d5926": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bdf6086592ef",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5af792a4d5b1adb95828c": {
+   "modulo": "Gestão de Pátio",
+   "fonte": "leitura",
+   "hash": "1744cd12411b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5affa6131adb3941d5927": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "33f1da83314b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b11c2a4d5b1adb9582ce": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "3aa30e4848a3",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b1782a4d5b1adb9582d8": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "a90c5d4d81f8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b17f5909eea9e7e8a817": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "f1d2d7c38845",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b1bc6131adb3941d593a": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "cba23b4443b4",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b1bd5909eea9e7e8a827": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "5ec6b36fe2e1",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b1c65909eea9e7e8a830": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "48223a2cdb40",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b1d65909eea9e7e8a831": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "9804f0607e72",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b2326131adb3941d5944": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "3ade122663c2",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b2522a4d5b1adb958317": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "52894d47f38e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b31c6131adb3941d5969": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "97a2744ce631",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b3225909eea9e7e8a842": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6f930c3b716b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b3626131adb3941d596a": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "26de14315783",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b3892a4d5b1adb958351": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "1d21aeba2bcd",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b3b45909eea9e7e8a86f": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a24bb9b94b66",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b3d12a4d5b1adb95835b": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0d76e4b70863",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b3f06131adb3941d598b": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "e113cea306bf",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b42a6131adb3941d5995": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "e4035351525b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b4475909eea9e7e8a887": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "77998b9af876",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b4522a4d5b1adb958380": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "dce086b87b4e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b4785909eea9e7e8a89a": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "48341a5bbaa8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b4a16131adb3941d599f": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "44a1629a0b2d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b4b55909eea9e7e8a8a2": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "b1a3b9effe33",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b4bc5909eea9e7e8a8a3": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "618b6e0f8ee9",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b4ce2a4d5b1adb9583a1": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "37a82da19375",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b4d52a4d5b1adb9583a2": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "e4e62fbeda87",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b4f55909eea9e7e8a8b4": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "ea67a74d5d8b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b51c2a4d5b1adb9583bc": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "71ed4edd7d0c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b5852a4d5b1adb9583d7": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "31fa144ae572",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b60c2a4d5b1adb9583d8": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d90f3385967d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b67e6131adb3941d59f8": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "a22bb6ee7233",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b6916131adb3941d59f9": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d1d6e9ccb004",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b6b46131adb3941d5a14": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "728afbaa5f16",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b6d25909eea9e7e8a8e9": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "a5971117d299",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b7236131adb3941d5a27": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "fe1a367129b7",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b7326131adb3941d5a28": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "1bd86018e776",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b7462a4d5b1adb95842d": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "23d7e52ad423",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b79d5909eea9e7e8a900": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "39cde92a15cc",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b7f66131adb3941d5a47": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "0bb1f72a476b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b7fc2a4d5b1adb958441": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "dfbb39f6785e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b8316131adb3941d5a51": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "b050b3ca4c83",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b8332a4d5b1adb95844b": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "3915960fe916",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b85a6131adb3941d5a6d": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "98e2d1a05de4",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b8745909eea9e7e8a93b": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "f0bd3c357334",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b8766131adb3941d5a6f": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8d7aa0bbe5f6",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b8dd6131adb3941d5a77": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ae61916f69ba",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b8ff6131adb3941d5a8a": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "7486f5d4a45f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b92c5909eea9e7e8a959": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "5cfcee28be5e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b93b2a4d5b1adb95847b": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "e39b04a790de",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b9996131adb3941d5aa6": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "c95f7902efc6",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b99e2a4d5b1adb958497": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "078be482f26b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5b9c62a4d5b1adb9584ba": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "1dd97587da06",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ba112a4d5b1adb9584c4": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "801a2f1d9341",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ba1e6131adb3941d5ace": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "fa25f07b967d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ba652a4d5b1adb9584cc": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "e5abf6727ca1",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ba896131adb3941d5ad9": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "252d4df8766f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5baaa6131adb3941d5ada": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "548e4e5da51b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bae02a4d5b1adb9584df": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "3d6269d5dc7a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bb605909eea9e7e8a9d6": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "293479bbdf36",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bc582a4d5b1adb958505": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "46524601ad55",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bd135909eea9e7e8a9e0": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "e6c2bef3f21c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bd142a4d5b1adb95850f": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "65bfa46606f1",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bd2d2a4d5b1adb958517": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "32343ee78a80",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bdda2a4d5b1adb95852a": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "325865561775",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5beaf2a4d5b1adb958534": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3803c81b29b3",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bec22a4d5b1adb958535": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "11b7239ced2d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5beee6131adb3941d5b68": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "2a11b6561919",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bf0f2a4d5b1adb958536": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f7aa15d659c2",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bf345909eea9e7e8aa1b": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "6baedfa0899a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5bfcd5909eea9e7e8aa27": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "433d38752222",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c0615909eea9e7e8aa37": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "69373036a25d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c0925909eea9e7e8aa38": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "c417df9543d0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c0ab6131adb3941d5b8d": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0cb1486da34b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c0d75909eea9e7e8aa40": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f4dc206b911e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c1ec2a4d5b1adb95859e": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "9b6fd7445af0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c3075909eea9e7e8aa5b": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "88eecb268045",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c33e2a4d5b1adb9585bb": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "111ffb6557b5",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c3632a4d5b1adb9585bc": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a265f543bdf0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c3c26131adb3941d5bf1": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "40bb4fadeb26",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c3dd2a4d5b1adb9585d0": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "044f24e138ce",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c42b6131adb3941d5bfb": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "c7f55b9e3f00",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c47b5909eea9e7e8aa97": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "dbbbb874695a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c4ed5909eea9e7e8aaa1": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "4d7900437e18",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c5262a4d5b1adb958613": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "2fb4ba1d48cb",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c5946131adb3941d5c3d": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "1a10d4f04f18",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c5cd2a4d5b1adb95862f": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "5723bd682571",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c6312a4d5b1adb958636": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "5b737bef2e2e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c6735909eea9e7e8aabd": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "1f2ad1ce8134",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c7655909eea9e7e8aae2": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "0873dbf28bd6",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c7c16131adb3941d5caf": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "977b650c9cc2",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c88c6131adb3941d5cc2": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "0faf82a016af",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5c9332a4d5b1adb958671": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "96ae85cccb94",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ca3e5909eea9e7e8aaec": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "6c8c61b60d52",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5caf42a4d5b1adb95868e": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a7edd26f743a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cb3e5909eea9e7e8ab1a": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "015059a5fa6a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cb5c5909eea9e7e8ab21": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "3e68caf7c705",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cbba5909eea9e7e8ab36": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "0a905a3ea56b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cbfb5909eea9e7e8ab3d": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "d5bcb9df7400",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cc632a4d5b1adb9586c3": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "e2d5248075f0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cc7a2a4d5b1adb9586c4": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "b79618dbdd8a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ccc25909eea9e7e8ab57": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "f2815eb5ae32",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cd112a4d5b1adb9586de": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "a749c0de5e40",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cd2e5909eea9e7e8ab6a": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "804af687f64a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cd845909eea9e7e8ab6b": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "158f6ea68819",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ceb42a4d5b1adb9586ee": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "d1b45fa4a859",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cef16131adb3941d5d2a": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "47965d5c8c75",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cef86131adb3941d5d2b": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "88f58579ccbd",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5cefc2a4d5b1adb9586ef": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "5c68fbb10ddd",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d0086131adb3941d5d3c": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "ee673cfb010a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d01b2a4d5b1adb9586f0": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "76c59cc54a53",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d05d5909eea9e7e8abd2": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "0f55a323ae71",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d12c5909eea9e7e8abe4": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "1ecfed69f521",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d12d5909eea9e7e8abe5": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "414a90eca16c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d2715909eea9e7e8abef": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "149af31020fc",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d2b82a4d5b1adb95872a": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "bc7ad90ac889",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d2cd5909eea9e7e8ac04": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "178720ccb758",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d3326131adb3941d5d6d": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "5bf9131e0bee",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d34c6131adb3941d5d6e": {
+   "modulo": "Gestão de Pátio",
+   "fonte": "leitura",
+   "hash": "b47625f89edf",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d4c56131adb3941d5d90": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "db997c98738e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d6d66131adb3941d5db2": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "52b76452a0ee",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d7372a4d5b1adb958755": {
+   "modulo": "Checklist & Diagnóstico",
+   "fonte": "leitura",
+   "hash": "7f1629a447b8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d79d2a4d5b1adb95875f": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "feaf6378d8c0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d8d56131adb3941d5dc5": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "6ef40db55a6f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5d9932a4d5b1adb95877d": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "6fda03e001b0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5da185909eea9e7e8ac54": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "fde0a22df953",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5daa86131adb3941d5de1": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "e629a2ff2293",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5dabe6131adb3941d5deb": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "43944e3f7731",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5dad22a4d5b1adb95878e": {
+   "modulo": "Checklist & Diagnóstico",
+   "fonte": "leitura",
+   "hash": "e3349043d739",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5db095909eea9e7e8ac6e": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "fe64aa71ad7f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5dc525909eea9e7e8ac8d": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "82b06ca1680b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5dfd12a4d5b1adb9587d6": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "773fe7b31136",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e0946131adb3941d5e44": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d12b22ce6a9d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e10d5909eea9e7e8acbd": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "42fa9091bf38",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e1332a4d5b1adb9587e0": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "e96ea9759574",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e41e2a4d5b1adb9587e1": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "18baab01bbfa",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e5732a4d5b1adb9587e2": {
+   "modulo": "Checklist & Diagnóstico",
+   "fonte": "leitura",
+   "hash": "d998d6fed00e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e5cd6131adb3941d5e6f": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "00ea9bff2c19",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e64e6131adb3941d5e77": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b9539067e5ef",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e6ed6131adb3941d5e78": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "ae5fd79f46f7",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e7f72a4d5b1adb958813": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "cffc78e6a191",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e8772a4d5b1adb958814": {
+   "modulo": "Gestão de Pátio",
+   "fonte": "leitura",
+   "hash": "af737ab70aa7",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e8da6131adb3941d5e9f": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "a1c665e456b4",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e9625909eea9e7e8ad1d": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "ed092946ff25",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e9a62a4d5b1adb958815": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "23bcadf9dd7b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5e9f06131adb3941d5eb0": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "635dd7075970",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ea155909eea9e7e8ad38": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "d8eb2970e312",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ea382a4d5b1adb95881d": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "f7651b95d93a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ea942a4d5b1adb958827": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bc20fd2dfb51",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ebf36131adb3941d5efa": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d64ed5c04d6c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ec465909eea9e7e8ad42": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "6e15911b4b7a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ec5b5909eea9e7e8ad43": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "b42c19f7f67a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ee825909eea9e7e8ad5f": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "2940d590f2e2",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ef712a4d5b1adb958841": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "868cd1731f9e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f0435909eea9e7e8ad72": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c615013485e8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f06f5909eea9e7e8ad73": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "28c7df6aef90",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f1886131adb3941d5f3c": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "b3c90391e494",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f31b2a4d5b1adb958891": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "91db5e9f38ce",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f3a36131adb3941d5f3d": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "3e04aa98a93b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f43c6131adb3941d5f47": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "95ddeeb17661",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f58d5909eea9e7e8adbb": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "54bb48248e5f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f58d5909eea9e7e8adbc": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "38ca13ce2a12",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f59a2a4d5b1adb9588b8": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "b21f75a86af5",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f5f42a4d5b1adb9588b9": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "028158c8678c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f5f95909eea9e7e8adbd": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "7545f21d8c88",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f63b5909eea9e7e8add6": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "478220f38e01",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f71d5909eea9e7e8adf2": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "eb57b04562f9",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f72d5909eea9e7e8adf3": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "e5bbd27ecd9d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f79b5909eea9e7e8adf4": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "c7f70b271b6a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f7b55909eea9e7e8adf6": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "64912673009b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f7b65909eea9e7e8adfb": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ca9ccd825a22",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f7cd6131adb3941d5fb2": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "39a3a343cb8c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f9032a4d5b1adb95890b": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "5b3a0250d3ae",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f91a2a4d5b1adb958915": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f30308b58cf5",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5f92b5909eea9e7e8ae1b": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3cfe8b8e3713",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fa082a4d5b1adb95892f": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "ac95e8fd77a0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fa2d2a4d5b1adb958930": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "5b8c96635a0b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fa6c5909eea9e7e8ae50": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "b4de7bb35785",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fa766131adb3941d6029": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bca0d24fe03f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fa805909eea9e7e8ae61": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0460de08c8fd",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fb016131adb3941d6040": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "5901c1df9c85",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fba66131adb3941d6067": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "9b337591f916",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fbcc5909eea9e7e8ae91": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "74a66132b43c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fbdf5909eea9e7e8ae92": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "bbe9c845eb2b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fc032a4d5b1adb958974": {
+   "modulo": "Checklist & Diagnóstico",
+   "fonte": "leitura",
+   "hash": "d59932f1423a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fc0b2a4d5b1adb958975": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "b514744caa7d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fc1c2a4d5b1adb958976": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "1303c27d39b4",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fc4c2a4d5b1adb95897d": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "878321b0c95a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fc595909eea9e7e8aea5": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c094c47e1405",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fc695909eea9e7e8aeac": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "292c3d37b68d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fc8a2a4d5b1adb958997": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "cfc5409f3bef",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fcb25909eea9e7e8aebf": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "3b9cb6716efd",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fd5f2a4d5b1adb9589a0": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "40f9fb7ca172",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fe262a4d5b1adb9589a1": {
+   "modulo": "Acesso e login",
+   "fonte": "leitura",
+   "hash": "7142301ec736",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fe6f6131adb3941d60ca": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "5429e32ba5e0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fea32a4d5b1adb9589ab": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "2d68f4476cb6",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5fef05909eea9e7e8aeee": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "e2d7162084be",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ff032a4d5b1adb9589bc": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "f08b4622f8d8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ff165909eea9e7e8aeef": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "27b582170d23",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ff8e2a4d5b1adb9589c3": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "defaa2c7fcec",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af5ffd46131adb3941d6106": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "d3bacbb51a88",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af600435909eea9e7e8af09": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "2729af939ae9",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6005f5909eea9e7e8af0a": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "456f966d4ebd",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af600a55909eea9e7e8af0b": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "53ae2f0b40f1",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af601842a4d5b1adb958a01": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "e4a9d6366db4",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af601b35909eea9e7e8af1c": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "fca0a88c098c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af601e66131adb3941d6139": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "dfe6f66adccf",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af603232a4d5b1adb958a16": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "0525f1799ae0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af603372a4d5b1adb958a22": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "5bb3cca6615c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af603805909eea9e7e8af41": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a3dfd66ae8ca",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af603995909eea9e7e8af43": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "356fa74b861d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af604366131adb3941d615a": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "e112a7a5c19a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6048a6131adb3941d6164": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "61fb43a39981",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af604b26131adb3941d6177": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "a79dee7a35fa",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6059d2a4d5b1adb958a44": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "218539322c1f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af605cf5909eea9e7e8af9f": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "fe9191a07bf6",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af606166131adb3941d61a8": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "236291357d0b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6069b5909eea9e7e8afa7": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "9844b7ef03ba",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af607355909eea9e7e8afa8": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "486a20fee912",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af607fb6131adb3941d61cb": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "ef3a059dc08c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af608a85909eea9e7e8afb8": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "201bd4b9f1ef",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6091d5909eea9e7e8afb9": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "24abee4924d4",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af609a96131adb3941d61ef": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "2ad3adc8dbb7",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af609c25909eea9e7e8afca": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "cacf3f083871",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af609c95909eea9e7e8afcb": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "604aa2f3478d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af609db5909eea9e7e8afcc": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "d4af419940ae",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60b142a4d5b1adb958acd": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "75d4cb781600",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60bba2a4d5b1adb958ad4": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f43dbb241a38",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60bd65909eea9e7e8aff7": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "172a985c6913",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60c4b2a4d5b1adb958ae9": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "4e4fca23a2da",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60c665909eea9e7e8b007": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "f1845f519e0d",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60cc36131adb3941d625d": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "da170c7d5a60",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60cf85909eea9e7e8b018": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "38ba0b0acd18",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60d632a4d5b1adb958b03": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "4f8cb407b2f3",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60e645909eea9e7e8b04b": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "37f2bfe9ca0f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60e692a4d5b1adb958b0c": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "ba2f95896151",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60ed96131adb3941d6298": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "73de917fae2c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af60f732a4d5b1adb958b16": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "ece65443cbfa",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af610952a4d5b1adb958b20": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "63a67c069c25",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af610cf5909eea9e7e8b080": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "7fadd2784acd",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af610d85909eea9e7e8b081": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "c6256f776f41",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af611742a4d5b1adb958b47": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "46e128694f60",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6120c6131adb3941d62c0": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "122e9c44f54c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af612662a4d5b1adb958b63": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "45fa563443ae",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6129e5909eea9e7e8b0b2": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "898b18d462a8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af612d22a4d5b1adb958b69": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "1ca6ee3751a2",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af613932a4d5b1adb958b87": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "41a1e4b0fbec",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af614bd5909eea9e7e8b0c1": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "de13217129e9",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af614c25909eea9e7e8b0c2": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "de8a782ec1c1",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af615362a4d5b1adb958b91": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "3227c3088454",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af617a05909eea9e7e8b0dc": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "e2379acccd85",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af617e72a4d5b1adb958bae": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "8a706dc1e1de",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af618675909eea9e7e8b0e6": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "5c28fbe4d438",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6187f5909eea9e7e8b0e7": {
+   "modulo": "Visão Geral",
+   "fonte": "leitura",
+   "hash": "48204af020a2",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af619176131adb3941d6356": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b18ed8e93ab0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af61a156131adb3941d6357": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "058179e64ab3",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af61b005909eea9e7e8b12f": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "f7bc8275f156",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af61baf6131adb3941d6367": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b7b50cd61728",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af61d872a4d5b1adb958c29": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "bb5ccf11dd17",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af61df35909eea9e7e8b139": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "4903b443086e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af61e346131adb3941d638c": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "7546bbacff0a",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af61e8a5909eea9e7e8b147": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "ac1f8f5b05a1",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af61efd6131adb3941d639f": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b2a17f6f9104",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af620f86131adb3941d63c3": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "f023e8217146",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af620fb6131adb3941d63c4": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "73642ee1c6f7",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af622575909eea9e7e8b16a": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "34ddd1a3d608",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af622a82a4d5b1adb958c7d": {
+   "modulo": "Cadastros",
+   "fonte": "leitura",
+   "hash": "efa7b233b342",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af623462a4d5b1adb958c84": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "98ef36d48443",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af623505909eea9e7e8b17b": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "c3c1f0c42bad",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af623722a4d5b1adb958c97": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "88894ae1680c",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6243a6131adb3941d63f9": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "4fe01729b536",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af627822a4d5b1adb958caa": {
+   "modulo": "Financeiro",
+   "fonte": "leitura",
+   "hash": "f8e5366a6bea",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af629992a4d5b1adb958cb4": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "50f709c538f8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af62b975909eea9e7e8b1b8": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "8eb4bba3f6d0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6316f2a4d5b1adb958cdd": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "9e375e0113b8",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6327d2a4d5b1adb958cde": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "a6d35e72bedb",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6329a5909eea9e7e8b1e7": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "682c5c4b25d7",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af647986131adb3941d6467": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "bc5b9ab008ce",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af65a245909eea9e7e8b1f6": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "9d3ea186d10b",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af662826131adb3941d6472": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "d50b8a213dd9",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6e8085909eea9e7e8b211": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "b121a38c4dcc",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6ee6a6131adb3941d6485": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "9770819e08e0",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6f1242a4d5b1adb958d5a": {
+   "modulo": "Transversal",
+   "fonte": "leitura",
+   "hash": "1b4bf177f91f",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6f2126131adb3941d64a3": {
+   "modulo": "Relatórios",
+   "fonte": "leitura",
+   "hash": "c5bd8cd3ba53",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6f3b95909eea9e7e8b267": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "f97f158d880e",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6f5025909eea9e7e8b279": {
+   "modulo": "Fiscal",
+   "fonte": "leitura",
+   "hash": "d0dfd1b4a4c9",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6f5362a4d5b1adb958d94": {
+   "modulo": "Orçamentos & Serviços",
+   "fonte": "leitura",
+   "hash": "7c61b115a2d9",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6f77a2a4d5b1adb958dc3": {
+   "modulo": "Peças & Estoque",
+   "fonte": "leitura",
+   "hash": "f525b6cff555",
+   "em": "2026-11-13T09:29:30"
+  },
+  "6af6f8d16131adb3941d650e": {
+   "modulo": "Ordem de Serviço",
+   "fonte": "leitura",
+   "hash": "3097ea8f0051",
+   "em": "2026-11-13T09:29:30"
   }
  },
- "atualizado_em": "2026-11-12T09:51:04",
+ "atualizado_em": "2026-11-13T09:29:30",
  "modulos_versao": "2026-10-30"
 }
